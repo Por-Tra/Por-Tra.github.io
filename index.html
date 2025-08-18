@@ -1,11 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpaceX Clone</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Welcome to My Page</h1>
+
+  <header>
+    <div class="logo">Porfolio</div>
+    <nav>
+      <ul>
+        <li><a href="#">Mes projets</a></li>
+        <li><a href="./3D/3D.html">Rendu 3D</a></li>
+      </ul>
+    </nav>
+    <div class="TM" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <section>
+    <div class="placeholder-image">IMAGE 1</div>
+    <h1>TEXT</h1>
+    
+  </section>
+
+  <section>
+    <div class="placeholder-image">IMAGE 2</div>
+    <h1>TEXT</h1>
+  </section>
+
+  <section>
+    <div class="placeholder-image">IMAGE 3</div>
+    <h1>TEXT</h1>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Mon Portfolio</p>
+    <p>Contact: <a href="mailto:lucascontrerashodapp@gmail.com"> mon email</a></p>
+  </footer>
+
+  <script>
+    function toggleMenu(){
+      document.querySelector('nav ul').classList.toggle('active');
+    }
+  </script>
 </body>
 </html>

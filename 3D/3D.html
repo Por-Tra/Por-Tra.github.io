@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Choisissez votre projet - 3D</title>
+    <link rel="stylesheet" href="3D_style.css">
+    <link rel="stylesheet" href="../style.css">
+    
+</head>
+<body>
+    <header>
+        <div class="logo">Mes Projets 3D</div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="../project/">Projets</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="TM" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </div>
+        </nav>
+    </header>
+    <section>
+        <h1>Choisissez votre projet</h1>
+        <p>Sélectionnez un projet ci-dessous pour en savoir plus ou pour y accéder directement.</p>
+        <div class="projects-list">
+            <div class="project-card" onclick="window.location.href='projet1.html'">
+                <div class="project-title">Projet 3D - Architecture</div>
+                <div class="project-desc">Visualisation interactive d'un bâtiment moderne en 3D.</div>
+            </div>
+            <div class="project-card" onclick="window.location.href='projet2.html'">
+                <div class="project-title">Projet 3D - Animation</div>
+                <div class="project-desc">Animation d'un personnage en 3D avec contrôles dynamiques.</div>
+            </div>
+            <div class="project-card" onclick="window.location.href='projet3.html'">
+                <div class="project-title">Projet 3D - Jeu</div>
+                <div class="project-desc">Mini-jeu interactif en 3D, jouable directement dans le navigateur.</div>
+            </div>
+        </div>
+        <a class="arrow-link" href="autrepage.html" title="Aller à la page suivante">
+            <svg class="arrow-svg" viewBox="0 0 24 24">
+                <path d="M12 4v12m0 0l-6-6m6 6l6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
+    </section>
+    <footer>
+        &copy; 2024 Mes Projets 3D. Tous droits réservés.
+    </footer>
+    <script>
+        function toggleMenu() {
+            document.querySelector('nav ul').classList.toggle('active');
+        }
+    </script>
+</body>
+</html></svg></a>
