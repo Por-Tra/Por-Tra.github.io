@@ -1,6 +1,7 @@
 <canvas id="scene3d"></canvas>
 
 
+
 <script type="importmap">
 {
   "imports": {
@@ -34,7 +35,7 @@ scene.add(light);
 
 // CHARGEMENT DU MODELE
 const loader = new GLTFLoader();
-loader.load('../models/cube.glb', (gltf) => {
+loader.load('./cube.glb', (gltf) => {
   gltf.scene.scale.set(1, 1, 1);   // Ajuster taille si nécessaire
   gltf.scene.position.set(0, 0, 0);
   scene.add(gltf.scene);
