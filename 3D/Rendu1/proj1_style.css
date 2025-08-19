@@ -40,14 +40,14 @@ nav ul li a {
 nav ul li a:hover {
   color: #00adee;
 }
-/* Burger menu (mobile) */
-.burger {
+/* CASE menu (mobile) */
+.CASE {
   display: none;
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
 }
-.burger div {
+.CASE div {
   width: 25px; height: 3px;
   background: white;
 }
@@ -64,7 +64,7 @@ nav ul li a:hover {
   nav ul.show {
     display: flex;
   }
-  .burger {
+  .CASE {
     display: flex;
   }
 }

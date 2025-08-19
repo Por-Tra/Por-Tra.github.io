@@ -2,20 +2,20 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Projet 3D - Portfolio</title>
+  <title>Room 3D - Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="proj1_style.css">
 </head>
 <body>
   <!-- NAVBAR -->
   <nav>
-    <div class="logo">Mon Portfolio</div>
+    <div class="logo">Portfolio</div>
     <ul>
       <li><a href="../../index.html">Accueil</a></li>
       <li><a href="#">Projets</a></li>
       <li><a href="#">Contact</a></li>
     </ul>
-    <div class="burger" id="burger">
+    <div class="CASE" id="CASE">
       <div></div><div></div><div></div>
     </div>
   </nav>
@@ -24,7 +24,7 @@
   <canvas id="scene3d"></canvas>
 
   <!-- OVERLAY -->
-  <div class="overlay">Projet 3D : Architecture</div>
+  <div class="overlay">Projet 3D : Room Low Poly</div>
 
   <!-- SCRIPTS -->
   <script type="importmap">
@@ -81,7 +81,7 @@
 
   // Charger modèle
   const loader = new GLTFLoader();
-  loader.load('./cube.glb', (gltf) => {
+  loader.load('./Room.glb', (gltf) => {
     gltf.scene.scale.set(1, 1, 1);
     gltf.scene.position.set(0, 0, 0);
     gltf.scene.traverse((child) => {
