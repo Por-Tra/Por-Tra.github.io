@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mes Projets</title>
+  <link rel="stylesheet" href="projet_style.css"/>
+</head>
+<body>
+  <header>
+    <div class="logo">Mon Portfolio</div>
+    <nav>
+      <ul id="menu">
+        <li><a href="../index.html">Accueil</a></li>
+        <li><a href="../3D/3D.html">Modélisation 3D</a></li>
+        <li><a href="../contact/contact.html">Contact</a></li>
+      </ul>
+      <div class="burger" id="burger">
+        <div></div><div></div><div></div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    
+    <div class="project">
+      <div class="slider" data-interval="3000">
+        <div class="slides">
+
+            <!-- dupliquer pour slide auto -->
+          <div class="slide" style="background-image: url('../IMG/rendue_room.png');"></div> 
+        </div>
+      </div>
+      <div class="project-info">
+        <h2>Nom du Projet 1</h2>
+        <p><strong>Description : </strong>Longue description du projet…</p>
+        <p><strong>Langages : </strong>HTML, CSS, JavaScript</p>
+        <p><strong>Equipe : </strong>Travaillé en équipe de 3</p>
+        <p><strong>Date : </strong>Juin 2025</p>
+        <p><strong>Fonctionnalités : </strong>Slider, interface responsive, animations…</p>
+        <p><strong>Mon rôle : </strong>Développeur front-end, intégration</p>
+        <p><strong>Compétences : </strong>HTML, CSS, JS, Git</p>
+        <a href="downloads/projet1.zip" class="download-btn">Télécharger le projet (.zip)</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="slider" data-interval="3000">
+        <div class="slides">
+          <div class="slide" style="background-image: url('../IMG/rendue_room.png');"></div> 
+        </div>
+      </div>
+      <div class="project-info">
+        <h2>Nom du Projet 1</h2>
+        <p><strong>Description : </strong>Longue description du projet…</p>
+        <p><strong>Langages : </strong>HTML, CSS, JavaScript</p>
+        <p><strong>Equipe : </strong>Travaillé en équipe de 3</p>
+        <p><strong>Date : </strong>Juin 2025</p>
+        <p><strong>Fonctionnalités : </strong>Slider, interface responsive, animations…</p>
+        <p><strong>Mon rôle : </strong>Développeur front-end, intégration</p>
+        <p><strong>Compétences : </strong>HTML, CSS, JS, Git</p>
+        <a href="downloads/projet1.zip" class="download-btn">Télécharger le projet (.zip)</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="slider" data-interval="3000">
+        <div class="slides">
+          <div class="slide" style="background-image: url('../IMG/rendue_room.png');"></div> 
+        </div>
+      </div>
+      <div class="project-info">
+        <h2>Nom du Projet 1</h2>
+        <p><strong>Description : </strong>Longue description du projet…</p>
+        <p><strong>Langages : </strong>HTML, CSS, JavaScript</p>
+        <p><strong>Equipe : </strong>Travaillé en équipe de 3</p>
+        <p><strong>Date : </strong>Juin 2025</p>
+        <p><strong>Fonctionnalités : </strong>Slider, interface responsive, animations…</p>
+        <p><strong>Mon rôle : </strong>Développeur front-end, intégration</p>
+        <p><strong>Compétences : </strong>HTML, CSS, JS, Git</p>
+        <a href="downloads/projet1.zip" class="download-btn">Télécharger le projet (.zip)</a>
+      </div>
+    </div>
+
+    
+  </main>
+
+  <script>
+    document.getElementById('burger').onclick = () =>
+      document.getElementById('menu').classList.toggle('show');
+
+    // Slider auto
+    document.querySelectorAll('.slider').forEach(slider => {
+      const slides = slider.querySelector('.slides');
+      const count = slides.children.length;
+      let idx = 0;
+      const interval = parseInt(slider.getAttribute('data-interval')) || 3000;
+      setInterval(() => {
+        idx = (idx + 1) % count;
+        slides.style.transform = `translateX(-${idx * 100}%)`;
+      }, interval);
+    });
+  </script>
+</body>
+</html>
