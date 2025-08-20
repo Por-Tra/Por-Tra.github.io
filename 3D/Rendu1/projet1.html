@@ -81,7 +81,7 @@
 
   // Charger modèle
   const loader = new GLTFLoader();
-  loader.load('./Room.glb', (gltf) => {
+  loader.load('./Room_avec_texture.glb', (gltf) => {
     gltf.scene.scale.set(1, 1, 1);
     gltf.scene.position.set(0, 0, 0);
     gltf.scene.traverse((child) => {
