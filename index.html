@@ -1,3 +1,5 @@
+<!-- AMELIORER ICI, LE CHANGEMENT EST BIZARE -->
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -18,29 +20,28 @@
       </ul>
     </nav>
     <div class="TM" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span></span><span></span><span></span>
     </div>
   </header>
 
-  <section>
-  <img src="./IMG/rendue_room.png" alt="Projet 1" class="bg-image">
-  <h1>Modélisation 3D sur blender</h1>
-</section>
+  <!-- SECTION avec slider d’images -->
+  <section class="hero">
+    <div class="slider-bg">
+      <div class="bg-slide active" style="background-image: url('./IMG/rendue_room.png');"></div>
+      <div class="bg-slide" style="background-image: url('#');"></div>
+      <div class="bg-slide" style="background-image: url('#');"></div>
+    </div>
+    <h1>Modélisation 3D</h1>
+  </section>
 
-<section>
-  <img src="./images/projet2.png" alt="Projet 2" class="bg-image">
-  <h1>Projet 2</h1>
-  
-</section>
-
-<section>
-  <img src="./images/projet3.png" alt="Projet 3" class="bg-image">
-  <h1>Projet 3</h1>
-  
-</section>
-
+  <section class="hero">
+    <div class="slider-bg">
+      <div class="bg-slide active" style="background-image: url('./IMG/proj1/Capture\ d\'écran\ 2025-05-14\ 100305.png');"></div>
+      <div class="bg-slide" style="background-image: url('./IMG/proj1/Capture\ d\'écran\ 2025-05-14\ 100424.png');"></div>
+      <div class="bg-slide" style="background-image: url('./IMG/proj1/Capture\ d\'écran\ 2025-05-14\ 100449.png');"></div>
+    </div>
+    <h1>Programmation</h1>
+  </section>
 
   <footer>
     <p>&copy; 2025 Mon Portfolio</p>
@@ -51,6 +52,15 @@
     function toggleMenu(){
       document.querySelector('nav ul').classList.toggle('active');
     }
+
+    // Slider BG auto
+    const slides = document.querySelectorAll('.bg-slide');
+    let idx = 0;
+    setInterval(() => {
+      slides[idx].classList.remove('active');
+      idx = (idx + 1) % slides.length;
+      slides[idx].classList.add('active');
+    }, 4000); // temps entre les images
   </script>
 </body>
 </html>

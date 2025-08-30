@@ -62,15 +62,33 @@ section {
   padding: 20px;
   position: relative;
 }
-.bg-image {
+.bg-slide {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+.bg-slide.active {
+  opacity: 1;
+}
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+.slider-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   z-index: -1;
-  filter: brightness(0.6);
 }
 
 section h1 {
