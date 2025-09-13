@@ -6,13 +6,13 @@ header {
   display: flex; align-items: center; justify-content: space-between;
   z-index: 1000;
 }
-header .logo { font-size: 1.5em; color: #00adee; }
+header .logo { font-size: 1.5em; color: #ffffff; }
 nav ul { display: flex; gap: 20px; list-style: none; }
 nav ul li a {
   text-decoration: none; color: #fff;
   transition: color 0.3s;
 }
-nav ul li a:hover { color: #00adee; }
+nav ul li a:hover { color: #ffffff; }
 .burger {
   display: none; flex-direction: column; gap: 4px; cursor: pointer;
 }
@@ -27,7 +27,7 @@ main {
   padding: 100px 20px 40px;
   text-align: center;
 }
-h1 { font-size: 2.5em; margin-bottom: 20px; color: #00adee; }
+h1 { font-size: 2.5em; margin-bottom: 20px; color: #ffffff; }
 .contact-container {
   display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-top: 40px;
 }
@@ -40,7 +40,7 @@ h1 { font-size: 2.5em; margin-bottom: 20px; color: #00adee; }
   width: 60px; height: 60px; fill: #fff;
   transition: fill 0.3s;
 }
-.contact-item:hover svg { fill: #00adee; }
+.contact-item:hover svg { fill: #ffffff; }
 .contact-item span { margin-top: 10px; }
 
 /* Styles pour la section CV */
@@ -50,7 +50,7 @@ h1 { font-size: 2.5em; margin-bottom: 20px; color: #00adee; }
 }
 .cv-section h2 {
   font-size: 2em;
-  color: #00adee;
+  color: #ffffff;
   margin-bottom: 20px;
 }
 .cv-container {
