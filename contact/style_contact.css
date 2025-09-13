@@ -42,3 +42,42 @@ h1 { font-size: 2.5em; margin-bottom: 20px; color: #00adee; }
 }
 .contact-item:hover svg { fill: #00adee; }
 .contact-item span { margin-top: 10px; }
+
+/* Styles pour la section CV */
+.cv-section {
+  margin-top: 60px;
+  padding: 20px;
+}
+.cv-section h2 {
+  font-size: 2em;
+  color: #00adee;
+  margin-bottom: 20px;
+}
+.cv-container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+.cv-container embed {
+  border: 2px solid #00adee;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+.download-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #00adee;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.3s, transform 0.3s;
+}
+.download-btn:hover {
+  background: #0088cc;
+  transform: scale(1.05);
+}
+@media(max-width: 768px) {
+  .cv-container embed {
+    height: 400px;
+  }
+}
