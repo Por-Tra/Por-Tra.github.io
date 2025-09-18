@@ -232,6 +232,13 @@ footer a:hover {
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.hero-link:hover{
-  text-emphasis-color: red;
+.stack h3 {
+  font-size: 1.8rem;
+  margin: 40px 0 20px;
+  color: #00adee;
+  text-transform: uppercase;
+  border-bottom: 2px solid #00adee;
+  display: inline-block;
+  padding-bottom: 5px;
 }
+
