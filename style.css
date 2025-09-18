@@ -224,3 +224,14 @@ footer a:hover {
     font-size: 0.8rem;
   }
 }
+
+.hero-link {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.hero-link:hover{
+  text-emphasis-color: red;
+}
