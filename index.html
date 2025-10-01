@@ -283,17 +283,89 @@
       }, 4000);
     });
 
-    // Initialiser les barres de progression
-    document.querySelectorAll('.stack-item').forEach(item => {
-      const progress = item.getAttribute('data-progress');
-      const fill = item.querySelector('.progress-fill');
-      fill.style.width = `${progress}%`;
-    });
+    // Intersection Observer pour les animations de la section stack
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -20px 0px'
+    };
 
-    document.querySelectorAll('.stack-item').forEach(item => {
-      const progress = item.getAttribute('data-progress');
-      const fill = item.querySelector('.progress-fill');
-      fill.style.width = `${progress}%`;
+    // Observer pour la section stack principale
+    const stackObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+          
+          // Animer les barres de progression avec des délais plus lents
+          const stackItems = entry.target.querySelectorAll('.stack-item');
+          stackItems.forEach((item, index) => {
+            setTimeout(() => {
+              const progress = item.getAttribute('data-progress');
+              const fill = item.querySelector('.progress-fill');
+              if (fill) {
+                fill.style.setProperty('--progress-width', `${progress}%`);
+                fill.style.width = `${progress}%`;
+              }
+            }, 500 + (index * 300)); // Délai plus long pour chaque élément
+          });
+        }
+      });
+    }, observerOptions);
+
+    // Observer individuel pour chaque stack-item-box
+    const itemObserverOptions = {
+      threshold: 0.2,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const itemObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateX(0) scale(1)';
+        }
+      });
+    }, itemObserverOptions);
+
+    // Observer la section stack
+    const stackSection = document.querySelector('.stack');
+    if (stackSection) {
+      stackObserver.observe(stackSection);
+      
+      // Observer chaque item individuellement pour un effet plus progressif
+      const stackItems = stackSection.querySelectorAll('.stack-item-box');
+      stackItems.forEach(item => {
+        itemObserver.observe(item);
+      });
+    }
+
+    // Animation supplémentaire pour les titres h3 avec délais échelonnés plus lents
+    const titleObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const titles = entry.target.querySelectorAll('h3');
+          titles.forEach((title, index) => {
+            setTimeout(() => {
+              title.style.opacity = '1';
+              title.style.transform = 'translateX(0)';
+            }, index * 800); // Délais plus longs entre les titres
+          });
+        }
+      });
+    }, observerOptions);
+
+    if (stackSection) {
+      titleObserver.observe(stackSection);
+    }
+
+    // Effet de hover amélioré pour les stack-items
+    document.querySelectorAll('.stack-item-box').forEach(box => {
+      box.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.1) translateY(-10px)';
+      });
+      
+      box.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1) translateY(0)';
+      });
     });
 
   </script>
