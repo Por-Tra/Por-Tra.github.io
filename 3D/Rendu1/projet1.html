@@ -14,8 +14,9 @@
       <li><a href="../../index.html">Accueil</a></li>
       <li><a href="../../project/Projet_index.html">Projets</a></li>
       <li><a href="../../contact/contact.html">Contact</a></li>
+      <li><a href="../../CV.html">CV</a></li>
     </ul>
-    <div class="CASE" id="CASE">
+    <div class="burger" id="burger">
       <div></div><div></div><div></div>
     </div>
   </nav>
@@ -108,11 +109,8 @@
   }
 
   // Burger menu
-  const burger = document.getElementById('burger');
-  const navLinks = document.querySelector('nav ul');
-  burger.addEventListener('click', () => {
-    navLinks.classList.toggle('show');
-  });
+  document.getElementById('burger').onclick = () =>
+    document.querySelector('nav ul').classList.toggle('show');
   </script>
 </body>
 </html>
