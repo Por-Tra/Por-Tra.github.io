@@ -58,3 +58,70 @@ main { padding: 80px 20px 20px; }
   .slider, .project-info { width: 100%; }
   .slide { height: 200px; }
 }
+
+/* Styles pour la section 3D */
+.section-3d {
+  margin: 60px 0;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  color: #00adee;
+  margin-bottom: 20px;
+}
+
+.section-description {
+  font-size: 1.1rem;
+  color: #bbb;
+  margin-bottom: 40px;
+}
+
+.projects-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.project-card {
+  background: #111;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+  padding: 30px 40px;
+  min-width: 220px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  text-align: left;
+  position: relative;
+}
+
+.project-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.7);
+  background: #181818;
+}
+
+.project-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.project-desc {
+  font-size: 0.95rem;
+  color: #bbb;
+}
+
+@media (max-width: 600px) {
+  .projects-list {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .project-card {
+    min-width: unset;
+    padding: 20px 15px;
+  }
+}
