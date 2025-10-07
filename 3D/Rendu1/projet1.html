@@ -46,136 +46,53 @@
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.outputEncoding = THREE.sRGBEncoding;
-  renderer.physicallyCorrectLights = true;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.0;
+  renderer.toneMappingExposure = 1.2;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0x202020);
 
-  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
   camera.position.set(3, 2, 5);
 
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true;
 
   // Lights
-  const hemi = new THREE.HemisphereLight(0xffffff, 0x444444, 0.6);
-  scene.add(hemi);
-
-  const dirLight = new THREE.DirectionalLight(0xffffff, 1.0);
-  dirLight.position.set(5, 8, 3);
+  const dirLight = new THREE.DirectionalLight(0xffffff, 1.2);
+  dirLight.position.set(5, 5, 5);
   dirLight.castShadow = true;
-  dirLight.shadow.mapSize.set(2048, 2048);
-  dirLight.shadow.camera.near = 0.5;
-  dirLight.shadow.camera.far = 50;
-  dirLight.shadow.camera.left = -10;
-  dirLight.shadow.camera.right = 10;
-  dirLight.shadow.camera.top = 10;
-  dirLight.shadow.camera.bottom = -10;
+  dirLight.shadow.mapSize.width = 2048;
+  dirLight.shadow.mapSize.height = 2048;
   scene.add(dirLight);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.3));
+  scene.add(new THREE.HemisphereLight(0xaaaaee, 0x444422, 0.5));
 
-  const fill = new THREE.PointLight(0xffffff, 0.25);
-  fill.position.set(-5, 4, -5);
-  scene.add(fill);
-
-  // Ground to receive shadows
+  // Sol invisible
   const plane = new THREE.Mesh(
-    new THREE.PlaneGeometry(200, 200),
-    new THREE.ShadowMaterial({ opacity: 0.35 })
+    new THREE.PlaneGeometry(100, 100),
+    new THREE.ShadowMaterial({ opacity: 0.3 })
   );
   plane.rotation.x = -Math.PI / 2;
-  plane.position.y = -1.0;
+  plane.position.y = -1;
   plane.receiveShadow = true;
   scene.add(plane);
 
-  // PMREM environment (use a small cube from threejs examples)
-  const pmremGenerator = new THREE.PMREMGenerator(renderer);
-  pmremGenerator.compileEquirectangularShader();
-  const cubeLoader = new THREE.CubeTextureLoader();
-  const envMapPath = 'https://threejs.org/examples/textures/cube/Bridge2/';
-  const envMap = cubeLoader.setPath(envMapPath).load([
-    'posx.jpg','negx.jpg','posy.jpg','negy.jpg','posz.jpg','negz.jpg'
-  ], () => {
-    envMap.encoding = THREE.sRGBEncoding;
-    const envMapTexture = pmremGenerator.fromCubemap(envMap).texture;
-    scene.environment = envMapTexture;
-    pmremGenerator.dispose();
-  });
-
-  // GLTF loader
+  // Charger modèle
   const loader = new GLTFLoader();
   loader.load('./Room_avec_texture.glb', (gltf) => {
-    const model = gltf.scene;
-    model.position.set(0, 0, 0);
-    model.scale.set(1, 1, 1);
-
-    // Helper: get max anisotropy if available
-    const maxAnisotropy = renderer.capabilities && renderer.capabilities.getMaxAnisotropy
-      ? renderer.capabilities.getMaxAnisotropy()
-      : 1;
-
-    // Fix textures to avoid tiling/quadrillage artifacts
-    const handleMap = (tex, isColor = true) => {
-      if (!tex) return;
-      try {
-        if (isColor) tex.encoding = THREE.sRGBEncoding; else tex.encoding = THREE.LinearEncoding;
-        tex.wrapS = THREE.ClampToEdgeWrapping;
-        tex.wrapT = THREE.ClampToEdgeWrapping;
-        if (tex.repeat) tex.repeat.set(1,1);
-        if (tex.center) tex.center.set(0.5, 0.5);
-        tex.rotation = 0;
-        tex.magFilter = THREE.LinearFilter;
-        tex.minFilter = THREE.LinearMipmapLinearFilter;
-        if (maxAnisotropy) tex.anisotropy = maxAnisotropy;
-        tex.needsUpdate = true;
-      } catch (e) {
-        // ignore
-      }
-    };
-
-    model.traverse((child) => {
+    gltf.scene.scale.set(1, 1, 1);
+    gltf.scene.position.set(0, 0, 0);
+    gltf.scene.traverse((child) => {
       if (child.isMesh) {
         child.castShadow = true;
         child.receiveShadow = true;
-        const mat = child.material;
-        if (mat) {
-          handleMap(mat.map, true);
-          handleMap(mat.emissiveMap, true);
-          handleMap(mat.lightMap, true);
-          handleMap(mat.aoMap, true);
-          handleMap(mat.roughnessMap, false);
-          handleMap(mat.metalnessMap, false);
-          handleMap(mat.normalMap, false);
-
-          if (mat.isMeshStandardMaterial || mat.isMeshPhysicalMaterial) {
-            mat.envMap = scene.environment;
-            mat.envMapIntensity = mat.envMapIntensity !== undefined ? mat.envMapIntensity : 1.0;
-            if (mat.roughness === undefined) mat.roughness = 0.6;
-            mat.roughness = Math.min(Math.max(mat.roughness, 0.05), 1.0);
-            if (mat.metalness === undefined) mat.metalness = 0.0;
-            mat.metalness = Math.min(Math.max(mat.metalness, 0.0), 1.0);
-          }
-          mat.needsUpdate = true;
-        }
       }
     });
-
-    // Frame camera to model
-    const box = new THREE.Box3().setFromObject(model);
-    const size = box.getSize(new THREE.Vector3()).length();
-    const center = box.getCenter(new THREE.Vector3());
-    const distance = Math.max(2, size * 1.2);
-    camera.position.set(center.x + distance, center.y + distance * 0.6, center.z + distance);
-    controls.target.copy(center);
-    controls.update();
-
-    scene.add(model);
+    scene.add(gltf.scene);
     animate();
-  }, undefined, (err) => {
-    console.error('GLTF load error:', err);
   });
 
   // Responsive
@@ -183,7 +100,6 @@
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   });
 
   function animate() {
