@@ -79,6 +79,8 @@ main { padding: 80px 20px 20px; }
 .slider {
   position: relative; width: 50%; overflow: hidden; border-radius: 8px;
 }
+
+
 .slides {
   display: flex; transition: transform 0.5s ease-in-out;
 }
@@ -169,5 +171,156 @@ main { padding: 80px 20px 20px; }
   .project-card {
     min-width: unset;
     padding: 20px 15px;
+  }
+}
+
+/* Lightbox Styles */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.lightbox.active {
+  display: flex;
+  opacity: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  transform: scale(0.8);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.lightbox.active .lightbox-img {
+  transform: scale(1);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: -50px;
+  right: -10px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  font-size: 40px;
+  cursor: pointer;
+  padding: 10px 10px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  z-index: 10001;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.lightbox-prev, .lightbox-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  padding: 15px 20px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  z-index: 10001;
+}
+
+.lightbox-prev {
+  left: -80px;
+}
+
+.lightbox-next {
+  right: -80px;
+}
+
+.lightbox-prev:hover, .lightbox-next:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.lightbox-counter {
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  backdrop-filter: blur(10px);
+}
+
+/* Rendre les slides cliquables */
+.slide {
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.slide:hover {
+  transform: scale(1.02);
+  filter: brightness(1.1);
+}
+
+
+
+@media (max-width: 768px) {
+  .lightbox-prev {
+    left: 10px;
+  }
+  
+  .lightbox-next {
+    right: 10px;
+  }
+  
+  .lightbox-close {
+    top: 10px;
+    right: 10px;
+  }
+  
+  .lightbox-counter {
+    bottom: 20px;
+  }
+  
+  .lightbox-prev, .lightbox-next {
+    padding: 10px 15px;
+    font-size: 24px;
   }
 }
