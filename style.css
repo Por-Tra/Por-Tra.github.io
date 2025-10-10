@@ -182,7 +182,8 @@ footer a:hover {
   text-transform: uppercase;
   opacity: 0;
   transform: translateY(20px);
-  transition: all 0.6s ease;
+  /* shorter, targeted transition for desktop */
+  transition: opacity 250ms ease, transform 250ms ease;
 }
 
 .stack.animate h3 {
@@ -211,7 +212,8 @@ footer a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: all 0.3s ease;
+  /* only animate the properties needed and make hover faster */
+  transition: transform 120ms ease, background 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
   opacity: 0;
   transform: translateY(30px);
 }
@@ -222,6 +224,15 @@ footer a:hover {
 }
 
 .stack-item-box:hover {
+  /* quicker, snappier hover with minimal perceived latency */
+  transform: translateY(-8px);
+  background: rgba(0, 173, 238, 0.1);
+  border-color: #00adee;
+  box-shadow: 0 10px 30px rgba(0, 173, 238, 0.3);
+}
+
+/* Faster response when JS toggles the class (used on hover-capable devices) */
+.stack-item-box.is-hover {
   transform: translateY(-8px);
   background: rgba(0, 173, 238, 0.1);
   border-color: #00adee;
@@ -229,15 +240,62 @@ footer a:hover {
 }
 
 /* Délais d'animation simples */
-.stack-item-box:nth-child(1) { transition-delay: 0.1s; }
-.stack-item-box:nth-child(2) { transition-delay: 0.2s; }
-.stack-item-box:nth-child(3) { transition-delay: 0.3s; }
-.stack-item-box:nth-child(4) { transition-delay: 0.4s; }
-.stack-item-box:nth-child(5) { transition-delay: 0.5s; }
-.stack-item-box:nth-child(6) { transition-delay: 0.6s; }
-.stack-item-box:nth-child(7) { transition-delay: 0.7s; }
-.stack-item-box:nth-child(8) { transition-delay: 0.8s; }
-.stack-item-box:nth-child(9) { transition-delay: 0.9s; }
+.stack-item-box:nth-child(1) { transition-delay: 0.05s; }
+.stack-item-box:nth-child(2) { transition-delay: 0.10s; }
+.stack-item-box:nth-child(3) { transition-delay: 0.15s; }
+.stack-item-box:nth-child(4) { transition-delay: 0.20s; }
+.stack-item-box:nth-child(5) { transition-delay: 0.25s; }
+.stack-item-box:nth-child(6) { transition-delay: 0.30s; }
+.stack-item-box:nth-child(7) { transition-delay: 0.35s; }
+.stack-item-box:nth-child(8) { transition-delay: 0.40s; }
+.stack-item-box:nth-child(9) { transition-delay: 0.45s; }
+
+/* Disable or reduce animations on touch/coarse-pointer devices and for users who prefer reduced motion */
+@media (hover: none), (pointer: coarse), (max-width: 1024px) {
+  /* Remove transitions and animations to improve performance on phones/tablets */
+  .bg-slide,
+  .stack h3,
+  .stack-item-box,
+  .stack-item img,
+  .stack-item p,
+  .progress-fill,
+  .hero-link,
+  nav ul li a,
+  .burger span {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  /* Ensure items are visible immediately (no entrance translation) */
+  .stack-item-box {
+    opacity: 1 !important;
+    transform: none !important;
+    box-shadow: none !important;
+    background: rgba(255,255,255,0.03) !important;
+  }
+
+  /* Make hover inert on touch devices */
+  .stack-item-box:hover {
+    transform: none !important;
+    background: rgba(255,255,255,0.03) !important;
+    box-shadow: none !important;
+  }
+
+  .progress-fill { transition: none !important; width: var(--progress-width, 0%) !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-slide,
+  .stack h3,
+  .stack-item-box,
+  .stack-item img,
+  .stack-item p,
+  .progress-fill,
+  .hero-link {
+    transition: none !important;
+    animation: none !important;
+  }
+}
 .stack-item {
   display: flex;
   flex-direction: column;

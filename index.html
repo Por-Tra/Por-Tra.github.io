@@ -314,16 +314,17 @@
       observer.observe(stackSection);
     }
 
-    // Effets hover simples
-    document.querySelectorAll('.stack-item-box').forEach(box => {
-      box.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-8px)';
+    // Effets hover simples — only attach on devices that support hover to avoid touch interference
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      document.querySelectorAll('.stack-item-box').forEach(box => {
+        box.addEventListener('mouseenter', function() {
+          this.classList.add('is-hover');
+        });
+        box.addEventListener('mouseleave', function() {
+          this.classList.remove('is-hover');
+        });
       });
-      
-      box.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0)';
-      });
-    });
+    }
 
   </script>
 </body>
