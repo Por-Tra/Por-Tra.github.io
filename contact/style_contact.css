@@ -89,3 +89,104 @@ h1 { font-size: 2.5em; margin-bottom: 20px; color: #ffffff; }
 }
 .contact-item:hover svg { fill: #ffffff; }
 .contact-item span { margin-top: 10px; }
+
+/* New sections styling to match main site */
+main section {
+  margin: 40px auto;
+  max-width: 1000px;
+  padding: 20px;
+  text-align: left;
+}
+
+main h2 {
+  color: #00adee;
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #00adee;
+  display: inline-block;
+  padding-bottom: 6px;
+}
+
+.about-text {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #ddd;
+  min-height: 3.2em;
+}
+
+.formations ul, .experiences ul {
+  list-style: disc inside;
+  color: #ddd;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+}
+.skill {
+  background: rgba(255,255,255,0.04);
+  padding: 10px;
+  border-radius: 8px;
+  color: #fff;
+  text-align: center;
+}
+
+.interests-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+.interest {
+  background: rgba(255,255,255,0.03);
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+}
+.interest img { width: 100%; height: 200px; object-fit: cover; border-radius: 6px; }
+.interest h3 { margin-top: 10px; color: #fff; font-size: 1.05rem; }
+.interest p.interest-desc { margin-top: 8px; color: #ddd; font-size: 0.95rem; }
+
+/* Typing cursor (only used in desktop media query below) */
+.about-text.typing {
+  border-right: 2px solid #00adee;
+  white-space: pre-wrap;
+}
+
+/* Desktop-only animations: use hover-capable media query */
+@media (hover: hover) and (pointer: fine) {
+  /* Faster entrance for all sections */
+  main section {
+    transition: opacity 220ms ease, transform 220ms ease;
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  main section.animate {
+    opacity: 1;
+    transform: none;
+  }
+
+  .about-text {
+    /* typing will set .typing and .about.animate will reveal the section */
+    min-height: 3.2em;
+  }
+
+  .interest { transition: transform 120ms ease, box-shadow 120ms ease; }
+  .interest:hover { transform: translateY(-6px); box-shadow: 0 8px 20px rgba(0,173,238,0.12); }
+
+  /* When typing starts, add cursor effect */
+  .about-text.typing { animation: blink-caret 700ms steps(1) infinite; }
+  @keyframes blink-caret { 50% { border-color: transparent; } }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .about-text, .interest, .skill { transition: none !important; animation: none !important; }
+}
+
+@media (max-width: 600px) {
+  .interests-grid { grid-template-columns: 1fr; }
+  .interest img { height: 160px; }
+  .about-text { font-size: 0.95rem; }
+}

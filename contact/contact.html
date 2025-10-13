@@ -124,11 +124,125 @@
       </a>
     </div>
 
+    <!-- NEW: A propos (typing animation on PC) -->
+    <section class="about">
+      <h2>À propos</h2>
+      <!-- short static intro that always shows -->
+      <!-- <p class="intro">Bonjour — je suis Lucas. Voici un bref aperçu de mon profil et de mes centres d'intérêt.</p> -->
+      <!-- typed paragraph (initially empty). data-text contains the full message to type -->
+      <p class="about-text" 
+      data-text="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos, odio corrupti enim cum et sed quisquam optio nihil ad beatae voluptate, magnam qui repudiandae quia quo facilis? Accusantium, sapiente explicabo?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos, odio corrupti enim cum et sed quisquam optio nihil ad beatae voluptate, magnam qui repudiandae quia quo facilis? Accusantium, sapiente explicabo?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos, odio corrupti enim cum et sed quisquam optio nihil ad beatae voluptate, magnam qui repudiandae quia quo facilis? Accusantium, sapiente explicabo?" 
+      aria-live="polite"></p>
+    </section>
+
+    <!-- NEW: Formations -->
+    <section class="formations">
+      <h2>Formations</h2>
+      <ul>
+        <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos, odio corrupti enim cum et sed quisquam optio nihil ad beatae voluptate, magnam qui repudiandae quia quo facilis? Accusantium, sapiente explicabo?</li>
+        <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consectetur rem ipsam qui a quaerat beatae, animi, similique totam, consequatur saepe molestias dolores eaque iste distinctio itaque harum cum provident. Voluptas.</li>
+      </ul>
+    </section>
+
+    <!-- NEW: Compétences -->
+    <section class="competences">
+      <h2>Compétences</h2>
+      <div class="skills-grid">
+        <!-- <div class="skill">JavaScript</div>
+        <div class="skill">Three.js / 3D</div>
+        <div class="skill">Python</div>
+        <div class="skill">C++ / C#</div>
+        <div class="skill">Blender</div>
+        <div class="skill">Git</div> -->
+      </div>
+    </section>
+
+    <!-- NEW: Intérêts (une image par intérêt) -->
+    <section class="interets">
+      <h2>Intérêts</h2>
+      <div class="interests-grid">
+        <div class="interest">
+          <img src="../IMG/image.png" alt="3D / Modélisation">
+          <h3>Modélisation 3D</h3>
+          <p class="interest-desc">J'aime créer des environnements et des objets 3D, travailler les textures et optimiser les scènes pour le web.</p>
+        </div>
+        <div class="interest">
+          <img src="../IMG/image2.png" alt="Jeux vidéo">
+          <h3>Jeux vidéo</h3>
+          <p class="interest-desc">Jeux indépendants, level design et interaction; passion pour la logique de gameplay et l'optimisation.</p>
+        </div>
+        <div class="interest">
+          <img src="../IMG/rendue_room.png" alt="Photographie">
+          <h3>Photographie</h3>
+          <p class="interest-desc">Photographie et rendu — attention à la lumière, composition et atmosphère visuelle.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW: Expériences professionnelles -->
+    <section class="experiences">
+      <h2>Expériences professionnelles</h2>
+      <ul>
+        <li>Développeur Web - Entreprise A (2022 - présent) : contribution à des applications web et intégration 3D.</li>
+        <li>Stage Développement - Entreprise B (2021) : développement d'outils internes et optimisation de workflows.</li>
+      </ul>
+    </section>
+
   </main>
 
   <script>
     document.getElementById('burger').onclick = () =>
       document.getElementById('menu').classList.toggle('show');
+  </script>
+
+  <script>
+    // Typing animation for .about-text — only on hover-capable devices and if not reduced-motion
+    (function(){
+      const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!canHover || reduce) return;
+
+  function typeText(el, text, speed=22) {
+        // add classes
+        el.classList.add('typing');
+        about.classList.add('animate');
+        el.textContent = '';
+        let i = 0;
+        return new Promise(resolve => {
+          const id = setInterval(() => {
+            el.textContent += text.charAt(i);
+            i++;
+            if (i >= text.length) {
+              clearInterval(id);
+              el.classList.remove('typing');
+              resolve();
+            }
+          }, speed);
+        });
+      }
+
+      // Observe when 'about' section enters viewport
+      const about = document.querySelector('.about');
+      if (!about) return;
+      const p = about.querySelector('.about-text');
+      const text = p.getAttribute('data-text') || p.textContent || '';
+
+      const obs = new IntersectionObserver((entries, o) => {
+        entries.forEach(en => {
+          if (en.isIntersecting) {
+            // add animate class to the section
+            en.target.classList.add('animate');
+            // if it's the about section, start typing
+            if (en.target.classList.contains('about')) {
+              typeText(p, text, 22).then(() => {});
+            }
+          }
+        });
+      }, {threshold: 0.25});
+
+      // Observe all main sections so they reveal with animation when visible
+      document.querySelectorAll('main section').forEach(s => obs.observe(s));
+    })();
   </script>
 </body>
 </html>
