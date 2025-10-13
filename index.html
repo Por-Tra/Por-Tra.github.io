@@ -1,330 +1,246 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Intro - Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./intro.css">
 </head>
 <body>
+  <!-- Visual layers -->
+  <div class="noise"></div>
+  <div class="noise noise-moving" aria-hidden="true"></div>
+  <div class="scanlines" aria-hidden="true"></div>
 
-  <header>
-    <div class="logo">Portfolio</div>
-    <nav>
-      <ul>
-        <li><a href="./project/Projet_index.html">Mes projets</a></li>
-        <li><a href="./contact/contact.html">A propos</a></li>
-        <li><a href="./CV.html">CV</a></li>
-      </ul>
-    </nav>
-    <div class="burger" id="burger">
-      <span></span><span></span><span></span>
-    </div>
-  </header>
+  <!-- Main intro HUD -->
+  <div class="intro-wrap" role="region" aria-label="Intro">
+    <!-- LEFT bottom info -->
+    <div class="recordSpeed" id="recordSpeed">SLP 0:00:00</div>
 
-  <!-- SECTION avec slider d’images -->
-  <!-- <section class="hero">
-    <div class="slider-bg">
-      <div class="bg-slide active" style="background-image: url('./IMG/rendue_room.png');"></div>
-      <div class="bg-slide" style="background-image: url('./IMG/placeholder_3d_2.png');"></div>
-      <div class="bg-slide" style="background-image: url('./IMG/placeholder_3d_3.png');"></div>
-    </div>
-    <h1>Modélisation 3D</h1>
-  </section> -->
+    <!-- Center: big play (we'll populate chars by JS) -->
+    <div style="position:relative; margin: auto; z-index:600; display:flex; align-items:center; gap:1rem;">
+      <!-- Hint/Instruction can be localized -->
+      <div id="hint" style="font-size:.8rem; opacity:.9; margin-right:1rem;">Press PLAY</div>
 
-  <section class="hero">
-    <div class="slider-bg">
-      <div class="bg-slide active" style="background-image: url('./IMG/proj1/Capture d\'écran 2025-05-14 100305.png');"></div>
-      <div class="bg-slide" style="background-image: url('./IMG/proj1/Capture d\'écran 2025-05-14 100424.png');"></div>
-      <div class="bg-slide" style="background-image: url('./IMG/proj1/Capture d\'écran 2025-05-14 100449.png');"></div>
-      <div class="bg-slide" style="background-image: url('./IMG/image.png');"></div>
-      <div class="bg-slide" style="background-image: url('./IMG/image2.png');"></div>
+      <!-- PLAY button: set data-redirect to a URL if you want auto-redirect after animation -->
+      <div class="play" id="playBtn" role="button" tabindex="0" aria-pressed="false" aria-label="Play" data-redirect="./Page/index.html">
+        <!-- JS will inject span.char elements here -->
+      </div>
     </div>
-    <a href="./project/Projet_index.html" class="hero-link"><h1>Programmation</h1></a>
-    <style>
-    
-    </style>
-  </section>
-  
-<h2>Mes compétences</h2>
 
-<!-- SECTION My Stack -->
-<section class="stack">
-
-  <!-- LANGAGES DE PROGRAMMATION -->
-  <h3>maitrise des Langages de programmation</h3>
-  <div class="stack-grid">
-    <div class="stack-item-box">
-      <div class="stack-item" data-progress="40">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML">
-        <p>HTML5</p>
-        <div class="progress-bar"><div class="progress-fill"></div></div>
-      </div>
-    </div>
-    <div class="stack-item-box">
-      <div class="stack-item" data-progress="45">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS">
-        <p>CSS3</p>
-        <div class="progress-bar"><div class="progress-fill"></div></div>
-      </div>
-    </div>
-    <div class="stack-item-box">
-      <div class="stack-item" data-progress="30">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
-        <p>JavaScript</p>
-        <div class="progress-bar"><div class="progress-fill"></div></div>
-      </div>
-    </div>
-    <div class="stack-item-box">
-      <div class="stack-item" data-progress="80">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
-        <p>Python</p>
-        <div class="progress-bar"><div class="progress-fill"></div></div>
-      </div>
-    </div>
-    <div class="stack-item-box">
-      <div class="stack-item" data-progress="75">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++">
-        <p>C++</p>
-        <div class="progress-bar"><div class="progress-fill"></div></div>
-      </div>
-    </div>
-    <div class="stack-item-box">
-      <div class="stack-item" data-progress="40">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#">
-        <p>C#</p>
-        <div class="progress-bar"><div class="progress-fill"></div></div>
-      </div>
-    </div>
-    <div class="stack-item-box">
-      <div class="stack-item" data-progress="50">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C">
-        <p>C</p>
-        <div class="progress-bar"><div class="progress-fill"></div></div>
-      </div>
-    </div>
-    <div class="stack-item-box">
-      <div class="stack-item" data-progress="70">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP">
-        <p>PHP</p>
-        <div class="progress-bar"><div class="progress-fill"></div></div>
-      </div>
-    </div>
-    <div class="stack-item-box">
-      <div class="stack-item" data-progress="60">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL">
-        <p>SQL</p>
-        <div class="progress-bar"><div class="progress-fill"></div></div>
-      </div>
-    </div>
+    <!-- Right top time -->
+    <div class="time" id="timeDisplay">--:--</div>
   </div>
 
-  <!-- LOGICIELS -->
-  <h3>maitrise des Logiciels</h3>
-  <div class="stack-grid">
-    <div class="stack-item-box">
-      <div class="stack-item" data-progress="90">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
-        <p>GitHub</p>
-        <div class="progress-bar"><div class="progress-fill"></div></div>
-      </div>
-    </div>
-    <div class="stack-item-box">
-      <div class="stack-item" data-progress="90">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VSC">
-        <p>VS Code</p>
-        <div class="progress-bar"><div class="progress-fill"></div></div>
-      </div>
-    </div>
-    <div class="stack-item-box">
-      <div class="stack-item" data-progress="90">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visualstudio/visualstudio-original.svg" alt="VS">
-        <p>Visual Studio</p>
-        <div class="progress-bar"><div class="progress-fill"></div></div>
-      </div>
-    </div>
-    <div class="stack-item-box">
-      <div class="stack-item" data-progress="50">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unrealengine/unrealengine-original.svg" alt="Unreal Engine">
-        <p>Unreal Engine</p>
-        <div class="progress-bar"><div class="progress-fill"></div></div>
-      </div>
-    </div>
-    <div class="stack-item-box">
-      <div class="stack-item" data-progress="10">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg" alt="Unity">
-        <p>Unity</p>
-        <div class="progress-bar"><div class="progress-fill"></div></div>
-      </div>
-    </div>
-    <div class="stack-item-box">
-      <div class="stack-item" data-progress="50">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/blender/blender-original.svg" alt="Blender">
-        <p>Blender</p>
-        <div class="progress-bar"><div class="progress-fill"></div></div>
-      </div>
-    </div>
+  <!-- Language selector bottom-right -->
+  <div class="lang-select" role="navigation" aria-label="Language selection">
+    <button id="langFR" data-lang="fr">FR</button>
+    <button id="langEN" data-lang="en">EN</button>
   </div>
 
-  <!-- COMPÉTENCES TECHNIQUES -->
-<h3>Maîtrise des Compétences techniques</h3>
-<div class="stack-grid">
-  <div class="stack-item-box">
-    <div class="stack-item" data-progress="100">
-      <p>POO (Programmation orientée objet)</p>
-      <div class="progress-bar">
-        <div class="progress-fill"></div>
-      </div>
-    </div>
-  </div>
-  <div class="stack-item-box">
-    <div class="stack-item" data-progress="80">
-      <p>Optimisation de code</p>
-      <div class="progress-bar">
-        <div class="progress-fill"></div>
-      </div>
-    </div>
-  </div>
-  <div class="stack-item-box">
-    <div class="stack-item" data-progress="70">
-      <p>Gestion de base de données</p>
-      <div class="progress-bar">
-        <div class="progress-fill"></div>
-      </div>
-    </div>
-  </div>
-  <div class="stack-item-box">
-    <div class="stack-item" data-progress="85">
-      <p>Développement de jeux vidéo</p>
-      <div class="progress-bar">
-        <div class="progress-fill"></div>
-      </div>
-    </div>
-  </div>
-  <div class="stack-item-box">
-    <div class="stack-item" data-progress="90">
-      <p>Versioning avec Git</p>
-      <div class="progress-bar">
-        <div class="progress-fill"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- COMPÉTENCES HUMAINES -->
-<h3>Maîtrise des Compétences humaines</h3>
-<div class="stack-grid">
-  <div class="stack-item-box">
-    <div class="stack-item" data-progress="95">
-      <p>Travail en équipe</p>
-      <div class="progress-bar">
-        <div class="progress-fill"></div>
-      </div>
-    </div>
-  </div>
-  <div class="stack-item-box">
-    <div class="stack-item" data-progress="85">
-      <p>Communication</p>
-      <div class="progress-bar">
-        <div class="progress-fill"></div>
-      </div>
-    </div>
-  </div>
-  <div class="stack-item-box">
-    <div class="stack-item" data-progress="80">
-      <p>Gestion du temps</p>
-      <div class="progress-bar">
-        <div class="progress-fill"></div>
-      </div>
-    </div>
-  </div>
-  <div class="stack-item-box">
-    <div class="stack-item" data-progress="75">
-      <p>Adaptabilité</p>
-      <div class="progress-bar">
-        <div class="progress-fill"></div>
-      </div>
-    </div>
-  </div>
-  <div class="stack-item-box">
-    <div class="stack-item" data-progress="90">
-      <p>Résolution de problèmes</p>
-      <div class="progress-bar">
-        <div class="progress-fill"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-</section>
-
-
-  
-
-  <footer>
-    <p>Contact: <a href="mailto:lucascontrerashodapp@gmail.com">mon email</a></p>
-  </footer>
+  <!-- Glitch overlay + cut to black for transition -->
+  <div class="glitch-overlay" id="glitchOverlay" aria-hidden="true"></div>
+  <div class="cut-to-black" id="cutBlack" aria-hidden="true"></div>
 
   <script>
-    document.querySelector('.burger').onclick = () =>
-      document.querySelector('nav ul').classList.toggle('active');
+  /* -------------------------
+     Configuration / Translations
+     ------------------------- */
+  const translations = {
+    fr: { play: 'PLAY', press: 'Appuie sur PLAY', slpPrefix: 'SLP' },
+    en: { play: 'PLAY', press: 'Press PLAY', slpPrefix: 'SLP' }
+  };
 
-    // Slider BG auto pour chaque section hero
-    document.querySelectorAll('.hero').forEach(hero => {
-      const slides = hero.querySelectorAll('.bg-slide');
-      let idx = 0;
-      setInterval(() => {
-        slides[idx].classList.remove('active');
-        idx = (idx + 1) % slides.length;
-        slides[idx].classList.add('active');
-      }, 4000);
-    });
+  /* -------------------------
+     Helpers
+     ------------------------- */
+  const $ = sel => document.querySelector(sel);
+  const qs = sel => document.querySelectorAll(sel);
 
-    // Intersection Observer simple pour les animations
-    const observerOptions = {
-      threshold: 0.2,
-      rootMargin: '0px 0px -100px 0px'
-    };
+  /* -------------------------
+     Language handling
+     ------------------------- */
+  const LANG_KEY = 'portfolio_lang';
+  function getStoredLang(){
+    const l = localStorage.getItem(LANG_KEY);
+    return l === 'en' || l === 'fr' ? l : (navigator.language && navigator.language.startsWith('fr') ? 'fr' : 'en');
+  }
+  function setLang(lang){
+    localStorage.setItem(LANG_KEY, lang);
+    applyLang(lang);
+  }
+  function applyLang(lang){
+    const t = translations[lang] || translations.en;
+    // change texts
+    const playBtn = $('#playBtn');
+    // update play label — we keep letters as chars
+    playBtn.setAttribute('data-label', t.play);
+    // hint text
+    $('#hint').textContent = t.press;
+    // record label prefix
+    window.__slpPrefix = t.slpPrefix;
+    updateRecordSpeedDisplay();
+    // active button
+    $('#langFR').classList.toggle('active', lang==='fr');
+    $('#langEN').classList.toggle('active', lang==='en');
+  }
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate');
-          
-          // Animer les barres de progression simplement
-          const stackItems = entry.target.querySelectorAll('.stack-item');
-          stackItems.forEach((item, index) => {
-            setTimeout(() => {
-              const progress = item.getAttribute('data-progress');
-              const fill = item.querySelector('.progress-fill');
-              if (fill) {
-                fill.style.setProperty('--progress-width', `${progress}%`);
-                fill.style.width = `${progress}%`;
-              }
-            }, 100 + (index * 50));
-          });
+  // init language UI
+  document.getElementById('langFR').addEventListener('click', ()=> setLang('fr'));
+  document.getElementById('langEN').addEventListener('click', ()=> setLang('en'));
+
+  /* -------------------------
+     PLAY button: build char spans (so we can animate per-char)
+     ------------------------- */
+  function buildPlayLabel(label){
+    const play = $('#playBtn');
+    play.innerHTML = ''; // clear
+    // create spans
+    for(let i=0;i<label.length;i++){
+      const ch = label[i];
+      const span = document.createElement('span');
+      span.className = 'char';
+      span.style.setProperty('--i', i);
+      span.textContent = ch;
+      play.appendChild(span);
+    }
+  }
+
+  /* -------------------------
+     Clock display (24h)
+     ------------------------- */
+  function pad(n){ return String(n).padStart(2,'0'); }
+  function updateTime(){
+    const now = new Date();
+    const hh = pad(now.getHours()), mm = pad(now.getMinutes()), ss = pad(now.getSeconds());
+    $('#timeDisplay').textContent = `${hh}:${mm}:${ss}`;
+    // also update recordSpeed small timer (fake example)
+    updateRecordSpeedDisplay();
+  }
+
+  function updateRecordSpeedDisplay(){
+    const prefix = window.__slpPrefix || 'SLP';
+    // simple uptime style hh:mm:ss since page load
+    if(!window.__startTs) window.__startTs = Date.now();
+    const diff = Math.floor((Date.now() - window.__startTs) / 1000);
+    const h = pad(Math.floor(diff/3600)), m = pad(Math.floor((diff%3600)/60)), s = pad(diff%60);
+    $('#recordSpeed').textContent = `${prefix} ${h}:${m}:${s}`;
+  }
+
+  /* -------------------------
+     Play click behavior + glitch animation + optional redirect
+     ------------------------- */
+  const playBtn = $('#playBtn');
+  // default: no redirect. If you want automatic redirection after animation, set data-redirect on .play to a URL.
+  // Example: <div class="play" data-redirect="https://yoursite.com">PLAY</div>
+  const redirectUrl = playBtn.getAttribute('data-redirect') || '';
+
+  let animating = false;
+  function triggerPlay(){
+    if(animating) return;
+    animating = true;
+    playBtn.setAttribute('aria-pressed','true');
+
+    // small tactile push
+    playBtn.style.transform = 'scale(.98)';
+
+    // Start glitch overlay (visible briefly)
+    const gl = $('#glitchOverlay');
+    gl.classList.add('active');
+
+    // Play a quick "glitch" effect by cloning the screen into it
+    // We'll create colored slices to mimic RGB split
+    gl.innerHTML = '';
+    const colors = ['rgba(255,0,150,0.06)','rgba(0,255,255,0.06)','rgba(0,0,0,0.18)'];
+    for(let i=0;i<6;i++){
+      const s = document.createElement('div');
+      s.style.position = 'absolute';
+      s.style.inset = '0';
+      s.style.transform = `translateY(${(i%2? -6:6) * (i/6)}px)`;
+      s.style.mixBlendMode = 'screen';
+      s.style.background = `linear-gradient(90deg, ${colors[i%colors.length]}, transparent)`;
+      s.style.opacity = 0.55 - (i*0.06);
+      gl.appendChild(s);
+    }
+
+    // small vibration in page
+    document.body.animate([
+      { transform: 'translateX(0px)' },
+      { transform: 'translateX(6px)' },
+      { transform: 'translateX(-6px)' },
+      { transform: 'translateX(0px)' }
+    ], { duration: 500, iterations: 1, easing:'cubic-bezier(.2,.8,.2,1)' });
+
+    // After 650ms, cut to black
+    setTimeout(()=> {
+      gl.classList.remove('active');
+      const cb = $('#cutBlack');
+      cb.classList.add('active');
+
+      // small delay then redirect if provided
+      setTimeout(()=> {
+        if(redirectUrl){
+          // redirect after the cut-to-black
+          window.location.href = redirectUrl;
+        } else {
+          // if no redirect: remove black after a moment and let user continue
+          setTimeout(()=> {
+            $('#cutBlack').classList.remove('active');
+            animating = false;
+            playBtn.style.transform = '';
+            playBtn.setAttribute('aria-pressed','false');
+          }, 600);
         }
-      });
-    }, observerOptions);
+      }, 250);
+    }, 650);
+  }
 
-    // Observer la section stack
-    const stackSection = document.querySelector('.stack');
-    if (stackSection) {
-      observer.observe(stackSection);
-    }
+  // Click / key handling
+  playBtn.addEventListener('click', triggerPlay);
+  playBtn.addEventListener('keydown', (e)=>{
+    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); triggerPlay(); }
+  });
 
-    // Effets hover simples — only attach on devices that support hover to avoid touch interference
-    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-      document.querySelectorAll('.stack-item-box').forEach(box => {
-        box.addEventListener('mouseenter', function() {
-          this.classList.add('is-hover');
-        });
-        box.addEventListener('mouseleave', function() {
-          this.classList.remove('is-hover');
-        });
-      });
+  /* -------------------------
+     Initialization
+     ------------------------- */
+  // set language from storage (or default)
+  const initialLang = getStoredLang();
+  applyLang(initialLang);
+
+  // build initial play label
+  buildPlayLabel($('#playBtn').getAttribute('data-label') || translations[initialLang].play);
+
+  // observe changing label when language changes (rebuild)
+  const observer = new MutationObserver(()=> {
+    const label = $('#playBtn').getAttribute('data-label') || translations[getStoredLang()].play;
+    buildPlayLabel(label);
+  });
+  observer.observe($('#playBtn'), { attributes: true, attributeFilter: ['data-label'] });
+
+  // start time updates
+  updateTime();
+  setInterval(updateTime, 1000);
+
+  // start fake record timer
+  updateRecordSpeedDisplay();
+  setInterval(updateRecordSpeedDisplay, 1000);
+
+  // small accessibility: focus on play
+  playBtn.tabIndex = 0;
+
+  /* -------------------------
+     Small polish: reset transform after animation ends
+     ------------------------- */
+  document.addEventListener('animationend', (e)=>{
+    if(e.animationName === 'glitchSequence'){
+      $('#glitchOverlay').classList.remove('active');
     }
+  });
 
   </script>
 </body>
