@@ -1,0 +1,306 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu - Portfolio</title>
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  
+  <style>
+    :root{
+      --dark: #270245;
+      --light: #fd5d8d;
+      --white: #ffffff;
+      --bg: #000000;
+      --accent: #2b52ff;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+      overflow-y: scroll;
+    }
+    body{
+      font-family: 'Press Start 2P', monospace;
+      background: var(--bg);
+      color:var(--white);
+      position:relative;
+      min-height:100vh;
+    }
+
+    .noise, .noise-moving{
+      pointer-events:none;
+      position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:400; opacity:.8;
+      background-repeat:repeat;
+      background-image: url('https://ice-creme.de/images/background-noise.png');
+      background-size: 200% 200%;
+      mix-blend-mode: overlay;
+    }
+    .noise-moving{ z-index:450; opacity:1; animation:noise 1s infinite alternate; }
+
+    .scanlines{
+      position:fixed; inset:0; pointer-events:none; z-index:300; opacity:.6; animation:scanOpacity 3s linear infinite;
+    }
+    .scanlines::before{
+      content:''; position:absolute; inset:0;
+      background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,.5) 51%);
+      background-size: 100% 4px;
+      animation:scanlines .2s linear infinite;
+    }
+
+    body::before{
+      content:''; position:fixed; inset:0; z-index:500; pointer-events:none;
+      background: radial-gradient(ellipse at center, rgba(0,0,0,0) 0%, rgba(0,0,0,.45) 100%);
+      mix-blend-mode: overlay;
+    }
+
+    header{
+      position:fixed; top:0; left:0; right:0; z-index:1000;
+      display:flex; justify-content:space-between; align-items:center;
+      padding:1.2rem 2.5rem;
+      background: linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 100%);
+      backdrop-filter: blur(10px);
+      border-bottom:2px solid rgba(255,255,255,0.08);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+    }
+    .logo{
+      font-size:1.3rem; color:var(--accent); text-transform:uppercase; letter-spacing:2px;
+      animation:rgbText 1s steps(9) 0s infinite alternate;
+    }
+    nav ul{
+      list-style:none; display:flex; gap:2rem; align-items:center;
+    }
+    nav ul li a{
+      color:var(--white); text-decoration:none; font-size:.9rem; text-transform:uppercase;
+      transition: color .2s, text-shadow .2s;
+      padding:.5rem 1rem; border-radius:6px;
+    }
+    nav ul li a:hover{
+      color:var(--accent); text-shadow: 0 0 12px rgba(43,82,255,0.6);
+      background:rgba(255,255,255,0.03);
+    }
+    .burger{ display:none; flex-direction:column; gap:5px; cursor:pointer; }
+    .burger span{ width:28px; height:3px; background:var(--white); border-radius:2px; transition:.3s; }
+
+    @media(max-width:900px){
+      nav ul{ position:fixed; top:80px; left:0; right:0; flex-direction:column; gap:1.5rem;
+        background:rgba(0,0,0,0.95); padding:2rem; transform:translateY(-150%); transition:.4s;
+        border-bottom:2px solid rgba(255,255,255,0.08);
+      }
+      nav ul.active{ transform:translateY(0); }
+      .burger{ display:flex; }
+    }
+
+    main{ padding-top:80px; position:relative; z-index:100; }
+    
+    section{
+      min-height:100vh;
+      scroll-snap-align: start;
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      position:relative; padding:3rem 2rem;
+      background: var(--bg);
+      opacity:0; animation: fadeInSection 1s ease forwards;
+    }
+    @keyframes fadeInSection{
+      from{ opacity:0; transform:translateY(30px); }
+      to{ opacity:1; transform:translateY(0); }
+    }
+
+    .slider-bg{
+      position:absolute; top:0; left:0; width:100%; height:100%; z-index:0; overflow:hidden;
+    }
+    .bg-slide{
+      position:absolute; top:0; left:0; width:100%; height:100%;
+      background-size:cover; background-position:center;
+      opacity:0; transition: opacity 1.5s;
+    }
+    .bg-slide.active{ opacity:0.3; }
+
+    section h1, section h2{
+      font-size:2.5rem; color:var(--accent); text-align:center; z-index:2;
+      animation:rgbText 1s steps(9) 0s infinite alternate;
+      margin-bottom:1.5rem; text-transform:uppercase; letter-spacing:3px;
+    }
+    section p{
+      max-width:700px; font-size:1.1rem; color:var(--white); line-height:1.8;
+      text-align:center; z-index:2; background:rgba(0,0,0,0.5); padding:1.5rem 2.5rem;
+      border-radius:12px; border:1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
+
+    .cta-btn{
+      display:inline-block; margin-top:2rem; padding:1rem 2.5rem; font-size:1.1rem;
+      color:var(--white); background:var(--accent); text-decoration:none;
+      border-radius:8px; text-transform:uppercase; letter-spacing:2px;
+      transition: transform .2s, box-shadow .2s, background .2s;
+      box-shadow: 0 6px 20px rgba(43,82,255,0.4);
+      z-index:2; position:relative;
+    }
+    .cta-btn:hover{
+      background:var(--light); transform:translateY(-4px) scale(1.05);
+      box-shadow: 0 10px 30px rgba(253,93,141,0.6);
+    }
+
+    footer{
+      position:relative; z-index:100; background:rgba(0,0,0,0.9); padding:2rem;
+      text-align:center; font-size:.9rem; color:rgba(255,255,255,0.7);
+      border-top:2px solid rgba(255,255,255,0.08);
+    }
+    footer a{ color:var(--accent); text-decoration:none; }
+    footer a:hover{ text-decoration:underline; }
+
+    @keyframes scanlines{
+      from{ background-position-y:0 }
+      to{ background-position-y:4px }
+    }
+    @keyframes scanOpacity{
+      0%{opacity:.6} 20%{opacity:.3} 35%{opacity:.5} 50%{opacity:.8} 60%{opacity:.4} 80%{opacity:.7} 100%{opacity:.6}
+    }
+    @keyframes noise{
+      0%,100%{ background-position:0 0 }
+      10%{ background-position:-5% -10% }
+      20%{ background-position:-15% 5% }
+      30%{ background-position:7% -25% }
+      40%{ background-position:20% 25% }
+      50%{ background-position:-25% 10% }
+      60%{ background-position:15% 5% }
+      70%{ background-position:0 15% }
+      80%{ background-position:25% 35% }
+      90%{ background-position:-10% 10% }
+    }
+    @keyframes rgbText{
+      0% { text-shadow: -1px 1px 8px rgba(255,255,255,.6), 1px -1px 8px rgba(255,255,235,.7), 0 0 3px rgba(59,0,226,.8); }
+      50% { text-shadow: -1px 1px 8px rgba(255,255,255,.6), 1px -1px 8px rgba(255,255,235,.7), 5px 0 1px rgba(0,242,14,.8); }
+      100% { text-shadow: -1px 1px 8px rgba(255,255,255,.6), 1px -1px 8px rgba(255,255,235,.7), -5px 0 1px rgba(244,45,0,.8); }
+    }
+
+    @media(max-width:900px){
+      section h1, section h2{ font-size:1.8rem; }
+      section p{ font-size:1rem; padding:1.2rem 1.8rem; }
+      .cta-btn{ font-size:1rem; padding:.8rem 2rem; }
+      header{ padding:1rem 1.5rem; }
+      .logo{ font-size:1.1rem; }
+    }
+    @media(max-width:600px){
+      section h1, section h2{ font-size:1.4rem; }
+      section p{ font-size:.9rem; padding:1rem 1.5rem; }
+      .cta-btn{ font-size:.9rem; padding:.7rem 1.5rem; }
+      header{ padding:.8rem 1rem; }
+      .logo{ font-size:1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="noise noise-moving"></div>
+  <div class="scanlines"></div>
+
+  <header>
+    <div class="logo">Portfolio</div>
+    <nav>
+      <ul id="navMenu">
+        <li><a href="#accueil">Accueil</a></li>
+        <li><a href="#projets">Projets</a></li>
+        <li><a href="#apropos">À propos</a></li>
+        <li><a href="#cv">CV</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="burger" id="burger">
+      <span></span><span></span><span></span>
+    </div>
+  </header>
+
+  <main>
+    <section id="accueil" class="hero">
+      <div class="slider-bg">
+        <div class="bg-slide active" style="background-image: url('../IMG/proj1/Capture d\'écran 2025-05-14 100305.png');"></div>
+        <div class="bg-slide" style="background-image: url('../IMG/proj1/Capture d\'écran 2025-05-14 100424.png');"></div>
+        <div class="bg-slide" style="background-image: url('../IMG/proj1/Capture d\'écran 2025-05-14 100449.png');"></div>
+        <div class="bg-slide" style="background-image: url('../IMG/image.png');"></div>
+        <div class="bg-slide" style="background-image: url('../IMG/image2.png');"></div>
+      </div>
+      <h1>Bienvenue sur mon Portfolio</h1>
+      <p>
+        Explore mes créations, mes projets de développement web, de modélisation 3D, de programmation et bien plus encore. 
+        Utilise la navigation pour découvrir mon univers créatif et technique.
+      </p>
+      <a href="#projets" class="cta-btn">Découvrir mes projets</a>
+    </section>
+
+    <section id="projets">
+      <h2>Mes Projets</h2>
+      <p>
+        Du développement web aux créations 3D, en passant par les jeux vidéo et les applications interactives, 
+        je mets à profit mes compétences pour donner vie à des projets variés et ambitieux. Chaque projet 
+        est une occasion d'apprendre et de repousser mes limites techniques et créatives.
+      </p>
+      <a href="./project/Projet_index.html" class="cta-btn">Voir tous les projets</a>
+    </section>
+
+    <section id="apropos" style="background:#050505;">
+      <h2>À Propos de Moi</h2>
+      <p>
+        Passionné par la technologie et la création numérique, je combine mes compétences en programmation, 
+        design et modélisation 3D pour concevoir des expériences uniques. Mon objectif est de transformer 
+        des idées en réalisations concrètes et innovantes, tout en partageant ma passion avec les autres.
+      </p>
+      <a href="./contact/contact.html" class="cta-btn">En savoir plus</a>
+    </section>
+
+    <section id="cv" style="background:#0a0a0a;">
+      <h2>Mon CV</h2>
+      <p>
+        Consulte mon parcours professionnel, mes formations, mes compétences techniques et mes expériences. 
+        Tu peux également télécharger mon CV au format PDF pour en apprendre davantage sur mon profil et 
+        mes réalisations.
+      </p>
+      <a href="./CV.html" class="cta-btn">Consulter mon CV</a>
+    </section>
+
+    <section id="contact" style="background:#000;">
+      <h2>Me Contacter</h2>
+      <p>
+        Tu as un projet en tête ? Une question ? Une opportunité de collaboration ? N'hésite pas à me contacter 
+        par email. Je suis toujours ouvert aux échanges et aux nouvelles idées. Travaillons ensemble pour 
+        créer quelque chose d'exceptionnel !
+      </p>
+      <a href="mailto:lucascontrerashodapp@gmail.com" class="cta-btn">Envoyer un email</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>Contact: <a href="mailto:lucascontrerashodapp@gmail.com">lucascontrerashodapp@gmail.com</a></p>
+  </footer>
+
+  <script>
+    document.getElementById('burger').addEventListener('click', () => {
+      document.getElementById('navMenu').classList.toggle('active');
+    });
+
+    const heroSection = document.querySelector('.hero');
+    if(heroSection){
+      const slides = heroSection.querySelectorAll('.bg-slide');
+      let idx = 0;
+      setInterval(() => {
+        slides[idx].classList.remove('active');
+        idx = (idx + 1) % slides.length;
+        slides[idx].classList.add('active');
+      }, 4000);
+    }
+
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target){
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          document.getElementById('navMenu').classList.remove('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
