@@ -19,6 +19,7 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   position: relative;
+  line-height: 1.6;
 }
 
 /* ==================== CRT EFFECTS ==================== */
@@ -102,8 +103,8 @@ header {
   left: 0;
   right: 0;
   background: rgba(10, 10, 10, 0.85);
-  backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   padding: 20px 40px;
   display: flex;
   align-items: center;
@@ -190,6 +191,7 @@ main {
   max-width: 1400px;
   margin: 0 auto;
   min-height: 100vh;
+  text-align: center;
 }
 
 .page-title {
@@ -235,35 +237,151 @@ main {
   50% { border-color: var(--accent2); }
 }
 
-/* ==================== CONTACT CONTAINER ==================== */
-.contact-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 50px;
-  margin-top: 80px;
-  padding: 20px;
+/* ==================== CV SECTION ==================== */
+.cv-section {
+  margin: 60px 0;
+  padding: 0;
 }
 
-.contact-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 50px 30px;
+.cv-container {
   background: rgba(20, 20, 40, 0.6);
   border: 2px solid var(--accent);
   border-radius: 15px;
-  text-decoration: none;
-  color: #fff;
-  transition: all 0.4s ease;
-  position: relative;
-  overflow: hidden;
+  padding: 40px;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px rgba(43, 82, 255, 0.2);
+  transition: all 0.4s ease;
 }
 
-.contact-item::before {
+.cv-container:hover {
+  border-color: var(--accent2);
+  box-shadow: 0 12px 40px rgba(0, 173, 238, 0.3);
+}
+
+.cv-viewer {
+  margin-bottom: 30px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid var(--accent2);
+  box-shadow: 0 0 20px rgba(0, 173, 238, 0.3);
+}
+
+.cv-viewer embed {
+  width: 100%;
+  height: 700px;
+  border: none;
+  background: #1a1a2e;
+}
+
+.cv-actions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.download-btn,
+.view-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 30px;
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 0.85em;
+  background: linear-gradient(45deg, rgba(43, 82, 255, 0.2), rgba(0, 173, 238, 0.2));
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.download-btn::before,
+.view-btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(0, 173, 238, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.download-btn:hover::before,
+.view-btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.download-btn:hover,
+.view-btn:hover {
+  border-color: var(--accent2);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 173, 238, 0.4);
+  color: var(--light);
+  text-shadow: 0 0 10px var(--light);
+}
+
+.download-btn svg,
+.view-btn svg {
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 0 5px var(--accent2));
+}
+
+/* ==================== CV INFO SECTION ==================== */
+.cv-info {
+  margin: 80px 0;
+  padding: 50px 40px;
+  background: rgba(20, 20, 40, 0.5);
+  border: 2px solid var(--accent);
+  border-radius: 15px;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(43, 82, 255, 0.2);
+  transition: all 0.4s ease;
+}
+
+.cv-info:hover {
+  border-color: var(--accent2);
+  box-shadow: 0 12px 40px rgba(0, 173, 238, 0.3);
+}
+
+.cv-info h2 {
+  font-size: 2em;
+  margin-bottom: 40px;
+  color: var(--accent2);
+  text-shadow: 0 0 10px var(--accent2);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 20px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.info-card {
+  padding: 40px 30px;
+  background: rgba(30, 30, 60, 0.4);
+  border: 2px solid var(--accent);
+  border-radius: 15px;
+  text-align: center;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.info-card::before {
   content: "";
   position: absolute;
   top: -50%;
@@ -278,7 +396,7 @@ main {
   transition: all 0.6s;
 }
 
-.contact-item:hover::before {
+.info-card:hover::before {
   animation: shine 1.5s infinite;
 }
 
@@ -287,236 +405,28 @@ main {
   100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
 }
 
-.contact-item:hover {
+.info-card:hover {
   transform: translateY(-10px) scale(1.05);
   border-color: var(--accent2);
-  box-shadow: 0 15px 50px rgba(0, 173, 238, 0.4),
-              0 0 30px rgba(43, 82, 255, 0.3);
-  background: rgba(30, 30, 60, 0.8);
+  box-shadow: 0 15px 50px rgba(0, 173, 238, 0.4);
+  background: rgba(30, 30, 60, 0.7);
 }
 
-.contact-item svg {
-  width: 80px;
-  height: 80px;
-  fill: var(--accent2);
-  transition: all 0.4s;
-  filter: drop-shadow(0 0 10px var(--accent2));
-  z-index: 1;
-}
-
-.contact-item:hover svg {
-  fill: var(--light);
-  filter: drop-shadow(0 0 20px var(--light));
-  transform: scale(1.15) rotate(5deg);
-}
-
-.contact-item span {
-  margin-top: 20px;
-  font-size: 1em;
-  letter-spacing: 2px;
-  z-index: 1;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-}
-
-.contact-item:hover span {
-  color: var(--light);
-  text-shadow: 0 0 15px var(--light);
-}
-
-/* ==================== EMAIL SECTION ==================== */
-.email-section {
-  margin-top: 80px;
-  padding: 40px;
-  background: rgba(20, 20, 40, 0.5);
-  border: 2px solid var(--accent);
-  border-radius: 15px;
-  text-align: center;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 32px rgba(43, 82, 255, 0.2);
-}
-
-.email-section h2 {
-  font-size: 1.8em;
-  margin-bottom: 20px;
-  color: var(--accent2);
-  text-shadow: 0 0 10px var(--accent2);
-}
-
-.email-section a {
-  color: var(--light);
-  text-decoration: none;
-  font-size: 1.1em;
-  transition: all 0.3s;
-  text-shadow: 0 0 10px var(--light);
-}
-
-.email-section a:hover {
-  color: var(--accent2);
-  text-shadow: 0 0 20px var(--accent2);
-}
-
-/* ==================== SECTIONS (About, Formations, etc.) ==================== */
-main section {
-  margin: 80px 0;
-  padding: 50px 40px;
-  background: rgba(20, 20, 40, 0.5);
-  border: 2px solid var(--accent);
-  border-radius: 15px;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 32px rgba(43, 82, 255, 0.2);
-  transition: all 0.4s ease;
-}
-
-main section:hover {
-  border-color: var(--accent2);
-  box-shadow: 0 12px 40px rgba(0, 173, 238, 0.3);
-}
-
-main section h2 {
-  font-size: 2em;
-  margin-bottom: 30px;
-  color: var(--accent2);
-  text-shadow: 0 0 10px var(--accent2);
-  border-bottom: 2px solid var(--accent);
-  padding-bottom: 15px;
-}
-
-main section h3 {
+.info-card h3 {
   font-size: 1.3em;
   color: var(--light);
-  margin-bottom: 15px;
-  text-shadow: 0 0 8px var(--light);
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px var(--light);
+  position: relative;
+  z-index: 1;
 }
 
-main section p,
-main section li {
-  font-size: 0.85em;
+.info-card p {
+  font-size: 0.8em;
   line-height: 2;
   color: #ccc;
-  margin-bottom: 20px;
-}
-
-main section ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-main section li {
-  padding: 15px 20px;
-  margin-bottom: 15px;
-  background: rgba(30, 30, 60, 0.4);
-  border-left: 3px solid var(--accent2);
-  border-radius: 8px;
-  transition: all 0.3s;
-}
-
-main section li:hover {
-  background: rgba(30, 30, 60, 0.7);
-  border-left-color: var(--light);
-  transform: translateX(10px);
-  box-shadow: 0 4px 15px rgba(43, 82, 255, 0.2);
-}
-
-/* About section with typing animation */
-.about-text {
-  font-size: 0.9em;
-  line-height: 2.2;
-  color: #ddd;
-  border-right: 3px solid var(--accent2);
-  animation: blink 0.7s step-end infinite;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
-
-.about-text.typed {
-  border-right: none;
-  animation: none;
-}
-
-.about.typing .about-text {
-  border-right: 3px solid var(--accent2);
-  animation: blink 0.7s step-end infinite;
-}
-
-/* Skills grid */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 20px;
-  margin-top: 30px;
-}
-
-.skill {
-  padding: 20px;
-  background: rgba(43, 82, 255, 0.2);
-  border: 2px solid var(--accent);
-  border-radius: 10px;
-  text-align: center;
-  font-size: 0.9em;
-  color: #fff;
-  text-shadow: 0 0 10px var(--accent2);
-  transition: all 0.3s;
-  cursor: pointer;
-}
-
-.skill:hover {
-  background: rgba(0, 173, 238, 0.3);
-  border-color: var(--accent2);
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 10px 30px rgba(0, 173, 238, 0.4);
-}
-
-/* Interests grid */
-.interests-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-  margin-top: 30px;
-}
-
-.interest {
-  padding: 30px;
-  background: rgba(30, 30, 60, 0.4);
-  border: 2px solid var(--accent);
-  border-radius: 15px;
-  text-align: center;
-  transition: all 0.4s;
-}
-
-.interest:hover {
-  background: rgba(30, 30, 60, 0.7);
-  border-color: var(--accent2);
-  transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(0, 173, 238, 0.4);
-}
-
-.interest img {
-  width: 100%;
-  max-width: 200px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  border: 2px solid var(--accent2);
-  filter: brightness(0.8);
-  transition: all 0.3s;
-}
-
-.interest:hover img {
-  filter: brightness(1.1);
-  box-shadow: 0 0 20px var(--accent2);
-}
-
-.interest h3 {
-  margin-bottom: 15px;
-}
-
-.interest-desc {
-  font-size: 0.8em !important;
-  line-height: 1.8 !important;
-  color: #aaa;
+  position: relative;
+  z-index: 1;
 }
 
 /* ==================== RESPONSIVE ==================== */
@@ -540,8 +450,8 @@ main section li:hover {
     border-radius: 10px;
     border: 2px solid var(--accent);
     box-shadow: 0 8px 32px rgba(43, 82, 255, 0.4);
-    backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     gap: 15px;
   }
 
@@ -577,36 +487,25 @@ main section li:hover {
     font-size: 0.8em;
   }
 
-  .contact-container {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-
-  main section {
-    margin: 60px 0;
+  .cv-container {
     padding: 30px 20px;
   }
 
-  main section h2 {
-    font-size: 1.5em;
+  .cv-viewer embed {
+    height: 500px;
   }
 
-  main section h3 {
-    font-size: 1.1em;
-  }
-
-  main section p,
-  main section li {
-    font-size: 0.75em;
-  }
-
-  .skills-grid {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 15px;
-  }
-
-  .interests-grid {
+  .info-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .cv-info {
+    padding: 40px 20px;
+  }
+
+  .cv-info h2 {
+    font-size: 1.5em;
   }
 }
 
@@ -619,62 +518,45 @@ main section li:hover {
     font-size: 0.7em;
   }
 
-  .contact-item {
+  .cv-container {
+    padding: 20px 15px;
+  }
+
+  .cv-viewer embed {
+    height: 400px;
+  }
+
+  .download-btn,
+  .view-btn {
+    padding: 12px 20px;
+    font-size: 0.75em;
+  }
+
+  .cv-actions {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .cv-info {
+    padding: 30px 15px;
+    margin: 60px 0;
+  }
+
+  .cv-info h2 {
+    font-size: 1.3em;
+    margin-bottom: 30px;
+  }
+
+  .info-card {
     padding: 30px 20px;
   }
 
-  .contact-item svg {
-    width: 60px;
-    height: 60px;
+  .info-card h3 {
+    font-size: 1.1em;
   }
 
-  .contact-item span {
-    font-size: 0.9em;
-  }
-
-  .email-section {
-    padding: 30px 20px;
-  }
-
-  .email-section h2 {
-    font-size: 1.3em;
-  }
-
-  .email-section a {
-    font-size: 0.9em;
-  }
-
-  main section {
-    margin: 40px 0;
-    padding: 25px 15px;
-  }
-
-  main section h2 {
-    font-size: 1.3em;
-    margin-bottom: 20px;
-  }
-
-  main section h3 {
-    font-size: 1em;
-  }
-
-  main section p,
-  main section li {
+  .info-card p {
     font-size: 0.7em;
-    line-height: 1.8;
-  }
-
-  .skills-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .skill {
-    font-size: 0.8em;
-  }
-
-  .interest img {
-    max-width: 150px;
-    height: 150px;
   }
 }
 
@@ -691,33 +573,37 @@ main section li:hover {
     font-size: 0.6em;
   }
 
-  .contact-item {
-    padding: 25px 15px;
+  .cv-container {
+    padding: 15px 10px;
   }
 
-  .contact-item svg {
-    width: 50px;
-    height: 50px;
+  .cv-viewer embed {
+    height: 300px;
   }
 
-  .contact-item span {
-    font-size: 0.8em;
+  .download-btn,
+  .view-btn {
+    padding: 10px 15px;
+    font-size: 0.7em;
   }
 
-  main section {
-    padding: 20px 10px;
+  .cv-info {
+    padding: 25px 10px;
   }
 
-  main section h2 {
+  .cv-info h2 {
     font-size: 1.1em;
   }
 
-  main section h3 {
-    font-size: 0.9em;
+  .info-card {
+    padding: 25px 15px;
   }
 
-  main section p,
-  main section li {
+  .info-card h3 {
+    font-size: 1em;
+  }
+
+  .info-card p {
     font-size: 0.65em;
   }
 }
