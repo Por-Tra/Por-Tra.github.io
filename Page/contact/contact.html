@@ -3,10 +3,17 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact</title>
+  <title>Contact - Portfolio</title>
   <link rel="stylesheet" href="./style_contact.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- CRT Effects -->
+  <div class="crt-overlay"></div>
+  <div class="noise"></div>
+  <div class="noise-moving"></div>
+  <div class="scanlines"></div>
+
   <header>
     <div class="logo">Mon portfolio</div>
     <nav>
@@ -16,14 +23,14 @@
         <li><a href="../CV.html">CV</a></li>
       </ul>
       <div class="burger" id="burger">
-        <div></div><div></div><div></div>
+        <span></span><span></span><span></span>
       </div>
     </nav>
   </header>
 
   <main>
-    <h1>Me contacter</h1>
-    <p>N’hésitez pas à me joindre via mes réseaux ou par email :</p>
+    <h1 class="page-title typing-text" data-text="Me contacter"></h1>
+    <p class="intro-text typing-text" data-text="N'hésitez pas à me joindre via mes réseaux ou par email :"></p>
     <div class="contact-container">
     
       <!-- LinkedIn -->
@@ -221,27 +228,71 @@
         });
       }
 
-      // Observe when 'about' section enters viewport
-      const about = document.querySelector('.about');
-      if (!about) return;
-      const p = about.querySelector('.about-text');
-      const text = p.getAttribute('data-text') || p.textContent || '';
+      // Burger menu toggle
+      const burger = document.getElementById('burger');
+      const menu = document.getElementById('menu');
+      
+      burger.addEventListener('click', () => {
+        menu.classList.toggle('show');
+        burger.classList.toggle('active');
+      });
 
-      const obs = new IntersectionObserver((entries, o) => {
-        entries.forEach(en => {
-          if (en.isIntersecting) {
-            // add animate class to the section
-            en.target.classList.add('animate');
-            // if it's the about section, start typing
-            if (en.target.classList.contains('about')) {
-              typeText(p, text, 22).then(() => {});
+      // Close menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!burger.contains(e.target) && !menu.contains(e.target)) {
+          menu.classList.remove('show');
+          burger.classList.remove('active');
+        }
+      });
+
+      // Typing animation function
+      function typeText(element, text, speed = 50) {
+        return new Promise((resolve) => {
+          element.textContent = '';
+          let index = 0;
+          
+          const interval = setInterval(() => {
+            if (index < text.length) {
+              element.textContent += text.charAt(index);
+              index++;
+            } else {
+              clearInterval(interval);
+              element.classList.add('typed');
+              resolve();
             }
-          }
+          }, speed);
         });
-      }, {threshold: 0.25});
+      }
 
-      // Observe all main sections so they reveal with animation when visible
-      document.querySelectorAll('main section').forEach(s => obs.observe(s));
+      // Start typing animations
+      async function startTyping() {
+        const typingElements = document.querySelectorAll('.typing-text');
+        
+        for (let elem of typingElements) {
+          const text = elem.getAttribute('data-text') || elem.textContent;
+          await typeText(elem, text, 50);
+          await new Promise(resolve => setTimeout(resolve, 300)); // Pause between elements
+        }
+        
+        // Show contact items with animation after typing
+        const contactItems = document.querySelectorAll('.contact-item');
+        contactItems.forEach((item, index) => {
+          setTimeout(() => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(30px)';
+            setTimeout(() => {
+              item.style.transition = 'all 0.6s ease';
+              item.style.opacity = '1';
+              item.style.transform = 'translateY(0)';
+            }, 50);
+          }, index * 150);
+        });
+      }
+
+      // Start animations when page loads
+      window.addEventListener('load', () => {
+        startTyping();
+      });
     })();
   </script>
 </body>
