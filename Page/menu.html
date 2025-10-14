@@ -177,18 +177,60 @@
     }
 
     @media(max-width:900px){
-      section h1, section h2{ font-size:1.8rem; }
-      section p{ font-size:1rem; padding:1.2rem 1.8rem; }
-      .cta-btn{ font-size:1rem; padding:.8rem 2rem; }
       header{ padding:1rem 1.5rem; }
       .logo{ font-size:1.1rem; }
+      main{ padding-top:70px; }
+      section{ min-height:100vh; padding:2.5rem 1.5rem; }
+      section h1, section h2{ font-size:1.8rem; letter-spacing:2px; margin-bottom:1.2rem; }
+      section p{ font-size:1rem; padding:1.2rem 1.8rem; line-height:1.6; max-width:600px; }
+      .cta-btn{ font-size:1rem; padding:.8rem 2rem; margin-top:1.5rem; }
+      nav ul li a{ font-size:.85rem; padding:.4rem .8rem; }
     }
+
     @media(max-width:600px){
-      section h1, section h2{ font-size:1.4rem; }
-      section p{ font-size:.9rem; padding:1rem 1.5rem; }
-      .cta-btn{ font-size:.9rem; padding:.7rem 1.5rem; }
       header{ padding:.8rem 1rem; }
       .logo{ font-size:1rem; }
+      main{ padding-top:60px; }
+      section{ min-height:100vh; padding:2rem 1rem; }
+      section h1, section h2{ font-size:1.4rem; letter-spacing:1.5px; margin-bottom:1rem; }
+      section p{ font-size:.9rem; padding:1rem 1.5rem; line-height:1.5; max-width:500px; }
+      .cta-btn{ font-size:.9rem; padding:.7rem 1.5rem; margin-top:1.2rem; letter-spacing:1px; }
+      nav ul{ top:60px; padding:1.5rem; gap:1.2rem; }
+      nav ul li a{ font-size:.8rem; padding:.4rem .7rem; }
+      .burger span{ width:24px; height:2.5px; }
+      footer{ padding:1.5rem; font-size:.85rem; }
+    }
+
+    @media(max-width:400px){
+      header{ padding:.6rem .8rem; }
+      .logo{ font-size:.9rem; letter-spacing:1px; }
+      main{ padding-top:55px; }
+      section{ padding:1.5rem .8rem; }
+      section h1, section h2{ font-size:1.2rem; letter-spacing:1px; margin-bottom:.8rem; }
+      section p{ font-size:.8rem; padding:.8rem 1.2rem; line-height:1.4; max-width:100%; }
+      .cta-btn{ font-size:.8rem; padding:.6rem 1.2rem; margin-top:1rem; }
+      nav ul{ top:55px; padding:1.2rem; gap:1rem; }
+      nav ul li a{ font-size:.75rem; padding:.35rem .6rem; }
+      .burger span{ width:22px; height:2px; gap:4px; }
+      footer{ padding:1.2rem .8rem; font-size:.8rem; }
+    }
+
+    /* Orientation paysage sur mobile */
+    @media(max-height:500px) and (orientation:landscape){
+      section{ min-height:100vh; padding:1.5rem 2rem; }
+      section h1, section h2{ font-size:1.3rem; margin-bottom:.8rem; }
+      section p{ font-size:.85rem; padding:.8rem 1.5rem; line-height:1.4; }
+      .cta-btn{ font-size:.85rem; padding:.6rem 1.5rem; margin-top:1rem; }
+      header{ padding:.6rem 1.5rem; }
+      footer{ padding:1rem; }
+    }
+
+    /* Tablette paysage */
+    @media(min-width:768px) and (max-width:1024px) and (orientation:landscape){
+      section{ padding:2rem 3rem; }
+      section h1, section h2{ font-size:2rem; }
+      section p{ font-size:1rem; max-width:650px; }
+      .cta-btn{ font-size:1rem; padding:.9rem 2.2rem; }
     }
   </style>
 </head>
@@ -231,6 +273,13 @@
     </section>
 
     <section id="projets">
+      <div class="slider-bg">
+        <div class="bg-slide active" style="background-image: url('./IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085609.png');"></div>
+        <div class="bg-slide" style="background-image: url('./IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085632.png');"></div>
+        <div class="bg-slide" style="background-image: url('./IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085646.png');"></div>
+        <div class="bg-slide" style="background-image: url('./IMG/image.png');"></div>
+        <div class="bg-slide" style="background-image: url('./IMG/image2.png');"></div>
+      </div>
       <h2>Mes Projets</h2>
       <p>
         Du développement web aux créations 3D, en passant par les jeux vidéo et les applications interactives, 
@@ -241,6 +290,13 @@
     </section>
 
     <section id="apropos" style="background:#050505;">
+      <div class="slider-bg">
+        <div class="bg-slide active" style="background-image: url('./IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085609.png');"></div>
+        <div class="bg-slide" style="background-image: url('./IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085632.png');"></div>
+        <div class="bg-slide" style="background-image: url('./IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085646.png');"></div>
+        <div class="bg-slide" style="background-image: url('./IMG/image.png');"></div>
+        <div class="bg-slide" style="background-image: url('./IMG/image2.png');"></div>
+      </div>
       <h2>À Propos de Moi</h2>
       <p>
         Passionné par la technologie et la création numérique, je combine mes compétences en programmation, 
@@ -251,6 +307,13 @@
     </section>
 
     <section id="cv" style="background:#0a0a0a;">
+      <div class="slider-bg">
+        <div class="bg-slide active" style="background-image: url('./IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085609.png');"></div>
+        <div class="bg-slide" style="background-image: url('./IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085632.png');"></div>
+        <div class="bg-slide" style="background-image: url('./IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085646.png');"></div>
+        <div class="bg-slide" style="background-image: url('./IMG/image.png');"></div>
+        <div class="bg-slide" style="background-image: url('./IMG/image2.png');"></div>
+      </div>
       <h2>Mon CV</h2>
       <p>
         Consulte mon parcours professionnel, mes formations, mes compétences techniques et mes expériences. 
@@ -261,6 +324,13 @@
     </section>
 
     <section id="contact" style="background:#000;">
+      <div class="slider-bg">
+        <div class="bg-slide active" style="background-image: url('./IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085609.png');"></div>
+        <div class="bg-slide" style="background-image: url('./IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085632.png');"></div>
+        <div class="bg-slide" style="background-image: url('./IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085646.png');"></div>
+        <div class="bg-slide" style="background-image: url('./IMG/image.png');"></div>
+        <div class="bg-slide" style="background-image: url('./IMG/image2.png');"></div>
+      </div>
       <h2>Me Contacter</h2>
       <p>
         Tu as un projet en tête ? Une question ? Une opportunité de collaboration ? N'hésite pas à me contacter 
@@ -280,16 +350,18 @@
       document.getElementById('navMenu').classList.toggle('active');
     });
 
-    const heroSection = document.querySelector('.hero');
-    if(heroSection){
-      const slides = heroSection.querySelectorAll('.bg-slide');
-      let idx = 0;
-      setInterval(() => {
-        slides[idx].classList.remove('active');
-        idx = (idx + 1) % slides.length;
-        slides[idx].classList.add('active');
-      }, 4000);
-    }
+    // Slider background auto pour TOUTES les sections avec slider-bg
+    document.querySelectorAll('.slider-bg').forEach(sliderBg => {
+      const slides = sliderBg.querySelectorAll('.bg-slide');
+      if(slides.length > 0){
+        let idx = 0;
+        setInterval(() => {
+          slides[idx].classList.remove('active');
+          idx = (idx + 1) % slides.length;
+          slides[idx].classList.add('active');
+        }, 4000);
+      }
+    });
 
     document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {

@@ -4,9 +4,18 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mes Projets</title>
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="projet_style.css"/>
 </head>
 <body>
+  <!-- Effets visuels CRT -->
+  <div class="noise"></div>
+  <div class="noise noise-moving"></div>
+  <div class="scanlines"></div>
+
   <header>
     <div class="logo">Mes Projets</div>
     <nav>
@@ -15,15 +24,17 @@
         <li><a href="../contact/contact.html">A Propos</a></li>
         <li><a href="../CV.html">CV</a></li>
       </ul>
-      <div class="burger" id="burger">
-        <div></div><div></div><div></div>
-      </div>
     </nav>
+    <div class="burger" id="burger">
+      <span></span><span></span><span></span>
+    </div>
   </header>
 
   <main>
+    <h1 class="page-title">Portfolio - Projets</h1>
     
     <div class="project">
+      <div class="project-content">
       <div class="slider" data-interval="3000">
         <div class="slides">
 
@@ -34,9 +45,9 @@
           <div class="slide" style="background-image: url('../IMG/proj1/Capture\ d\'écran\ 2025-05-30\ 165033.png');"></div>
           <div class="slide" style="background-image: url('../IMG/proj1/Capture\ d\'écran\ 2025-05-30\ 183816.png');"></div>
         </div>
-      </div>
-      <div class="project-info">
-        <h2>RPG 2D</h2>
+        </div>
+        <div class="project-info">
+          <h2>RPG 2D</h2>
         <p><strong>Description : </strong>Ce projet est un projet étudiant qui a été réaliser pendant mes années de lycée.<br> Il s'agit d'un jeu vidéo en 2D de type RPG dans un style Pokemon. <br>Le but du jeu est de parcourir 3 niveaux afin d'éliminer le boss de fin.</p>
         <p><strong>Langages : </strong>Python</p>
         <p><strong>Equipe : </strong>Travaillé en équipe de 2</p>
@@ -46,9 +57,11 @@
         <p><strong>Compétences : </strong>Python, utilisation d'un IDE (pycharm), gestion de bibliothèque, utilisation d'outil de conceptionde niveau</p>
         <a href="../download/RPG.zip" class="download-btn">Télécharger le projet (.zip)</a>
       </div>
+      </div>
     </div>
 
     <div class="project">
+      <div class="project-content">
       <div class="slider" data-interval="3000">
         <div class="slides">
           <div class="slide" style="background-image: url('../IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085609.png');"></div>
@@ -72,9 +85,11 @@
         <p><strong>Compétences : </strong>HTML, CSS, PHP, SQL, Git, travaille avec une grande équipe</p>
         <a href="../download/projet_sql-main.zip" class="download-btn">Télécharger le projet (.zip)</a>
       </div>
+      </div>
     </div>
 
     <div class="project">
+      <div class="project-content">
       <div class="slider" data-interval="3000">
         <div class="slides">
           <div class="slide" style="background-image: url('../IMG/rendue_room.png');"></div> 
@@ -90,6 +105,7 @@
         <p><strong>Mon rôle : </strong>Développeur front-end, intégration</p>
         <p><strong>Compétences : </strong>HTML, CSS, JS, Git</p>
         <a href="#" class="download-btn">Télécharger le projet (.zip)</a>
+      </div>
       </div>
     </div>
 
