@@ -1,7 +1,7 @@
 /* ==================== Configuration / Translations ==================== */
 const translations = {
-  fr: { play: 'CLIQUE', press: 'Insérer un disque', slpPrefix: 'SLP' },
-  en: { play: 'CLIC', press: 'Insert disk', slpPrefix: 'SLP' }
+  fr: { play: 'CLIQUEZ', press: 'Insérer un disque', slpPrefix: 'SLP' },
+  en: { play: 'CLICK', press: 'Insert disk', slpPrefix: 'SLP' }
 };
 
 /* ==================== Helpers ==================== */
