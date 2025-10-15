@@ -205,16 +205,31 @@ main {
   white-space: nowrap;
   animation: blink 0.7s step-end infinite;
   display: inline-block;
+  max-width: 100%;
 }
 
 .typing-text.typed {
   border-right: none;
   animation: none;
+  white-space: normal;
 }
 
 @keyframes blink {
   from, to { border-color: transparent; }
   50% { border-color: var(--accent2); }
+}
+
+/* Responsive pour typing text sur mobile */
+@media (max-width: 600px) {
+  .typing-text {
+    border-right-width: 2px;
+  }
+}
+
+@media (max-width: 400px) {
+  .typing-text {
+    border-right-width: 2px;
+  }
 }
 
 /* ==================== CONTACT CONTAINER ==================== */
@@ -502,6 +517,41 @@ main section li:hover {
 }
 
 /* ==================== RESPONSIVE ==================== */
+
+/* Grands écrans */
+@media (min-width: 1600px) {
+  main {
+    max-width: 1600px;
+  }
+
+  .page-title {
+    font-size: 3.5em;
+  }
+
+  .intro-text {
+    font-size: 1em;
+  }
+
+  .contact-container {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 60px;
+  }
+
+  .contact-item {
+    padding: 60px 40px;
+  }
+
+  .contact-item svg {
+    width: 100px;
+    height: 100px;
+  }
+
+  main section {
+    padding: 60px 50px;
+    margin: 100px 0;
+  }
+}
+
 @media (max-width: 900px) {
   header {
     padding: 15px 20px;
@@ -522,8 +572,8 @@ main section li:hover {
     border-radius: 10px;
     border: 2px solid var(--accent);
     box-shadow: 0 8px 32px rgba(43, 82, 255, 0.4);
-    backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     gap: 15px;
   }
 
@@ -595,10 +645,14 @@ main section li:hover {
 @media (max-width: 600px) {
   .page-title {
     font-size: 1.5em;
+    line-height: 1.4;
+    word-break: break-word;
   }
 
   .intro-text {
     font-size: 0.7em;
+    line-height: 1.8;
+    white-space: normal;
   }
 
   .contact-item {
@@ -665,16 +719,29 @@ main section li:hover {
     font-size: 0.8em;
   }
 
+  header {
+    padding: 10px 15px;
+  }
+
   .page-title {
     font-size: 1.2em;
+    line-height: 1.5;
+    margin-bottom: 30px;
   }
 
   .intro-text {
     font-size: 0.6em;
+    line-height: 2;
+    margin-bottom: 50px;
   }
 
   .contact-item {
     padding: 25px 15px;
+  }
+
+  .contact-container {
+    gap: 25px;
+    margin-top: 60px;
   }
 
   .contact-item svg {
@@ -701,5 +768,60 @@ main section li:hover {
   main section p,
   main section li {
     font-size: 0.65em;
+  }
+}
+
+/* Mode paysage pour mobile */
+@media (max-width: 900px) and (orientation: landscape) {
+  header {
+    padding: 10px 20px;
+  }
+
+  header .logo {
+    font-size: 0.9em;
+  }
+
+  nav ul li a {
+    font-size: 0.7em;
+    padding: 5px 10px;
+  }
+
+  main {
+    padding: 80px 20px 30px;
+  }
+
+  .page-title {
+    font-size: 1.8em;
+    margin-bottom: 30px;
+    min-height: 60px;
+  }
+
+  .intro-text {
+    font-size: 0.7em;
+    margin-bottom: 50px;
+    min-height: 40px;
+  }
+
+  .contact-container {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  .contact-item {
+    padding: 25px 20px;
+  }
+
+  .contact-item svg {
+    width: 50px;
+    height: 50px;
+  }
+
+  main section {
+    padding: 25px 20px;
+    margin: 40px 0;
+  }
+
+  .interests-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   }
 }
