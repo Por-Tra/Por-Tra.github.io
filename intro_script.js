@@ -1,6 +1,8 @@
 /* ==================== Configuration / Translations ==================== */
+
 // Note: translations are now in i18n.js
 // This file uses the global langManager
+
 
 /* ==================== Helpers ==================== */
 const $ = sel => document.querySelector(sel);
