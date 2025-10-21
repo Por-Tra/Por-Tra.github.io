@@ -166,6 +166,44 @@ nav ul li a:hover {
   box-shadow: 0 0 10px var(--accent2);
 }
 
+/* ==================== LANGUAGE SELECTOR ==================== */
+.lang-select {
+  display: flex;
+  gap: 0.5rem;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 0.6rem;
+  border-radius: 8px;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 0 10px rgba(43, 82, 255, 0.2);
+}
+
+.lang-select button {
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.7rem;
+  padding: 0.4rem 0.7rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.lang-select button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(43, 82, 255, 0.3);
+}
+
+.lang-select button.active {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 15px var(--accent2);
+}
+
 /* ==================== MAIN CONTENT ==================== */
 main {
   padding: 120px 40px 60px;

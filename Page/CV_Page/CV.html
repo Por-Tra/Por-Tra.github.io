@@ -14,12 +14,12 @@
   <div class="scanlines"></div>
 
   <header>
-    <div class="logo">Mon CV</div>
+    <div class="logo" data-i18n="cv.logoTitle">Mon CV</div>
     <nav>
       <ul id="menu">
-        <li><a href="../menu.html">Accueil</a></li>
-        <li><a href="../project/Projet_index.html">Projets</a></li>
-        <li><a href="../contact/contact.html">Contact</a></li>
+        <li><a href="../menu.html" data-i18n="nav.home">Accueil</a></li>
+        <li><a href="../project/Projet_index.html" data-i18n="nav.projects">Projets</a></li>
+        <li><a href="../contact/contact.html" data-i18n="nav.contact">Contact</a></li>
       </ul>
       <div class="burger" id="burger">
         <span></span><span></span><span></span>
@@ -28,8 +28,8 @@
   </header>
 
   <main>
-    <h1 class="page-title typing-text" data-text="Mon Curriculum Vitae"></h1>
-    <p class="intro-text typing-text" data-text="Découvrez mon parcours, mes compétences et mes expériences professionnelles."></p>
+    <h1 class="page-title typing-text" data-text="Mon Curriculum Vitae" data-i18n="cv.title"></h1>
+    <p class="intro-text typing-text" data-text="Découvrez mon parcours, mes compétences et mes expériences professionnelles." data-i18n="cv.subtitle"></p>
     
     <!-- Visualisation du CV avec bouton de téléchargement -->
     <section class="cv-section">
@@ -38,10 +38,10 @@
           <embed src="../CV/Formation.pdf" type="application/pdf" width="100%" height="700px" />
         </div>
         <div class="cv-viewer-fallback">
-          <p style="margin-bottom: 20px; font-size: 0.8em; color: #aaa;">
+          <p style="margin-bottom: 20px; font-size: 0.8em; color: #aaa;" data-i18n="cv.fallbackText">
             Le PDF ne peut pas être affiché sur cet appareil.
           </p>
-          <a href="../CV/Formation.pdf" target="_blank">
+          <a href="../CV/Formation.pdf" target="_blank" data-i18n="cv.fallbackLink">
             Ouvrir le CV en plein écran
           </a>
         </div>
@@ -50,13 +50,13 @@
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
               <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" fill="currentColor"/>
             </svg>
-            Télécharger mon CV
+            <span data-i18n="cv.downloadBtn">Télécharger mon CV</span>
           </a>
           <a href="../CV/Formation.pdf" target="_blank" rel="noopener" class="view-btn">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
               <path d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z" fill="currentColor"/>
             </svg>
-            Ouvrir dans un nouvel onglet
+            <span data-i18n="cv.viewBtn">Ouvrir dans un nouvel onglet</span>
           </a>
         </div>
       </div>
@@ -66,6 +66,7 @@
 
   </main>
 
+  <script src="../../i18n.js"></script>
   <script src="CV_script.js"></script>
 </body>
 </html>

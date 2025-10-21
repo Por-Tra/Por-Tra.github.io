@@ -1,36 +1,22 @@
 /* ==================== Configuration / Translations ==================== */
-const translations = {
-  fr: { play: 'CLIQUEZ', press: 'Insérer un disque', slpPrefix: 'SLP' },
-  en: { play: 'CLICK', press: 'Insert disk', slpPrefix: 'SLP' }
-};
+
+// Note: translations are now in i18n.js
+// This file uses the global langManager
+
 
 /* ==================== Helpers ==================== */
 const $ = sel => document.querySelector(sel);
 const qs = sel => document.querySelectorAll(sel);
 
 /* ==================== Language handling ==================== */
-const LANG_KEY = 'portfolio_lang';
-
-function getStoredLang() {
-  const l = localStorage.getItem(LANG_KEY);
-  return l === 'en' || l === 'fr' ? l : (navigator.language && navigator.language.startsWith('fr') ? 'fr' : 'en');
-}
-
-function setLang(lang) {
-  localStorage.setItem(LANG_KEY, lang);
-  applyLang(lang);
-}
-
 function applyLang(lang) {
-  const t = translations[lang] || translations.en;
-  // change texts
   const playBtn = $('#playBtn');
-  // update play label — we keep letters as chars
-  playBtn.setAttribute('data-label', t.play);
+  // update play label
+  playBtn.setAttribute('data-label', window.langManager.t('index.play'));
   // hint text
-  $('#hint').textContent = t.press;
+  $('#hint').textContent = window.langManager.t('index.press');
   // record label prefix
-  window.__slpPrefix = t.slpPrefix;
+  window.__slpPrefix = window.langManager.t('index.slpPrefix');
   updateRecordSpeedDisplay();
   // active button
   $('#langFR').classList.toggle('active', lang === 'fr');
@@ -157,34 +143,44 @@ playBtn.addEventListener('keydown', e => {
 });
 
 // Language buttons
-document.getElementById('langFR').addEventListener('click', () => setLang('fr'));
-document.getElementById('langEN').addEventListener('click', () => setLang('en'));
+document.getElementById('langFR').addEventListener('click', () => window.langManager.setLang('fr'));
+document.getElementById('langEN').addEventListener('click', () => window.langManager.setLang('en'));
+
+// Listen for language changes from other pages
+window.langManager.onChange((lang) => {
+  applyLang(lang);
+  const label = window.langManager.t('index.play');
+  buildPlayLabel(label);
+});
 
 // Small accessibility: focus on play
 playBtn.tabIndex = 0;
 
 /* ==================== Initialization ==================== */
-// set language from storage (or default)
-const initialLang = getStoredLang();
-applyLang(initialLang);
+// Wait for i18n to load
+window.addEventListener('DOMContentLoaded', () => {
+  // set language from storage (or default)
+  const initialLang = window.langManager.getLang();
+  applyLang(initialLang);
 
-// build initial play label
-buildPlayLabel($('#playBtn').getAttribute('data-label') || translations[initialLang].play);
+  // build initial play label
+  buildPlayLabel($('#playBtn').getAttribute('data-label') || window.langManager.t('index.play'));
 
-// observe changing label when language changes (rebuild)
-const observer = new MutationObserver(() => {
-  const label = $('#playBtn').getAttribute('data-label') || translations[getStoredLang()].play;
-  buildPlayLabel(label);
+  // observe changing label when language changes (rebuild)
+  const observer = new MutationObserver(() => {
+    const label = $('#playBtn').getAttribute('data-label') || window.langManager.t('index.play');
+    buildPlayLabel(label);
+  });
+  observer.observe($('#playBtn'), { attributes: true, attributeFilter: ['data-label'] });
+
+  // start time updates
+  updateTime();
+  setInterval(updateTime, 1000);
+
+  // start fake record timer
+  updateRecordSpeedDisplay();
+  setInterval(updateRecordSpeedDisplay, 1000);
 });
-observer.observe($('#playBtn'), { attributes: true, attributeFilter: ['data-label'] });
-
-// start time updates
-updateTime();
-setInterval(updateTime, 1000);
-
-// start fake record timer
-updateRecordSpeedDisplay();
-setInterval(updateRecordSpeedDisplay, 1000);
 
 /* ==================== Animation cleanup ==================== */
 document.addEventListener('animationend', e => {

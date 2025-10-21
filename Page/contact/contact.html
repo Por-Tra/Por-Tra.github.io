@@ -14,12 +14,12 @@
   <div class="scanlines"></div>
 
   <header>
-    <div class="logo">Mon portfolio</div>
+    <div class="logo" data-i18n="common.portfolio">Mon portfolio</div>
     <nav>
       <ul id="menu">
-        <li><a href="../menu.html">Accueil</a></li>
-        <li><a href="../project/Projet_index.html">Projets</a></li>
-        <li><a href="../CV_Page/CV.html">CV</a></li>
+        <li><a href="../menu.html" data-i18n="nav.home">Accueil</a></li>
+        <li><a href="../project/Projet_index.html" data-i18n="nav.projects">Projets</a></li>
+        <li><a href="../CV_Page/CV.html" data-i18n="nav.cv">CV</a></li>
       </ul>
       <div class="burger" id="burger">
         <span></span><span></span><span></span>
@@ -28,8 +28,8 @@
   </header>
 
   <main>
-    <h1 class="page-title typing-text" data-text="Me contacter"></h1>
-    <p class="intro-text typing-text" data-text="N'hésitez pas à me joindre via mes réseaux ou par email :"></p>
+    <h1 class="page-title typing-text" data-text="Me contacter" data-i18n="contact.title"></h1>
+    <p class="intro-text typing-text" data-text="N'hésitez pas à me joindre via mes réseaux ou par email :" data-i18n="contact.subtitle"></p>
     <div class="contact-container">
     
       <!-- LinkedIn -->
@@ -40,7 +40,7 @@
           21.3V448h-92.4s1.2-269.1 0-297.1h92.4v42.1c12.3-19 34.3-46.1
           83.6-46.1 61 0 106.8 39.8 106.8 125.2z"/>
         </svg>
-        <span>LinkedIn</span>
+  <span data-i18n="contact.linkedin">LinkedIn</span>
       </a>
 
       <!-- Instagram -->
@@ -70,7 +70,7 @@
           34.8-52.2C442.9 323.6 448
           289.3 448 224s-5.1-99.6-12.2-122.6c-8.2-19.7-19.9-37.3-34.8-52.2z"/>
         </svg>
-        <span>Instagram</span>
+  <span data-i18n="contact.instagram">Instagram</span>
       </a>
 
       <!-- GitHub -->
@@ -109,7 +109,7 @@
           11.6C426.2 452.9 496 361.6 496
           253.5 496 117.8 386.6 8 244.8 8z"/>
         </svg>
-        <span>GitHub</span>
+  <span data-i18n="contact.github">GitHub</span>
       </a>
 
       <!-- Mail -->
@@ -126,28 +126,28 @@
           13.5 55 0l212.7-180.8c5.8-4.6
           9.7-12.2 9.7-20.4V112c0-26.5-21.5-48-48-48z"/>
         </svg>
-        <span>Email</span>
+  <span data-i18n="contact.email">Email</span>
       </a>
     </div>
 
     <!-- NEW: A propos (typing animation on PC) -->
     <section class="about">
-      <h2>À propos</h2>
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non culpa saepe sint itaque adipisci, temporibus eaque at atque magnam error pariatur necessitatibus autem deserunt perspiciatis ipsum est placeat laudantium rerum.</p>
+      <h2 data-i18n="contact.aboutTitle">À propos</h2>
+      <p data-i18n="contact.aboutText">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non culpa saepe sint itaque adipisci, temporibus eaque at atque magnam error pariatur necessitatibus autem deserunt perspiciatis ipsum est placeat laudantium rerum.</p>
     </section>
 
     <!-- NEW: Formations -->
     <section class="formations">
-      <h2>Formations</h2>
+      <h2 data-i18n="contact.formationsTitle">Formations</h2>
       <ul>
-        <li>BUT Informatique graphique - Le Puy-en-Velay -- 2024-2027</li>
-        <li>BAC Général - Lycée Marmontel - Mauriac -- 2021-2024</li>
+        <li data-i18n="contact.formation1">BUT Informatique graphique - Le Puy-en-Velay -- 2024-2027</li>
+        <li data-i18n="contact.formation2">BAC Général - Lycée Marmontel - Mauriac -- 2021-2024</li>
       </ul>
     </section>
 
     <!-- NEW: Compétences -->
     <section class="competences">
-      <h2>Compétences</h2>
+      <h2 data-i18n="contact.skillsTitle">Compétences</h2>
       <div class="skills-grid">
         <div class="skill">JavaScript</div>
         <div class="skill">JavaScript</div>
@@ -157,7 +157,7 @@
         
       </div>
 
-      <h2>Outils de conception</h2>
+      <h2 data-i18n="contact.toolsTitle">Outils de conception</h2>
       <div class="skills-grid">
         <div class="skill">Blender</div>
         <div class="skill">Visual Studio Code</div>
@@ -167,37 +167,38 @@
 
     <!-- NEW: Intérêts (une image par intérêt) -->
     <section class="interets">
-      <h2>Intérêts</h2>
+      <h2 data-i18n="contact.interestsTitle">Intérêts</h2>
       <div class="interests-grid">
         <div class="interest">
           <img src="../IMG/centre_interet/neuromancien_cover.png" alt="book-cover">
-          <h3>Lecteur de romans d’aventure</h3>
-          <p class="interest-desc">J'apprécie suivre l’évolution de personnages évoluant dans des contextes sociaux difficiles, comme dans  Cyberpunk 2077 : No Coincidence ou encore Neuromancien.</p>
+          <h3 data-i18n="contact.interest1Title">Lecteur de romans d'aventure</h3>
+          <p class="interest-desc" data-i18n="contact.interest1Desc">J'apprécie suivre l'évolution de personnages évoluant dans des contextes sociaux difficiles, comme dans  Cyberpunk 2077 : No Coincidence ou encore Neuromancien.</p>
         </div>
         <div class="interest">
           <img src="../IMG/centre_interet/DL.png" alt="universe">
-          <h3>Fascination pour les univers postapocalyptiques</h3>
-          <p class="interest-desc">Jeux indépendants, level design et interaction; passion pour la logique de gameplay et l'optimisation.</p>
+          <h3 data-i18n="contact.interest2Title">Fascination pour les univers postapocalyptiques</h3>
+          <p class="interest-desc" data-i18n="contact.interest2Desc">Jeux indépendants, level design et interaction; passion pour la logique de gameplay et l'optimisation.</p>
         </div>
         <div class="interest">
           <img src="../IMG/centre_interet/moi.webp" alt="img">
-          <h3>Fan de chevalerie</h3>
-          <p class="interest-desc">Je suis toujours présent lors d'événements médiévaux. Vêtue d'une armure, je fais sensation.</p>
+          <h3 data-i18n="contact.interest3Title">Fan de chevalerie</h3>
+          <p class="interest-desc" data-i18n="contact.interest3Desc">Je suis toujours présent lors d'événements médiévaux. Vêtue d'une armure, je fais sensation.</p>
         </div>
       </div>
     </section>
 
     <!-- NEW: Expériences professionnelles -->
     <section class="experiences">
-      <h2>Expériences professionnelles</h2>
+      <h2 data-i18n="contact.experiencesTitle">Expériences professionnelles</h2>
       <ul>
-        <li>ASSISTANT Gérant PHARMACIEN - Pharmacie Malbec, Mauriac (15) - durée : 1mois </li>
-        <li>Coming soon 👀</li>
+        <li data-i18n="contact.experience1">ASSISTANT Gérant PHARMACIEN - Pharmacie Malbec, Mauriac (15) - durée : 1mois </li>
+        <li data-i18n="contact.experience2">Coming soon 👀</li>
       </ul>
     </section>
 
   </main>
 
+  <script src="../../i18n.js"></script>
   <script src="contact_script.js"></script>
 </body>
 </html>
