@@ -53,7 +53,7 @@ const translations = {
       // Aliases to match data-i18n in HTML
       title: 'Me contacter',
       subtitle: "N'hésitez pas à me joindre via mes réseaux ou par email :",
-      
+
       links: {
         linkedin: 'LinkedIn',
         github: 'GitHub',
@@ -65,12 +65,12 @@ const translations = {
       github: 'GitHub',
       instagram: 'Instagram',
       email: 'Email',
-      
+
       emailSection: {
         title: 'Contactez-moi par Email',
         address: 'lucascontrerashodapp@gmail.com'
       },
-      
+
       about: {
         title: 'À Propos',
         text: "Étudiant passionné en informatique, je me spécialise dans le développement web, la modélisation 3D et la programmation. Mon objectif est de créer des solutions innovantes et de repousser constamment les limites de mes compétences techniques."
@@ -78,7 +78,7 @@ const translations = {
       // Aliases
       aboutTitle: 'À propos',
       aboutText: "Étudiant passionné en informatique, je me spécialise dans le développement web, la modélisation 3D et la programmation. Mon objectif est de créer des solutions innovantes et de repousser constamment les limites de mes compétences techniques.",
-      
+
       formations: {
         title: 'Formations',
         items: [
@@ -91,7 +91,7 @@ const translations = {
       formationsTitle: 'Formations',
       formation1: 'BUT Informatique graphique - Le Puy-en-Velay -- 2024-2027',
       formation2: 'BAC Général - Lycée Marmontel - Mauriac -- 2021-2024',
-      
+
       skills: {
         title: 'Compétences',
         items: [
@@ -105,7 +105,7 @@ const translations = {
       },
       skillsTitle: 'Compétences',
       toolsTitle: 'Outils de conception',
-      
+
       interests: {
         title: "Centres d'Intérêt",
         items: [
@@ -134,7 +134,7 @@ const translations = {
       interest2Desc: "Jeux indépendants, level design et interaction; passion pour la logique de gameplay et l'optimisation.",
       interest3Title: 'Fan de chevalerie',
       interest3Desc: "Je suis toujours présent lors d'événements médiévaux. Vêtue d'une armure, je fais sensation.",
-      
+
       experiences: {
         title: 'Expériences professionnelles',
         items: [
@@ -296,7 +296,7 @@ const translations = {
       // Aliases
       title: 'Contact me',
       subtitle: 'Feel free to reach me via my socials or by email:',
-      
+
       links: {
         linkedin: 'LinkedIn',
         github: 'GitHub',
@@ -308,19 +308,19 @@ const translations = {
       github: 'GitHub',
       instagram: 'Instagram',
       email: 'Email',
-      
+
       emailSection: {
         title: 'Contact me by Email',
         address: 'lucascontrerashodapp@gmail.com'
       },
-      
+
       about: {
         title: 'About',
         text: "Passionate computer science student, I specialize in web development, 3D modeling and programming. My goal is to create innovative solutions and constantly push the boundaries of my technical skills."
       },
       aboutTitle: 'About',
       aboutText: "Passionate computer science student, I specialize in web development, 3D modeling and programming. My goal is to create innovative solutions and constantly push the boundaries of my technical skills.",
-      
+
       formations: {
         title: 'Education',
         items: [
@@ -332,7 +332,7 @@ const translations = {
       formationsTitle: 'Education',
       formation1: 'BUT Computer Science - Le Puy-en-Velay -- 2024-2027',
       formation2: 'General Baccalaureate - Lycée Marmontel - Mauriac -- 2021-2024',
-      
+
       skills: {
         title: 'Skills',
         items: [
@@ -346,7 +346,7 @@ const translations = {
       },
       skillsTitle: 'Skills',
       toolsTitle: 'Design tools',
-      
+
       interests: {
         title: 'Interests',
         items: [
@@ -375,7 +375,7 @@ const translations = {
       interest2Desc: 'Indie games, level design and interaction; passion for gameplay logic and optimization.',
       interest3Title: 'Medieval fan',
       interest3Desc: "I'm always present at medieval events. Wearing armor, I make an impression.",
-      
+
       experiences: {
         title: 'Professional Experience',
         items: [
@@ -478,6 +478,240 @@ const translations = {
       menu: 'Menu',
       portfolio: 'My portfolio'
     }
+  },
+  
+  es: {
+    // Navigation
+    nav: {
+      home: 'Inicio',
+      projects: 'Proyectos',
+      about: 'Acerca de',
+      cv: 'CV',
+      contact: 'Contacto'
+    },
+    
+    // Index page
+    index: {
+      play: 'CLIC',
+      press: 'Insertar disco',
+      slpPrefix: 'SLP'
+    },
+    
+    // Menu page
+    menu: {
+      title: 'Bienvenido a mi Portafolio',
+      subtitle: 'Explora mis creaciones, proyectos de aplicaciones web, modelado 3D, programación y mucho más. Usa la navegación para descubrir mi universo creativo y técnico.',
+      ctaProjects: 'Descubrir mis proyectos',
+      
+      projectsTitle: 'Mis Proyectos',
+      projectsDesc: 'Desde el desarrollo de aplicaciones web hasta aplicaciones de escritorio, utilizo mis habilidades para dar vida a proyectos variados y ambiciosos. Cada proyecto es una oportunidad para aprender y superar mis límites técnicos y creativos.',
+      ctaAllProjects: 'Ver todos los proyectos',
+      
+      aboutTitle: 'Acerca de Mí',
+      aboutDesc: 'Apasionado por la tecnología y la creación digital, combino mis habilidades de programación para diseñar herramientas únicas. Mi objetivo es transformar ideas en logros concretos e innovadores, mientras comparto mi pasión con los demás.',
+      ctaLearnMore: 'Saber más',
+      
+      cvTitle: 'Mi CV',
+      cvDesc: 'Consulta mi trayectoria profesional, formación, habilidades técnicas y experiencias. También puedes descargar mi CV en formato PDF para conocer más sobre mi perfil y logros.',
+      ctaViewCV: 'Consultar mi CV',
+      
+      contactTitle: 'Contáctame',
+      contactDesc: '¿Tienes un proyecto en mente? ¿Una pregunta? ¿Una oportunidad de colaboración? No dudes en contactarme por correo electrónico o a través de otras plataformas. Siempre estoy abierto a intercambios y nuevas ideas. ¡Trabajemos juntos para crear algo excepcional!',
+      ctaSendEmail: 'Enviar un correo',
+      
+      footer: {
+        contact: 'Contacto',
+        styleCredit: 'Estilo inspirado en el sitio web'
+      }
+    },
+    
+    // Contact page
+    contact: {
+      pageTitle: 'Contáctame',
+      intro: 'No dudes en contactarme para cualquier pregunta, colaboración u oportunidad profesional.',
+      
+      title: 'Contáctame',
+      subtitle: 'No dudes en contactarme a través de mis redes o por correo electrónico:',
+      
+      links: {
+        linkedin: 'LinkedIn',
+        github: 'GitHub',
+        instagram: 'Instagram',
+        email: 'Correo'
+      },
+      linkedin: 'LinkedIn',
+      github: 'GitHub',
+      instagram: 'Instagram',
+      email: 'Correo',
+      
+      emailSection: {
+        title: 'Contáctame por Correo',
+        address: 'lucascontrerashodapp@gmail.com'
+      },
+      
+      about: {
+        title: 'Acerca de',
+        text: 'Estudiante apasionado de informática, me especializo en desarrollo web, modelado 3D y programación. Mi objetivo es crear soluciones innovadoras y empujar constantemente los límites de mis habilidades técnicas.'
+      },
+      aboutTitle: 'Acerca de',
+      aboutText: 'Estudiante apasionado de informática, me especializo en desarrollo web, modelado 3D y programación. Mi objetivo es crear soluciones innovadoras y empujar constantemente los límites de mis habilidades técnicas.',
+      
+      formations: {
+        title: 'Formación',
+        items: [
+          'BUT Informática - IUT Clermont Auvergne',
+          'Bachillerato Científico - Mención Excelente',
+          'Certificaciones en desarrollo web y 3D'
+        ]
+      },
+      formationsTitle: 'Formación',
+      formation1: 'BUT Informática gráfica - Le Puy-en-Velay -- 2024-2027',
+      formation2: 'Bachillerato General - Lycée Marmontel - Mauriac -- 2021-2024',
+      
+      skills: {
+        title: 'Habilidades',
+        items: [
+          'HTML/CSS/JavaScript',
+          'Python y C++',
+          'Three.js y WebGL',
+          'Blender y Modelado 3D',
+          'Git y GitHub',
+          'Diseño UI/UX'
+        ]
+      },
+      skillsTitle: 'Habilidades',
+      toolsTitle: 'Herramientas de diseño',
+      
+      interests: {
+        title: 'Intereses',
+        items: [
+          {
+            title: 'Desarrollo Web',
+            desc: 'Creación de sitios interactivos y responsivos'
+          },
+          {
+            title: 'Modelado 3D',
+            desc: 'Diseño y animación de modelos 3D realistas'
+          },
+          {
+            title: 'Gaming',
+            desc: 'Apasionado de los videojuegos y el diseño de juegos'
+          },
+          {
+            title: 'Tecnología',
+            desc: 'Vigilancia tecnológica e innovación'
+          }
+        ]
+      },
+      interestsTitle: 'Intereses',
+      interest1Title: 'Lector de novelas de aventuras',
+      interest1Desc: 'Disfruto siguiendo la evolución de personajes que evolucionan en contextos sociales difíciles, como en Cyberpunk 2077: No Coincidence o Neuromante.',
+      interest2Title: 'Fascinación por los universos postapocalípticos',
+      interest2Desc: 'Juegos independientes, diseño de niveles e interacción; pasión por la lógica del juego y la optimización.',
+      interest3Title: 'Fan de la caballería',
+      interest3Desc: 'Siempre estoy presente en eventos medievales. Vistiendo armadura, causo sensación.',
+      
+      experiences: {
+        title: 'Experiencia Profesional',
+        items: [
+          'ASISTENTE Gerente FARMACÉUTICO - Pharmacie Malbec, Mauriac (15) - duración: 1 mes',
+          'Próximamente 👀'
+        ]
+      },
+      experiencesTitle: 'Experiencia Profesional',
+      experience1: 'ASISTENTE Gerente FARMACÉUTICO - Pharmacie Malbec, Mauriac (15) - duración: 1 mes',
+      experience2: 'Próximamente 👀'
+    },
+    
+    // CV page
+    cv: {
+      pageTitle: 'Mi Currículum Vitae',
+      intro: 'Descubre mi trayectoria, habilidades y experiencias profesionales.',
+      
+      downloadBtn: 'Descargar mi CV',
+      viewBtn: 'Abrir en nueva pestaña',
+      
+      fallback: 'El PDF no se puede mostrar en este dispositivo.',
+      fallbackLink: 'Abrir el CV en pantalla completa',
+      
+      logoTitle: 'Mi CV',
+      title: 'Mi Currículum Vitae',
+      subtitle: 'Descubre mi trayectoria, habilidades y experiencias profesionales.',
+      fallbackText: 'El PDF no se puede mostrar en este dispositivo.'
+    },
+    
+    // Projects page
+    projects: {
+      pageTitle: 'Mis Proyectos',
+      intro: 'Descubre mis logros en desarrollo web, modelado 3D y programación.',
+      
+      logoTitle: 'Mis Proyectos',
+      title: 'Portafolio - Proyectos',
+      descLabel: 'Descripción: ',
+      langLabel: 'Lenguajes: ',
+      teamLabel: 'Equipo: ',
+      dateLabel: 'Fecha: ',
+      featuresLabel: 'Funcionalidades: ',
+      roleLabel: 'Mi rol: ',
+      skillsLabel: 'Habilidades: ',
+      downloadBtn: 'Descargar proyecto (.zip)',
+      
+      project1Title: 'RPG 2D',
+      project1Desc: 'Este es un proyecto estudiantil realizado durante mis años de bachillerato. Es un juego de video en 2D tipo RPG con estilo Pokémon. El objetivo del juego es recorrer 3 niveles para eliminar al jefe final.',
+      project1Lang: 'Python',
+      project1Team: 'Trabajé en equipo de 2',
+      project1Date: '2022-2023',
+      project1Features: 'Movimientos, cambio de nivel, animación, diálogos con NPCs, combate, cambio de personaje',
+      project1Role: 'Desarrollador',
+      project1Skills: 'Python, uso de IDE (PyCharm), gestión de bibliotecas, uso de herramientas de diseño de niveles',
+      
+      project2Title: 'Proyecto de presentación',
+      project2Desc: 'Un proyecto universitario cuyo objetivo era crear una aplicación web para calificar estudiantes',
+      project2Lang: 'HTML, CSS, PHP, SQL',
+      project2Team: '11 personas (grupos de clase)',
+      project2Date: '10 de septiembre de 2025 - 3 de octubre de 2025',
+      project2Features: 'gestión de estudiantes, calificaciones y proyectos',
+      project2Role: 'Desarrollador back-end, realización de la parte 3.3 y del sistema de envío automático de correos',
+      project2Skills: 'HTML, CSS, PHP, SQL, Git, trabajo con un gran equipo',
+      
+      section3dTitle: 'Mis Proyectos 3D',
+      section3dDesc: 'Selecciona un proyecto a continuación para saber más o acceder directamente.',
+      card1Title: 'Modelado de habitación low poly',
+      card1Desc: 'Visualización interactiva de una habitación moderna',
+      card2Title: 'Proyecto 2',
+      card3Title: 'Proyecto 3',
+      comingSoon: 'Próximamente'
+    },
+    
+    // 3D page
+    scene3d: {
+      pageTitle: 'Habitación Low Poly',
+      desc: 'Modelado 3D - Usa el ratón para explorar',
+      
+      logo: 'Proyecto 3D',
+      title: 'Habitación Low Poly',
+      subtitle: 'Modelado 3D - Usa el ratón para explorar',
+      
+      controls: {
+        rotate: 'Rotar',
+        zoom: 'Zoom',
+        pan: 'Mover'
+      },
+      
+      loading: 'Cargando',
+      error: 'Error de carga'
+    },
+    
+    // Common
+    common: {
+      loading: 'Cargando...',
+      error: 'Ocurrió un error',
+      close: 'Cerrar',
+      next: 'Siguiente',
+      previous: 'Anterior',
+      menu: 'Menú',
+      portfolio: 'Mi portafolio'
+    }
   }
 };
 
@@ -492,8 +726,13 @@ class LanguageManager {
   // Get language from localStorage or browser default
   getStoredLang() {
     const stored = localStorage.getItem(this.storageKey);
-    if (stored === 'en' || stored === 'fr') return stored;
-    return navigator.language && navigator.language.startsWith('fr') ? 'fr' : 'en';
+    if (stored === 'en' || stored === 'fr' || stored === 'es') return stored;
+    
+    // Detect browser language
+    const browserLang = navigator.language.toLowerCase();
+    if (browserLang.startsWith('fr')) return 'fr';
+    if (browserLang.startsWith('es')) return 'es';
+    return 'en';
   }
   
   // Get current language
@@ -503,7 +742,7 @@ class LanguageManager {
   
   // Set language and save to localStorage
   setLang(lang) {
-    if (lang !== 'en' && lang !== 'fr') return;
+    if (lang !== 'en' && lang !== 'fr' && lang !== 'es') return;
     this.currentLang = lang;
     localStorage.setItem(this.storageKey, lang);
     this.notifyListeners();
@@ -511,12 +750,12 @@ class LanguageManager {
   
   // Get translation
   t(path) {
-    const keys = path.split('.');
-    let value = translations[this.currentLang];
-    
+    const keys = path.split('.')
+    let value = translations[this.currentLang]
+
     for (const key of keys) {
       if (value && typeof value === 'object') {
-        value = value[key];
+        value = value[key]
       } else {
         return null; // Missing: indicate not found
       }
@@ -582,6 +821,7 @@ function createLanguageSelector(containerId = 'lang-selector') {
   container.innerHTML = `
     <button data-lang="fr" class="${lang === 'fr' ? 'active' : ''}">FR</button>
     <button data-lang="en" class="${lang === 'en' ? 'active' : ''}">EN</button>
+    <button data-lang="es" class="${lang === 'es' ? 'active' : ''}">ES</button>
   `;
   
   container.querySelectorAll('[data-lang]').forEach(btn => {
