@@ -1,12 +1,48 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Redirecting to 3D Viewer</title>
-    <meta http-equiv="refresh" content="0; url=../viewer.html?model=projet1">
-  </head>
-  <body>
-    <p>Redirection vers le viewer 3D... <a href="../viewer.html?model=projet1">Cliquez ici si la redirection ne fonctionne pas</a></p>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <title>Room 3D - Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="proj1_style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- CRT Effects -->
+  <div class="noise"></div>
+  <div class="noise-moving"></div>
+  <div class="scanlines"></div>
+
+  <!-- NAVBAR -->
+  <header>
+    <div class="logo" data-i18n="scene3d.logo">Projet 3D</div>
+    <nav>
+      <ul id="menu">
+        <li><a href="../../menu.html" data-i18n="nav.home">Accueil</a></li>
+        <li><a href="../../project/Projet_index.html" data-i18n="nav.projects">Projets</a></li>
+        <li><a href="../../contact/contact.html" data-i18n="nav.contact">Contact</a></li>
+        <li><a href="../../CV_Page/CV.html" data-i18n="nav.cv">CV</a></li>
+      </ul>
+      <div class="burger" id="burger">
+        <span></span><span></span><span></span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- CANVAS 3D -->
+  <canvas id="scene3d"></canvas>
+
+
+  <!-- SCRIPTS -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@latest/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@latest/examples/jsm/"
+    }
+  }
+  </script>
+  <script src="../../../i18n.js"></script>
+  <script type="module" src="projet1_script.js"></script>
+</body>
 </html>

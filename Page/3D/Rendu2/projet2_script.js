@@ -72,7 +72,7 @@ scene.add(plane);
 // ==================== Model Loading ====================
 const loader = new GLTFLoader();
 loader.load(
-  './systeme_solaire.glb',
+  './système solaire.glb',
   gltf => {
     gltf.scene.scale.set(1, 1, 1);
     gltf.scene.position.set(0, 0, 0);
