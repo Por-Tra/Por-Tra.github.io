@@ -1,0 +1,32 @@
+/* Basic full-viewport canvas and small UI */
+html,body{
+  height:100%;
+  margin:0;
+  background:#0a0a0a;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  color:#fff;
+}
+#scene3d{
+  display:block;
+  width:100vw;
+  height:100vh;
+}
+#ui{
+  position:fixed;
+  right:1rem;
+  top:1rem;
+  background:rgba(255,255,255,0.06);
+  padding:0.5rem;
+  border-radius:8px;
+  backdrop-filter: blur(6px);
+  display:flex;
+  gap:0.5rem;
+  align-items:center;
+  z-index:10;
+}
+#modelSelect{padding:4px}
+#reloadBtn{padding:6px 8px;background:linear-gradient(90deg,#4f46e5,#06b6d4);border:none;color:#fff;border-radius:4px;cursor:pointer}
+
+@media (max-width:600px){
+  #ui{left:0.5rem;right:0.5rem;top:auto;bottom:1rem;width:auto}
+}
