@@ -6,7 +6,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 // Mapping friendly keys to model paths (preserve original folders)
 const MODEL_MAP = {
   projet1: './Rendu1/Room_avec_texture.glb',
-  projet2: './Rendu2/systeme_solaire.glb'
+  projet2: './Rendu2/système solaire.glb'
 };
 
 function getQueryParam(name){
@@ -31,6 +31,10 @@ function getModelPathFromKey(key){
 const canvas = document.getElementById('scene3d');
 const select = document.getElementById('modelSelect');
 const reloadBtn = document.getElementById('reloadBtn');
+
+// Hide UI selector - auto-load from query param only
+const uiContainer = document.getElementById('ui');
+if(uiContainer) uiContainer.style.display = 'none';
 
 populateSelector(select);
 
