@@ -205,7 +205,7 @@ const translations = {
 
   // Project 3 (RSL)
   project3Title: 'Projet Réseau Social Local',
-  project3Desc: "C'est un projet qui a pour but de permettre un échange de messages depuis 2 machines disctinctes et avec la possibilité d'héberger le serveur très facilement",
+  project3Desc: "C'est un projet qui a pour but de permettre un échange de messages depuis 2 machines distinctes et avec la possibilité d'héberger le serveur très facilement",
   project3Lang: 'Python',
   project3Team: 'Travaillé en équipe de 2',
   project3Date: 'mars-mai 2024',
