@@ -203,6 +203,16 @@ const translations = {
       project2Role: "Développeur back-end, réalisation de la partie 3.3 et du système d'envoi de mail automatique",
       project2Skills: 'HTML, CSS, PHP, SQL, Git, travail avec une grande équipe',
 
+  // Project 3 (RSL)
+  project3Title: 'Projet Réseau Social Local',
+  project3Desc: "C'est un projet qui a pour but de permettre un échange de messages depuis 2 machines distinctes et avec la possibilité d'héberger le serveur très facilement",
+  project3Lang: 'Python',
+  project3Team: 'Travaillé en équipe de 2',
+  project3Date: 'mars-mai 2024',
+  project3Features: 'Échange de messages entre 2 utilisateurs et ordinateurs, historique des messages, hébergement du serveur, fonctionnel uniquement en réseau local',
+  project3Role: 'Synchronisation des messages, interface, gestion du serveur',
+  project3Skills: 'Python, serveur socket, interface graphique, bibliothèques Python',
+
       // 3D section
       section3dTitle: 'Mes Projets 3D',
       section3dDesc: 'Sélectionnez un projet ci-dessous pour en savoir plus ou pour y accéder directement.',
@@ -441,6 +451,16 @@ const translations = {
       project2Role: 'Back-end developer, built section 3.3 and automatic email sending system',
       project2Skills: 'HTML, CSS, PHP, SQL, Git, work with a large team',
 
+  // Project 3 (RSL)
+  project3Title: 'Local Social Network Project',
+  project3Desc: 'This project aims to enable message exchange between two distinct machines and offers easy server hosting.',
+  project3Lang: 'Python',
+  project3Team: 'Worked in a team of 2',
+  project3Date: 'March–May 2024',
+  project3Features: 'Message exchange between two users/computers, message history, server hosting, works on local network only',
+  project3Role: 'Message synchronization, UI, server management',
+  project3Skills: 'Python, socket server, GUI, Python libraries',
+
       section3dTitle: 'My 3D Projects',
       section3dDesc: 'Select a project below to learn more or access it directly.',
       card1Title: 'Low poly room modeling',
@@ -673,6 +693,16 @@ const translations = {
       project2Features: 'gestión de estudiantes, calificaciones y proyectos',
       project2Role: 'Desarrollador back-end, realización de la parte 3.3 y del sistema de envío automático de correos',
       project2Skills: 'HTML, CSS, PHP, SQL, Git, trabajo con un gran equipo',
+
+    // Project 3 (RSL)
+    project3Title: 'Proyecto de Red Social Local',
+    project3Desc: 'Este proyecto tiene como objetivo permitir el intercambio de mensajes entre dos máquinas distintas y ofrecer un alojamiento del servidor fácil.',
+    project3Lang: 'Python',
+    project3Team: 'Trabajo en equipo de 2',
+    project3Date: 'marzo-mayo 2024',
+    project3Features: 'Intercambio de mensajes entre 2 usuarios/ordenadores, historial de mensajes, alojamiento del servidor, funciona solo en red local',
+    project3Role: 'Sincronización de mensajes, interfaz, gestión del servidor',
+    project3Skills: 'Python, servidor socket, interfaz gráfica, bibliotecas Python',
       
       section3dTitle: 'Mis Proyectos 3D',
       section3dDesc: 'Selecciona un proyecto a continuación para saber más o acceder directamente.',
