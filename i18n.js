@@ -104,6 +104,25 @@ const translations = {
         ]
       },
       skillsTitle: 'Compétences',
+      langsTitle: 'Langages de programmation',
+      // Individual skill lines for contact page (FR)
+      skill1: 'Développer des applications informatiques simples',
+      skill2: 'Appréhender et construire des algorithmes',
+      skill3: 'Installer et configurer un poste de travail',
+      skill4: 'Concevoir et mettre en place une base de données à partir d’un cahier des charges client',
+      skill5: 'Identifier les besoins métiers des clients et des utilisateurs',
+      skill6: 'Identifier ses aptitudes pour travailler dans une équipe',
+      // Languages & tools labels (FR)
+      lang_js: 'JavaScript',
+      lang_py: 'Python',
+      lang_cpp: 'C++ / C# / C',
+      lang_php: 'PHP',
+      lang_sql: 'SQL',
+      tool_blender: 'Blender',
+      tool_vscode: 'Visual Studio Code',
+      tool_vs: 'Visual Studio 2022',
+      tool_git: 'Git',
+      tool_qt: 'Qt',
       toolsTitle: 'Outils de conception',
 
       interests: {
@@ -355,6 +374,25 @@ const translations = {
         ]
       },
       skillsTitle: 'Skills',
+      langsTitle: 'Programming Languages',
+      // Individual skill lines for contact page (EN)
+      skill1: 'Develop simple software applications',
+      skill2: 'Understand and build algorithms',
+      skill3: 'Install and configure a workstation',
+      skill4: "Design and implement a database from a client's specifications",
+      skill5: 'Identify business needs of clients and users',
+      skill6: 'Identify aptitudes to work in a team',
+      // Languages & tools labels (EN)
+      lang_js: 'JavaScript',
+      lang_py: 'Python',
+      lang_cpp: 'C++ / C# / C',
+      lang_php: 'PHP',
+      lang_sql: 'SQL',
+      tool_blender: 'Blender',
+      tool_vscode: 'Visual Studio Code',
+      tool_vs: 'Visual Studio 2022',
+      tool_git: 'Git',
+      tool_qt: 'Qt',
       toolsTitle: 'Design tools',
 
       interests: {
@@ -600,6 +638,25 @@ const translations = {
         ]
       },
       skillsTitle: 'Habilidades',
+      langsTitle: 'Lenguajes de programación',
+      // Individual skill lines for contact page (ES)
+      skill1: 'Desarrollar aplicaciones informáticas simples',
+      skill2: 'Comprender y construir algoritmos',
+      skill3: 'Instalar y configurar un puesto de trabajo',
+      skill4: 'Diseñar e implementar una base de datos a partir del pliego de requisitos del cliente',
+      skill5: 'Identificar las necesidades empresariales de clientes y usuarios',
+      skill6: 'Identificar aptitudes para trabajar en equipo',
+      // Languages & tools labels (ES)
+      lang_js: 'JavaScript',
+      lang_py: 'Python',
+      lang_cpp: 'C++ / C# / C',
+      lang_php: 'PHP',
+      lang_sql: 'SQL',
+      tool_blender: 'Blender',
+      tool_vscode: 'Visual Studio Code',
+      tool_vs: 'Visual Studio 2022',
+      tool_git: 'Git',
+      tool_qt: 'Qt',
       toolsTitle: 'Herramientas de diseño',
       
       interests: {
