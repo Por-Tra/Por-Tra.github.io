@@ -3,155 +3,132 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Menu - Portfolio</title>
+  <title>BIOS Setup Utility - Portfolio</title>
   
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="menu_style.css">
 </head>
 <body>
-  <!-- CRT Effects -->
   <div class="noise"></div>
   <div class="noise noise-moving"></div>
   <div class="scanlines"></div>
 
-  <!-- HEADER -->
-  <header>
-    <div class="logo">Portfolio</div>
-    <nav>
-      <ul id="navMenu">
-        <li><a href="#accueil" data-i18n="nav.home">Accueil</a></li>
-        <li><a href="#projets" data-i18n="nav.projects">Projets</a></li>
-        <li><a href="#apropos" data-i18n="nav.about">À propos</a></li>
-        <li><a href="#cv" data-i18n="nav.cv">CV</a></li>
-        <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
-      </ul>
-    </nav>
-    
-    <!-- Language Selector -->
-    <div class="lang-select" id="lang-selector"></div>
-    
-    <div class="burger" id="burger">
-      <span></span><span></span><span></span>
+  <div class="bios-container">
+    <div class="bios-header">
+      <div class="bios-title">BIOS Setup Utility - Portfolio Navigation</div>
+      <div class="bios-info">Press Enter to Select Item</div>
     </div>
-  </header>
 
-  <!-- MAIN CONTENT -->
-  <main>
-    <section id="accueil" class="hero">
-      <div class="slider-bg">
-        <div class="bg-slide active" style="background-image: url('./IMG/proj1/Capture\ d\'écran\ 2025-05-14\ 100305.png');"></div>
-        <div class="bg-slide" style="background-image: url('./IMG/proj1/Capture\ d\'écran\ 2025-05-14\ 100424.png');"></div>
-        <div class="bg-slide" style="background-image: url('./IMG/proj1/Capture\ d\'écran\ 2025-05-14\ 100449.png');"></div>
-        <div class="bg-slide" style="background-image: url('./IMG/proj1/Capture\ d\'écran\ 2025-05-30\ 165033.png');"></div>
-        <div class="bg-slide" style="background-image: url('./IMG/proj1/Capture\ d\'écran\ 2025-05-30\ 183816.png');"></div>
+    <div class="bios-main">
+      <div class="bios-menu">
+        <div class="menu-section">
+          <div class="section-title" data-i18n="bios.mainMenu">Main Menu</div>
+          
+          <div class="menu-item" data-page="./project/Projet_index.html" tabindex="0">
+            <span class="item-icon">[+]</span>
+            <span class="item-label" data-i18n="nav.projects">Projects</span>
+            <span class="item-value" data-i18n="bios.viewProjects">View All Projects</span>
+          </div>
 
-        <div class="bg-slide" style="background-image: url('./IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085716.png');"></div>
-        <div class="bg-slide" style="background-image: url('./IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085609.png');"></div>
-        <div class="bg-slide" style="background-image: url('./IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085632.png');"></div>
-        <div class="bg-slide" style="background-image: url('./IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085646.png');"></div>
-        <div class="bg-slide" style="background-image: url('./IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085653.png');"></div>
-        <div class="bg-slide" style="background-image: url('./IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085702.png');"></div>
-        <div class="bg-slide" style="background-image: url('./IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085709.png');"></div>
-        <div class="bg-slide" style="background-image: url('./IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085737.png');"></div>
-        
-        <div class="bg-slide" style="background-image: url('./IMG/rendue_room.png');"></div>
+          <div class="menu-item" data-page="./contact/contact.html" tabindex="0">
+            <span class="item-icon">[+]</span>
+            <span class="item-label" data-i18n="nav.about">About</span>
+            <span class="item-value" data-i18n="bios.aboutMe">Learn More About Me</span>
+          </div>
 
-        <div class="bg-slide" style="background-image: url('./IMG/centre_interet/moi.webp');"></div>
-        <div class="bg-slide" style="background-image: url('./IMG/centre_interet/DL.png');"></div>
-        <div class="bg-slide" style="background-image: url('./IMG/centre_interet/neuromancien_cover.png');"></div>
-        <div class="bg-slide" style="background-image: url('./IMG/centre_interet/CP_NO_C.png');"></div>
+          <div class="menu-item" data-page="./CV_Page/CV.html" tabindex="0">
+            <span class="item-icon">[+]</span>
+            <span class="item-label" data-i18n="nav.cv">CV</span>
+            <span class="item-value" data-i18n="bios.viewCV">View Curriculum Vitae</span>
+          </div>
+
+          <div class="menu-item" data-page="./contact/contact.html" tabindex="0">
+            <span class="item-icon">[+]</span>
+            <span class="item-label" data-i18n="nav.contact">Contact</span>
+            <span class="item-value" data-i18n="bios.contactInfo">Send Email or Connect</span>
+          </div>
+        </div>
+
+        <div class="menu-section">
+          <div class="section-title" data-i18n="bios.system">System Configuration</div>
+          
+          <div class="menu-item dropdown-trigger" tabindex="0">
+            <span class="item-icon">[*]</span>
+            <span class="item-label" data-i18n="bios.language">Language</span>
+            <span class="item-value" id="currentLang">Francais</span>
+            <span class="dropdown-arrow">v</span>
+          </div>
+
+          <div class="dropdown-menu" id="langDropdown">
+            <div class="dropdown-item" data-lang="fr">Francais</div>
+            <div class="dropdown-item" data-lang="en">English</div>
+            <div class="dropdown-item" data-lang="es">Espanol</div>
+          </div>
+        </div>
+
+        <div class="menu-section">
+          <div class="section-title" data-i18n="bios.exit">Exit Options</div>
+          
+          <div class="menu-item" data-page="../index.html" tabindex="0">
+            <span class="item-icon">[X]</span>
+            <span class="item-label" data-i18n="bios.exitSetup">Exit Setup</span>
+            <span class="item-value" data-i18n="bios.returnHome">Return to Home</span>
+          </div>
+        </div>
       </div>
-      <h1 data-i18n="menu.title">Bienvenue sur mon Portfolio</h1>
-      <p data-i18n="menu.subtitle">
-        Explore mes créations, mes projets d'applications web, de modélisation 3D, de programmation et bien plus encore. 
-        Utilise la navigation pour découvrir mon univers créatif et technique.
-      </p>
-      <a href="#projets" class="cta-btn" data-i18n="menu.ctaProjects">Découvrir mes projets</a>
-    </section>
 
-    <section id="projets">
-      <div class="slider-bg">
-        <div class="bg-slide active" style="background-image: url('./IMG/proj1/Capture\ d\'écran\ 2025-05-14\ 100305.png');"></div>
-        <div class="bg-slide" style="background-image: url('./IMG/proj1/Capture\ d\'écran\ 2025-05-14\ 100424.png');"></div>
-        <div class="bg-slide" style="background-image: url('./IMG/proj1/Capture\ d\'écran\ 2025-05-14\ 100449.png');"></div>
-        <div class="bg-slide" style="background-image: url('./IMG/proj1/Capture\ d\'écran\ 2025-05-30\ 165033.png');"></div>
-        <div class="bg-slide" style="background-image: url('./IMG/proj1/Capture\ d\'écran\ 2025-05-30\ 183816.png');"></div>
+      <div class="bios-sidebar">
+        <div class="help-box">
+          <div class="help-title" data-i18n="bios.helpTitle">Navigation Help</div>
+          <div class="help-item">
+            <span class="help-key">Up/Down</span>
+            <span data-i18n="bios.helpMove">Move Selection</span>
+          </div>
+          <div class="help-item">
+            <span class="help-key">Enter</span>
+            <span data-i18n="bios.helpSelect">Select Item</span>
+          </div>
+          <div class="help-item">
+            <span class="help-key">Esc</span>
+            <span data-i18n="bios.helpExit">Exit to Home</span>
+          </div>
+        </div>
 
-        <div class="bg-slide" style="background-image: url('./IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085716.png');"></div>
-        <div class="bg-slide" style="background-image: url('./IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085609.png');"></div>
-        <div class="bg-slide" style="background-image: url('./IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085632.png');"></div>
-        <div class="bg-slide" style="background-image: url('./IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085646.png');"></div>
-        <div class="bg-slide" style="background-image: url('./IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085653.png');"></div>
-        <div class="bg-slide" style="background-image: url('./IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085702.png');"></div>
-        <div class="bg-slide" style="background-image: url('./IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085709.png');"></div>
-        <div class="bg-slide" style="background-image: url('./IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085737.png');"></div>
-
-        <div class="bg-slide" style="background-image: url('./IMG/rendue_room.png');"></div>
+        <div class="info-box">
+          <div class="info-title" data-i18n="bios.systemInfo">System Information</div>
+          <div class="info-item">
+            <span data-i18n="bios.version">Version</span>: 2.0.1
+          </div>
+          <div class="info-item">
+            <span data-i18n="bios.date">Date</span>: <span id="currentDate"></span>
+          </div>
+          <div class="info-item">
+            <span data-i18n="bios.time">Time</span>: <span id="currentTime"></span>
+          </div>
+        </div>
       </div>
-      <h2 data-i18n="menu.projectsTitle">Mes Projets</h2>
-      <p data-i18n="menu.projectsDesc">
-        Du développement d'applications web aux applications de bureautique,
-        je mets à profit mes compétences pour donner vie à des projets variés et ambitieux. Chaque projet 
-        est une occasion d'apprendre et de repousser mes limites techniques et créatives.
-      </p>
-      <a href="./project/Projet_index.html" class="cta-btn" data-i18n="menu.ctaAllProjects">Voir tous les projets</a>
-    </section>
+    </div>
 
-    <section id="apropos" style="background:#050505;">
-      <div class="slider-bg">
-        <div class="bg-slide active" style="background-image: url('./IMG/centre_interet/DL.png');"></div>
-        <div class="bg-slide" style="background-image: url('./IMG/centre_interet/moi.webp');"></div>
-        <div class="bg-slide" style="background-image: url('./IMG/centre_interet/neuromancien_cover.png');"></div>
-        <div class="bg-slide" style="background-image: url('./IMG/centre_interet/CP_NO_C.png');"></div>
+    <div class="bios-footer">
+      <div class="footer-item">
+        <span class="footer-key">F1</span>
+        <span data-i18n="bios.footerHelp">Help</span>
       </div>
-      <h2 data-i18n="menu.aboutTitle">À Propos de Moi</h2>
-      <p data-i18n="menu.aboutDesc">
-        Passionné par la technologie et la création numérique, je combine mes compétences en programmation 
-        pour concevoir des outils uniques. Mon objectif est de transformer 
-        des idées en réalisations concrètes et innovantes, tout en partageant ma passion avec les autres.
-      </p>
-      <a href="./contact/contact.html" class="cta-btn" data-i18n="menu.ctaLearnMore">En savoir plus</a>
-    </section>
-
-    <section id="cv" style="background:#0a0a0a;">
-      <div class="slider-bg">
-        <div class="bg-slide active" style="background-image: url('./IMG/CV_IMG/image.png');"></div>
+      <div class="footer-item">
+        <span class="footer-key">F10</span>
+        <span data-i18n="bios.footerSave">Save & Exit</span>
       </div>
-      <h2 data-i18n="menu.cvTitle">Mon CV</h2>
-      <p data-i18n="menu.cvDesc">
-        Consulte mon parcours professionnel, mes formations, mes compétences techniques et mes expériences. 
-        Tu peux également télécharger mon CV au format PDF pour en apprendre davantage sur mon profil et 
-        mes réalisations.
-      </p>
-      <a href="./CV_Page/CV.html" class="cta-btn" data-i18n="menu.ctaViewCV">Consulter mon CV</a>
-    </section>
-
-    <section id="contact" style="background:#000;">
-      <div class="slider-bg">
-        <div class="bg-slide active" style="background-image: url('./IMG/contactIMG/image.png');"></div>
+      <div class="footer-item">
+        <span class="footer-key">ESC</span>
+        <span data-i18n="bios.footerExit">Exit</span>
       </div>
-      <h2 data-i18n="menu.contactTitle">Me Contacter</h2>
-      <p data-i18n="menu.contactDesc">
-        Tu as un projet en tête ? Une question ? Une opportunité de collaboration ? N'hésite pas à me contacter 
-        par email ou via d'autres plateformes. Je suis toujours ouvert aux échanges et aux nouvelles idées. Travaillons ensemble pour 
-        créer quelque chose d'exceptionnel !
-      </p>
-      <a href="mailto:lucascontrerashodapp@gmail.com" class="cta-btn" data-i18n="menu.ctaSendEmail">Envoyer un email</a>
-    </section>
-  </main>
+    </div>
+  </div>
 
-  <!-- FOOTER -->
-  <footer>
-    <p><span data-i18n="menu.footer.contact">Contact</span>: <a href="mailto:lucascontrerashodapp@gmail.com">lucascontrerashodapp@gmail.com</a></p>
-    <p><span data-i18n="menu.footer.styleCredit">Style inspiré du site</span> https://prismic.io/blog/css-background-effects</p>
-  </footer>
+  <div class="exit-overlay" id="exitOverlay"></div>
 
   <script src="../i18n.js"></script>
   <script src="menu_script.js"></script>
-  <script>
-    // Initialize language selector
-    createLanguageSelector('lang-selector');
-  </script>
 </body>
 </html>
