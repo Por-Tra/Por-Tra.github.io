@@ -7,17 +7,17 @@
 
 .dock-panel {
   position: fixed;
-  bottom: 1.5rem;
+  bottom: 0.75rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   align-items: flex-end;
   width: fit-content;
-  gap: 2rem;
-  border-radius: 2rem;
+  gap: 1rem;
+  border-radius: 1rem;
   background-color: #060010;
-  border: 2px solid #222;
-  padding: 0 1.5rem 1.5rem;
+  border: 1px solid #222;
+  padding: 0 0.75rem 0.75rem;
   z-index: 1000;
 }
 
@@ -45,15 +45,15 @@
 
 .dock-label {
   position: absolute;
-  top: -3rem;
+  top: -2rem;
   left: 50%;
   width: fit-content;
   white-space: pre;
-  border-radius: 0.5rem;
-  border: 2px solid #222;
+  border-radius: 0.375rem;
+  border: 1px solid #222;
   background-color: #060010;
-  padding: 0.5rem 1rem;
-  font-size: 1.2rem;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.9rem;
   color: #fff;
   transform: translateX(-50%);
 }

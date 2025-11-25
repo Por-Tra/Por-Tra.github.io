@@ -5,25 +5,25 @@ import './Navbar.css';
 function Navbar({ currentPage, onNavigate }) {
   const items = [
     { 
-      icon: <VscHome size={54} />, 
+      icon: <VscHome size={27} />, 
       label: 'Menu', 
       onClick: () => onNavigate('menu'),
       isActive: currentPage === 'menu'
     },
     { 
-      icon: <VscArchive size={54} />, 
+      icon: <VscArchive size={27} />, 
       label: 'Projects', 
       onClick: () => onNavigate('projects'),
       isActive: currentPage === 'projects'
     },
     { 
-      icon: <VscAccount size={54} />, 
+      icon: <VscAccount size={27} />, 
       label: 'About', 
       onClick: () => onNavigate('about'),
       isActive: currentPage === 'about'
     },
     { 
-      icon: <VscNotebook size={54} />, 
+      icon: <VscNotebook size={27} />, 
       label: 'CV', 
       onClick: () => onNavigate('cv'),
       isActive: currentPage === 'cv'
@@ -33,9 +33,9 @@ function Navbar({ currentPage, onNavigate }) {
   return (
     <Dock 
       items={items}
-      panelHeight={204}
-      baseItemSize={150}
-      magnification={210}
+      panelHeight={102}
+      baseItemSize={75}
+      magnification={105}
     />
   );
 }
