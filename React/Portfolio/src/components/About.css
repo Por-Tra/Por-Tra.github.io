@@ -1,0 +1,96 @@
+.about-page {
+  background: #000000;
+}
+
+.about-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.about-section {
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: rgba(43, 82, 255, 0.05);
+  border: 2px solid rgba(43, 82, 255, 0.2);
+  border-radius: 8px;
+}
+
+.about-section h2 {
+  color: #2b52ff;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.about-section p {
+  color: #bbbbbb;
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.skill-item {
+  background: rgba(43, 82, 255, 0.2);
+  border: 2px solid rgba(43, 82, 255, 0.4);
+  padding: 1rem;
+  border-radius: 6px;
+  text-align: center;
+  color: #ffffff;
+  transition: all 0.3s;
+}
+
+.skill-item:hover {
+  background: rgba(43, 82, 255, 0.3);
+  border-color: rgba(43, 82, 255, 0.6);
+  transform: translateY(-3px);
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.timeline-item {
+  padding-left: 2rem;
+  border-left: 3px solid #2b52ff;
+  position: relative;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -7px;
+  top: 0;
+  width: 12px;
+  height: 12px;
+  background: #2b52ff;
+  border-radius: 50%;
+}
+
+.timeline-item h3 {
+  color: #ffffff;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-item p {
+  color: #bbbbbb;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .about-section {
+    padding: 1.5rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}

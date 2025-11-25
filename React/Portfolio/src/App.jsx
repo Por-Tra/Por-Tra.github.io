@@ -1,25 +1,38 @@
 import { useState } from 'react'
 import Intro from './components/Intro'
+import Menu from './components/Menu'
+import Projects from './components/Projects'
+import About from './components/About'
+import CV from './components/CV'
 import './App.css'
 
 function App() {
-  const [showIntro, setShowIntro] = useState(true)
+  const [currentPage, setCurrentPage] = useState('intro')
 
   const handleIntroComplete = () => {
-    setShowIntro(false)
-    // Ici vous pourrez ajouter la navigation vers le menu principal
-    console.log('Intro terminée - prêt pour le menu principal')
+    setCurrentPage('menu')
+  }
+
+  const handleNavigate = (page) => {
+    setCurrentPage(page)
   }
 
   return (
     <>
-      {showIntro ? (
+      {currentPage === 'intro' && (
         <Intro onComplete={handleIntroComplete} />
-      ) : (
-        <div style={{ padding: '2rem', color: 'white' }}>
-          <h1>Menu Principal</h1>
-          <p>Le contenu principal du portfolio sera ici...</p>
-        </div>
+      )}
+      {currentPage === 'menu' && (
+        <Menu onNavigate={handleNavigate} />
+      )}
+      {currentPage === 'projects' && (
+        <Projects onNavigate={handleNavigate} />
+      )}
+      {currentPage === 'about' && (
+        <About onNavigate={handleNavigate} />
+      )}
+      {currentPage === 'cv' && (
+        <CV onNavigate={handleNavigate} />
       )}
     </>
   )

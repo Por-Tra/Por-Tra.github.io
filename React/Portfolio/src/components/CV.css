@@ -1,0 +1,131 @@
+.cv-page {
+  background: #000000;
+}
+
+.cv-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.cv-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.cv-button {
+  font-family: 'Press Start 2P', monospace;
+  padding: 1rem 2rem;
+  font-size: 0.8rem;
+  background: #2b52ff;
+  color: #ffffff;
+  border: 2px solid #2b52ff;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+}
+
+.cv-button:hover {
+  background: #fd5d8d;
+  border-color: #fd5d8d;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(253, 93, 141, 0.4);
+}
+
+.cv-button.secondary {
+  background: transparent;
+  border-color: #2b52ff;
+  color: #2b52ff;
+}
+
+.cv-button.secondary:hover {
+  background: rgba(43, 82, 255, 0.2);
+  border-color: #2b52ff;
+}
+
+.cv-preview {
+  margin-bottom: 2rem;
+}
+
+.cv-frame {
+  background: rgba(43, 82, 255, 0.05);
+  border: 2px solid rgba(43, 82, 255, 0.3);
+  border-radius: 8px;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.cv-placeholder {
+  text-align: center;
+  color: #bbbbbb;
+}
+
+.cv-placeholder p {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #2b52ff;
+}
+
+.cv-placeholder small {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.cv-info {
+  background: rgba(43, 82, 255, 0.05);
+  border: 2px solid rgba(43, 82, 255, 0.2);
+  border-radius: 8px;
+  padding: 2rem;
+}
+
+.cv-info h2 {
+  color: #2b52ff;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.info-item {
+  color: #bbbbbb;
+  padding: 1rem;
+  background: rgba(43, 82, 255, 0.1);
+  border-radius: 6px;
+}
+
+.info-item strong {
+  color: #ffffff;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .cv-actions {
+    flex-direction: column;
+  }
+
+  .cv-button {
+    width: 100%;
+    font-size: 0.7rem;
+    padding: 0.8rem 1.5rem;
+  }
+
+  .cv-frame {
+    min-height: 400px;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+}
