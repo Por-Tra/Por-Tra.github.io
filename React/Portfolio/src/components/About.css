@@ -1,10 +1,129 @@
 .about-page {
   background: #000000;
+  font-family: 'Orbitron', 'Press Start 2P', monospace;
 }
 
 .about-content {
   max-width: 900px;
   margin: 0 auto;
+}
+
+/* Hero Section */
+.about-hero {
+  text-align: center;
+  padding: 4rem 2rem 3rem;
+  margin-bottom: 3rem;
+}
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: bold;
+  background: linear-gradient(135deg, #ffffff 0%, #00ffff 50%, #0000ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+  animation: fadeInUp 0.8s ease-out;
+  letter-spacing: 3px;
+}
+
+.hero-subtitle {
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Social Section */
+.social-section {
+  margin-bottom: 5rem;
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+.logo-loop-wrapper {
+  width: 100%;
+  max-width: 500px;
+  height: 100px;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+  border-radius: 16px;
+  border: 2px solid rgba(0, 255, 255, 0.3);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 255, 255, 0.05) 100%);
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  box-shadow: 0 8px 32px rgba(0, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.logo-loop-wrapper:hover {
+  border-color: rgba(0, 255, 255, 0.6);
+  box-shadow: 0 12px 48px rgba(0, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Skills Section */
+.falling-text-section {
+  margin-top: 5rem;
+  animation: fadeInUp 0.8s ease-out 0.6s both;
+}
+
+.section-title {
+  color: #ffffff;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #00ffff, transparent);
+  border-radius: 2px;
+}
+
+.falling-text-wrapper {
+  width: 100%;
+  max-width: 1100px;
+  height: 650px;
+  margin: 0 auto;
+  border-radius: 20px;
+  border: 2px solid rgba(0, 255, 255, 0.3);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 255, 0.1) 100%);
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 255, 0.2),
+              inset 0 0 60px rgba(0, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.falling-text-wrapper:hover {
+  border-color: rgba(0, 255, 255, 0.5);
+  box-shadow: 0 12px 48px rgba(0, 0, 255, 0.3),
+              inset 0 0 80px rgba(0, 255, 255, 0.08);
 }
 
 .about-section {

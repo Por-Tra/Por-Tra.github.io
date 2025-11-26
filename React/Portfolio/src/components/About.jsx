@@ -1,7 +1,17 @@
 import { useTranslation } from '../i18n';
 import Navbar from './Navbar';
 import Aurora from './Aurora';
+import FallingText from './FallingText';
+import LogoLoop from './LogoLoop';
+import MagicCard from './MagicCard';
+import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiInstagram, SiLinkedin, SiGithub } from 'react-icons/si';
 import './About.css';
+
+const techLogos = [
+  { node: <SiInstagram />, title: "Insta", href: "https://www.instagram.com/lucas_contreras_hodapp_/" },
+  { node: <SiLinkedin />, title: "LinkedIn", href: "https://www.linkedin.com/in/lucas-contreras-hodapp/" },
+  { node: <SiGithub />, title: "TypeScript", href: "https://github.com/Por-Tra" }
+];
 
 function About({ onNavigate }) {
   const { t } = useTranslation();
@@ -18,10 +28,67 @@ function About({ onNavigate }) {
 
       {/* Content */}
       <div className="page-content">
-        {/* Votre contenu ici */}
-      </div>
+        {/* Hero Section */}
+        <div className="about-hero">
+          <h1 className="hero-title">À Propos</h1>
+          <p className="hero-subtitle">Développeur passionné par la création d'expériences web innovantes</p>
+        </div>
 
-      {/* Navbar */}
+        {/* Social Links */}
+        <div className="social-section">
+          <h2 className="section-title">Connectons-nous</h2>
+          <MagicCard
+            className="logo-loop-wrapper"
+            enableStars={true}
+            enableBorderGlow={true}
+            enableTilt={true}
+            enableMagnetism={true}
+            clickEffect={true}
+            glowColor="0, 255, 255"
+            particleCount={8}
+          >
+            <LogoLoop
+              logos={techLogos}
+              speed={120}
+              direction="left"
+              logoHeight={48}
+              gap={40}
+              hoverSpeed={0}
+              scaleOnHover
+              fadeOut
+              fadeOutColor="#000000"
+              ariaLabel="Réseaux sociaux"
+            />
+          </MagicCard>
+        </div>
+
+        {/* Skills Section */}
+        <div className="falling-text-section">
+          <h2 className="section-title">Langages de programmation maîtrisés</h2>
+          <MagicCard
+            className="falling-text-wrapper"
+            enableStars={true}
+            enableBorderGlow={true}
+            enableTilt={false}
+            enableMagnetism={false}
+            clickEffect={true}
+            glowColor="0, 255, 255"
+            particleCount={12}
+          >
+            <FallingText
+              text={`Python JavaScript C++ C# PHP HTML SQL VisualStudioCode VisualStudio2022 Git/Github Blender Qt`}
+              highlightWords={["Python", "JavaScript", "C++", "C#", "Git/Github"]}
+              highlightClass="highlighted"
+              trigger="hover"
+              backgroundColor="transparent"
+              wireframes={false}
+              gravity={0.56}
+              fontSize="2rem"
+              mouseConstraintStiffness={0.9}
+            />
+          </MagicCard>
+        </div>
+      </div>      {/* Navbar */}
       <Navbar currentPage="about" onNavigate={onNavigate} />
     </div>
   );

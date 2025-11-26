@@ -1,5 +1,6 @@
 .projects-page {
   background: #000000;
+  font-family: 'Orbitron', 'Press Start 2P', monospace;
 }
 
 .page-container {
@@ -8,6 +9,7 @@
   overflow-y: auto;
   background: #000000;
   color: #ffffff;
+  font-family: 'Orbitron', 'Press Start 2P', monospace;
 }
 
 .page-content {
