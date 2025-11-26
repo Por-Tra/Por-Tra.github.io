@@ -3,7 +3,7 @@ import Navbar from './Navbar';
 import Aurora from './Aurora';
 import FallingText from './FallingText';
 import LogoLoop from './LogoLoop';
-import MagicCard from './MagicCard';
+import TextType from './TextType';
 import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiInstagram, SiLinkedin, SiGithub } from 'react-icons/si';
 import './About.css';
 
@@ -30,23 +30,32 @@ function About({ onNavigate }) {
       <div className="page-content">
         {/* Hero Section */}
         <div className="about-hero">
-          <h1 className="hero-title">À Propos</h1>
+          <TextType
+            as="h1"
+            className="hero-title"
+            text={["À Propos", "Developer", "Créateur"]}
+            typingSpeed={100}
+            pauseDuration={2000}
+            showCursor={true}
+            cursorCharacter="|"
+            loop={true}
+          />
           <p className="hero-subtitle">Développeur passionné par la création d'expériences web innovantes</p>
         </div>
 
         {/* Social Links */}
         <div className="social-section">
-          <h2 className="section-title">Connectons-nous</h2>
-          <MagicCard
-            className="logo-loop-wrapper"
-            enableStars={true}
-            enableBorderGlow={true}
-            enableTilt={true}
-            enableMagnetism={true}
-            clickEffect={true}
-            glowColor="0, 255, 255"
-            particleCount={8}
-          >
+          <TextType
+            as="h2"
+            className="section-title"
+            text={["Connectons-nous", "Let's Connect", "Rejoignez-moi"]}
+            typingSpeed={75}
+            pauseDuration={1500}
+            showCursor={true}
+            cursorCharacter="|"
+            loop={true}
+          />
+          <div className="logo-loop-wrapper">
             <LogoLoop
               logos={techLogos}
               speed={120}
@@ -59,22 +68,22 @@ function About({ onNavigate }) {
               fadeOutColor="#000000"
               ariaLabel="Réseaux sociaux"
             />
-          </MagicCard>
+          </div>
         </div>
 
         {/* Skills Section */}
         <div className="falling-text-section">
-          <h2 className="section-title">Langages de programmation maîtrisés</h2>
-          <MagicCard
-            className="falling-text-wrapper"
-            enableStars={true}
-            enableBorderGlow={true}
-            enableTilt={false}
-            enableMagnetism={false}
-            clickEffect={true}
-            glowColor="0, 255, 255"
-            particleCount={12}
-          >
+          <TextType
+            as="h2"
+            className="section-title"
+            text={["Langages maîtrisés", "Tech Stack", "Compétences"]}
+            typingSpeed={75}
+            pauseDuration={1500}
+            showCursor={true}
+            cursorCharacter="|"
+            loop={true}
+          />
+          <div className="falling-text-wrapper">
             <FallingText
               text={`Python JavaScript C++ C# PHP HTML SQL VisualStudioCode VisualStudio2022 Git/Github Blender Qt`}
               highlightWords={["Python", "JavaScript", "C++", "C#", "Git/Github"]}
@@ -86,7 +95,7 @@ function About({ onNavigate }) {
               fontSize="2rem"
               mouseConstraintStiffness={0.9}
             />
-          </MagicCard>
+          </div>
         </div>
       </div>      {/* Navbar */}
       <Navbar currentPage="about" onNavigate={onNavigate} />
