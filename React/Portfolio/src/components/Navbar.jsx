@@ -33,9 +33,9 @@ function Navbar({ currentPage, onNavigate }) {
   return (
     <Dock 
       items={items}
-      panelHeight={102}
-      baseItemSize={75}
-      magnification={105}
+      panelHeight={153}
+      baseItemSize={112}
+      magnification={157}
     />
   );
 }
