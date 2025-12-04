@@ -233,7 +233,7 @@
 .recordSpeed {
   display: none;
 }
-}
+
 .glitch-overlay.active{ display:block; animation:glitchSequence 1s linear forwards; }
 
 @keyframes glitchSequence{

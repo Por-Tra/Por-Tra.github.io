@@ -22,8 +22,8 @@ function Menu({ onNavigate }) {
       {/* Main content */}
       <div className="bios-main">
         <div className="menu-header">
-          <h1>{t('index.welcome') || 'Welcome'}</h1>
-          <p>{t('index.subtitle') || 'Select a section'}</p>
+          <h1>{t('Bienvenue sur mon Portfolio') || 'Welcome'}</h1>
+          <p>{t('Vous pourrez découvrir mes projets et des information à propos de moi') || 'Select a section'}</p>
         </div>
 
         <div style={{ height: '600px', position: 'relative' }}>
