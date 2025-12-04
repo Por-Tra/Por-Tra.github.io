@@ -1,10 +1,9 @@
 .about-page {
-  background: #000000;
-  font-family: 'Orbitron', 'Press Start 2P', monospace;
+  font-family: 'Inter', 'Plus Jakarta Sans', sans-serif;
 }
 
 .about-content {
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -12,25 +11,30 @@
 .about-hero {
   text-align: center;
   padding: 4rem 2rem 3rem;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 }
 
 .hero-title {
-  font-size: 4rem;
-  font-weight: bold;
-  color: #ffffff;
-  margin-bottom: 1rem;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
   animation: fadeInUp 0.8s ease-out;
-  letter-spacing: 3px;
 }
 
 .hero-subtitle {
+  font-family: 'Inter', sans-serif;
   font-size: 1.3rem;
-  color: rgba(255, 255, 255, 0.7);
-  max-width: 600px;
+  font-weight: 300;
+  color: var(--color-text-secondary);
+  max-width: 700px;
   margin: 0 auto;
-  line-height: 1.6;
-  animation: fadeInUp 0.8s ease-out 0.2s both;
+  line-height: 1.7;
 }
 
 @keyframes fadeInUp {
@@ -47,46 +51,50 @@
 /* Social Section */
 .social-section {
   margin-bottom: 5rem;
-  animation: fadeInUp 0.8s ease-out 0.4s both;
 }
 
 .logo-loop-wrapper {
   width: 100%;
-  max-width: 500px;
+  max-width: 600px;
   height: 100px;
   position: relative;
   overflow: hidden;
   margin: 0 auto;
-  border-radius: 16px;
-  border: 2px solid rgba(0, 255, 255, 0.3);
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 255, 255, 0.05) 100%);
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   display: flex;
   align-items: center;
   padding: 0 2rem;
-  box-shadow: 0 8px 32px rgba(0, 255, 255, 0.1);
+  box-shadow: 
+    var(--shadow-lg),
+    0 0 30px rgba(99, 102, 241, 0.1);
   transition: all 0.3s ease;
 }
 
 .logo-loop-wrapper:hover {
-  border-color: rgba(0, 255, 255, 0.6);
-  box-shadow: 0 12px 48px rgba(0, 255, 255, 0.2);
+  border-color: rgba(99, 102, 241, 0.6);
+  box-shadow: 
+    var(--shadow-xl),
+    0 0 40px rgba(99, 102, 241, 0.2);
   transform: translateY(-2px);
 }
 
 /* Skills Section */
 .falling-text-section {
   margin-top: 5rem;
-  animation: fadeInUp 0.8s ease-out 0.6s both;
 }
 
 .section-title {
-  color: #ffffff;
-  font-size: 2.5rem;
-  font-weight: bold;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  color: var(--color-text-primary);
+  font-size: 2rem;
+  font-weight: 700;
   text-align: center;
   margin-bottom: 3rem;
-  text-transform: uppercase;
-  letter-spacing: 3px;
+  letter-spacing: -0.01em;
   position: relative;
   padding-bottom: 1rem;
 }
@@ -97,9 +105,9 @@
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 100px;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, #00ffff, transparent);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #6366f1, transparent);
   border-radius: 2px;
 }
 

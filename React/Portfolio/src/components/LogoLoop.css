@@ -2,8 +2,8 @@
   position: relative;
 
   --logoloop-gap: 32px;
-  --logoloop-logoHeight: 28px;
-  --logoloop-fadeColorAuto: #ffffff;
+  --logoloop-logoHeight: 48px;
+  --logoloop-fadeColorAuto: #0f172a;
 }
 
 .logoloop--vertical {
@@ -18,7 +18,7 @@
 
 @media (prefers-color-scheme: dark) {
   .logoloop {
-    --logoloop-fadeColorAuto: #0b0b0b;
+    --logoloop-fadeColorAuto: #0f172a;
   }
 }
 

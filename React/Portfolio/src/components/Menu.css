@@ -1,103 +1,101 @@
-:root {
-  --bios-bg: #2b34e2;
-  --bios-blue: #2b34e2;
-  --bios-cyan: #0088AA;
-  --bios-white: #BBBBBB;
-  --bios-bright: #E0E0E0;
-  --bios-yellow: #D4D455;
-  --bios-gray: #666666;
-  --bios-black: #ffffff;
-}
-
+/* Modern Professional Menu Page */
 .bios-container {
   position: fixed;
   inset: 0;
   z-index: 200;
   display: flex;
   flex-direction: column;
-  padding: 0;
-  background: var(--bios-bg);
-}
-
-.bios-main {
-  flex: 1;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 0;
-  border-left: 2px solid var(--bios-bright);
-  border-right: 2px solid var(--bios-bright);
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
   overflow: hidden;
 }
 
-.bios-menu {
-  background: var(--bios-bg);
-  padding: 2rem;
-  overflow-y: auto;
-  border-right: 2px solid var(--bios-bright);
+.bios-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 30% 40%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
+  animation: gradientShift 8s ease infinite;
 }
 
-.menu-section {
-  margin-bottom: 2.5rem;
-}
-
-.section-title {
-  color: #000000;
-  font-size: 1rem;
-  margin-bottom: 1.2rem;
-  padding: 0.7rem 1rem;
-  background: var(--bios-black);
-  border: 3px solid var(--bios-cyan);
-  border-radius: 0;
-  box-shadow: 0 0 0 1px var(--bios-bright);
-}
-
-.menu-item {
-  background: var(--bios-blue);
-  color: var(--bios-white);
-  padding: 1.2rem 1.5rem;
-  margin-bottom: 0.9rem;
-  border: 3px solid var(--bios-cyan);
-  border-radius: 0;
-  cursor: pointer;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 1.2rem;
-  align-items: center;
-  font-size: 0.95rem;
-  transition: all 0.1s;
+.bios-main {
   position: relative;
-  box-shadow: 0 0 0 1px var(--bios-bright);
+  z-index: 10;
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  animation: fadeIn 0.6s ease-out;
 }
 
-.menu-item:hover,
-.menu-item:focus {
-  background: var(--bios-cyan);
-  color: var(--bios-black);
-  border-color: var(--bios-bright);
-  outline: none;
+.menu-header {
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
-.item-icon {
-  color: var(--bios-yellow);
-  font-weight: bold;
+.menu-header h1 {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.menu-item:hover .item-icon,
-.menu-item:focus .item-icon {
-  color: var(--bios-black);
+.menu-header p {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.2rem;
+  color: var(--color-text-secondary);
 }
 
-.item-label {
-  font-weight: bold;
+/* Language selector - modern pill design */
+.lang-select {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  z-index: 700;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 0.5rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-lg);
 }
 
-.item-value {
-  text-align: right;
-  font-size: 0.85rem;
-  opacity: 0.8;
+.lang-select button {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-md);
+  border: none;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.dropdown-trigger {
+.lang-select button:hover {
+  color: var(--color-text-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.lang-select button.active {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
   grid-template-columns: auto 1fr auto auto;
 }
 

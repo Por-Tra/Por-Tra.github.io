@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import Intro from './components/Intro'
 import Menu from './components/Menu'
 import Projects from './components/Projects'
 import About from './components/About'
@@ -7,11 +6,7 @@ import CV from './components/CV'
 import './App.css'
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('intro')
-
-  const handleIntroComplete = () => {
-    setCurrentPage('menu')
-  }
+  const [currentPage, setCurrentPage] = useState('menu')
 
   const handleNavigate = (page) => {
     setCurrentPage(page)
@@ -19,9 +14,6 @@ function App() {
 
   return (
     <>
-      {currentPage === 'intro' && (
-        <Intro onComplete={handleIntroComplete} />
-      )}
       {currentPage === 'menu' && (
         <Menu onNavigate={handleNavigate} />
       )}

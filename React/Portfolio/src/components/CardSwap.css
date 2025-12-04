@@ -13,9 +13,14 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  border-radius: 12px;
-  border: 1px solid #fff;
-  background: #000;
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 
+    var(--shadow-xl),
+    0 0 40px rgba(99, 102, 241, 0.1);
 
   transform-style: preserve-3d;
   will-change: transform;

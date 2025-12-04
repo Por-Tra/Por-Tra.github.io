@@ -1,11 +1,58 @@
 :root {
-  font-family: 'Press Start 2P', monospace;
-  line-height: 1.5;
+  /* Modern Professional Color Palette */
+  --color-primary: #6366f1;
+  --color-primary-dark: #4f46e5;
+  --color-primary-light: #818cf8;
+  --color-secondary: #8b5cf6;
+  --color-accent: #ec4899;
+  --color-success: #10b981;
+  
+  /* Neutral Colors */
+  --color-bg-primary: #0f172a;
+  --color-bg-secondary: #1e293b;
+  --color-bg-tertiary: #334155;
+  --color-surface: rgba(30, 41, 59, 0.8);
+  --color-surface-hover: rgba(51, 65, 85, 0.9);
+  
+  /* Text Colors */
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #cbd5e1;
+  --color-text-muted: #94a3b8;
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --gradient-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --gradient-dark: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  
+  /* Border Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.4);
+  
+  /* Typography */
+  font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
   font-weight: 400;
 
   color-scheme: dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #000000;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -27,76 +74,71 @@ html, body, #root {
 
 body {
   margin: 0;
-  background-color: #000000;
-  color: #ffffff;
+  background: var(--gradient-dark);
+  color: var(--color-text-primary);
 }
 
-/* Noise layers - Global CRT effects */
-.noise, .noise-moving {
-  pointer-events: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 400;
-  opacity: 0.8;
-  background-repeat: repeat;
-  background-image: url('https://ice-creme.de/images/background-noise.png');
-  background-size: 200% 200%;
-  mix-blend-mode: overlay;
+/* Modern Smooth Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.noise-moving {
-  z-index: 450;
-  opacity: 1;
-  animation: noise 1s infinite alternate;
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-.scanlines {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 300;
-  opacity: 0.6;
-  animation: scanOpacity 3s linear infinite;
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-.scanlines::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.5) 51%);
-  background-size: 100% 4px;
-  animation: scanlines 0.2s linear infinite;
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.6);
+  }
 }
 
-@keyframes scanlines {
-  from { background-position-y: 0; }
-  to { background-position-y: 4px; }
+/* Utility Classes */
+.glassmorphism {
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-lg);
 }
 
-@keyframes scanOpacity {
-  0% { opacity: 0.6; }
-  20% { opacity: 0.3; }
-  35% { opacity: 0.5; }
-  50% { opacity: 0.8; }
-  60% { opacity: 0.4; }
-  80% { opacity: 0.7; }
-  100% { opacity: 0.6; }
+.gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-@keyframes noise {
-  0%, 100% { background-position: 0 0; }
-  10% { background-position: -5% -10%; }
-  20% { background-position: -15% 5%; }
-  30% { background-position: 7% -25%; }
-  40% { background-position: 20% 25%; }
-  50% { background-position: -25% 10%; }
-  60% { background-position: 15% 5%; }
-  70% { background-position: 0 15%; }
-  80% { background-position: 25% 35%; }
-  90% { background-position: -10% 10%; }
+.smooth-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 a {

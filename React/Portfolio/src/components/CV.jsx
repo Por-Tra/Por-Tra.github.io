@@ -10,10 +10,10 @@ function CV({ onNavigate }) {
     <div className="page-container cv-page">
       {/* Aurora Background */}
       <Aurora
-        colorStops={["#ffffff", "#00ffff", "#0000ff"]}
-        blend={0.5}
-        amplitude={1.0}
-        speed={0.5}
+        colorStops={["#0f172a", "#1e293b", "#6366f1"]}
+        blend={0.6}
+        amplitude={0.8}
+        speed={0.4}
       />
 
       {/* Content */}

@@ -1,6 +1,5 @@
 .cv-page {
-  background: #000000;
-  font-family: 'Orbitron', 'Press Start 2P', monospace;
+  font-family: 'Inter', 'Plus Jakarta Sans', sans-serif;
 }
 
 .cv-container {
@@ -10,23 +9,52 @@
 
 .cv-actions {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   justify-content: center;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   flex-wrap: wrap;
 }
 
 .cv-button {
-  font-family: 'Press Start 2P', monospace;
-  padding: 1rem 2rem;
-  font-size: 0.8rem;
-  background: #2b52ff;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  padding: 1.2rem 2.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
   color: #ffffff;
-  border: 2px solid #2b52ff;
-  border-radius: 6px;
+  border: none;
+  border-radius: var(--radius-lg);
   cursor: pointer;
-  transition: all 0.3s;
-  text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    var(--shadow-md),
+    0 0 20px rgba(99, 102, 241, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.cv-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.cv-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    var(--shadow-lg),
+    0 0 30px rgba(99, 102, 241, 0.5);
+}
+
+.cv-button:hover::before {
+  opacity: 1;
+}
+
+.cv-button:active {
+  transform: translateY(0);
 }
 
 .cv-button:hover {

@@ -3,8 +3,7 @@ import Navbar from './Navbar';
 import Aurora from './Aurora';
 import FallingText from './FallingText';
 import LogoLoop from './LogoLoop';
-import TextType from './TextType';
-import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiInstagram, SiLinkedin, SiGithub } from 'react-icons/si';
+import { SiInstagram, SiLinkedin, SiGithub } from 'react-icons/si';
 import './About.css';
 
 const techLogos = [
@@ -20,41 +19,23 @@ function About({ onNavigate }) {
     <div className="page-container about-page">
       {/* Aurora Background */}
       <Aurora
-        colorStops={["#ffffff", "#00ffff", "#0000ff"]}
-        blend={0.5}
-        amplitude={1.0}
-        speed={0.5}
+        colorStops={["#0f172a", "#1e293b", "#8b5cf6"]}
+        blend={0.6}
+        amplitude={0.8}
+        speed={0.4}
       />
 
       {/* Content */}
       <div className="page-content">
         {/* Hero Section */}
         <div className="about-hero">
-          <TextType
-            as="h1"
-            className="hero-title"
-            text={["À Propos", "Developer", "Créateur"]}
-            typingSpeed={100}
-            pauseDuration={2000}
-            showCursor={true}
-            cursorCharacter="|"
-            loop={true}
-          />
+          <h1 className="hero-title">À Propos</h1>
           <p className="hero-subtitle">Développeur passionné par la création d'expériences web innovantes</p>
         </div>
 
         {/* Social Links */}
         <div className="social-section">
-          <TextType
-            as="h2"
-            className="section-title"
-            text={["Connectons-nous", "Let's Connect", "Rejoignez-moi"]}
-            typingSpeed={75}
-            pauseDuration={1500}
-            showCursor={true}
-            cursorCharacter="|"
-            loop={true}
-          />
+          <h2 className="section-title">Connectons-nous</h2>
           <div className="logo-loop-wrapper">
             <LogoLoop
               logos={techLogos}
@@ -73,16 +54,7 @@ function About({ onNavigate }) {
 
         {/* Skills Section */}
         <div className="falling-text-section">
-          <TextType
-            as="h2"
-            className="section-title"
-            text={["Langages maîtrisés", "Tech Stack", "Compétences"]}
-            typingSpeed={75}
-            pauseDuration={1500}
-            showCursor={true}
-            cursorCharacter="|"
-            loop={true}
-          />
+          <h2 className="section-title">Langages maîtrisés</h2>
           <div className="falling-text-wrapper">
             <FallingText
               text={`Python JavaScript C++ C# PHP HTML SQL VisualStudioCode VisualStudio2022 Git/Github Blender Qt`}
