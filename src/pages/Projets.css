@@ -1,0 +1,87 @@
+.projets-page {
+  position: relative;
+  min-height: 100vh;
+  background: var(--bg-black);
+  overflow-x: hidden;
+}
+
+.page-content {
+  position: relative;
+  z-index: 10;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 5rem 2rem 3rem;
+}
+
+.page-header {
+  margin-bottom: 4rem;
+}
+
+.page-title {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 0;
+}
+
+.title-text {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.title-text::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 80px;
+  height: 3px;
+  background: var(--cyber-yellow);
+}
+
+.title-line {
+  display: none;
+}
+
+.page-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  font-weight: 400;
+  margin-top: 1.5rem;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.cyber-grid {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .title-text {
+    font-size: 2.5rem;
+  }
+  
+  .page-subtitle {
+    font-size: 0.95rem;
+  }
+  
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .page-content {
+    padding: 4rem 1rem 2rem;
+  }
+}

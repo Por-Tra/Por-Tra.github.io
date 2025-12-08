@@ -1,0 +1,46 @@
+.cyber-button {
+  position: relative;
+  padding: 0.8rem 2rem;
+  background: transparent;
+  border: 1px solid var(--cyber-yellow);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cyber-button.primary {
+  background: var(--cyber-yellow);
+  color: var(--bg-black);
+}
+
+.cyber-button.primary:hover {
+  background: transparent;
+  color: var(--cyber-yellow);
+}
+
+.cyber-button.secondary {
+  border-color: var(--cyber-yellow);
+  color: var(--cyber-yellow);
+  background: transparent;
+}
+
+.cyber-button.secondary:hover {
+  background: var(--cyber-yellow);
+  color: var(--bg-black);
+}
+
+.button-content {
+  position: relative;
+  z-index: 2;
+}
+
+.button-glitch,
+.button-clip,
+.button-clip-inner {
+  display: none;
+}
+

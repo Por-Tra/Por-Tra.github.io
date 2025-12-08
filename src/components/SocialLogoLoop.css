@@ -1,0 +1,90 @@
+.social-logo-loop {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 2rem 0;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(252, 238, 9, 0.2);
+  margin: 2rem 0;
+}
+
+.social-logo-loop::before,
+.social-logo-loop::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.social-logo-loop::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.8), transparent);
+}
+
+.social-logo-loop::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.8), transparent);
+}
+
+.logo-track {
+  display: flex;
+  gap: 3rem;
+  width: fit-content;
+}
+
+.social-logo-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  min-width: 120px;
+  padding: 1.5rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.social-logo-item:hover {
+  transform: translateY(-5px);
+}
+
+.social-icon-wrapper {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(252, 238, 9, 0.1);
+  border: 2px solid rgba(252, 238, 9, 0.3);
+  border-radius: 50%;
+  color: var(--cyber-yellow);
+  transition: all 0.3s ease;
+}
+
+.social-logo-item:hover .social-icon-wrapper {
+  background: var(--cyber-yellow);
+  color: var(--bg-black);
+  border-color: var(--cyber-yellow);
+  box-shadow: 0 0 20px rgba(252, 238, 9, 0.5);
+}
+
+.social-icon-wrapper svg {
+  width: 28px;
+  height: 28px;
+}
+
+.social-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: color 0.3s ease;
+}
+
+.social-logo-item:hover .social-name {
+  color: var(--cyber-yellow);
+}
