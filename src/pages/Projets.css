@@ -15,20 +15,13 @@
 
 .page-header {
   margin-bottom: 4rem;
-}
-
-.page-title {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  margin-bottom: 0;
+  text-align: center;
 }
 
 .title-text {
   font-size: 3.5rem;
   font-weight: 700;
   color: var(--text-primary);
-  text-transform: uppercase;
   letter-spacing: 0.05em;
   position: relative;
   padding-bottom: 1rem;
@@ -38,50 +31,104 @@
   content: '';
   position: absolute;
   bottom: 0;
-  left: 0;
-  width: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
   height: 3px;
   background: var(--cyber-yellow);
-}
-
-.title-line {
-  display: none;
 }
 
 .page-subtitle {
   font-size: 1.1rem;
   color: var(--text-secondary);
-  letter-spacing: 0.05em;
-  font-weight: 400;
   margin-top: 1.5rem;
 }
 
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 2rem;
-  margin-bottom: 2rem;
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4rem;
 }
 
-.cyber-grid {
-  display: none;
+.carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 65%;
+  overflow: hidden;
+}
+
+.carousel-item {
+  width: 350px;
+  height: 250px;
+  border-radius: 20px;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.4;
+  transform: scale(0.8);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+}
+
+.carousel-item.active {
+  pointer-events: auto;
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel-item h3 {
+  margin-top: 1rem;
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.nav-btn {
+  background: none;
+  border: 2px solid var(--cyber-yellow);
+  color: var(--cyber-yellow);
+  font-size: 2.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  user-select: none;
+}
+
+.nav-btn:hover {
+  background: var(--cyber-yellow);
+  color: black;
 }
 
 @media (max-width: 768px) {
-  .title-text {
-    font-size: 2.5rem;
+
+  .carousel {
+    width: 100%;
   }
-  
+
+  .carousel-item {
+    width: 260px;
+    height: 180px;
+  }
+
+  .nav-btn {
+    font-size: 1.8rem;
+    padding: 0.3rem .6rem;
+  }
+
+  .title-text {
+    font-size: 2.3rem;
+  }
+
   .page-subtitle {
     font-size: 0.95rem;
-  }
-  
-  .projects-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  
-  .page-content {
-    padding: 4rem 1rem 2rem;
   }
 }
