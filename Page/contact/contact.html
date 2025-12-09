@@ -4,6 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contact - Portfolio</title>
+  <link rel="stylesheet" href="../shared_style.css"/>
   <link rel="stylesheet" href="./style_contact.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
@@ -17,8 +18,8 @@
     <div class="logo" data-i18n="common.portfolio">Mon portfolio</div>
     <nav>
       <ul id="menu">
-        <li><a href="../menu.html" data-i18n="nav.home">Accueil</a></li>
         <li><a href="../project/Projet_index.html" data-i18n="nav.projects">Projets</a></li>
+        <li><a href="contact.html" data-i18n="nav.about">About</a></li>
         <li><a href="../CV_Page/CV.html" data-i18n="nav.cv">CV</a></li>
       </ul>
       <div class="burger" id="burger">
@@ -149,14 +150,14 @@
     <section class="competences">
 
       <h2 data-i18n="contact.skillsTitle">Compétences</h2>
-      <div class="skills-grid">
-        <div class="skill" data-i18n="contact.skill1">Développer des applications informatiques simples</div>
-        <div class="skill" data-i18n="contact.skill2">Appréhender et construire des algorithmes</div>
-        <div class="skill" data-i18n="contact.skill3">Installer et configurer un poste de travail</div>
-        <div class="skill" data-i18n="contact.skill4">Concevoir et mettre en place une base de données à partir d’un cahier des charges client</div>
-        <div class="skill" data-i18n="contact.skill5">Identifier les besoins métiers des clients et des utilisateurs</div>
-        <div class="skill" data-i18n="contact.skill6">Identifier ses aptitudes pour travailler dans une équipe</div>
-      </div>
+      <ul>
+        <li data-i18n="contact.skill1">Développer des applications informatiques simples</li>
+        <li data-i18n="contact.skill2">Appréhender et construire des algorithmes</li>
+        <li data-i18n="contact.skill3">Installer et configurer un poste de travail</li>
+        <li data-i18n="contact.skill4">Concevoir et mettre en place une base de données à partir d'un cahier des charges client</li>
+        <li data-i18n="contact.skill5">Identifier les besoins métiers des clients et des utilisateurs</li>
+        <li data-i18n="contact.skill6">Identifier ses aptitudes pour travailler dans une équipe</li>
+      </ul>
 
 
       <h2 data-i18n="contact.langsTitle">Langages de programmation</h2>
@@ -179,6 +180,33 @@
 
     </section>
 
+    
+
+    <!-- NEW: Expériences professionnelles -->
+    <section class="experiences">
+      <h2 data-i18n="contact.experiencesTitle">Expériences professionnelles</h2>
+      <ul>
+        <li data-i18n="contact.experience1">ASSISTANT Gérant PHARMACIEN - Pharmacie Malbec, Mauriac (15) - durée : 1mois </li>
+        <li data-i18n="contact.experience2">Coming soon 👀</li>
+      </ul>
+    </section>
+
+    <div class="cv-actions">
+          <a href="../download/CV Portfolio.pdf" download target="_blank" rel="noopener" class="download-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
+              <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" fill="currentColor"/>
+            </svg>
+            <span data-i18n="cv.downloadBtn">Télécharger mon CV</span>
+          </a>
+          <a href="../download/CV Portfolio.pdf" target="_blank" rel="noopener" class="view-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
+              <path d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z" fill="currentColor"/>
+            </svg>
+            <span data-i18n="cv.viewBtn">Ouvrir dans un nouvel onglet</span>
+          </a>
+    </div>
+
+
     <!-- NEW: Intérêts (une image par intérêt) -->
     <section class="interets">
       <h2 data-i18n="contact.interestsTitle">Intérêts</h2>
@@ -199,15 +227,6 @@
           <p class="interest-desc" data-i18n="contact.interest3Desc">Je suis toujours présent lors d'événements médiévaux. Vêtue d'une armure, je fais sensation.</p>
         </div>
       </div>
-    </section>
-
-    <!-- NEW: Expériences professionnelles -->
-    <section class="experiences">
-      <h2 data-i18n="contact.experiencesTitle">Expériences professionnelles</h2>
-      <ul>
-        <li data-i18n="contact.experience1">ASSISTANT Gérant PHARMACIEN - Pharmacie Malbec, Mauriac (15) - durée : 1mois </li>
-        <li data-i18n="contact.experience2">Coming soon 👀</li>
-      </ul>
     </section>
 
   </main>

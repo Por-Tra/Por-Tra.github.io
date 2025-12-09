@@ -141,7 +141,7 @@ body {
   gap: 1.2rem;
   align-items: center;
   font-size: 0.95rem;
-  transition: all 0.1s;
+  transition: all 0.3s ease-out;
   position: relative;
   box-shadow: 0 0 0 1px var(--bios-bright);
 }
@@ -304,7 +304,7 @@ body {
   background: #000000;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.8s ease-in-out;
+  transition: opacity 1.2s ease-in-out;
 }
 
 .exit-overlay.active {
@@ -312,7 +312,7 @@ body {
 }
 
 .bios-container.exiting {
-  animation: biosExit 0.8s ease-in-out forwards;
+  animation: biosExit 1.2s ease-in-out forwards;
 }
 
 @keyframes biosExit {
@@ -321,19 +321,24 @@ body {
     transform: scale(1);
     filter: brightness(1);
   }
-  30% {
-    opacity: 0.8;
-    transform: scale(0.98);
-    filter: brightness(1.2) contrast(1.3);
+  25% {
+    opacity: 0.9;
+    transform: scale(0.99);
+    filter: brightness(1.1) contrast(1.1);
   }
-  60% {
-    opacity: 0.4;
-    transform: scale(0.95) translateY(-10px);
-    filter: brightness(0.6) contrast(2);
+  50% {
+    opacity: 0.6;
+    transform: scale(0.97) translateY(-5px);
+    filter: brightness(0.8) contrast(1.3);
+  }
+  75% {
+    opacity: 0.3;
+    transform: scale(0.94) translateY(-12px);
+    filter: brightness(0.4) contrast(1.5);
   }
   100% {
     opacity: 0;
-    transform: scale(0.9) translateY(-20px);
+    transform: scale(0.92) translateY(-18px);
     filter: brightness(0) contrast(1);
   }
 }
@@ -856,15 +861,19 @@ section {
   padding: 3rem 2rem;
   background: var(--bg);
   opacity: 0;
-  animation: fadeInSection 1s ease forwards;
+  animation: fadeInSection 1.5s ease-out forwards;
 }
 
 @keyframes fadeInSection {
-  from {
+  0% {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(40px);
   }
-  to {
+  50% {
+    opacity: 0.5;
+    transform: translateY(20px);
+  }
+  100% {
     opacity: 1;
     transform: translateY(0);
   }
@@ -890,7 +899,7 @@ section {
   background-size: cover;
   background-position: center;
   opacity: 0;
-  transition: opacity 1.5s;
+  transition: opacity 2s ease-in-out;
 }
 
 .bg-slide.active {
