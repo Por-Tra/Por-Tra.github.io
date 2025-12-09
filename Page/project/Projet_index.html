@@ -34,105 +34,37 @@
   <main>
      <h1 class="page-title" data-i18n="projects.title">Mes Projets</h1>
     
-    <div class="project">
-      <div class="project-content">
-      <div class="slider" data-interval="3000">
-        <div class="slides">
-
-            <!-- dupliquer pour slide auto -->
-          <div class="slide" style="background-image: url('../IMG/proj1/Capture\ d\'écran\ 2025-05-14\ 100305.png');"></div>
-          <div class="slide" style="background-image: url('../IMG/proj1/Capture\ d\'écran\ 2025-05-14\ 100424.png');"></div>
-          <div class="slide" style="background-image: url('../IMG/proj1/Capture\ d\'écran\ 2025-05-14\ 100449.png');"></div>
-          <div class="slide" style="background-image: url('../IMG/proj1/Capture\ d\'écran\ 2025-05-30\ 165033.png');"></div>
-          <div class="slide" style="background-image: url('../IMG/proj1/Capture\ d\'écran\ 2025-05-30\ 183816.png');"></div>
+    <!-- Grille de cartes de projets -->
+    <div class="projects-grid">
+      
+      <!-- Projet 1: RPG 2D -->
+      <div class="project-card-simple">
+        <div class="project-image" style="background-image: url('../IMG/proj1/Capture\ d\'écran\ 2025-05-14\ 100305.png');"></div>
+        <div class="project-card-content">
+          <h2 data-i18n="projects.project1Title">Développement d'un jeu vidéo - RPG 2D</h2>
+          <a href="project-details/rpg-2d.html" class="see-more-btn" data-i18n="projects.seeMoreBtn">Voir plus</a>
         </div>
+      </div>
 
+      <!-- Projet 2: Soutenance -->
+      <div class="project-card-simple">
+        <div class="project-image" style="background-image: url('../IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085609.png');"></div>
+        <div class="project-card-content">
+          <h2 data-i18n="projects.project2Title">Projet de soutenance</h2>
+          <a href="project-details/soutenance.html" class="see-more-btn" data-i18n="projects.seeMoreBtn">Voir plus</a>
         </div>
-        <div class="project-info">
-            <h2 data-i18n="projects.project1Title">Développement d'un jeu vidéo - RPG 2D</h2>
-          <p><strong data-i18n="projects.descLabel">Description : </strong><span data-i18n="projects.project1Desc">Ce projet est un projet étudiant qui a été réaliser pendant mes années de lycée.<br> Il s'agit d'un jeu vidéo en 2D de type RPG dans un style Pokemon. <br>Le but du jeu est de parcourir 3 niveaux afin d'éliminer le boss de fin.</span></p>
-          <p><strong data-i18n="projects.langLabel">Langages : </strong><span data-i18n="projects.project1Lang">Python</span></p>
-          <p><strong data-i18n="projects.teamLabel">Equipe : </strong><span data-i18n="projects.project1Team">Travaillé en équipe de 2</span></p>
-          <p><strong data-i18n="projects.dateLabel">Date : </strong><span data-i18n="projects.project1Date">2022-2023</span></p>
-          <p><strong data-i18n="projects.featuresLabel">Fonctionnalités : </strong><span data-i18n="projects.project1Features">Déplacements, changement de niveau, animation, dialogues avec NPC, combat, changement de personnage</span></p>
-          <p><strong data-i18n="projects.roleLabel">Mon rôle : </strong><span data-i18n="projects.project1Role">Développeur</span></p>
-          <p><strong data-i18n="projects.skillsLabel">Compétences : </strong><span data-i18n="projects.project1Skills">Python, utilisation d'un IDE (pycharm), gestion de bibliothèque, utilisation d'outil de conceptionde niveau</span></p>
-          <a href="../download/RPG.zip" class="download-btn" data-i18n="projects.downloadBtn">Télécharger le projet (.zip)</a>
       </div>
+
+      <!-- Projet 3: RSL -->
+      <div class="project-card-simple">
+        <div class="project-image" style="background-image: url('../IMG/projet_3_RSL/Capture\ d\'écran\ 2025-10-25\ 192040.png');"></div>
+        <div class="project-card-content">
+          <h2 data-i18n="projects.project3Title">Projet Réseau Social Local</h2>
+          <a href="project-details/rsl.html" class="see-more-btn" data-i18n="projects.seeMoreBtn">Voir plus</a>
+        </div>
       </div>
+
     </div>
-
-    <div class="project">
-      <div class="project-content">
-      <div class="slider" data-interval="3000">
-        <div class="slides">
-          <div class="slide" style="background-image: url('../IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085609.png');"></div>
-          <div class="slide" style="background-image: url('../IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085632.png');"></div>
-          <div class="slide" style="background-image: url('../IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085646.png');"></div>
-          <div class="slide" style="background-image: url('../IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085653.png');"></div>
-          <div class="slide" style="background-image: url('../IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085702.png');"></div>
-          <div class="slide" style="background-image: url('../IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085709.png');"></div>
-          <div class="slide" style="background-image: url('../IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085716.png');"></div>
-          <div class="slide" style="background-image: url('../IMG/proj2/Capture\ d\'écran\ 2025-10-07\ 085737.png');"></div>
-        </div>
-      </div>
-      <div class="project-info">
-        <h2 data-i18n="projects.project2Title">Projet de soutenance</h2>
-        <p><strong data-i18n="projects.descLabel">Description : </strong><span data-i18n="projects.project2Desc">Il s'agit d'un projet universitaire dont le but était de fabriquer une application web pour noter les élèves</span></p>
-        <p><strong data-i18n="projects.langLabel">Langages : </strong><span data-i18n="projects.project2Lang">HTML, CSS, PHP, SQL</span></p>
-        <p><strong data-i18n="projects.teamLabel">Equipe : </strong><span data-i18n="projects.project2Team">11 personnes (par groupe de classe)</span></p>
-        <p><strong data-i18n="projects.dateLabel">Date : </strong><span data-i18n="projects.project2Date">10 septembre 2025 - 3 octobre 2025</span></p>
-        <p><strong data-i18n="projects.featuresLabel">Fonctionnalités : </strong><span data-i18n="projects.project2Features">gestion des élèves, des notes, des projets</span></p>
-        <p><strong data-i18n="projects.roleLabel">Mon rôle : </strong><span data-i18n="projects.project2Role">Développeur back-end, réalisation de la partie 3.3 et du système d'envoie de mail automatique</span></p>
-        <p><strong data-i18n="projects.skillsLabel">Compétences : </strong><span data-i18n="projects.project2Skills">HTML, CSS, PHP, SQL, Git, travaille avec une grande équipe</span></p>
-        <a href="../download/projet_sql-main.zip" class="download-btn" data-i18n="projects.downloadBtn">Télécharger le projet (.zip)</a>
-      </div>
-      </div>
-    </div>
-
-    <div class="project">
-      <div class="project-content">
-      <div class="slider" data-interval="3000">
-        <div class="slides">
-          <div class="slide" style="background-image: url('../IMG/projet_3_RSL/Capture\ d\'écran\ 2025-10-25\ 192040.png');"></div>
-          <div class="slide" style="background-image: url('../IMG/projet_3_RSL/Capture\ d\'écran\ 2025-10-25\ 192048.png');"></div>
-          <div class="slide" style="background-image: url('../IMG/projet_3_RSL/Capture\ d\'écran\ 2025-10-25\ 192101.png');"></div>
-        </div>
-      </div>
-      <div class="project-info">
-        <h2 data-i18n="projects.project3Title">Projet Réseau Social Local</h2>
-  <p><strong data-i18n="projects.descLabel">Description : </strong><span data-i18n="projects.project3Desc">C'est un projet qui a pour but de permettre un échange de messages depuis 2 machines distinctes et avec la possibilité d'héberger le serveur très facilement</span></p>
-        <p><strong data-i18n="projects.langLabel">Langages : </strong><span data-i18n="projects.project3Lang">Python</span></p>
-        <p><strong data-i18n="projects.teamLabel">Equipe : </strong><span data-i18n="projects.project3Team">Travaillé en équipe de 2</span></p>
-        <p><strong data-i18n="projects.dateLabel">Date : </strong><span data-i18n="projects.project3Date">mars-mai 2024</span></p>
-  <p><strong data-i18n="projects.featuresLabel">Fonctionnalités : </strong><span data-i18n="projects.project3Features">Échange de messages entre 2 utilisateurs/ordinateurs, historique des messages, hébergement du serveur, fonctionnel uniquement en réseau local</span></p>
-  <p><strong data-i18n="projects.roleLabel">Mon rôle : </strong><span data-i18n="projects.project3Role">Synchronisation des messages, interface, gestion du serveur</span></p>
-  <p><strong data-i18n="projects.skillsLabel">Compétences : </strong><span data-i18n="projects.project3Skills">Python, serveur socket, interface graphique, bibliothèques Python</span></p>
-        <a href="../download/Projet RSL.zip" class="download-btn" data-i18n="projects.downloadBtn">Télécharger le projet (.zip)</a>
-      </div>
-      </div>
-    </div>
-
-    <!-- <div class="project">
-      <div class="project-content">
-      <div class="slider" data-interval="3000">
-        <div class="slides">
-          <div class="slide" style="background-image: url('../IMG/rendue_room.png');"></div>
-        </div>
-      </div>
-      <div class="project-info">
-        <h2>Nom du Projet 1</h2>
-        <p><strong>Description : </strong>Longue description du projet…</p>
-        <p><strong>Langages : </strong>HTML, CSS, JavaScript</p>
-        <p><strong>Equipe : </strong>Travaillé en équipe de 3</p>
-        <p><strong>Date : </strong>Juin 2025</p>
-        <p><strong>Fonctionnalités : </strong>Slider, interface responsive, animations…</p>
-        <p><strong>Mon rôle : </strong>Développeur front-end, intégration</p>
-        <p><strong>Compétences : </strong>HTML, CSS, JS, Git</p>
-        <a href="#" class="download-btn">Télécharger le projet (.zip)</a>
-      </div>
-      </div>
-    </div> -->
 
     <!-- Section Projets 3D -->
     <div class="section-3d">

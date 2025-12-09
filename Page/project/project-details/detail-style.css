@@ -1,0 +1,282 @@
+/* ==================== PAGE DÉTAIL PROJET ==================== */
+
+main {
+  padding: 120px 40px 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.project-detail-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.project-detail-header h1 {
+  font-size: 2.5rem;
+  color: var(--accent2);
+  margin-bottom: 20px;
+  text-shadow: 0 0 20px rgba(236, 75, 160, 0.5);
+}
+
+.project-meta {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+.meta-item strong {
+  color: var(--accent);
+}
+
+/* ==================== GALERIE D'IMAGES ==================== */
+.project-gallery {
+  margin: 40px 0;
+  background: rgba(20, 20, 40, 0.5);
+  padding: 30px;
+  border-radius: 15px;
+  border: 1px solid rgba(43, 82, 255, 0.3);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.gallery-item {
+  position: relative;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.gallery-item:hover {
+  transform: scale(1.05);
+  border-color: var(--accent2);
+  box-shadow: 0 0 30px rgba(236, 75, 160, 0.5);
+}
+
+/* ==================== SECTIONS D'INFORMATIONS ==================== */
+.detail-section {
+  margin: 50px 0;
+  background: rgba(20, 20, 40, 0.5);
+  padding: 30px;
+  border-radius: 15px;
+  border-left: 4px solid var(--accent);
+}
+
+.detail-section h2 {
+  font-size: 1.8rem;
+  color: var(--accent2);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.detail-section h2::before {
+  content: '▸';
+  color: var(--accent);
+}
+
+.detail-section p {
+  color: #ccc;
+  line-height: 1.8;
+  margin: 15px 0;
+}
+
+.detail-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.detail-section ul li {
+  color: #aaa;
+  margin: 12px 0;
+  padding-left: 30px;
+  position: relative;
+  line-height: 1.6;
+}
+
+.detail-section ul li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+/* ==================== ÉTAPES DÉTAILLÉES ==================== */
+.steps-list {
+  counter-reset: step-counter;
+}
+
+.step-item {
+  margin: 25px 0;
+  padding: 20px;
+  background: rgba(10, 10, 25, 0.6);
+  border-radius: 10px;
+  border-left: 3px solid var(--accent2);
+  counter-increment: step-counter;
+  position: relative;
+}
+
+.step-item::before {
+  content: counter(step-counter);
+  position: absolute;
+  left: -15px;
+  top: 20px;
+  background: var(--accent2);
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.step-item h3 {
+  color: var(--accent2);
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+.step-item p {
+  margin-left: 20px;
+}
+
+/* ==================== COMPÉTENCES ==================== */
+.skills-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.skill-category {
+  background: rgba(10, 10, 25, 0.6);
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid rgba(43, 82, 255, 0.2);
+}
+
+.skill-category h3 {
+  color: var(--accent);
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+.skill-category ul {
+  list-style: square;
+  padding-left: 20px;
+}
+
+.skill-category ul li::before {
+  content: none;
+}
+
+/* ==================== LIENS ET ACTIONS ==================== */
+.project-actions {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 50px 0;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 30px;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  border: 2px solid var(--accent);
+}
+
+.action-btn:hover {
+  background: var(--accent2);
+  border-color: var(--accent2);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(236, 75, 160, 0.5);
+}
+
+.action-btn.secondary {
+  background: transparent;
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.action-btn.secondary:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ==================== BOUTON RETOUR ==================== */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--accent);
+  text-decoration: none;
+  margin-bottom: 30px;
+  transition: all 0.3s ease;
+}
+
+.back-link:hover {
+  color: var(--accent2);
+  transform: translateX(-5px);
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+  .project-detail-header h1 {
+    font-size: 2rem;
+  }
+
+  .project-meta {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skills-categories {
+    grid-template-columns: 1fr;
+  }
+
+  .project-actions {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .detail-section {
+    padding: 20px;
+  }
+}

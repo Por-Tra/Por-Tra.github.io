@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Réseau Social Local - Portfolio</title>
+  <link rel="stylesheet" href="../../shared_style.css"/>
+  <link rel="stylesheet" href="detail-style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- CRT Effects -->
+  <div class="noise"></div>
+  <div class="noise-moving"></div>
+  <div class="scanlines"></div>
+
+  <header>
+    <div class="logo">Mon portfolio</div>
+    <nav>
+      <ul id="menu">
+        <li><a href="../Projet_index.html">Projets</a></li>
+        <li><a href="../../contact/contact.html">About</a></li>
+        <li><a href="../../CV_Page/CV.html">CV</a></li>
+      </ul>
+      <div class="burger" id="burger">
+        <span></span><span></span><span></span>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <a href="../Projet_index.html" class="back-link">← Retour aux projets</a>
+
+    <div class="project-detail-header">
+      <h1>Projet Réseau Social Local (RSL)</h1>
+      <div class="project-meta">
+        <div class="meta-item">
+          <strong>📅 Date :</strong> Mars - Mai 2024
+        </div>
+        <div class="meta-item">
+          <strong>👥 Équipe :</strong> 2 personnes
+        </div>
+        <div class="meta-item">
+          <strong>💻 Langage :</strong> Python
+        </div>
+      </div>
+    </div>
+
+    <!-- Galerie d'images -->
+    <div class="project-gallery">
+      <h2>Galerie du projet</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item" style="background-image: url('../../IMG/projet_3_RSL/Capture d\'écran 2025-10-25 192040.png');"></div>
+        <div class="gallery-item" style="background-image: url('../../IMG/projet_3_RSL/Capture d\'écran 2025-10-25 192048.png');"></div>
+        <div class="gallery-item" style="background-image: url('../../IMG/projet_3_RSL/Capture d\'écran 2025-10-25 192101.png');"></div>
+      </div>
+    </div>
+
+    <!-- Contexte et sujet -->
+    <div class="detail-section">
+      <h2>Contexte et sujet</h2>
+      <p>
+        Projet réalisé durant ma dernière année de lycée. Il s'agit d'une application de messagerie locale développée en Python, 
+        permettant un échange de messages en temps réel entre 2 machines distinctes sur un même réseau local.
+      </p>
+      <p>
+        L'objectif principal était de créer une solution simple et fonctionnelle pour la communication réseau, 
+        avec la possibilité pour n'importe quel utilisateur d'héberger facilement son propre serveur sans configuration complexe.
+        Ce projet m'a permis de découvrir la programmation réseau et les protocoles de communication client-serveur.
+      </p>
+    </div>
+
+    <!-- Missions -->
+    <div class="detail-section">
+      <h2>Missions</h2>
+      <ul>
+        <li>Développer un serveur socket en Python capable de gérer plusieurs connexions</li>
+        <li>Créer une application cliente avec interface graphique (GUI) intuitive</li>
+        <li>Implémenter la synchronisation en temps réel des messages entre utilisateurs</li>
+        <li>Développer un système d'historique des conversations persistant</li>
+        <li>Assurer la facilité d'hébergement du serveur (configuration simplifiée)</li>
+        <li>Gérer les connexions/déconnexions et les erreurs réseau</li>
+        <li>Optimiser les performances pour une communication fluide</li>
+      </ul>
+    </div>
+
+    <!-- Étapes détaillées -->
+    <div class="detail-section">
+      <h2>Étapes détaillées du développement</h2>
+      <div class="steps-list">
+        <div class="step-item">
+          <h3>Phase 1 : Conception de l'architecture réseau</h3>
+          <p>Recherche sur les sockets Python, définition du protocole de communication et de la structure des messages échangés.</p>
+        </div>
+        <div class="step-item">
+          <h3>Phase 2 : Développement du serveur</h3>
+          <p>Création du serveur socket capable d'accepter les connexions, de router les messages et de gérer plusieurs clients simultanément avec threading.</p>
+        </div>
+        <div class="step-item">
+          <h3>Phase 3 : Interface graphique cliente</h3>
+          <p>Développement de l'interface utilisateur avec Tkinter, incluant zone de chat, liste d'utilisateurs connectés et boutons d'actions.</p>
+        </div>
+        <div class="step-item">
+          <h3>Phase 4 : Synchronisation des messages</h3>
+          <p>Implémentation de la logique de synchronisation en temps réel, gestion des timestamps et de l'ordre des messages.</p>
+        </div>
+        <div class="step-item">
+          <h3>Phase 5 : Historique et persistance</h3>
+          <p>Développement du système de sauvegarde des conversations dans des fichiers locaux, permettant de retrouver l'historique au prochain lancement.</p>
+        </div>
+        <div class="step-item">
+          <h3>Phase 6 : Tests et optimisation</h3>
+          <p>Tests sur différentes machines en réseau local, correction de bugs de synchronisation et optimisation des performances.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fonctionnalités principales -->
+    <div class="detail-section">
+      <h2>Fonctionnalités principales</h2>
+      <ul>
+        <li><strong>Échange de messages en temps réel</strong> : Communication instantanée entre 2 utilisateurs/ordinateurs</li>
+        <li><strong>Historique des messages</strong> : Sauvegarde automatique de toutes les conversations</li>
+        <li><strong>Hébergement simplifié</strong> : Serveur facile à lancer, nécessitant uniquement Python</li>
+        <li><strong>Interface intuitive</strong> : GUI claire et ergonomique inspirée des messageries modernes</li>
+        <li><strong>Gestion des connexions</strong> : Notifications de connexion/déconnexion des utilisateurs</li>
+        <li><strong>Fonctionnement en réseau local</strong> : Communication optimisée pour LAN (pas de dépendance Internet)</li>
+      </ul>
+    </div>
+
+    <!-- Mon rôle spécifique -->
+    <div class="detail-section">
+      <h2>Mon rôle dans le projet</h2>
+      <p>
+        En tant que développeur dans une équipe de 2, mes responsabilités principales étaient :
+      </p>
+      <ul>
+        <li><strong>Synchronisation des messages</strong> : Développement de la logique de routage et de synchronisation temps réel entre clients</li>
+        <li><strong>Interface graphique</strong> : Conception et implémentation de l'interface utilisateur avec Tkinter</li>
+        <li><strong>Gestion du serveur</strong> : Configuration du serveur socket, gestion des threads et des connexions multiples</li>
+      </ul>
+      <p>
+        Mon binôme s'est concentré sur la persistance des données, la gestion d'erreurs et l'optimisation du protocole de communication.
+      </p>
+    </div>
+
+    <!-- Compétences mobilisées -->
+    <div class="detail-section">
+      <h2>Compétences mobilisées</h2>
+      <div class="skills-categories">
+        <div class="skill-category">
+          <h3>🔧 Techniques</h3>
+          <ul>
+            <li>Programmation réseau avec sockets Python</li>
+            <li>Développement d'interfaces graphiques (Tkinter)</li>
+            <li>Gestion de threads et programmation concurrente</li>
+            <li>Manipulation de fichiers pour la persistance</li>
+            <li>Bibliothèques Python (socket, threading, tkinter, json)</li>
+          </ul>
+        </div>
+        <div class="skill-category">
+          <h3>🔄 Transversales</h3>
+          <ul>
+            <li>Travail en binôme avec répartition claire des tâches</li>
+            <li>Documentation du protocole de communication</li>
+            <li>Tests sur plusieurs machines et environnements</li>
+            <li>Gestion de version avec Git</li>
+          </ul>
+        </div>
+        <div class="skill-category">
+          <h3>👤 Humaines</h3>
+          <ul>
+            <li>Communication technique avec mon binôme</li>
+            <li>Résolution de problèmes complexes (synchronisation)</li>
+            <li>Persévérance face aux défis réseau</li>
+            <li>Capacité d'apprentissage autonome</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Défis techniques -->
+    <div class="detail-section">
+      <h2>Défis techniques rencontrés</h2>
+      <ul>
+        <li><strong>Synchronisation temps réel</strong> : Assurer que les messages arrivent dans le bon ordre malgré la latence réseau</li>
+        <li><strong>Gestion des déconnexions</strong> : Gérer proprement les déconnexions inattendues sans crasher le serveur</li>
+        <li><strong>Threading</strong> : Éviter les race conditions et les deadlocks lors de l'accès concurrent aux ressources</li>
+        <li><strong>Interface réactive</strong> : Maintenir l'interface graphique fluide pendant les opérations réseau</li>
+        <li><strong>Encodage des messages</strong> : Gérer correctement l'encodage UTF-8 pour les caractères spéciaux</li>
+      </ul>
+    </div>
+
+    <!-- Ressources et acquis validés -->
+    <div class="detail-section">
+      <h2>Ressources et acquis validés</h2>
+      <ul>
+        <li>Maîtrise de la programmation réseau avec le module socket de Python</li>
+        <li>Compréhension des protocoles client-serveur et TCP/IP</li>
+        <li>Capacité à développer des applications avec interface graphique</li>
+        <li>Gestion de la concurrence et du multi-threading en Python</li>
+        <li>Application pratique des concepts de systèmes distribués</li>
+        <li>Débogage avancé d'applications réseau</li>
+      </ul>
+    </div>
+
+    <!-- Actions -->
+    <div class="project-actions">
+      <a href="../../download/Projet RSL.zip" class="action-btn">
+        📥 Télécharger le projet (.zip)
+      </a>
+      <a href="https://github.com/Por-Tra" target="_blank" rel="noopener" class="action-btn secondary">
+        🔗 Voir sur GitHub
+      </a>
+    </div>
+
+  </main>
+
+  <script src="../../../i18n.js"></script>
+  <script>
+    // Burger Menu
+    const burger = document.getElementById('burger');
+    const menu = document.getElementById('menu');
+
+    burger.addEventListener('click', () => {
+      menu.classList.toggle('show');
+      burger.classList.toggle('active');
+    });
+
+    document.addEventListener('click', e => {
+      if (!burger.contains(e.target) && !menu.contains(e.target)) {
+        menu.classList.remove('show');
+        burger.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>
