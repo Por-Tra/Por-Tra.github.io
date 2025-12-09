@@ -73,11 +73,11 @@ const translations = {
 
       about: {
         title: 'À Propos',
-        text: "Étudiant passionné en informatique, je me spécialise dans le développement web, la modélisation 3D et la programmation. Mon objectif est de créer des solutions innovantes et de repousser constamment les limites de mes compétences techniques."
+        text: "Passionné par l’informatique depuis mes premiers pas dans le code, je vois chaque projet comme une opportunité de relever des défis techniques et de créer des solutions claires et performantes. Que ce soit en développant un jeu interactif en Python, une application de gestion avec une interface intuitive ou un système réseau optimisé, j’aime structurer mes idées pour aboutir à des résultats fonctionnels et élégants."
       },
       // Aliases
       aboutTitle: 'À propos',
-      aboutText: "Étudiant passionné en informatique, je me spécialise dans le développement web, la modélisation 3D et la programmation. Mon objectif est de créer des solutions innovantes et de repousser constamment les limites de mes compétences techniques.",
+      aboutText: "Passionné par l’informatique depuis mes premiers pas dans le code, je vois chaque projet comme une opportunité de relever des défis techniques et de créer des solutions claires et performantes. Que ce soit en développant un jeu interactif en Python, une application de gestion avec une interface intuitive ou un système réseau optimisé, j’aime structurer mes idées pour aboutir à des résultats fonctionnels et élégants.",
 
       formations: {
         title: 'Formations',
@@ -380,10 +380,10 @@ const translations = {
 
       about: {
         title: 'About',
-        text: "Passionate computer science student, I specialize in web development, 3D modeling and programming. My goal is to create innovative solutions and constantly push the boundaries of my technical skills."
+        text: "Passionate about computer science since my first steps in coding, I see each project as an opportunity to tackle technical challenges and create clear, high-performing solutions. Whether developing an interactive game in Python, a management application with an intuitive interface, or an optimized network system, I enjoy structuring my ideas to achieve functional and elegant results."
       },
       aboutTitle: 'About',
-      aboutText: "Passionate computer science student, I specialize in web development, 3D modeling and programming. My goal is to create innovative solutions and constantly push the boundaries of my technical skills.",
+      aboutText: "Passionate about computer science since my first steps in coding, I see each project as an opportunity to tackle technical challenges and create clear, high-performing solutions. Whether developing an interactive game in Python, a management application with an intuitive interface, or an optimized network system, I enjoy structuring my ideas to achieve functional and elegant results.",
 
       formations: {
         title: 'Education',
@@ -679,10 +679,10 @@ const translations = {
       
       about: {
         title: 'Acerca de',
-        text: 'Estudiante apasionado de informática, me especializo en desarrollo web, modelado 3D y programación. Mi objetivo es crear soluciones innovadoras y empujar constantemente los límites de mis habilidades técnicas.'
+        text: 'Apasionado por la informática desde mis primeros pasos en la codificación, veo cada proyecto como una oportunidad para enfrentar desafíos técnicos y crear soluciones claras y de alto rendimiento. Ya sea desarrollando un juego interactivo en Python, una aplicación de gestión con una interfaz intuitiva o un sistema de red optimizado, disfruto estructurando mis ideas para lograr resultados funcionales y elegantes.'
       },
       aboutTitle: 'Acerca de',
-      aboutText: 'Estudiante apasionado de informática, me especializo en desarrollo web, modelado 3D y programación. Mi objetivo es crear soluciones innovadoras y empujar constantemente los límites de mis habilidades técnicas.',
+      aboutText: 'Apasionado por la informática desde mis primeros pasos en la codificación, veo cada proyecto como una oportunidad para enfrentar desafíos técnicos y crear soluciones claras y de alto rendimiento. Ya sea desarrollando un juego interactivo en Python, una aplicación de gestión con una interfaz intuitiva o un sistema de red optimizado, disfruto estructurando mis ideas para lograr resultados funcionales y elegantes.',
       
       formations: {
         title: 'Formación',
