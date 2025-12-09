@@ -62,4 +62,31 @@ async function startTyping() {
 // ==================== Initialization ====================
 window.addEventListener('load', () => {
   startTyping();
+  initCollapsibles();
 });
+
+// ==================== COLLAPSIBLE MENUS (FORMATIONS, EXPÉRIENCES) ====================
+function initCollapsibles() {
+  // Collapsible lists (formations, expériences)
+  const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
+  
+  collapsibleHeaders.forEach(header => {
+    header.addEventListener('click', function() {
+      const item = this.closest('.collapsible-item');
+      const wasExpanded = item.classList.contains('expanded');
+      
+      // Close all other items in the same list
+      const parentList = item.closest('.collapsible-list');
+      if (parentList) {
+        parentList.querySelectorAll('.collapsible-item').forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.classList.remove('expanded');
+          }
+        });
+      }
+      
+      // Toggle current item
+      item.classList.toggle('expanded', !wasExpanded);
+    });
+  });
+}

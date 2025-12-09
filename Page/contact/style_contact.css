@@ -9,6 +9,169 @@ main {
   min-height: 100vh;
 }
 
+/* ==================== COLLAPSIBLE MENUS (FORMATIONS, EXPÉRIENCES) ==================== */
+.collapsible-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.collapsible-item {
+  border: 1px solid var(--accent);
+  background: rgba(20, 20, 40, 0.5);
+  margin-bottom: 15px;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.collapsible-item:hover {
+  border-color: var(--accent2);
+  box-shadow: 0 0 20px rgba(43, 82, 255, 0.3);
+}
+
+.collapsible-header {
+  padding: 15px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  transition: background 0.3s ease;
+  user-select: none;
+}
+
+.collapsible-header:hover {
+  background: rgba(43, 82, 255, 0.1);
+}
+
+.toggle-icon {
+  color: var(--accent);
+  font-size: 1.2em;
+  transition: transform 0.3s ease;
+  display: inline-block;
+  min-width: 20px;
+}
+
+.collapsible-item.expanded .toggle-icon {
+  transform: rotate(90deg);
+}
+
+.formation-title,
+.experience-title {
+  flex: 1;
+  color: #fff;
+  font-size: 0.95em;
+}
+
+.collapsible-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  padding: 0 20px;
+  background: rgba(10, 10, 25, 0.6);
+}
+
+.collapsible-item.expanded .collapsible-content {
+  max-height: 500px;
+  padding: 20px;
+  border-top: 1px solid rgba(43, 82, 255, 0.3);
+}
+
+.collapsible-content p {
+  margin: 10px 0;
+  color: #ccc;
+  line-height: 1.6;
+}
+
+.collapsible-content strong {
+  color: var(--accent2);
+}
+
+.collapsible-content ul {
+  margin: 10px 0 10px 20px;
+  list-style: square;
+}
+
+.collapsible-content li {
+  margin: 5px 0;
+  color: #aaa;
+}
+
+.doc-link {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 8px 16px;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  font-size: 0.9em;
+}
+
+.doc-link:hover {
+  background: var(--accent2);
+  transform: translateX(5px);
+  box-shadow: 0 0 15px rgba(236, 75, 160, 0.5);
+}
+
+/* ==================== SKILLS DROPDOWN (LANGAGES, OUTILS) ==================== */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.collapsible-skill {
+  position: relative;
+  cursor: pointer;
+}
+
+.skill-header {
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.collapsible-skill .skill-header:hover {
+  background: rgba(43, 82, 255, 0.2);
+  transform: scale(1.02);
+}
+
+.skill-dropdown {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  background: rgba(10, 10, 25, 0.8);
+  border-top: 1px solid transparent;
+}
+
+.collapsible-skill.expanded .skill-dropdown {
+  max-height: 300px;
+  padding: 15px;
+  border-top-color: rgba(43, 82, 255, 0.3);
+}
+
+.skill-dropdown p {
+  margin: 8px 0;
+  font-size: 0.85em;
+  color: #bbb;
+}
+
+.skill-dropdown a {
+  display: inline-block;
+  margin-top: 10px;
+  color: var(--accent2);
+  text-decoration: none;
+  font-size: 0.8em;
+  transition: all 0.3s ease;
+}
+
+.skill-dropdown a:hover {
+  color: #fff;
+  transform: translateX(3px);
+}
+
 /* Typing animation */
 .typing-text {
   overflow: hidden;
