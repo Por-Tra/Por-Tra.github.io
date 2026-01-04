@@ -73,9 +73,9 @@ import * as ImageViewer from './ImageViewer';
 import * as Blank from './utilities/Blank';
 
 // Projets détaillés
-import * as ProjectRPG from './projects/ProjectRPG';
-import * as ProjectSoutenance from './projects/ProjectSoutenance';
-import * as ProjectReseau from './projects/ProjectReseau';
+import * as ProjectRPG from './Projects/ProjectRPG';
+import * as ProjectSoutenance from './Projects/ProjectSoutenance';
+import * as ProjectReseau from './Projects/ProjectReseau';
 
 // =========================================
 // ENREGISTREMENT DES APPLICATIONS
