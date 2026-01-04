@@ -118,7 +118,7 @@ loader.load(
   // Progress
   xhr => {
     const percent = Math.round((xhr.loaded / xhr.total) * 100);
-    console.log(`Chargement : ${percent}%`);
+    // console.log(`Chargement : ${percent}%`);
   },
   // Error
   error => {

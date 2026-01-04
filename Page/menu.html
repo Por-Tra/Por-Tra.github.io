@@ -99,6 +99,12 @@
             <span data-i18n="bios.time">Time</span>: <span id="currentTime"></span>
           </div>
         </div>
+
+        <!-- Language Selector -->
+        <div class="info-box" style="margin-top: 20px;">
+          <div class="info-title">Language / Langue / Idioma</div>
+          <div id="lang-selector" class="lang-selector-bios"></div>
+        </div>
       </div>
     </div>
 
@@ -121,6 +127,12 @@
   <div class="exit-overlay" id="exitOverlay"></div>
 
   <script src="../i18n.js"></script>
+  <script>
+    // Initialize language selector
+    document.addEventListener('DOMContentLoaded', () => {
+      createLanguageSelector('lang-selector');
+    });
+  </script>
   <script src="menu_script.js"></script>
 </body>
 </html>

@@ -22,6 +22,7 @@
         <li><a href="../contact/contact.html" data-i18n="nav.about">About</a></li>
         <li><a href="CV.html" data-i18n="nav.cv">CV</a></li>
       </ul>
+      <div id="lang-selector" class="lang-selector"></div>
       <div class="burger" id="burger">
         <span></span><span></span><span></span>
       </div>
@@ -68,6 +69,12 @@
   </main>
 
   <script src="../../i18n.js"></script>
+  <script>
+    // Initialize language selector
+    document.addEventListener('DOMContentLoaded', () => {
+      createLanguageSelector('lang-selector');
+    });
+  </script>
   <script src="CV_script.js"></script>
 </body>
 </html>

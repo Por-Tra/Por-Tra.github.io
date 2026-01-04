@@ -21,6 +21,7 @@ function applyLang(lang) {
   // active button
   $('#langFR').classList.toggle('active', lang === 'fr');
   $('#langEN').classList.toggle('active', lang === 'en');
+  $('#langES').classList.toggle('active', lang === 'es');
 }
 
 /* ==================== PLAY button: build char spans ==================== */
@@ -145,6 +146,7 @@ playBtn.addEventListener('keydown', e => {
 // Language buttons
 document.getElementById('langFR').addEventListener('click', () => window.langManager.setLang('fr'));
 document.getElementById('langEN').addEventListener('click', () => window.langManager.setLang('en'));
+document.getElementById('langES').addEventListener('click', () => window.langManager.setLang('es'));
 
 // Listen for language changes from other pages
 window.langManager.onChange((lang) => {

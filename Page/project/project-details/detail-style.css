@@ -116,11 +116,14 @@ main {
 }
 
 .detail-section ul li::before {
-  content: '✓';
+  content: '';
   position: absolute;
   left: 0;
-  color: var(--accent);
-  font-weight: bold;
+  width: 16px;
+  height: 16px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%2300b4d8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>');
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 /* ==================== ÉTAPES DÉTAILLÉES ==================== */
@@ -278,5 +281,45 @@ main {
 
   .detail-section {
     padding: 20px;
+  }
+}
+
+/* ==================== LANGUAGE SELECTOR ==================== */
+.lang-selector {
+  display: flex;
+  gap: 8px;
+  margin-left: 20px;
+}
+
+.lang-selector button {
+  background: rgba(20, 20, 40, 0.6);
+  border: 1px solid var(--accent);
+  color: var(--text-color);
+  padding: 6px 12px;
+  cursor: pointer;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.7em;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+}
+
+.lang-selector button:hover {
+  background: rgba(43, 82, 255, 0.2);
+  border-color: var(--accent2);
+  box-shadow: 0 0 15px rgba(43, 82, 255, 0.4);
+}
+
+.lang-selector button.active {
+  background: var(--accent);
+  color: #0a0a1a;
+  font-weight: bold;
+  box-shadow: 0 0 20px rgba(43, 82, 255, 0.6);
+}
+
+@media (max-width: 768px) {
+  .lang-selector {
+    margin-left: 0;
+    margin-top: 15px;
+    justify-content: center;
   }
 }

@@ -158,13 +158,13 @@ const translations = {
         title: 'Expériences professionnelles',
         items: [
           'ASSISTANT Gérant PHARMACIEN - Pharmacie Malbec, Mauriac (15) - durée : 1mois',
-          'Coming soon 👀'
+          'À venir'
         ]
       }
       ,
       experiencesTitle: 'Expériences professionnelles',
       experience1: 'ASSISTANT Gérant PHARMACIEN - Pharmacie Malbec, Mauriac (15) - durée : 1mois',
-      experience2: 'Coming soon 👀'
+      experience2: 'À venir'
     },
     
     // CV page
@@ -237,9 +237,11 @@ const translations = {
       section3dDesc: 'Sélectionnez un projet ci-dessous pour en savoir plus ou pour y accéder directement.',
       card1Title: "Modélisation d'une chambre en low poly",
       card1Desc: "Visualisation interactive d'une chambre moderne",
-      card2Title: 'Projet 2',
+      card2Title: 'Modélisation d'une partie du système solaire',
+      card2Desc: 'Visualisation interactive du système solaire',
       card3Title: 'Projet 3',
-      comingSoon: 'À venir'
+      comingSoon: 'À venir',
+      seeMoreBtn: 'Voir plus'
     },
     
     // 3D page
@@ -463,13 +465,13 @@ const translations = {
         title: 'Professional Experience',
         items: [
           'ASSISTANT Manager PHARMACIST - Pharmacie Malbec, Mauriac (15) - duration: 1 month',
-          'Coming soon 👀'
+          'Coming soon'
         ]
       }
       ,
       experiencesTitle: 'Professional Experience',
       experience1: 'ASSISTANT Manager PHARMACIST - Pharmacie Malbec, Mauriac (15) - duration: 1 month',
-      experience2: 'Coming soon 👀'
+      experience2: 'Coming soon'
     },
     
     // CV page
@@ -538,9 +540,11 @@ const translations = {
       section3dDesc: 'Select a project below to learn more or access it directly.',
       card1Title: 'Low poly room modeling',
       card1Desc: 'Interactive visualization of a modern room',
-      card2Title: 'Project 2',
+      card2Title: 'Solar system modeling',
+      card2Desc: 'Interactive visualization of the solar system',
       card3Title: 'Project 3',
-      comingSoon: 'Coming soon'
+      comingSoon: 'Coming soon',
+      seeMoreBtn: 'See more'
     },
     
     // 3D page
@@ -762,12 +766,12 @@ const translations = {
         title: 'Experiencia Profesional',
         items: [
           'ASISTENTE Gerente FARMACÉUTICO - Pharmacie Malbec, Mauriac (15) - duración: 1 mes',
-          'Próximamente 👀'
+          'Próximamente'
         ]
       },
       experiencesTitle: 'Experiencia Profesional',
       experience1: 'ASISTENTE Gerente FARMACÉUTICO - Pharmacie Malbec, Mauriac (15) - duración: 1 mes',
-      experience2: 'Próximamente 👀'
+      experience2: 'Próximamente'
     },
     
     // CV page
@@ -835,9 +839,11 @@ const translations = {
       section3dDesc: 'Selecciona un proyecto a continuación para saber más o acceder directamente.',
       card1Title: 'Modelado de habitación low poly',
       card1Desc: 'Visualización interactiva de una habitación moderna',
-      card2Title: 'Proyecto 2',
+      card2Title: 'Modelado del sistema solar',
+      card2Desc: 'Visualización interactiva del sistema solar',
       card3Title: 'Proyecto 3',
-      comingSoon: 'Próximamente'
+      comingSoon: 'Próximamente',
+      seeMoreBtn: 'Ver más'
     },
     
     // 3D page

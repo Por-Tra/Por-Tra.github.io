@@ -371,6 +371,38 @@ body {
   90% { background-position: -10% 10%; }
 }
 
+/* ==================== LANGUAGE SELECTOR (BIOS STYLE) ==================== */
+.lang-selector-bios {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  justify-content: center;
+}
+
+.lang-selector-bios button {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid #0f0;
+  color: #0f0;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.65em;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.lang-selector-bios button:hover {
+  background: rgba(0, 255, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+.lang-selector-bios button.active {
+  background: #0f0;
+  color: #000;
+  font-weight: bold;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.7);
+}
+
 @media (max-width: 900px) {
   .bios-main {
     grid-template-columns: 1fr;

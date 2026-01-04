@@ -123,6 +123,54 @@ main {
   margin-top: 20px;
 }
 
+/* ==================== CLICKABLE SKILLS (COMPETENCES) ==================== */
+.skills-clickable {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.skills-clickable li {
+  margin: 12px 0;
+  padding: 15px 20px;
+  background: rgba(20, 20, 40, 0.5);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.skills-clickable li:hover {
+  background: rgba(43, 82, 255, 0.1);
+  border-color: var(--accent2);
+  transform: translateX(5px);
+  box-shadow: 0 0 20px rgba(236, 75, 160, 0.3);
+}
+
+.skills-clickable li a {
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: color 0.3s ease;
+}
+
+.skills-clickable li a::before {
+  content: '→';
+  color: var(--accent);
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.skills-clickable li:hover a {
+  color: var(--accent2);
+}
+
+.skills-clickable li:hover a::before {
+  transform: translateX(5px);
+  color: var(--accent2);
+}
+
 .collapsible-skill {
   position: relative;
   cursor: pointer;
@@ -805,5 +853,45 @@ main section li:hover {
 
   .interests-grid {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+}
+
+/* ==================== LANGUAGE SELECTOR ==================== */
+.lang-selector {
+  display: flex;
+  gap: 8px;
+  margin-left: 20px;
+}
+
+.lang-selector button {
+  background: rgba(20, 20, 40, 0.6);
+  border: 1px solid var(--accent);
+  color: var(--text-color);
+  padding: 6px 12px;
+  cursor: pointer;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.7em;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+}
+
+.lang-selector button:hover {
+  background: rgba(43, 82, 255, 0.2);
+  border-color: var(--accent2);
+  box-shadow: 0 0 15px rgba(43, 82, 255, 0.4);
+}
+
+.lang-selector button.active {
+  background: var(--accent);
+  color: #0a0a1a;
+  font-weight: bold;
+  box-shadow: 0 0 20px rgba(43, 82, 255, 0.6);
+}
+
+@media (max-width: 768px) {
+  .lang-selector {
+    margin-left: 0;
+    margin-top: 15px;
+    justify-content: center;
   }
 }

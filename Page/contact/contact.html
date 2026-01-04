@@ -22,6 +22,7 @@
         <li><a href="contact.html" data-i18n="nav.about">About</a></li>
         <li><a href="../CV_Page/CV.html" data-i18n="nav.cv">CV</a></li>
       </ul>
+      <div id="lang-selector" class="lang-selector"></div>
       <div class="burger" id="burger">
         <span></span><span></span><span></span>
       </div>
@@ -182,13 +183,25 @@
     <section class="competences">
 
       <h2 data-i18n="contact.skillsTitle">Compétences</h2>
-      <ul>
-        <li data-i18n="contact.skill1">Développer des applications informatiques simples</li>
-        <li data-i18n="contact.skill2">Appréhender et construire des algorithmes</li>
-        <li data-i18n="contact.skill3">Installer et configurer un poste de travail</li>
-        <li data-i18n="contact.skill4">Concevoir et mettre en place une base de données à partir d'un cahier des charges client</li>
-        <li data-i18n="contact.skill5">Identifier les besoins métiers des clients et des utilisateurs</li>
-        <li data-i18n="contact.skill6">Identifier ses aptitudes pour travailler dans une équipe</li>
+      <ul class="skills-clickable">
+        <li>
+          <a href="../project/project-details/rpg-2d.html#competences" data-i18n="contact.skill1">Développer des applications informatiques simples</a>
+        </li>
+        <li>
+          <a href="../project/project-details/rpg-2d.html#competences" data-i18n="contact.skill2">Appréhender et construire des algorithmes</a>
+        </li>
+        <li>
+          <a href="../project/project-details/rsl.html#competences" data-i18n="contact.skill3">Installer et configurer un poste de travail</a>
+        </li>
+        <li>
+          <a href="../project/project-details/soutenance.html#competences" data-i18n="contact.skill4">Concevoir et mettre en place une base de données à partir d'un cahier des charges client</a>
+        </li>
+        <li>
+          <a href="../project/project-details/soutenance.html#competences" data-i18n="contact.skill5">Identifier les besoins métiers des clients et des utilisateurs</a>
+        </li>
+        <li>
+          <a href="../project/project-details/soutenance.html#competences" data-i18n="contact.skill6">Identifier ses aptitudes pour travailler dans une équipe</a>
+        </li>
       </ul>
 
 
@@ -239,7 +252,10 @@
         <li class="collapsible-item future-experience">
           <div class="collapsible-header" data-i18n="contact.experience2">
             <span class="toggle-icon">▸</span>
-            <span class="experience-title">Coming soon 👀</span>
+            <span class="experience-title">Coming soon <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-left: 5px;">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg></span>
           </div>
           <div class="collapsible-content">
             <p style="font-style: italic; color: #aaa;">De nouvelles expériences professionnelles à venir...</p>
@@ -289,6 +305,12 @@
   </main>
 
   <script src="../../i18n.js"></script>
+  <script>
+    // Initialize language selector
+    document.addEventListener('DOMContentLoaded', () => {
+      createLanguageSelector('lang-selector');
+    });
+  </script>
   <script src="contact_script.js"></script>
 </body>
 </html>
