@@ -5,4 +5,8 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  base: '/', // Pour GitHub Pages (repo username.github.io)
+  build: {
+    outDir: 'dist',
+  },
 })
