@@ -1,0 +1,7 @@
+<!-- Placeholder SVG for RPG Screenshot -->
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect fill="#2d3748" width="800" height="600"/>
+  <rect fill="#4a5568" x="50" y="50" width="700" height="500" rx="10"/>
+  <text x="400" y="280" font-family="Arial, sans-serif" font-size="32" fill="#a0aec0" text-anchor="middle">🎮 RPG 2D Screenshot</text>
+  <text x="400" y="330" font-family="Arial, sans-serif" font-size="18" fill="#718096" text-anchor="middle">Jeu développé en Python avec Pygame</text>
+</svg>

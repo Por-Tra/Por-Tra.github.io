@@ -1,0 +1,26 @@
+<!-- Windows XP Bliss Wallpaper Placeholder -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="768" viewBox="0 0 1024 768">
+  <!-- Sky gradient -->
+  <defs>
+    <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#87ceeb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4a90c2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grass" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#7cb342;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#558b2f;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect fill="url(#sky)" width="1024" height="768"/>
+  <!-- Hills -->
+  <ellipse cx="512" cy="800" rx="700" ry="350" fill="url(#grass)"/>
+  <ellipse cx="200" cy="850" rx="400" ry="300" fill="#8bc34a"/>
+  <ellipse cx="850" cy="820" rx="350" ry="280" fill="#9ccc65"/>
+  <!-- Clouds -->
+  <ellipse cx="200" cy="150" rx="80" ry="40" fill="white" opacity="0.8"/>
+  <ellipse cx="250" cy="140" rx="60" ry="35" fill="white" opacity="0.8"/>
+  <ellipse cx="800" cy="100" rx="100" ry="50" fill="white" opacity="0.8"/>
+  <ellipse cx="870" cy="90" rx="70" ry="40" fill="white" opacity="0.8"/>
+  <!-- Text -->
+  <text x="512" y="400" font-family="Arial, sans-serif" font-size="48" fill="white" text-anchor="middle" opacity="0.5">Bliss</text>
+</svg>
