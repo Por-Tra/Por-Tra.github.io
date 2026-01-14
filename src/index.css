@@ -1,0 +1,239 @@
+@import "tailwindcss";
+
+/* Windows XP Classic Styling */
+* {
+  font-family: 'Tahoma', 'Segoe UI', sans-serif;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+/* XP Window Title Bar Gradient */
+.xp-titlebar {
+  background: linear-gradient(180deg, 
+    #0a246a 0%, 
+    #0e48ce 8%, 
+    #1464e5 20%, 
+    #0954de 30%, 
+    #0548d4 50%, 
+    #0039ce 65%, 
+    #0036c5 80%, 
+    #003bc9 100%
+  );
+}
+
+.xp-titlebar-inactive {
+  background: linear-gradient(180deg, 
+    #7a96df 0%, 
+    #809ee8 8%, 
+    #89a8f0 20%, 
+    #839ce8 30%, 
+    #7b96e0 50%, 
+    #7490d8 65%, 
+    #7090d5 80%, 
+    #7594dc 100%
+  );
+}
+
+/* XP Window Border */
+.xp-window {
+  border: 3px solid #0055ea;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 
+    inset 0 0 0 1px rgba(255,255,255,0.4),
+    2px 2px 10px rgba(0,0,0,0.4);
+}
+
+.xp-window-inactive {
+  border-color: #7a96df;
+}
+
+/* XP Button Styling */
+.xp-button {
+  background: linear-gradient(180deg, #ffffff 0%, #ece9d8 50%, #d8d0c4 100%);
+  border: 1px solid #003c74;
+  border-radius: 3px;
+  box-shadow: 
+    inset 1px 1px 0 #ffffff,
+    inset -1px -1px 0 #808080;
+}
+
+.xp-button:hover {
+  background: linear-gradient(180deg, #ffffff 0%, #e8e4d8 50%, #d4ccc0 100%);
+}
+
+.xp-button:active {
+  background: linear-gradient(180deg, #d4ccc0 0%, #ece9d8 100%);
+  box-shadow: 
+    inset -1px -1px 0 #ffffff,
+    inset 1px 1px 0 #808080;
+}
+
+/* XP Window Control Buttons */
+.xp-close-btn {
+  background: linear-gradient(180deg, #e48d8d 0%, #c94d4d 50%, #b92a2a 100%);
+  border: 1px solid #570a0a;
+  border-radius: 3px;
+  box-shadow: inset 1px 1px 0 rgba(255,255,255,0.4);
+}
+
+.xp-close-btn:hover {
+  background: linear-gradient(180deg, #f0a0a0 0%, #d65a5a 50%, #c63838 100%);
+}
+
+.xp-minimize-btn, .xp-maximize-btn {
+  background: linear-gradient(180deg, #7cd5fb 0%, #4bb4e8 50%, #2ca0dd 100%);
+  border: 1px solid #0a3c7a;
+  border-radius: 3px;
+  box-shadow: inset 1px 1px 0 rgba(255,255,255,0.4);
+}
+
+.xp-minimize-btn:hover, .xp-maximize-btn:hover {
+  background: linear-gradient(180deg, #90e0ff 0%, #5cc0f0 50%, #3aacec 100%);
+}
+
+/* XP Taskbar */
+.xp-taskbar {
+  background: linear-gradient(180deg, 
+    #1c5eb3 0%, 
+    #2673d5 4%, 
+    #2d7de5 6%, 
+    #2778e0 10%, 
+    #1f6bd3 14%, 
+    #1662c7 20%, 
+    #1258b6 30%, 
+    #0d4ca3 50%, 
+    #0c4899 70%, 
+    #0b469a 80%, 
+    #0e4ba5 90%, 
+    #1155b9 100%
+  );
+  border-top: 2px solid #0d4ca3;
+}
+
+/* XP Start Button */
+.xp-start-btn {
+  background: linear-gradient(180deg, 
+    #5cb85c 0%, 
+    #3da53d 30%, 
+    #2d8b2d 50%, 
+    #1f7a1f 70%, 
+    #1a681a 100%
+  );
+  border: 1px solid #0a4a0a;
+  border-radius: 0 8px 8px 0;
+  padding: 4px 16px 4px 8px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  box-shadow: 
+    inset 1px 1px 0 rgba(255,255,255,0.3),
+    2px 2px 4px rgba(0,0,0,0.2);
+  font-style: italic;
+}
+
+.xp-start-btn:hover {
+  background: linear-gradient(180deg, 
+    #6cc86c 0%, 
+    #4db54d 30%, 
+    #3d9b3d 50%, 
+    #2f8a2f 70%, 
+    #2a782a 100%
+  );
+}
+
+.xp-start-btn-active {
+  background: linear-gradient(180deg, 
+    #1a681a 0%, 
+    #1f7a1f 30%, 
+    #2d8b2d 50%, 
+    #3da53d 70%, 
+    #5cb85c 100%
+  );
+  box-shadow: 
+    inset -1px -1px 0 rgba(255,255,255,0.3),
+    inset 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+/* XP Taskbar Button */
+.xp-taskbar-btn {
+  background: linear-gradient(180deg, 
+    #3a7ad8 0%, 
+    #2668c4 50%, 
+    #1a5ab0 100%
+  );
+  border: 1px solid #1a3c78;
+  border-radius: 3px;
+  box-shadow: inset 1px 1px 0 rgba(255,255,255,0.2);
+}
+
+.xp-taskbar-btn:hover {
+  background: linear-gradient(180deg, 
+    #4a8ae8 0%, 
+    #3678d4 50%, 
+    #2a6ac0 100%
+  );
+}
+
+.xp-taskbar-btn-active {
+  background: linear-gradient(180deg, 
+    #1a4a98 0%, 
+    #163c84 50%, 
+    #123070 100%
+  );
+  box-shadow: inset 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+/* XP Desktop Icons */
+.xp-icon {
+  transition: none;
+}
+
+.xp-icon:hover .icon-label {
+  background: rgba(11, 97, 255, 0.3);
+}
+
+.xp-icon-selected {
+  outline: 1px dotted rgba(255,255,255,0.5);
+  background: rgba(11, 97, 255, 0.25);
+}
+
+/* XP System Tray */
+.xp-systray {
+  background: linear-gradient(180deg, 
+    #0d4ca3 0%, 
+    #0b469a 50%, 
+    #0e4ba5 100%
+  );
+  border-left: 2px solid rgba(255,255,255,0.2);
+  border-right: 2px solid rgba(0,0,0,0.2);
+  padding: 4px 12px;
+}
+
+/* Disable text selection on UI elements */
+.no-select {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Resize handle */
+.resize-handle {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 16px;
+  height: 16px;
+  cursor: nwse-resize;
+  background: linear-gradient(135deg, transparent 50%, rgba(0,0,0,0.2) 50%);
+}
+
+/* XP Desktop Background */
+.xp-desktop {
+  background: linear-gradient(180deg, #245edb 0%, #3a8ff5 100%);
+  background-image: url('/wallpaper.jpg');
+  background-size: cover;
+  background-position: center;
+}
+

@@ -1,0 +1,156 @@
+/**
+ * Point d'entrée pour toutes les applications
+ * 
+ * ========================================
+ * COMMENT AJOUTER UNE NOUVELLE APP :
+ * ========================================
+ * 
+ * 1. Créer un dossier dans src/apps/NomDeVotreApp/
+ * 2. Créer index.jsx avec la config et le composant
+ * 3. Importer et enregistrer ici
+ * 
+ * Exemple minimal :
+ * ```jsx
+ * // src/apps/MonApp/index.jsx
+ * export const config = {
+ *   id: 'mon-app',           // ID unique (requis)
+ *   name: 'Mon Application', // Nom affiché (requis)
+ *   icon: '/icons/folder.png', // Icône (requis)
+ *   defaultWidth: 600,       // Largeur par défaut
+ *   defaultHeight: 450,      // Hauteur par défaut
+ * };
+ * 
+ * export const Component = () => (
+ *   <div className="h-full p-4 bg-white">
+ *     Hello World!
+ *   </div>
+ * );
+ * ```
+ * 
+ * Puis ici, ajouter :
+ * ```js
+ * import * as MonApp from './MonApp';
+ * // ... dans le tableau apps :
+ * { ...MonApp.config, component: MonApp.Component, desktopOrder: X },
+ * ```
+ * 
+ * ========================================
+ * OPTIONS DE CONFIGURATION :
+ * ========================================
+ * 
+ * - id: string              → Identifiant unique (REQUIS)
+ * - name: string            → Nom affiché (REQUIS)
+ * - icon: string            → Chemin vers l'icône (REQUIS)
+ * - component: Component    → Composant React à afficher
+ * - url: string             → URL externe (ouvre dans iframe)
+ * - defaultWidth: number    → Largeur par défaut (600)
+ * - defaultHeight: number   → Hauteur par défaut (450)
+ * - showOnDesktop: boolean  → Afficher sur le bureau (true)
+ * - showInStartMenu: boolean → Afficher dans le menu démarrer (true)
+ * - desktopOrder: number    → Ordre d'affichage sur le bureau
+ * - contentStyle: object    → Styles CSS pour le conteneur
+ * 
+ */
+
+import appRegistry from '../core/AppRegistry';
+
+// =========================================
+// IMPORT DES APPLICATIONS
+// =========================================
+
+// Apps principales
+import * as Welcome from './Welcome';
+import * as About from './About';
+import * as Parcours from './Parcours';
+import * as Projects from './Projects';
+import * as Skills from './Skills';
+import * as Contact from './Contact';
+
+// Apps utilitaires
+import * as Chess from './Chess';
+import * as Explorer from './Explorer';
+import * as ImageViewer from './ImageViewer';
+import * as Blank from './utilities/Blank';
+
+// Projets détaillés
+import * as ProjectRPG from './Projects/ProjectRPG';
+import * as ProjectSoutenance from './Projects/ProjectSoutenance';
+import * as ProjectReseau from './Projects/ProjectReseau';
+
+// =========================================
+// ENREGISTREMENT DES APPLICATIONS
+// L'ordre dans ce tableau = ordre sur le bureau
+// =========================================
+
+const apps = [
+  // ===== APPS PRINCIPALES (sur le bureau) =====
+  { ...Welcome.config, component: Welcome.Component, desktopOrder: 0 },
+  { ...About.config, component: About.Component, desktopOrder: 1 },
+  { ...Parcours.config, component: Parcours.Component, desktopOrder: 2 },
+  { ...Projects.config, component: Projects.Component, desktopOrder: 3 },
+  { ...Skills.config, component: Skills.Component, desktopOrder: 4 },
+  { ...Contact.config, component: Contact.Component, desktopOrder: 5 },
+  
+  // ===== LIENS EXTERNES =====
+  {
+    id: 'github',
+    name: 'GitHub',
+    icon: '/icons/git.png',
+    url: 'https://github.com/Por-Tra',
+    defaultWidth: 900,
+    defaultHeight: 600,
+    desktopOrder: 6,
+  },
+  {
+    id: 'linkedin',
+    name: 'LinkedIn',
+    icon: '/icons/link.png',
+    url: 'https://linkedin.com/in/lucas-contreras-hodapp',
+    defaultWidth: 900,
+    defaultHeight: 600,
+    desktopOrder: 7,
+  },
+  
+  // ===== UTILITAIRES =====
+  { ...Explorer.config, component: Explorer.Component, desktopOrder: 10 },
+  { ...Chess.config, component: Chess.Component, desktopOrder: 11 },
+  { 
+    ...Blank.config, 
+    component: Blank.Component,
+    id: 'trash',
+    name: 'Corbeille',
+    icon: '/icons/trash.png',
+    desktopOrder: 12,
+  },
+  
+  // ===== PROJETS (pas sur le bureau, accessibles via l'app Projects) =====
+  { ...ProjectRPG.config, component: ProjectRPG.Component, showOnDesktop: false },
+  { ...ProjectSoutenance.config, component: ProjectSoutenance.Component, showOnDesktop: false },
+  { ...ProjectReseau.config, component: ProjectReseau.Component, showOnDesktop: false },
+  
+  // ===== APPS UTILITAIRES (pas sur le bureau) =====
+  { ...ImageViewer.config, component: ImageViewer.Component },
+  
+  // ===== APPS SYSTÈME (pas sur le bureau) =====
+  { 
+    ...Blank.config, 
+    component: Blank.Component,
+    id: 'settings',
+    name: 'Paramètres',
+    icon: '/icons/setting.png',
+    showOnDesktop: false,
+  },
+  { 
+    ...Blank.config, 
+    component: Blank.Component,
+    id: 'network',
+    name: 'Connexions réseau',
+    icon: '/icons/signal.png',
+    showOnDesktop: false,
+  },
+];
+
+// Enregistrement dans le registry
+appRegistry.registerAll(apps);
+
+export default appRegistry;
