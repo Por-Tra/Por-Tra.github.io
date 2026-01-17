@@ -123,10 +123,10 @@ const apps = [
     desktopOrder: 12,
   },
   
-  // ===== PROJETS (pas sur le bureau, accessibles via l'app Projects) =====
-  { ...ProjectRPG.config, component: ProjectRPG.Component, showOnDesktop: false },
-  { ...ProjectSoutenance.config, component: ProjectSoutenance.Component, showOnDesktop: false },
-  { ...ProjectReseau.config, component: ProjectReseau.Component, showOnDesktop: false },
+  // ===== PROJETS (sur le bureau) =====
+  { ...ProjectRPG.config, component: ProjectRPG.Component, desktopOrder: 13 },
+  { ...ProjectSoutenance.config, component: ProjectSoutenance.Component, desktopOrder: 14 },
+  { ...ProjectReseau.config, component: ProjectReseau.Component, desktopOrder: 15 },
   
   // ===== APPS UTILITAIRES (pas sur le bureau) =====
   { ...ImageViewer.config, component: ImageViewer.Component },

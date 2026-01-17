@@ -60,7 +60,7 @@ const StartMenu = ({ isOpen, onClose, onOpenApp, apps, onShutdown, onRestart }) 
         {/* User Header */}
         <div className="bg-gradient-to-r from-[#0058e6] to-[#3a8ff5] p-2 flex items-center gap-2 rounded-tl-[4px]">
           <div className="w-10 h-10 bg-white rounded-md border-2 border-white shadow-md overflow-hidden">
-            <img src="/icons/chess.png" alt="User" className="w-full h-full object-cover" />
+            <img src="../assets/PP.jpg" alt="User" className="w-full h-full object-cover" />
           </div>
           <span className="text-white font-bold text-sm">Lucas</span>
         </div>

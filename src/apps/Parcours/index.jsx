@@ -1,14 +1,14 @@
 /**
  * Application: Parcours
  * 
- * Timeline du parcours scolaire
+ * Timeline du parcours scolaire - Style Windows XP
  */
 
 export const config = {
   id: 'parcours',
   name: 'Mon Parcours',
   icon: '/icons/note.png',
-  defaultWidth: 650,
+  defaultWidth: 700,
   defaultHeight: 520,
 };
 
@@ -27,7 +27,6 @@ const parcours = [
       "Méthodologies agiles et gestion de projet",
     ],
     lien: "https://iut.uca.fr/formations/but-informatique-le-puy",
-    couleur: "#4a90d9",
     enCours: true,
   },
   {
@@ -44,125 +43,160 @@ const parcours = [
       "Option Mathématiques Expertes",
     ],
     lien: "https://lyceepolyvalentmauriac.fr/",
-    couleur: "#5cb85c",
     enCours: false,
   },
 ];
 
 export const Component = () => {
   return (
-    <div className="h-full bg-gradient-to-b from-[#f5f5f5] to-[#e8e8e8] overflow-y-auto">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-[#0a246a] to-[#3a6ea5] text-white p-4 shadow-md">
-        <h1 className="text-xl font-bold flex items-center gap-2">
-          <span className="text-2xl">🎓</span>
-          Mon Parcours Scolaire
-        </h1>
-        <p className="text-sm opacity-90 mt-1">Formation et études</p>
+    <div className="xp-app">
+      {/* Menu Bar */}
+      <div className="xp-menubar">
+        <span className="xp-menubar-item">Fichier</span>
+        <span className="xp-menubar-item">Édition</span>
+        <span className="xp-menubar-item">Affichage</span>
+        <span className="xp-menubar-item">?</span>
       </div>
 
-      {/* Timeline */}
-      <div className="p-6">
-        <div className="relative">
-          {/* Ligne verticale */}
-          <div className="absolute left-[28px] top-0 bottom-0 w-1 bg-gradient-to-b from-[#4a90d9] to-[#5cb85c] rounded-full" />
+      {/* Toolbar */}
+      <div className="xp-toolbar">
+        <button className="xp-toolbar-btn">
+          <img src="/icons/arrow_left.png" alt="" className="w-4 h-4" />
+          Précédent
+        </button>
+        <button className="xp-toolbar-btn">
+          <img src="/icons/arrow_right.png" alt="" className="w-4 h-4" />
+          Suivant
+        </button>
+        <div className="xp-toolbar-separator" />
+        <button className="xp-toolbar-btn">
+          <img src="/icons/folder.png" alt="" className="w-4 h-4" />
+          Mes Projets
+        </button>
+        <button className="xp-toolbar-btn">
+          <img src="/icons/note.png" alt="" className="w-4 h-4" />
+          Mon CV
+        </button>
+      </div>
 
+      {/* Address Bar */}
+      <div className="xp-addressbar">
+        <span className="xp-addressbar-label">Adresse</span>
+        <div className="xp-addressbar-input">
+          <img src="/icons/note.png" alt="" className="w-4 h-4" />
+          <span>Mon Parcours Scolaire</span>
+        </div>
+        <button className="xp-addressbar-go">OK</button>
+      </div>
+
+      {/* Main Content */}
+      <div className="xp-content">
+        {/* Sidebar */}
+        <div className="xp-sidebar">
+          <div className="xp-sidebar-box">
+            <div className="xp-sidebar-title">
+              <img src="/icons/folder.png" alt="" />
+              Navigation
+            </div>
+            <div className="xp-sidebar-link">
+              <img src="/icons/folder.png" alt="" />
+              Formation actuelle
+            </div>
+            <div className="xp-sidebar-link">
+              <img src="/icons/folder.png" alt="" />
+              Diplômes obtenus
+            </div>
+            <div className="xp-sidebar-link">
+              <img src="/icons/explorer.png" alt="" />
+              Certifications
+            </div>
+          </div>
+
+          <div className="xp-sidebar-box">
+            <div className="xp-sidebar-title">
+              <img src="/icons/questionMark.png" alt="" />
+              Informations
+            </div>
+            <div className="xp-sidebar-text">
+              <p><strong>Total:</strong> 2 formations</p>
+              <p><strong>En cours:</strong> BUT Info</p>
+              <p><strong>Lieu:</strong> Le Puy-en-Velay</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Main Content Area */}
+        <div className="xp-content-main">
+          {/* Page Header */}
+          <div className="xp-page-header">
+            <img src="/icons/note.png" alt="" className="xp-page-header-icon" />
+            <div>
+              <h1 className="xp-page-title">Mon Parcours Scolaire</h1>
+              <p className="xp-page-subtitle">Formation et études</p>
+            </div>
+          </div>
+
+          {/* Timeline */}
           {parcours.map((item) => (
-            <div key={item.id} className="relative mb-8 last:mb-0">
-              {/* Point sur la timeline */}
-              <div 
-                className="absolute left-[20px] w-[18px] h-[18px] rounded-full border-4 border-white shadow-md z-10"
-                style={{ backgroundColor: item.couleur }}
-              >
+            <div key={item.id} className="xp-box xp-mb-3">
+              <div className={`xp-box-header ${item.enCours ? '' : 'xp-box-header-green'}`}>
+                <img src="/icons/folder.png" alt="" />
+                {item.titre}
                 {item.enCours && (
-                  <div className="absolute inset-0 rounded-full animate-ping opacity-30" 
-                       style={{ backgroundColor: item.couleur }} />
+                  <span className="xp-tag-yellow" style={{ marginLeft: 'auto' }}>En cours</span>
                 )}
               </div>
-
-              {/* Carte */}
-              <div className="ml-16 bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow">
-                {/* En-tête de la carte */}
-                <div 
-                  className="p-3 text-white"
-                  style={{ background: `linear-gradient(135deg, ${item.couleur}, ${item.couleur}dd)` }}
-                >
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h2 className="font-bold text-lg">{item.titre}</h2>
-                      <p className="text-sm opacity-90">{item.etablissement}</p>
-                    </div>
-                    <div className="text-right">
-                      <span className="bg-white/20 px-2 py-1 rounded text-sm font-medium">
-                        {item.periode}
-                      </span>
-                      {item.enCours && (
-                        <div className="mt-1 text-xs bg-yellow-400 text-yellow-900 px-2 py-0.5 rounded font-bold">
-                          En cours
-                        </div>
-                      )}
-                    </div>
-                  </div>
+              <div className="xp-box-content">
+                <div className="xp-flex xp-gap-2 xp-mb-2">
+                  <img src="/icons/explorer.png" alt="" className="w-4 h-4" />
+                  <span className="xp-text-bold">{item.etablissement}</span>
+                  <span className="xp-text-gray">•</span>
+                  <span className="xp-text-gray">{item.periode}</span>
                 </div>
 
-                {/* Corps de la carte */}
-                <div className="p-4">
-                  {/* Lieu */}
-                  <div className="flex items-center gap-2 text-gray-600 mb-3">
-                    <span>📍</span>
-                    <span className="text-sm">
-                      {item.adresse || item.lieu}
-                    </span>
-                  </div>
+                <div className="xp-flex xp-gap-2 xp-mb-2">
+                  <img src="/icons/signal.png" alt="" className="w-4 h-4" />
+                  <span className="xp-text-gray">{item.adresse || item.lieu}</span>
+                </div>
 
-                  {/* Description */}
-                  <p className="text-gray-700 mb-3 text-sm leading-relaxed">
-                    {item.description}
-                  </p>
+                <p className="xp-text-gray xp-mb-2" style={{ lineHeight: '1.5' }}>
+                  {item.description}
+                </p>
 
-                  {/* Détails */}
-                  <div className="bg-gray-50 rounded p-3 mb-3">
-                    <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">
-                      Points clés
-                    </h4>
-                    <ul className="space-y-1">
+                <div className="xp-tipbox">
+                  <img src="/icons/questionMark.png" alt="" />
+                  <div>
+                    <strong>Points clés:</strong>
+                    <ul className="xp-list xp-mt-1">
                       {item.details.map((detail, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
-                          <span className="text-green-500 mt-0.5">✓</span>
+                        <li key={i} className="xp-list-item">
+                          <img src="/icons/folder.png" alt="" />
                           {detail}
                         </li>
                       ))}
                     </ul>
                   </div>
-
-                  {/* Lien */}
-                  <a
-                    href={item.lien}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm px-3 py-1.5 rounded
-                             bg-gradient-to-b from-[#f5f5f5] to-[#e1e1e1] 
-                             border border-gray-300 shadow-sm
-                             hover:from-[#e8e8e8] hover:to-[#d5d5d5]
-                             active:from-[#d5d5d5] active:to-[#c5c5c5]
-                             text-gray-700 transition-all"
-                  >
-                    <span>🔗</span>
-                    Visiter le site
-                    <span className="text-xs text-gray-400">↗</span>
-                  </a>
                 </div>
+
+                <a
+                  href={item.lien}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="xp-btn xp-mt-2"
+                >
+                  <img src="/icons/explorer.png" alt="" />
+                  Visiter le site
+                </a>
               </div>
             </div>
           ))}
         </div>
+      </div>
 
-        {/* Footer */}
-        <div className="mt-6 p-4 bg-white/50 rounded-lg border border-gray-200 text-center">
-          <p className="text-gray-500 text-sm">
-            💡 <em>Passionné par l'informatique graphique et le développement de jeux vidéo</em>
-          </p>
-        </div>
+      {/* Status Bar */}
+      <div className="xp-statusbar">
+        <span>{parcours.length} formations</span>
+        <span>Passionné par l'informatique graphique</span>
       </div>
     </div>
   );

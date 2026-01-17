@@ -1,7 +1,7 @@
 /**
  * Application: Projects
  * 
- * Liste des projets avec différents modes d'affichage
+ * Liste des projets - Style Windows XP
  */
 import { useState } from 'react';
 
@@ -21,8 +21,6 @@ const projects = [
     date: '2022-2023',
     languages: ['Python', 'Pygame'],
     status: 'Terminé',
-    icon: '🎮',
-    color: '#4a90d9',
   },
   {
     id: 'project-soutenance',
@@ -31,8 +29,6 @@ const projects = [
     date: '2025',
     languages: ['HTML', 'CSS', 'PHP', 'SQL'],
     status: 'En cours',
-    icon: '📊',
-    color: '#5cb85c',
   },
   {
     id: 'project-reseau',
@@ -41,245 +37,204 @@ const projects = [
     date: '2024',
     languages: ['Python', 'Socket'],
     status: 'Terminé',
-    icon: '💬',
-    color: '#f0ad4e',
   },
 ];
 
 export const Component = () => {
-  const [viewMode, setViewMode] = useState('cards');
+  const [viewMode, setViewMode] = useState('list');
   const [selectedProject, setSelectedProject] = useState(null);
 
   return (
-    <div className="h-full bg-gradient-to-b from-[#f5f5f5] to-[#e8e8e8] flex flex-col">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-[#0a246a] to-[#3a6ea5] text-white p-3 shadow-md">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <span className="text-2xl">📁</span>
-            <div>
-              <h1 className="text-lg font-bold">Mes Projets</h1>
-              <p className="text-xs text-blue-200">Portfolio de développement</p>
-            </div>
-          </div>
-          <div className="text-xs bg-white/20 px-3 py-1 rounded">
-            {projects.length} projets
-          </div>
-        </div>
+    <div className="xp-app">
+      {/* Menu Bar */}
+      <div className="xp-menubar">
+        <span className="xp-menubar-item">Fichier</span>
+        <span className="xp-menubar-item">Édition</span>
+        <span className="xp-menubar-item">Affichage</span>
+        <span className="xp-menubar-item">?</span>
       </div>
 
       {/* Toolbar */}
-      <div className="bg-[#ece9d8] border-b border-[#808080] px-3 py-2 flex items-center gap-4">
-        <div className="flex items-center gap-1 text-xs">
-          <span className="text-gray-600">Affichage:</span>
-          <button
-            onClick={() => setViewMode('cards')}
-            className={`px-2 py-1 rounded transition-colors ${
-              viewMode === 'cards' 
-                ? 'bg-[#316ac5] text-white' 
-                : 'bg-white border border-[#a0a0a0] hover:bg-gray-100'
-            }`}
-          >
-            🃏 Cartes
-          </button>
-          <button
-            onClick={() => setViewMode('list')}
-            className={`px-2 py-1 rounded transition-colors ${
-              viewMode === 'list' 
-                ? 'bg-[#316ac5] text-white' 
-                : 'bg-white border border-[#a0a0a0] hover:bg-gray-100'
-            }`}
-          >
-            📋 Liste
-          </button>
-          <button
-            onClick={() => setViewMode('details')}
-            className={`px-2 py-1 rounded transition-colors ${
-              viewMode === 'details' 
-                ? 'bg-[#316ac5] text-white' 
-                : 'bg-white border border-[#a0a0a0] hover:bg-gray-100'
-            }`}
-          >
-            📊 Détails
-          </button>
-        </div>
+      <div className="xp-toolbar">
+        <button className="xp-toolbar-btn">
+          <img src="/icons/arrow_left.png" alt="" className="w-4 h-4" />
+          Précédent
+        </button>
+        <button className="xp-toolbar-btn">
+          <img src="/icons/arrow_right.png" alt="" className="w-4 h-4" />
+          Suivant
+        </button>
+        <div className="xp-toolbar-separator" />
+        <button 
+          className={`xp-toolbar-btn ${viewMode === 'list' ? 'bg-[#316ac5] text-white' : ''}`}
+          onClick={() => setViewMode('list')}
+        >
+          <img src="/icons/folder.png" alt="" className="w-4 h-4" />
+          Liste
+        </button>
+        <button 
+          className={`xp-toolbar-btn ${viewMode === 'details' ? 'bg-[#316ac5] text-white' : ''}`}
+          onClick={() => setViewMode('details')}
+        >
+          <img src="/icons/note.png" alt="" className="w-4 h-4" />
+          Détails
+        </button>
       </div>
 
-      {/* Content Area */}
-      <div className="flex-1 overflow-y-auto p-4">
-        {/* Cards View */}
-        {viewMode === 'cards' && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {projects.map((project) => (
-              <div
-                key={project.id}
-                onClick={() => setSelectedProject(selectedProject === project.id ? null : project.id)}
-                className={`bg-white rounded-lg shadow-md border overflow-hidden cursor-pointer 
-                           transform transition-all hover:scale-[1.02] hover:shadow-lg
-                           ${selectedProject === project.id ? 'ring-2 ring-[#316ac5]' : 'border-gray-200'}`}
-              >
-                <div 
-                  className="p-3 text-white"
-                  style={{ background: `linear-gradient(135deg, ${project.color}, ${project.color}dd)` }}
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="text-2xl">{project.icon}</span>
-                    <span className={`text-xs px-2 py-0.5 rounded font-medium ${
-                      project.status === 'En cours' 
-                        ? 'bg-yellow-400 text-yellow-900' 
-                        : 'bg-white/30 text-white'
-                    }`}>
-                      {project.status}
-                    </span>
-                  </div>
-                  <h3 className="font-bold mt-2">{project.name}</h3>
-                  <p className="text-xs opacity-80">{project.date}</p>
-                </div>
+      {/* Address Bar */}
+      <div className="xp-addressbar">
+        <span className="xp-addressbar-label">Adresse</span>
+        <div className="xp-addressbar-input">
+          <img src="/icons/folder.png" alt="" className="w-4 h-4" />
+          <span>C:\Projets</span>
+        </div>
+        <button className="xp-addressbar-go">OK</button>
+      </div>
 
-                <div className="p-3">
-                  <p className="text-sm text-gray-600 mb-3 line-clamp-2">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-1">
-                    {project.languages.map((lang) => (
-                      <span 
-                        key={lang}
-                        className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-600 border"
-                      >
-                        {lang}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="px-3 py-2 bg-gray-50 border-t text-xs text-center text-gray-500">
-                  Double-cliquez sur l'icône du bureau pour plus de détails
-                </div>
-              </div>
-            ))}
+      {/* Main Content */}
+      <div className="xp-content">
+        {/* Sidebar */}
+        <div className="xp-sidebar">
+          <div className="xp-sidebar-box">
+            <div className="xp-sidebar-title">
+              <img src="/icons/folder.png" alt="" />
+              Gestion des fichiers
+            </div>
+            <div className="xp-sidebar-link">
+              <img src="/icons/folder.png" alt="" />
+              Créer un dossier
+            </div>
+            <div className="xp-sidebar-link">
+              <img src="/icons/explorer.png" alt="" />
+              Publier ce dossier
+            </div>
           </div>
-        )}
 
-        {/* List View */}
-        {viewMode === 'list' && (
-          <div className="bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden">
-            {projects.map((project, index) => (
-              <div
-                key={project.id}
-                onClick={() => setSelectedProject(selectedProject === project.id ? null : project.id)}
-                className={`flex items-center gap-4 p-4 cursor-pointer transition-colors
-                           ${index !== projects.length - 1 ? 'border-b border-gray-100' : ''}
-                           ${selectedProject === project.id ? 'bg-[#316ac5]/10' : 'hover:bg-gray-50'}`}
-              >
-                <div 
-                  className="w-12 h-12 rounded-lg flex items-center justify-center text-2xl"
-                  style={{ backgroundColor: `${project.color}20` }}
-                >
-                  {project.icon}
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2">
-                    <h3 className="font-bold text-gray-800">{project.name}</h3>
-                    <span className={`text-xs px-2 py-0.5 rounded ${
-                      project.status === 'En cours' 
-                        ? 'bg-yellow-100 text-yellow-700' 
-                        : 'bg-green-100 text-green-700'
-                    }`}>
-                      {project.status}
-                    </span>
-                  </div>
-                  <p className="text-sm text-gray-500 mt-1">{project.description}</p>
-                </div>
-                <div className="text-right">
-                  <p className="text-sm font-medium text-gray-600">{project.date}</p>
-                  <div className="flex flex-wrap gap-1 mt-1 justify-end">
-                    {project.languages.slice(0, 2).map((lang) => (
-                      <span key={lang} className="text-xs px-1.5 py-0.5 rounded bg-blue-100 text-blue-700">
-                        {lang}
-                      </span>
-                    ))}
-                    {project.languages.length > 2 && (
-                      <span className="text-xs text-gray-400">+{project.languages.length - 2}</span>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))}
+          <div className="xp-sidebar-box">
+            <div className="xp-sidebar-title">
+              <img src="/icons/questionMark.png" alt="" />
+              Détails
+            </div>
+            <div className="xp-sidebar-text">
+              <p><strong>Projets:</strong> {projects.length}</p>
+              <p><strong>En cours:</strong> {projects.filter(p => p.status === 'En cours').length}</p>
+              <p><strong>Terminés:</strong> {projects.filter(p => p.status === 'Terminé').length}</p>
+            </div>
           </div>
-        )}
+        </div>
 
-        {/* Details View */}
-        {viewMode === 'details' && (
-          <div className="bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden">
-            <table className="w-full text-sm">
-              <thead className="bg-gradient-to-b from-[#f5f5f5] to-[#e8e8e8]">
-                <tr>
-                  <th className="text-left p-3 border-b font-medium text-gray-600">Projet</th>
-                  <th className="text-left p-3 border-b font-medium text-gray-600">Description</th>
-                  <th className="text-left p-3 border-b font-medium text-gray-600">Technologies</th>
-                  <th className="text-left p-3 border-b font-medium text-gray-600">Date</th>
-                  <th className="text-left p-3 border-b font-medium text-gray-600">Statut</th>
-                </tr>
-              </thead>
-              <tbody>
-                {projects.map((project, i) => (
-                  <tr 
-                    key={project.id} 
-                    className={`${i % 2 === 0 ? 'bg-white' : 'bg-gray-50'} hover:bg-blue-50 cursor-pointer`}
-                    onClick={() => setSelectedProject(selectedProject === project.id ? null : project.id)}
-                  >
-                    <td className="p-3 border-b border-gray-100">
-                      <div className="flex items-center gap-2">
-                        <span>{project.icon}</span>
-                        <span className="font-medium">{project.name}</span>
-                      </div>
-                    </td>
-                    <td className="p-3 border-b border-gray-100 text-gray-600 max-w-xs truncate">
-                      {project.description}
-                    </td>
-                    <td className="p-3 border-b border-gray-100">
-                      <div className="flex flex-wrap gap-1">
-                        {project.languages.map((lang) => (
-                          <span 
-                            key={lang} 
-                            className="text-xs px-1.5 py-0.5 rounded bg-[#316ac5] text-white"
-                          >
-                            {lang}
-                          </span>
-                        ))}
-                      </div>
-                    </td>
-                    <td className="p-3 border-b border-gray-100 text-gray-600">{project.date}</td>
-                    <td className="p-3 border-b border-gray-100">
-                      <span className={`text-xs px-2 py-1 rounded font-medium ${
-                        project.status === 'En cours' 
-                          ? 'bg-yellow-100 text-yellow-700' 
-                          : 'bg-green-100 text-green-700'
-                      }`}>
+        {/* Main Content Area */}
+        <div className="xp-content-main">
+          {/* Page Header */}
+          <div className="xp-page-header">
+            <img src="/icons/folder.png" alt="" className="xp-page-header-icon" />
+            <div>
+              <h1 className="xp-page-title">Mes Projets</h1>
+              <p className="xp-page-subtitle">Portfolio de développement</p>
+            </div>
+          </div>
+
+          {/* List View */}
+          {viewMode === 'list' && (
+            <div className="xp-box">
+              {projects.map((project, index) => (
+                <div
+                  key={project.id}
+                  onClick={() => setSelectedProject(selectedProject === project.id ? null : project.id)}
+                  className={`xp-flex xp-gap-2 xp-items-center xp-p-2 cursor-pointer
+                             ${index !== projects.length - 1 ? 'border-b border-[#e0e0e0]' : ''}
+                             ${selectedProject === project.id ? 'bg-[#316ac5] text-white' : 'hover:bg-[#e8f0ff]'}`}
+                  style={{ padding: '8px' }}
+                >
+                  <img src="/icons/folder.png" alt="" className="w-8 h-8" />
+                  <div className="xp-flex-1">
+                    <div className="xp-flex xp-gap-2 xp-items-center">
+                      <span className="xp-text-bold">{project.name}</span>
+                      <span className={`xp-tag ${project.status === 'En cours' ? 'xp-tag-yellow' : 'xp-tag-green'}`}>
                         {project.status}
                       </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
+                    </div>
+                    <p className={`xp-text-sm ${selectedProject === project.id ? 'text-white' : 'xp-text-gray'}`}>
+                      {project.description}
+                    </p>
+                  </div>
+                  <div className="text-right">
+                    <p className={`xp-text-sm ${selectedProject === project.id ? 'text-white' : 'xp-text-gray'}`}>
+                      {project.date}
+                    </p>
+                    <div className="xp-flex xp-gap-1" style={{ justifyContent: 'flex-end', marginTop: '4px' }}>
+                      {project.languages.map((lang) => (
+                        <span key={lang} className="xp-tag xp-tag-blue">{lang}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
 
-        {/* Tip Box */}
-        <div className="mt-4 bg-gradient-to-r from-[#ffffd5] to-[#fff8c4] border border-[#c0a000] rounded-lg p-3 flex items-center gap-3">
-          <span className="text-xl">💡</span>
-          <p className="text-sm text-gray-700">
-            <strong>Astuce:</strong> Double-cliquez sur les dossiers de projets sur le bureau pour voir 
-            les détails complets avec captures d'écran et liens GitHub!
-          </p>
+          {/* Details View */}
+          {viewMode === 'details' && (
+            <div className="xp-box">
+              <table className="xp-table">
+                <thead>
+                  <tr>
+                    <th>Nom</th>
+                    <th>Description</th>
+                    <th>Technologies</th>
+                    <th>Date</th>
+                    <th>Statut</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {projects.map((project) => (
+                    <tr 
+                      key={project.id}
+                      onClick={() => setSelectedProject(selectedProject === project.id ? null : project.id)}
+                      className="cursor-pointer"
+                    >
+                      <td>
+                        <div className="xp-flex xp-gap-2 xp-items-center">
+                          <img src="/icons/folder.png" alt="" className="w-4 h-4" />
+                          <span className="xp-text-bold">{project.name}</span>
+                        </div>
+                      </td>
+                      <td className="xp-text-gray" style={{ maxWidth: '200px' }}>
+                        {project.description.substring(0, 50)}...
+                      </td>
+                      <td>
+                        {project.languages.map((lang) => (
+                          <span key={lang} className="xp-tag xp-tag-blue">{lang}</span>
+                        ))}
+                      </td>
+                      <td>{project.date}</td>
+                      <td>
+                        <span className={`xp-tag ${project.status === 'En cours' ? 'xp-tag-yellow' : 'xp-tag-green'}`}>
+                          {project.status}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+
+          {/* Tip Box */}
+          <div className="xp-tipbox xp-mt-3">
+            <img src="/icons/questionMark.png" alt="" />
+            <div className="xp-tipbox-text">
+              <strong>Astuce:</strong> Double-cliquez sur les dossiers de projets sur le bureau pour voir 
+              les détails complets avec captures d'écran et liens GitHub!
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Status Bar */}
-      <div className="bg-[#ece9d8] border-t border-[#808080] px-3 py-1.5 text-xs text-gray-600 flex justify-between items-center">
-        <span>📁 {projects.length} projets • {projects.filter(p => p.status === 'En cours').length} en cours</span>
-        <span>Mode: {viewMode === 'cards' ? 'Cartes' : viewMode === 'list' ? 'Liste' : 'Détails'}</span>
+      <div className="xp-statusbar">
+        <span>{projects.length} projets</span>
+        <span>{projects.filter(p => p.status === 'En cours').length} en cours</span>
       </div>
     </div>
   );

@@ -1,15 +1,22 @@
 /**
  * Application: ProjectSoutenance
  * 
- * Détails du projet Soutenance
+ * Détails du projet Soutenance - Style Windows XP
  */
+
+
+
+import screenshot1 from '../../../assets/Proj2/Capture d\'écran 2025-10-07 085609.png';
+import screenshot2 from '../../../assets/Proj2/Capture d\'écran 2025-10-07 085646.png';
+import screenshot3 from '../../../assets/Proj2/Capture d\'écran 2025-10-07 085653.png';
+
 
 export const config = {
   id: 'project-soutenance',
   name: 'Projet Soutenance',
   icon: '/icons/folder.png',
-  defaultWidth: 650,
-  defaultHeight: 500,
+  defaultWidth: 700,
+  defaultHeight: 550,
 };
 
 const projectData = {
@@ -34,149 +41,174 @@ const projectData = {
     "Travail avec une grande équipe"
   ],
   downloadLink: "#",
-  images: []
+  images: [screenshot1, screenshot2, screenshot3]
 };
 
 export const Component = () => {
   return (
-    <div className="h-full bg-white flex flex-col">
-      {/* XP Explorer Toolbar */}
-      <div className="bg-gradient-to-b from-[#ece9d8] to-[#d4d0c8] border-b border-[#808080] px-2 py-1 flex gap-4 text-xs">
-        <span className="text-gray-600 hover:underline cursor-pointer">Fichier</span>
-        <span className="text-gray-600 hover:underline cursor-pointer">Édition</span>
-        <span className="text-gray-600 hover:underline cursor-pointer">Affichage</span>
-        <span className="text-gray-600 hover:underline cursor-pointer">?</span>
+    <div className="xp-app">
+      {/* Menu Bar */}
+      <div className="xp-menubar">
+        <span>Fichier</span>
+        <span>Édition</span>
+        <span>Affichage</span>
+        <span>Outils</span>
+        <span>?</span>
+      </div>
+
+      {/* Toolbar */}
+      <div className="xp-toolbar">
+        <button className="xp-toolbar-btn">
+          <img src="/icons/back.png" alt="" className="w-4 h-4" />
+          Précédent
+        </button>
+        <div className="xp-toolbar-separator"></div>
+        <button className="xp-toolbar-btn">
+          <img src="/icons/folder.png" alt="" className="w-4 h-4" />
+          Dossiers
+        </button>
       </div>
 
       {/* Address Bar */}
-      <div className="bg-[#ece9d8] border-b border-[#808080] px-2 py-1 flex items-center gap-2">
-        <span className="text-xs text-gray-600">Adresse</span>
-        <div className="flex-1 bg-white border border-[#7f9db9] px-2 py-0.5 text-xs flex items-center gap-1">
+      <div className="xp-addressbar">
+        <span className="xp-addressbar-label">Adresse</span>
+        <div className="xp-addressbar-input">
           <img src="/icons/folder.png" alt="" className="w-4 h-4" />
           <span>C:\Projets\Soutenance</span>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex overflow-hidden">
-        {/* Left Panel */}
-        <div className="w-48 bg-gradient-to-b from-[#6b88c4] to-[#4d6eb5] p-2 overflow-y-auto flex-shrink-0">
-          <div className="bg-white/90 rounded-lg p-2 mb-2">
-            <h3 className="text-[11px] font-bold text-[#215dc6] mb-2 flex items-center gap-1">
-              <span className="text-xs">📁</span> Gestion du projet
-            </h3>
-            <div className="space-y-1 text-[10px]">
-              <div className="flex items-center gap-1 text-[#215dc6] hover:underline cursor-pointer">
-                <span>→</span> Télécharger (.zip)
-              </div>
-              <div className="flex items-center gap-1 text-[#215dc6] hover:underline cursor-pointer">
-                <span>→</span> Voir sur GitHub
-              </div>
+      <div className="xp-content">
+        {/* Sidebar */}
+        <div className="xp-sidebar">
+          <div className="xp-sidebar-box">
+            <div className="xp-sidebar-header">
+              <img src="/icons/folder.png" alt="" className="w-4 h-4" />
+              Gestion du projet
+            </div>
+            <div className="xp-sidebar-content">
+              <a href={projectData.downloadLink} className="xp-sidebar-link">
+                <img src="/icons/download.png" alt="" className="w-3 h-3" />
+                Télécharger (.zip)
+              </a>
+              <a href="#" className="xp-sidebar-link">
+                <img src="/icons/web.png" alt="" className="w-3 h-3" />
+                Voir sur GitHub
+              </a>
             </div>
           </div>
 
-          <div className="bg-white/90 rounded-lg p-2">
-            <h3 className="text-[11px] font-bold text-[#215dc6] mb-2 flex items-center gap-1">
-              <span className="text-xs">ℹ️</span> Détails
-            </h3>
-            <div className="text-[10px] text-gray-700 space-y-1">
-              <p><strong>Date:</strong></p>
-              <p className="text-[9px]">{projectData.date}</p>
-              <p><strong>Équipe:</strong></p>
-              <p className="text-[9px]">{projectData.team}</p>
+          <div className="xp-sidebar-box">
+            <div className="xp-sidebar-header">
+              <img src="/icons/info.png" alt="" className="w-4 h-4" />
+              Informations
+            </div>
+            <div className="xp-sidebar-content">
+              <p className="xp-sidebar-info"><strong>Date:</strong></p>
+              <p className="xp-sidebar-info-small">{projectData.date}</p>
+              <p className="xp-sidebar-info"><strong>Équipe:</strong></p>
+              <p className="xp-sidebar-info-small">{projectData.team}</p>
             </div>
           </div>
         </div>
 
-        {/* Right Panel */}
-        <div className="flex-1 bg-white overflow-y-auto p-4">
+        {/* Main Panel */}
+        <div className="xp-content-main">
           {/* Header */}
-          <div className="flex items-start gap-4 mb-4 pb-4 border-b border-[#ece9d8]">
+          <div className="xp-content-header">
             <img src="/icons/folder.png" alt="" className="w-12 h-12" />
             <div>
-              <h1 className="text-lg font-bold text-[#003399]">{projectData.title}</h1>
-              <p className="text-xs text-gray-500">Projet universitaire - Application web</p>
+              <h1 className="xp-title">{projectData.title}</h1>
+              <p className="xp-subtitle">Projet universitaire - Application web de notation</p>
             </div>
           </div>
 
           {/* Description */}
-          <div className="mb-4">
-            <h2 className="text-sm font-bold text-[#003399] mb-2 flex items-center gap-2">
+          <div className="xp-box">
+            <div className="xp-box-header">
               <img src="/icons/questionMark.png" alt="" className="w-4 h-4" />
               Description
-            </h2>
-            <p className="text-xs text-gray-700 leading-relaxed bg-[#f5f5f5] p-3 rounded border border-[#ddd]">
-              {projectData.description}
-            </p>
+            </div>
+            <div className="xp-box-content">
+              <p>{projectData.description}</p>
+            </div>
           </div>
 
           {/* Role */}
-          <div className="mb-4">
-            <h2 className="text-sm font-bold text-[#003399] mb-2">Mon rôle</h2>
-            <p className="text-xs text-gray-700 bg-[#fff8dc] p-3 rounded border border-[#ddd]">
-              {projectData.role}
-            </p>
+          <div className="xp-tipbox">
+            <img src="/icons/user.png" alt="" className="w-4 h-4 flex-shrink-0" />
+            <div>
+              <strong>Mon rôle:</strong> {projectData.role}
+            </div>
           </div>
 
           {/* Languages */}
-          <div className="mb-4">
-            <h2 className="text-sm font-bold text-[#003399] mb-2">Langages utilisés</h2>
-            <div className="flex gap-2 flex-wrap">
-              {projectData.languages.map((lang, i) => (
-                <span key={i} className="bg-[#0058e6] text-white px-2 py-1 rounded text-xs">
-                  {lang}
-                </span>
-              ))}
+          <div className="xp-box xp-box-blue">
+            <div className="xp-box-header">
+              <img src="/icons/code.png" alt="" className="w-4 h-4" />
+              Langages utilisés
+            </div>
+            <div className="xp-box-content">
+              <div className="xp-tags">
+                {projectData.languages.map((lang, i) => (
+                  <span key={i} className="xp-tag xp-tag-blue">{lang}</span>
+                ))}
+              </div>
             </div>
           </div>
 
           {/* Features */}
-          <div className="mb-4">
-            <h2 className="text-sm font-bold text-[#003399] mb-2">Fonctionnalités</h2>
-            <div className="grid grid-cols-2 gap-1">
-              {projectData.features.map((feature, i) => (
-                <div key={i} className="flex items-center gap-2 text-xs text-gray-700">
-                  <span className="w-1.5 h-1.5 bg-[#0058e6] rounded-full"></span>
-                  {feature}
-                </div>
-              ))}
+          <div className="xp-box">
+            <div className="xp-box-header">
+              <img src="/icons/check.png" alt="" className="w-4 h-4" />
+              Fonctionnalités
+            </div>
+            <div className="xp-box-content">
+              <ul className="xp-list">
+                {projectData.features.map((feature, i) => (
+                  <li key={i}>{feature}</li>
+                ))}
+              </ul>
             </div>
           </div>
 
           {/* Skills */}
-          <div className="mb-4">
-            <h2 className="text-sm font-bold text-[#003399] mb-2">Compétences développées</h2>
-            <div className="flex flex-wrap gap-2">
-              {projectData.skills.map((skill, i) => (
-                <span key={i} className="bg-[#ece9d8] border border-[#808080] px-2 py-1 rounded text-xs">
-                  {skill}
-                </span>
-              ))}
+          <div className="xp-box xp-box-green">
+            <div className="xp-box-header">
+              <img src="/icons/skills.png" alt="" className="w-4 h-4" />
+              Compétences développées
+            </div>
+            <div className="xp-box-content">
+              <div className="xp-tags">
+                {projectData.skills.map((skill, i) => (
+                  <span key={i} className="xp-tag">{skill}</span>
+                ))}
+              </div>
             </div>
           </div>
 
           {/* Screenshots */}
-          <div className="mb-4">
-            <h2 className="text-sm font-bold text-[#003399] mb-2">Captures d'écran</h2>
-            {projectData.images.length > 0 ? (
-              <div className="grid grid-cols-3 gap-2">
+          <div className="xp-box">
+            <div className="xp-box-header">
+              <img src="/icons/image.png" alt="" className="w-4 h-4" />
+              Captures d'écran
+            </div>
+            <div className="xp-box-content">
+              <div className="xp-screenshots">
                 {projectData.images.map((img, i) => (
-                  <img key={i} src={img} alt={`Screenshot ${i + 1}`} className="rounded border border-[#808080]" />
+                  <img key={i} src={img} alt={`Screenshot ${i + 1}`} className="xp-screenshot" />
                 ))}
               </div>
-            ) : (
-              <div className="bg-[#f5f5f5] border-2 border-dashed border-[#ccc] rounded p-4 text-center">
-                <p className="text-xs text-gray-400">Aucune capture d'écran disponible</p>
-              </div>
-            )}
+            </div>
           </div>
         </div>
       </div>
 
       {/* Status Bar */}
-      <div className="bg-[#ece9d8] border-t border-[#808080] px-2 py-1 text-[10px] text-gray-600 flex justify-between">
-        <span>Projet: {projectData.title}</span>
+      <div className="xp-statusbar">
         <span>{projectData.features.length} fonctionnalités</span>
+        <span>{projectData.skills.length} compétences</span>
       </div>
     </div>
   );

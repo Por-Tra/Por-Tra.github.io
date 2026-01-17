@@ -1,0 +1,943 @@
+/**
+ * Windows XP Application Styles
+ * Universal CSS for all app content windows
+ */
+
+/* ============================================
+   APP CONTAINER - Base container for all apps
+   ============================================ */
+.xp-app {
+  height: 100%;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  font-size: 11px;
+}
+
+/* ============================================
+   MENU BAR - File, Edit, View, Help
+   ============================================ */
+.xp-menubar {
+  background: linear-gradient(to bottom, #ece9d8 0%, #d4d0c8 100%);
+  border-bottom: 1px solid #808080;
+  padding: 2px 4px;
+  display: flex;
+  gap: 16px;
+  font-size: 11px;
+}
+
+.xp-menubar-item {
+  color: #000;
+  cursor: pointer;
+  padding: 2px 6px;
+}
+
+.xp-menubar-item:hover {
+  background: #316ac5;
+  color: #fff;
+}
+
+/* ============================================
+   TOOLBAR - Icon buttons below menu
+   ============================================ */
+.xp-toolbar {
+  background: linear-gradient(to bottom, #ece9d8 0%, #d4d0c8 100%);
+  border-bottom: 1px solid #808080;
+  padding: 4px 8px;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.xp-toolbar-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 2px 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.xp-toolbar-btn:hover {
+  background: linear-gradient(to bottom, #fff 0%, #ece9d8 100%);
+  border: 1px solid #808080;
+}
+
+.xp-toolbar-btn:active {
+  background: linear-gradient(to bottom, #d4d0c8 0%, #ece9d8 100%);
+}
+
+.xp-toolbar-separator {
+  width: 1px;
+  height: 20px;
+  background: #808080;
+  margin: 0 4px;
+}
+
+/* ============================================
+   ADDRESS BAR - Location bar
+   ============================================ */
+.xp-addressbar {
+  background: #ece9d8;
+  border-bottom: 1px solid #808080;
+  padding: 2px 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.xp-addressbar-label {
+  font-size: 11px;
+  color: #000;
+}
+
+.xp-addressbar-input {
+  flex: 1;
+  background: #fff;
+  border: 1px solid #7f9db9;
+  padding: 2px 4px;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.xp-addressbar-go {
+  background: linear-gradient(to bottom, #fff 0%, #ece9d8 100%);
+  border: 1px solid #808080;
+  padding: 2px 8px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.xp-addressbar-go:hover {
+  background: linear-gradient(to bottom, #e8e4d8 0%, #d4ccc0 100%);
+}
+
+/* ============================================
+   SIDEBAR - Left blue panel
+   ============================================ */
+.xp-sidebar {
+  width: 180px;
+  background: linear-gradient(to bottom, #6b88c4 0%, #4d6eb5 100%);
+  padding: 8px;
+  flex-shrink: 0;
+  overflow-y: auto;
+}
+
+.xp-sidebar-box {
+  background: rgba(255, 255, 255, 0.9);
+  margin-bottom: 8px;
+  padding: 8px;
+}
+
+.xp-sidebar-box:last-child {
+  margin-bottom: 0;
+}
+
+.xp-sidebar-title {
+  font-size: 11px;
+  font-weight: bold;
+  color: #215dc6;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.xp-sidebar-title img {
+  width: 16px;
+  height: 16px;
+}
+
+.xp-sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  color: #215dc6;
+  cursor: pointer;
+  padding: 2px 0;
+}
+
+.xp-sidebar-link:hover {
+  text-decoration: underline;
+}
+
+.xp-sidebar-link img {
+  width: 16px;
+  height: 16px;
+}
+
+.xp-sidebar-text {
+  font-size: 10px;
+  color: #333;
+  line-height: 1.4;
+}
+
+/* ============================================
+   MAIN CONTENT AREA
+   ============================================ */
+.xp-content {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.xp-content-main {
+  flex: 1;
+  background: #fff;
+  overflow-y: auto;
+  padding: 12px;
+}
+
+/* ============================================
+   HEADER - Page title section
+   ============================================ */
+.xp-header {
+  background: linear-gradient(to right, #0058e6 0%, #2878e8 50%, #3a8ff5 100%);
+  padding: 12px 16px;
+}
+
+.xp-header-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.xp-header-icon {
+  width: 48px;
+  height: 48px;
+}
+
+.xp-header-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  margin: 0;
+}
+
+.xp-header-subtitle {
+  font-size: 11px;
+  color: #b3d4ff;
+  margin: 2px 0 0 0;
+}
+
+/* ============================================
+   PAGE HEADER - Inside content area
+   ============================================ */
+.xp-page-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #ece9d8;
+  margin-bottom: 12px;
+}
+
+.xp-page-header-icon {
+  width: 48px;
+  height: 48px;
+}
+
+.xp-page-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #003399;
+  margin: 0;
+}
+
+.xp-page-subtitle {
+  font-size: 11px;
+  color: #666;
+  margin: 2px 0 0 0;
+}
+
+/* ============================================
+   BOXES - Content boxes and panels
+   ============================================ */
+.xp-box {
+  background: #fff;
+  border: 1px solid #808080;
+  margin-bottom: 12px;
+}
+
+.xp-box:last-child {
+  margin-bottom: 0;
+}
+
+.xp-box-header {
+  background: linear-gradient(to right, #0058e6 0%, #2878e8 100%);
+  color: #fff;
+  padding: 4px 8px;
+  font-size: 11px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.xp-box-header img {
+  width: 16px;
+  height: 16px;
+}
+
+.xp-box-header-green {
+  background: linear-gradient(to right, #5cb85c 0%, #449d44 100%);
+}
+
+.xp-box-header-orange {
+  background: linear-gradient(to right, #f0ad4e 0%, #ec971f 100%);
+}
+
+.xp-box-header-cyan {
+  background: linear-gradient(to right, #5bc0de 0%, #31b0d5 100%);
+}
+
+.xp-box-header-red {
+  background: linear-gradient(to right, #d9534f 0%, #c9302c 100%);
+}
+
+.xp-box-content {
+  padding: 8px;
+}
+
+/* Yellow tip/info box */
+.xp-tipbox {
+  background: #ffffd5;
+  border: 1px solid #808080;
+  padding: 8px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.xp-tipbox img {
+  width: 16px;
+  height: 16px;
+}
+
+.xp-tipbox-text {
+  font-size: 11px;
+  color: #333;
+  line-height: 1.4;
+}
+
+/* ============================================
+   LIST ITEMS
+   ============================================ */
+.xp-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.xp-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 4px 0;
+  font-size: 11px;
+  color: #333;
+}
+
+.xp-list-item img {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.xp-list-bullet {
+  width: 8px;
+  height: 8px;
+  background: #4a90d9;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.xp-list-bullet-green {
+  background: #5cb85c;
+}
+
+.xp-list-bullet-gray {
+  background: #999;
+}
+
+/* ============================================
+   LINKS
+   ============================================ */
+.xp-link {
+  color: #0058e6;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.xp-link:hover {
+  text-decoration: underline;
+}
+
+.xp-link-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 0;
+}
+
+.xp-link-item img {
+  width: 16px;
+  height: 16px;
+}
+
+/* ============================================
+   GRID ITEMS - Icon grid like file explorer
+   ============================================ */
+.xp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 8px;
+}
+
+.xp-grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.xp-grid-item:hover {
+  background: #316ac5;
+  color: #fff;
+}
+
+.xp-grid-item img {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 4px;
+}
+
+.xp-grid-item-label {
+  font-size: 10px;
+  text-align: center;
+}
+
+/* ============================================
+   TAGS - Small label badges
+   ============================================ */
+.xp-tag {
+  display: inline-block;
+  background: linear-gradient(to bottom, #f5f5f5 0%, #e1e1e1 100%);
+  border: 1px solid #a0a0a0;
+  padding: 2px 6px;
+  font-size: 10px;
+  margin: 2px;
+}
+
+.xp-tag-blue {
+  background: #316ac5;
+  border-color: #1a4a98;
+  color: #fff;
+}
+
+.xp-tag-green {
+  background: #dff0d8;
+  border-color: #3c763d;
+  color: #3c763d;
+}
+
+.xp-tag-yellow {
+  background: #fcf8e3;
+  border-color: #8a6d3b;
+  color: #8a6d3b;
+}
+
+/* ============================================
+   PROGRESS BAR
+   ============================================ */
+.xp-progress {
+  background: #d4d0c8;
+  border: 1px solid #808080;
+  height: 16px;
+  overflow: hidden;
+}
+
+.xp-progress-bar {
+  height: 100%;
+  background: linear-gradient(to bottom, #00aa00 0%, #006600 100%);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 4px;
+}
+
+.xp-progress-text {
+  font-size: 9px;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* ============================================
+   STATUS BAR - Bottom bar
+   ============================================ */
+.xp-statusbar {
+  background: #ece9d8;
+  border-top: 1px solid #808080;
+  padding: 2px 8px;
+  font-size: 10px;
+  color: #666;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ============================================
+   TABLE - Data table
+   ============================================ */
+.xp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+
+.xp-table th {
+  text-align: left;
+  padding: 6px 8px;
+  background: linear-gradient(to bottom, #f5f5f5 0%, #e8e8e8 100%);
+  border-bottom: 1px solid #808080;
+  font-weight: normal;
+  color: #333;
+}
+
+.xp-table td {
+  padding: 6px 8px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.xp-table tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+.xp-table tr:hover {
+  background: #e8f0ff;
+}
+
+/* ============================================
+   FORM ELEMENTS
+   ============================================ */
+.xp-input {
+  background: #fff;
+  border: 1px solid #7f9db9;
+  padding: 4px 6px;
+  font-size: 11px;
+  font-family: inherit;
+}
+
+.xp-input:focus {
+  outline: none;
+  border-color: #0058e6;
+}
+
+.xp-textarea {
+  background: #fff;
+  border: 1px solid #7f9db9;
+  padding: 4px 6px;
+  font-size: 11px;
+  font-family: inherit;
+  resize: none;
+}
+
+.xp-textarea:focus {
+  outline: none;
+  border-color: #0058e6;
+}
+
+.xp-btn {
+  background: linear-gradient(to bottom, #fff 0%, #ece9d8 50%, #d8d0c4 100%);
+  border: 1px solid #003c74;
+  padding: 4px 12px;
+  font-size: 11px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.xp-btn:hover {
+  background: linear-gradient(to bottom, #fff 0%, #e8e4d8 50%, #d4ccc0 100%);
+}
+
+.xp-btn:active {
+  background: linear-gradient(to bottom, #d4ccc0 0%, #ece9d8 100%);
+}
+
+.xp-btn img {
+  width: 14px;
+  height: 14px;
+}
+
+/* ============================================
+   PROFILE PICTURE
+   ============================================ */
+.xp-profile-pic {
+  width: 64px;
+  height: 64px;
+  border: 2px solid #fff;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  object-fit: cover;
+}
+
+.xp-profile-pic-small {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #fff;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+  object-fit: cover;
+}
+
+/* ============================================
+   SECTION DIVIDER
+   ============================================ */
+.xp-divider {
+  height: 1px;
+  background: #ece9d8;
+  margin: 12px 0;
+}
+
+/* ============================================
+   SCREENSHOT / IMAGE CONTAINER
+   ============================================ */
+.xp-screenshot {
+  border: 1px solid #808080;
+  background: #f0f0f0;
+  padding: 4px;
+}
+
+.xp-screenshot img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.xp-screenshot-caption {
+  font-size: 10px;
+  color: #666;
+  text-align: center;
+  margin-top: 4px;
+}
+
+/* ============================================
+   UTILS
+   ============================================ */
+.xp-text-blue {
+  color: #003399;
+}
+
+.xp-text-green {
+  color: #3c763d;
+}
+
+.xp-text-orange {
+  color: #8a6d3b;
+}
+
+.xp-text-gray {
+  color: #666;
+}
+
+.xp-text-sm {
+  font-size: 10px;
+}
+
+.xp-text-bold {
+  font-weight: bold;
+}
+
+.xp-mt-1 { margin-top: 4px; }
+.xp-mt-2 { margin-top: 8px; }
+.xp-mt-3 { margin-top: 12px; }
+.xp-mb-1 { margin-bottom: 4px; }
+.xp-mb-2 { margin-bottom: 8px; }
+.xp-mb-3 { margin-bottom: 12px; }
+.xp-p-1 { padding: 4px; }
+.xp-p-2 { padding: 8px; }
+.xp-p-3 { padding: 12px; }
+
+.xp-flex {
+  display: flex;
+}
+
+.xp-flex-col {
+  flex-direction: column;
+}
+
+.xp-gap-1 { gap: 4px; }
+.xp-gap-2 { gap: 8px; }
+.xp-gap-3 { gap: 12px; }
+
+.xp-items-center {
+  align-items: center;
+}
+
+.xp-justify-between {
+  justify-content: space-between;
+}
+
+.xp-flex-1 {
+  flex: 1;
+}
+
+.xp-w-full {
+  width: 100%;
+}
+
+.xp-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+/* ============================================
+   SIDEBAR ADDITIONAL STYLES
+   ============================================ */
+.xp-sidebar-header {
+  font-size: 11px;
+  font-weight: bold;
+  color: #215dc6;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.xp-sidebar-header img {
+  width: 16px;
+  height: 16px;
+}
+
+.xp-sidebar-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.xp-sidebar-info {
+  font-size: 10px;
+  color: #333;
+  margin: 0;
+}
+
+.xp-sidebar-info-small {
+  font-size: 9px;
+  color: #666;
+  margin: 0 0 4px 0;
+}
+
+/* ============================================
+   CONTENT HEADER
+   ============================================ */
+.xp-content-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #ece9d8;
+  margin-bottom: 12px;
+}
+
+.xp-content-header img {
+  width: 48px;
+  height: 48px;
+}
+
+.xp-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #003399;
+  margin: 0;
+}
+
+.xp-subtitle {
+  font-size: 11px;
+  color: #666;
+  margin: 2px 0 0 0;
+}
+
+/* ============================================
+   HEADER BANNER - Blue top banner
+   ============================================ */
+.xp-header-banner {
+  background: linear-gradient(to right, #0058e6 0%, #2878e8 50%, #3a8ff5 100%);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: -12px -12px 12px -12px;
+}
+
+/* ============================================
+   TAGS CONTAINER
+   ============================================ */
+.xp-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+/* ============================================
+   SCREENSHOTS GRID
+   ============================================ */
+.xp-screenshots {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.xp-screenshots img,
+img.xp-screenshot {
+  width: 100%;
+  height: auto;
+  border: 1px solid #808080;
+  display: block;
+}
+
+/* ============================================
+   LIST STYLES
+   ============================================ */
+.xp-list {
+  margin: 0;
+  padding: 0 0 0 16px;
+  list-style: none;
+}
+
+.xp-list li {
+  position: relative;
+  padding: 2px 0;
+  font-size: 11px;
+}
+
+.xp-list li::before {
+  content: "";
+  position: absolute;
+  left: -12px;
+  top: 8px;
+  width: 4px;
+  height: 4px;
+  background: #0058e6;
+}
+
+/* ============================================
+   BOX VARIANTS
+   ============================================ */
+.xp-box-blue .xp-box-header {
+  background: linear-gradient(to right, #0058e6 0%, #2878e8 100%);
+}
+
+.xp-box-green .xp-box-header {
+  background: linear-gradient(to right, #5cb85c 0%, #449d44 100%);
+}
+
+.xp-box-orange .xp-box-header {
+  background: linear-gradient(to right, #f0ad4e 0%, #ec971f 100%);
+}
+
+.xp-box-cyan .xp-box-header {
+  background: linear-gradient(to right, #5bc0de 0%, #31b0d5 100%);
+}
+
+/* ============================================
+   APP ITEM - Clickable app entry
+   ============================================ */
+.xp-app-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.xp-app-item:hover {
+  background: #316ac5;
+  color: #fff;
+}
+
+.xp-app-item img {
+  width: 24px;
+  height: 24px;
+}
+
+/* ============================================
+   TIMELINE - For Parcours
+   ============================================ */
+.xp-timeline {
+  position: relative;
+  padding-left: 20px;
+}
+
+.xp-timeline::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #0058e6;
+}
+
+.xp-timeline-item {
+  position: relative;
+  padding-bottom: 16px;
+}
+
+.xp-timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -20px;
+  top: 4px;
+  width: 10px;
+  height: 10px;
+  background: #0058e6;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 2px #0058e6;
+}
+
+.xp-timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+/* ============================================
+   SECTION HEADER - Simple inline header
+   ============================================ */
+.xp-section-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #003399;
+  margin-bottom: 8px;
+}
+
+.xp-section-header img {
+  width: 16px;
+  height: 16px;
+}
+
+/* ============================================
+   PARAGRAPH
+   ============================================ */
+.xp-paragraph {
+  font-size: 11px;
+  line-height: 1.5;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.xp-paragraph:last-child {
+  margin-bottom: 0;
+}
