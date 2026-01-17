@@ -129,13 +129,13 @@ class FileSystem {
               'GitHub': {
                 type: 'link',
                 icon: '/icons/github.svg',
-                url: 'https://github.com/lucasomusic',
+                url: 'https://github.com/Por-Tra',
                 description: 'Mon profil GitHub'
               },
               'LinkedIn': {
                 type: 'link',
                 icon: '/icons/linkedin.svg',
-                url: 'https://linkedin.com/in/lucas',
+                url: 'https://www.linkedin.com/in/lucas-contreras-hodapp/',
                 description: 'Mon profil LinkedIn'
               }
             }
