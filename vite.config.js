@@ -6,6 +6,7 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   base: '/', // Pour GitHub Pages (repo username.github.io)
+  assetsInclude: ['**/*.zip'], // Inclure les fichiers .zip comme assets
   build: {
     outDir: 'dist',
   },

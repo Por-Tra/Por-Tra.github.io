@@ -9,6 +9,9 @@ import screenshot1 from '../../../assets/Proj1/Capture d\'écran 2025-05-14 1004
 import screenshot2 from '../../../assets/Proj1/Capture d\'écran 2025-05-30 165033.png';
 import screenshot3 from '../../../assets/Proj1/image.png';
 
+// Import project download file
+import projectZip from '../../../assets/RPG.zip';
+
 export const config = {
   id: 'project-rpg',
   name: 'RPG 2D',
@@ -71,10 +74,10 @@ export const Component = () => {
               <img src="/icons/folder.png" alt="" />
               Gestion du projet
             </div>
-            <div className="xp-sidebar-link">
+            <a href={projectZip} download="RPG.zip" className="xp-sidebar-link">
               <img src="/icons/folder.png" alt="" />
-              Ouvrir le dossier
-            </div>
+              Télécharger (.zip)
+            </a>
             <a href="https://github.com/Por-Tra" target="_blank" rel="noopener noreferrer" className="xp-sidebar-link">
               <img src="/icons/git.png" alt="" />
               Voir sur GitHub

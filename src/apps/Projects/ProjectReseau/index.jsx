@@ -9,6 +9,9 @@ import screenshot1 from '../../../assets/Proj3/Capture d\'écran 2025-10-25 1920
 import screenshot2 from '../../../assets/Proj3/Capture d\'écran 2025-10-25 192048.png';
 import screenshot3 from '../../../assets/Proj3/Capture d\'écran 2025-10-25 192101.png';
 
+// Import project download file
+import projectZip from '../../../assets/Projet RSL.zip';
+
 export const config = {
   id: 'project-reseau',
   name: 'Réseau Social Local',
@@ -69,10 +72,10 @@ export const Component = () => {
               <img src="/icons/folder.png" alt="" />
               Gestion du projet
             </div>
-            <div className="xp-sidebar-link">
+            <a href={projectZip} download="Projet_RSL.zip" className="xp-sidebar-link">
               <img src="/icons/folder.png" alt="" />
-              Ouvrir le dossier
-            </div>
+              Télécharger (.zip)
+            </a>
             <a href="https://github.com/Por-Tra" target="_blank" rel="noopener noreferrer" className="xp-sidebar-link">
               <img src="/icons/git.png" alt="" />
               Voir sur GitHub

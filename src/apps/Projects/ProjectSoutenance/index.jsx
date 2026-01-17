@@ -10,6 +10,9 @@ import screenshot1 from '../../../assets/Proj2/Capture d\'écran 2025-10-07 0856
 import screenshot2 from '../../../assets/Proj2/Capture d\'écran 2025-10-07 085646.png';
 import screenshot3 from '../../../assets/Proj2/Capture d\'écran 2025-10-07 085653.png';
 
+// Import project download file
+import projectZip from '../../../assets/projet_sql-main.zip';
+
 
 export const config = {
   id: 'project-soutenance',
@@ -88,7 +91,7 @@ export const Component = () => {
               Gestion du projet
             </div>
             <div className="xp-sidebar-content">
-              <a href={projectData.downloadLink} className="xp-sidebar-link">
+              <a href={projectZip} download="projet_soutenance.zip" className="xp-sidebar-link">
                 <img src="/icons/download.png" alt="" className="w-3 h-3" />
                 Télécharger (.zip)
               </a>
