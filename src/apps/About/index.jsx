@@ -66,7 +66,7 @@ export const Component = () => {
               <img src="/icons/link.png" alt="" />
               Social Links
             </div>
-            <a href="https://www.instagram.com/lucas_chd/" target="_blank" rel="noopener noreferrer" className="xp-sidebar-link">
+            <a href="https://www.instagram.com/lucas_contreras_hodapp_/" target="_blank" rel="noopener noreferrer" className="xp-sidebar-link">
               <img src="/icons/explorer.png" alt="" />
               Instagram
             </a>

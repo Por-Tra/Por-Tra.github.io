@@ -3,7 +3,13 @@
  * 
  * Formulaire de contact style email XP
  */
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import emailjs from 'emailjs-com';
+
+// Configuration EmailJS - Remplacer par tes propres identifiants
+const EMAILJS_SERVICE_ID = 'service_yp7kk1m';
+const EMAILJS_TEMPLATE_ID = 'template_tv9399m';
+const EMAILJS_PUBLIC_KEY = '3gmM9AHo9zW51AdS_';
 
 export const config = {
   id: 'contact',
@@ -14,18 +20,44 @@ export const config = {
 };
 
 export const Component = () => {
+  const formRef = useRef();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: '',
   });
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState({ type: '', message: '' });
+  const [sending, setSending] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSent(true);
-    setTimeout(() => setSent(false), 3000);
-    setFormData({ name: '', email: '', message: '' });
+    
+    // Anti-bot honeypot check
+    if (formRef.current.company.value) {
+      setSending(false);
+      return;
+    }
+    
+    setSending(true);
+    setStatus({ type: '', message: '' });
+
+    emailjs.sendForm(
+      EMAILJS_SERVICE_ID,
+      EMAILJS_TEMPLATE_ID,
+      formRef.current,
+      EMAILJS_PUBLIC_KEY
+    )
+    .then(() => {
+      setStatus({ type: 'success', message: 'Message envoyé avec succès ! 🚀' });
+      setFormData({ name: '', email: '', message: '' });
+      setSending(false);
+      setTimeout(() => setStatus({ type: '', message: '' }), 5000);
+    })
+    .catch((error) => {
+      console.error('EmailJS Error:', error);
+      setStatus({ type: 'error', message: 'Erreur lors de l\'envoi. Réessayez ou contactez-moi directement par email.' });
+      setSending(false);
+    });
   };
 
   return (
@@ -41,7 +73,7 @@ export const Component = () => {
 
       {/* Toolbar */}
       <div className="xp-toolbar">
-        <button className="xp-toolbar-btn" onClick={handleSubmit}>
+        <button className="xp-toolbar-btn" type="submit" form="contact-form">
           <img src="/icons/signal.png" alt="" className="w-4 h-4" />
           Envoyer
         </button>
@@ -122,11 +154,20 @@ export const Component = () => {
               Nouveau Message
             </div>
             <div className="xp-box-content">
-              <form onSubmit={handleSubmit} className="space-y-3">
+              <form id="contact-form" ref={formRef} onSubmit={handleSubmit} className="space-y-3">
+                {/* Honeypot anti-bot field */}
+                <input
+                  type="text"
+                  name="company"
+                  tabIndex="-1"
+                  autoComplete="off"
+                  style={{ display: 'none' }}
+                />
                 <div className="flex items-center gap-2">
                   <label className="text-xs font-medium w-16">De :</label>
                   <input
                     type="text"
+                    name="from_name"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="Votre nom"
@@ -139,6 +180,7 @@ export const Component = () => {
                   <label className="text-xs font-medium w-16">Email :</label>
                   <input
                     type="email"
+                    name="reply_to"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="votre@email.com"
@@ -150,6 +192,7 @@ export const Component = () => {
                 <div>
                   <label className="text-xs font-medium block mb-1">Message :</label>
                   <textarea
+                    name="message"
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Écrivez votre message ici..."
@@ -159,16 +202,21 @@ export const Component = () => {
                 </div>
 
                 <div className="flex justify-end gap-2 pt-2">
-                  <button type="submit" className="xp-btn">
+                  <button type="submit" className="xp-btn" disabled={sending}>
                     <img src="/icons/signal.png" alt="" className="w-3 h-3" />
-                    Envoyer
+                    {sending ? 'Envoi...' : 'Envoyer'}
                   </button>
                 </div>
               </form>
 
-              {sent && (
+              {status.type === 'success' && (
                 <div className="mt-3 bg-[#dff0d8] border border-[#3c763d] text-[#3c763d] p-2 text-xs">
-                  Message envoyé avec succès !
+                  {status.message}
+                </div>
+              )}
+              {status.type === 'error' && (
+                <div className="mt-3 bg-[#f2dede] border border-[#a94442] text-[#a94442] p-2 text-xs">
+                  {status.message}
                 </div>
               )}
             </div>

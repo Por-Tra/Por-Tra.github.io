@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import DesktopIcon from './DesktopIcon';
 import Window from './Window';
 import Taskbar from './Taskbar';
@@ -59,15 +59,101 @@ const Desktop = () => {
     return snapped;
   };
   
+  // Calculate how many icons can fit in a column based on screen height
+  const getIconsPerColumn = () => {
+    // Subtract taskbar height (~48px) and some padding
+    const availableHeight = window.innerHeight - 60;
+    return Math.max(1, Math.floor(availableHeight / GRID_SIZE));
+  };
+
   // Initialize icons with grid positions using the registry
   const [icons, setIcons] = useState(() => {
     const desktopApps = appRegistry.getDesktopApps();
-    return desktopApps.map((app, index) => ({
-      ...app,
-      x: GRID_PADDING,
-      y: GRID_PADDING + index * GRID_SIZE,
-    }));
+    const iconsPerColumn = getIconsPerColumn();
+    
+    return desktopApps.map((app, index) => {
+      const column = Math.floor(index / iconsPerColumn);
+      const row = index % iconsPerColumn;
+      return {
+        ...app,
+        x: GRID_PADDING + column * GRID_SIZE,
+        y: GRID_PADDING + row * GRID_SIZE,
+      };
+    });
   });
+
+  // Handle window resize - reorganize icons and adjust windows
+  useEffect(() => {
+    const handleResize = () => {
+      const iconsPerColumn = getIconsPerColumn();
+      
+      // Reorganize icons
+      setIcons(prev => prev.map((icon, index) => {
+        const column = Math.floor(index / iconsPerColumn);
+        const row = index % iconsPerColumn;
+        return {
+          ...icon,
+          x: GRID_PADDING + column * GRID_SIZE,
+          y: GRID_PADDING + row * GRID_SIZE,
+        };
+      }));
+
+      // Adjust windows to fit in viewport
+      const maxWidth = window.innerWidth;
+      const maxHeight = window.innerHeight - 48; // taskbar height
+      
+      setWindows(prev => prev.map(w => {
+        if (w.maximized) return w;
+        
+        let newX = w.x;
+        let newY = w.y;
+        let newWidth = Math.min(w.width, maxWidth - 20);
+        let newHeight = Math.min(w.height, maxHeight - 20);
+        
+        // Ensure window is visible
+        if (newX + newWidth > maxWidth) {
+          newX = Math.max(0, maxWidth - newWidth);
+        }
+        if (newY + newHeight > maxHeight) {
+          newY = Math.max(0, maxHeight - newHeight);
+        }
+        
+        return {
+          ...w,
+          x: newX,
+          y: newY,
+          width: newWidth,
+          height: newHeight,
+        };
+      }));
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Get responsive window dimensions
+  const getResponsiveWindowSize = (defaultWidth, defaultHeight) => {
+    const maxWidth = window.innerWidth - 40;
+    const maxHeight = window.innerHeight - 100; // taskbar + padding
+    const isMobile = window.innerWidth < 768;
+    
+    if (isMobile) {
+      return {
+        width: maxWidth,
+        height: maxHeight,
+        x: 20,
+        y: 20,
+      };
+    }
+    
+    return {
+      width: Math.min(defaultWidth, maxWidth),
+      height: Math.min(defaultHeight, maxHeight),
+      x: Math.max(20, (window.innerWidth - Math.min(defaultWidth, maxWidth)) / 4),
+      y: Math.max(20, (window.innerHeight - Math.min(defaultHeight, maxHeight)) / 4),
+    };
+  };
 
   const openApp = useCallback((app) => {
     const existingWindow = windows.find(w => w.appId === app.id);
@@ -81,6 +167,9 @@ const Desktop = () => {
       return;
     }
 
+    const responsiveSize = getResponsiveWindowSize(app.defaultWidth || 800, app.defaultHeight || 500);
+    const isMobile = window.innerWidth < 768;
+
     const newWindow = {
       id: nextId,
       appId: app.id,
@@ -88,10 +177,10 @@ const Desktop = () => {
       icon: app.icon,
       url: app.url,
       content: app.content,
-      x: 100 + (windows.length % 5) * 30,
-      y: 80 + (windows.length % 5) * 30,
-      width: app.defaultWidth || 800,
-      height: app.defaultHeight || 500,
+      x: isMobile ? responsiveSize.x : responsiveSize.x + (windows.length % 5) * 30,
+      y: isMobile ? responsiveSize.y : responsiveSize.y + (windows.length % 5) * 30,
+      width: responsiveSize.width,
+      height: responsiveSize.height,
       minimized: false,
       maximized: false,
       zIndex: nextZIndex,
@@ -115,16 +204,19 @@ const Desktop = () => {
     
     // Pour les apps avec extraProps, on crée toujours une nouvelle fenêtre
     // (par exemple, plusieurs images peuvent être ouvertes)
+    const responsiveSize = getResponsiveWindowSize(app.defaultWidth || 800, app.defaultHeight || 500);
+    const isMobile = window.innerWidth < 768;
+
     const newWindow = {
       id: nextId,
       appId: app.id,
       title: customTitle,
       icon: app.icon,
       url: app.url,
-      x: 120 + (windows.length % 5) * 30,
-      y: 100 + (windows.length % 5) * 30,
-      width: app.defaultWidth || 800,
-      height: app.defaultHeight || 500,
+      x: isMobile ? responsiveSize.x : responsiveSize.x + (windows.length % 5) * 30,
+      y: isMobile ? responsiveSize.y : responsiveSize.y + (windows.length % 5) * 30,
+      width: responsiveSize.width,
+      height: responsiveSize.height,
       minimized: false,
       maximized: false,
       zIndex: nextZIndex,

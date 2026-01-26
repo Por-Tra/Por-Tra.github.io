@@ -238,3 +238,65 @@ body {
   background-position: center;
 }
 
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .xp-window {
+    border-radius: 4px 4px 0 0;
+    border-width: 2px;
+  }
+  
+  .xp-titlebar, .xp-titlebar-inactive {
+    padding: 6px 8px;
+  }
+  
+  .window-controls {
+    gap: 4px;
+  }
+  
+  .window-controls button {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+  
+  .xp-taskbar {
+    height: 44px;
+  }
+  
+  .xp-start-btn {
+    padding: 4px 12px 4px 6px;
+    font-size: 12px;
+  }
+  
+  .xp-taskbar-btn {
+    max-width: 100px;
+    font-size: 11px;
+    padding: 4px 6px;
+  }
+  
+  .resize-handle {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .xp-window {
+    border-radius: 0;
+  }
+  
+  .window-controls button {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .xp-taskbar-btn {
+    max-width: 60px;
+    padding: 4px;
+  }
+  
+  .xp-start-btn {
+    padding: 4px 8px 4px 4px;
+  }
+}
+
