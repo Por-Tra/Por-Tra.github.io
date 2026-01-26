@@ -6,7 +6,6 @@
 import { useState, useRef } from 'react';
 import emailjs from 'emailjs-com';
 
-// Configuration EmailJS - Remplacer par tes propres identifiants
 const EMAILJS_SERVICE_ID = 'service_yp7kk1m';
 const EMAILJS_TEMPLATE_ID = 'template_tv9399m';
 const EMAILJS_PUBLIC_KEY = '3gmM9AHo9zW51AdS_';
@@ -14,7 +13,7 @@ const EMAILJS_PUBLIC_KEY = '3gmM9AHo9zW51AdS_';
 export const config = {
   id: 'contact',
   name: 'Contact',
-  icon: '/icons/signal.png',
+  icon: '/icons/message.ico',
   defaultWidth: 600,
   defaultHeight: 500,
 };
@@ -77,7 +76,7 @@ export const Component = () => {
           <img src="/icons/signal.png" alt="" className="w-4 h-4" />
           Envoyer
         </button>
-        <div className="xp-toolbar-separator"></div>
+        {/* <div className="xp-toolbar-separator"></div>
         <button className="xp-toolbar-btn">
           <img src="/icons/folder.png" alt="" className="w-4 h-4" />
           Joindre
@@ -85,7 +84,7 @@ export const Component = () => {
         <button className="xp-toolbar-btn">
           <img src="/icons/check.png" alt="" className="w-4 h-4" />
           Orthographe
-        </button>
+        </button> */}
       </div>
 
       {/* Address Bar */}

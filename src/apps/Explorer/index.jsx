@@ -276,7 +276,7 @@ export const Component = ({ onOpenApp }) => {
         {/* Left Sidebar */}
         <div className="w-44 bg-gradient-to-b from-[#6b88c4] to-[#4d6eb5] p-2 overflow-y-auto flex-shrink-0">
           {/* Tâches système */}
-          <div className="bg-white/90 rounded-lg p-2 mb-2">
+          <div className="bg-white/90 p-2 mb-2">
             <h3 className="text-[11px] font-bold text-[#215dc6] mb-2">Tâches système</h3>
             <div className="space-y-1 text-[10px]">
               {selectedItem?.item?.downloadFile && (
@@ -284,7 +284,7 @@ export const Component = ({ onOpenApp }) => {
                   onClick={() => handleDoubleClick(selectedItem.name, selectedItem.item)}
                   className="flex items-center gap-1 text-[#215dc6] hover:underline cursor-pointer"
                 >
-                  <span>📥</span> Télécharger
+                  <span></span> Télécharger
                 </div>
               )}
               {selectedItem?.item?.type === 'app' && (
@@ -292,14 +292,14 @@ export const Component = ({ onOpenApp }) => {
                   onClick={() => handleDoubleClick(selectedItem.name, selectedItem.item)}
                   className="flex items-center gap-1 text-[#215dc6] hover:underline cursor-pointer"
                 >
-                  <span>▶</span> Ouvrir
+                  <span></span> Ouvrir
                 </div>
               )}
             </div>
           </div>
 
           {/* Raccourcis */}
-          <div className="bg-white/90 rounded-lg p-2 mb-2">
+          <div className="bg-white/90 p-2 mb-2">
             <h3 className="text-[11px] font-bold text-[#215dc6] mb-2">Autres emplacements</h3>
             <div className="space-y-1 text-[10px]">
               <div 
@@ -335,7 +335,7 @@ export const Component = ({ onOpenApp }) => {
 
           {/* Détails de l'élément sélectionné */}
           {selectedItem && (
-            <div className="bg-white/90 rounded-lg p-2">
+            <div className="bg-white/90 p-2">
               <h3 className="text-[11px] font-bold text-[#215dc6] mb-2">Détails</h3>
               <div className="text-[10px] text-gray-700 space-y-1">
                 <p className="truncate"><strong>Nom:</strong> {selectedItem.name}</p>
