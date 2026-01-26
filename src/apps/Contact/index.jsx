@@ -6,7 +6,7 @@
 import { useState, useRef } from 'react';
 import emailjs from 'emailjs-com';
 
-const EMAILJS_SERVICE_ID = 'service_yp7kk1m';
+const EMAILJS_SERVICE_ID = 'service_6i7i8an';
 const EMAILJS_TEMPLATE_ID = 'template_tv9399m';
 const EMAILJS_PUBLIC_KEY = '3gmM9AHo9zW51AdS_';
 
