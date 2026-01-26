@@ -69,7 +69,7 @@ export const Component = () => {
                 Compétences
               </a>
               <a href="#" className="xp-sidebar-link">
-                <img src="/icons/signal.png" alt="" className="w-3 h-3" />
+                <img src="/icons/message.ico" alt="" className="w-3 h-3" />
                 Contact
               </a>
             </div>

@@ -47,7 +47,7 @@ export const Component = () => {
       EMAILJS_PUBLIC_KEY
     )
     .then(() => {
-      setStatus({ type: 'success', message: 'Message envoyé avec succès ! 🚀' });
+      setStatus({ type: 'success', message: 'Message envoyé' });
       setFormData({ name: '', email: '', message: '' });
       setSending(false);
       setTimeout(() => setStatus({ type: '', message: '' }), 5000);
@@ -73,25 +73,16 @@ export const Component = () => {
       {/* Toolbar */}
       <div className="xp-toolbar">
         <button className="xp-toolbar-btn" type="submit" form="contact-form">
-          <img src="/icons/signal.png" alt="" className="w-4 h-4" />
+          <img src="/icons/message.ico" alt="" className="w-4 h-4" />
           Envoyer
         </button>
-        {/* <div className="xp-toolbar-separator"></div>
-        <button className="xp-toolbar-btn">
-          <img src="/icons/folder.png" alt="" className="w-4 h-4" />
-          Joindre
-        </button>
-        <button className="xp-toolbar-btn">
-          <img src="/icons/check.png" alt="" className="w-4 h-4" />
-          Orthographe
-        </button> */}
       </div>
 
       {/* Address Bar */}
       <div className="xp-addressbar">
         <span className="xp-addressbar-label">Adresse</span>
         <div className="xp-addressbar-input">
-          <img src="/icons/signal.png" alt="" className="w-4 h-4" />
+          <img src="/icons/message.ico" alt="" className="w-4 h-4" />
           <span>C:\Utilisateurs\Lucas\Contact</span>
         </div>
       </div>
@@ -102,12 +93,12 @@ export const Component = () => {
         <div className="xp-sidebar">
           <div className="xp-sidebar-box">
             <div className="xp-sidebar-header">
-              <img src="/icons/signal.png" alt="" className="w-4 h-4" />
+              <img src="/icons/message.ico" alt="" className="w-4 h-4" />
               Contact direct
             </div>
             <div className="xp-sidebar-content">
               <a href="mailto:lucascontrerashodapp@gmail.com" className="xp-sidebar-link">
-                <img src="/icons/signal.png" alt="" className="w-3 h-3" />
+                <img src="/icons/message.ico" alt="" className="w-3 h-3" />
                 Email
               </a>
               <a href="https://linkedin.com/in/lucas-contreras-hodapp" target="_blank" rel="noopener noreferrer" className="xp-sidebar-link">
