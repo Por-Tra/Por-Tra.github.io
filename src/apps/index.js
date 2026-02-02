@@ -76,6 +76,8 @@ import * as Blank from './utilities/Blank';
 import * as ProjectRPG from './Projects/ProjectRPG';
 import * as ProjectSoutenance from './Projects/ProjectSoutenance';
 import * as ProjectReseau from './Projects/ProjectReseau';
+import * as ProjectMycoria from './Projects/ProjectMycoria';
+import * as ProjectVapeur from './Projects/ProjectVapeur';
 
 // =========================================
 // ENREGISTREMENT DES APPLICATIONS
@@ -127,6 +129,8 @@ const apps = [
   { ...ProjectRPG.config, component: ProjectRPG.Component, desktopOrder: 13 },
   { ...ProjectSoutenance.config, component: ProjectSoutenance.Component, desktopOrder: 14 },
   { ...ProjectReseau.config, component: ProjectReseau.Component, desktopOrder: 15 },
+  { ...ProjectMycoria.config, component: ProjectMycoria.Component, desktopOrder: 16 },
+  { ...ProjectVapeur.config, component: ProjectVapeur.Component, desktopOrder: 17 },
   
   // ===== APPS UTILITAIRES (pas sur le bureau) =====
   { ...ImageViewer.config, component: ImageViewer.Component },

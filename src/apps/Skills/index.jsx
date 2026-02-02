@@ -3,6 +3,7 @@
  * 
  * Affichage des compétences techniques - Style Windows XP
  */
+import { MenuBar, useZoom, getZoomStyle } from '../../components/ProjectLayout';
 
 export const config = {
   id: 'skills',
@@ -30,16 +31,17 @@ const skills = [
 const learningSkills = ['TypeScript', 'Docker', 'Node.js', 'MongoDB'];
 
 export const Component = () => {
+  const { zoom, zoomIn, zoomOut, resetZoom } = useZoom();
+
   return (
     <div className="xp-app">
-      {/* Menu Bar */}
-      <div className="xp-menubar">
-        <span>Fichier</span>
-        <span>Édition</span>
-        <span>Affichage</span>
-        <span>Outils</span>
-        <span>?</span>
-      </div>
+      {/* Menu Bar avec Zoom */}
+      <MenuBar 
+        zoom={zoom} 
+        onZoomIn={zoomIn} 
+        onZoomOut={zoomOut} 
+        onReset={resetZoom}
+      />
 
       {/* Toolbar */}
       <div className="xp-toolbar">
@@ -64,7 +66,7 @@ export const Component = () => {
       </div>
 
       {/* Main Content */}
-      <div className="xp-content">
+      <div className="xp-content xp-content-zoomable" style={getZoomStyle(zoom)}>
         {/* Sidebar */}
         <div className="xp-sidebar">
           <div className="xp-sidebar-box">

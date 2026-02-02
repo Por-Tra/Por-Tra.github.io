@@ -186,6 +186,10 @@
   overflow: hidden;
 }
 
+.xp-content-zoomable {
+  overflow: auto;
+}
+
 .xp-content-main {
   flex: 1;
   background: #fff;
@@ -940,4 +944,114 @@ img.xp-screenshot {
 
 .xp-paragraph:last-child {
   margin-bottom: 0;
+}
+
+/* ============================================
+   ZOOM CONTROLS - Contrôles de zoom
+   ============================================ */
+.xp-zoomable-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.xp-zoomable-content {
+  flex: 1;
+  overflow: auto;
+  transform-origin: top left;
+}
+
+.xp-zoom-toolbar {
+  background: linear-gradient(to bottom, #ece9d8 0%, #d4d0c8 100%);
+  border-bottom: 1px solid #808080;
+  padding: 2px 8px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.xp-zoom-controls {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: #fff;
+  border: 1px solid #7f9db9;
+  padding: 1px 4px;
+  border-radius: 2px;
+}
+
+.xp-zoom-btn {
+  width: 20px;
+  height: 18px;
+  background: linear-gradient(to bottom, #fff 0%, #ece9d8 100%);
+  border: 1px solid #808080;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+}
+
+.xp-zoom-btn:hover:not(:disabled) {
+  background: linear-gradient(to bottom, #e8e4d8 0%, #d4ccc0 100%);
+}
+
+.xp-zoom-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.xp-zoom-reset {
+  width: 24px;
+  font-size: 11px;
+}
+
+.xp-zoom-level {
+  font-size: 10px;
+  min-width: 36px;
+  text-align: center;
+  color: #333;
+  padding: 0 4px;
+}
+
+.xp-menubar-with-zoom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.xp-menubar-items {
+  display: flex;
+  gap: 16px;
+}
+
+/* Responsive zoom - Le contenu s'adapte */
+.xp-zoomable-content .xp-app {
+  font-size: inherit;
+}
+
+.xp-zoomable-content .xp-sidebar {
+  width: calc(180px * var(--zoom-scale, 1));
+  min-width: 120px;
+}
+
+.xp-zoomable-content img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ============================================
+   SCREENSHOT CLICKABLE - Styles pour images cliquables
+   ============================================ */
+.xp-screenshot-clickable {
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.xp-screenshot-clickable:hover {
+  transform: scale(1.02);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }

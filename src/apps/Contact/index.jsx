@@ -5,6 +5,7 @@
  */
 import { useState, useRef } from 'react';
 import emailjs from 'emailjs-com';
+import { MenuBar, useZoom, getZoomStyle } from '../../components/ProjectLayout';
 
 const EMAILJS_SERVICE_ID = 'service_6i7i8an';
 const EMAILJS_TEMPLATE_ID = 'template_tv9399m';
@@ -19,6 +20,7 @@ export const config = {
 };
 
 export const Component = () => {
+  const { zoom, zoomIn, zoomOut, resetZoom } = useZoom();
   const formRef = useRef();
   const [formData, setFormData] = useState({
     name: '',
@@ -61,14 +63,13 @@ export const Component = () => {
 
   return (
     <div className="xp-app">
-      {/* Menu Bar */}
-      <div className="xp-menubar">
-        <span>Fichier</span>
-        <span>Édition</span>
-        <span>Affichage</span>
-        <span>Message</span>
-        <span>?</span>
-      </div>
+      {/* Menu Bar avec Zoom */}
+      <MenuBar 
+        zoom={zoom} 
+        onZoomIn={zoomIn} 
+        onZoomOut={zoomOut} 
+        onReset={resetZoom}
+      />
 
       {/* Toolbar */}
       <div className="xp-toolbar">
@@ -88,7 +89,7 @@ export const Component = () => {
       </div>
 
       {/* Main Content */}
-      <div className="xp-content">
+      <div className="xp-content xp-content-zoomable" style={getZoomStyle(zoom)}>
         {/* Sidebar */}
         <div className="xp-sidebar">
           <div className="xp-sidebar-box">

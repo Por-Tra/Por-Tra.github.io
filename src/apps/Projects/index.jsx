@@ -4,6 +4,7 @@
  * Liste des projets - Style Windows XP
  */
 import { useState } from 'react';
+import { MenuBar, useZoom, getZoomStyle } from '../../components/ProjectLayout';
 
 export const config = {
   id: 'projects',
@@ -41,18 +42,19 @@ const projects = [
 ];
 
 export const Component = () => {
+  const { zoom, zoomIn, zoomOut, resetZoom } = useZoom();
   const [viewMode, setViewMode] = useState('list');
   const [selectedProject, setSelectedProject] = useState(null);
 
   return (
     <div className="xp-app">
-      {/* Menu Bar */}
-      <div className="xp-menubar">
-        <span className="xp-menubar-item">Fichier</span>
-        <span className="xp-menubar-item">Édition</span>
-        <span className="xp-menubar-item">Affichage</span>
-        <span className="xp-menubar-item">?</span>
-      </div>
+      {/* Menu Bar avec Zoom */}
+      <MenuBar 
+        zoom={zoom} 
+        onZoomIn={zoomIn} 
+        onZoomOut={zoomOut} 
+        onReset={resetZoom}
+      />
 
       {/* Toolbar */}
       <div className="xp-toolbar">
@@ -92,7 +94,7 @@ export const Component = () => {
       </div>
 
       {/* Main Content */}
-      <div className="xp-content">
+      <div className="xp-content xp-content-zoomable" style={getZoomStyle(zoom)}>
         {/* Sidebar */}
         <div className="xp-sidebar">
           <div className="xp-sidebar-box">
