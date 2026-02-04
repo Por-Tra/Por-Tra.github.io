@@ -27,9 +27,20 @@ const projectData = {
   team: "Travaillé en équipe de 4",
   date: "Décembre 2025",
   features: [
-    "Ajout/suppression de jeux dans une bibliothèque personnelle",
-    "Connexion à une base de données pour stocker les informations des utilisateurs",
-    "Mise en avant de jeux choisis par l'administrateur"
+    "Afficher la liste des jeux mis en avant sur la page d'accueil",
+    "Afficher la liste de tous les jeux sur une page dédiée",
+    "Création d'un jeu",
+    "Afficher le détail d'un jeu (avec ses infos, son genre et son éditeur)",
+    "Modification d'un jeu (nom, description, date de sortie, genre, éditeur)",
+    "Suppression d'un jeu",
+    "Possibilité d'afficher le jeux sur la page d'accueil (mise en avant)",
+    "Afficher la liste des genres sur une page dédiée",
+    "Afficher la liste des jeux d'un genre sur une page dédiée",
+    "Création d'un éditeur",
+    "Afficher la liste des éditeurs sur une page dédiée",
+    "Afficher la liste des jeux d'un éditeur sur une page dédiée",
+    "Modification d'un éditeur",
+    "Suppression d'un éditeur"
   ],
   role: "Ajout d'un jeu dans la bibliothèque, connexion à la base de données, ajout d'un éditeur de jeu",
   skills: [
