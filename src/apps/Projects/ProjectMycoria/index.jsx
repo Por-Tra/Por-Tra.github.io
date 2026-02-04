@@ -8,9 +8,18 @@
 import { ProjectLayout, ProjectSidebar } from '../../../components/ProjectLayout';
 
 // Import des images
-import screenshot1 from '../../../assets/Proj3/Capture d\'écran 2025-10-25 192040.png';
-import screenshot2 from '../../../assets/Proj3/Capture d\'écran 2025-10-25 192048.png';
-import screenshot3 from '../../../assets/Proj3/Capture d\'écran 2025-10-25 192101.png';
+import screenshot1 from '../../../assets/Proj-Mycoria/1.png';
+import screenshot2 from '../../../assets/Proj-Mycoria/2.png';
+import screenshot3 from '../../../assets/Proj-Mycoria/3.png';
+import screenshot4 from '../../../assets/Proj-Mycoria/4.png';
+import screenshot5 from '../../../assets/Proj-Mycoria/5.png';
+import screenshot6 from '../../../assets/Proj-Mycoria/6.png';
+import screenshot7 from '../../../assets/Proj-Mycoria/7.png';
+import screenshot8 from '../../../assets/Proj-Mycoria/8.png';
+import screenshot9 from '../../../assets/Proj-Mycoria/9.png';
+import screenshot10 from '../../../assets/Proj-Mycoria/10.png';
+import screenshot11 from '../../../assets/Proj-Mycoria/11.png';
+import screenshot12 from '../../../assets/Proj-Mycoria/12.png';
 
 export const config = {
   id: 'mycoria-project',
@@ -40,7 +49,7 @@ const projectData = {
     "Gestion d'équipe",
     "Travail en équipe"
   ],
-  images: [screenshot1, screenshot2, screenshot3]
+  images: [screenshot1, screenshot2, screenshot3, screenshot4, screenshot5, screenshot6, screenshot7, screenshot8, screenshot9, screenshot10, screenshot11, screenshot12],
 };
 
 export const Component = ({ onOpenApp }) => {

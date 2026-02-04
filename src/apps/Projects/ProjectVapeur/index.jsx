@@ -6,9 +6,11 @@
 import { ProjectLayout, ProjectSidebar } from '../../../components/ProjectLayout';
 
 // Import des images
-import screenshot1 from '../../../assets/Proj3/Capture d\'écran 2025-10-25 192040.png';
-import screenshot2 from '../../../assets/Proj3/Capture d\'écran 2025-10-25 192048.png';
-import screenshot3 from '../../../assets/Proj3/Capture d\'écran 2025-10-25 192101.png';
+import screenshot1 from '../../../assets/Proj-Vapeur/1.png';
+import screenshot2 from '../../../assets/Proj-Vapeur/2.png';
+import screenshot3 from '../../../assets/Proj-Vapeur/3.png';
+import screenshot4 from '../../../assets/Proj-Vapeur/4.png';
+import screenshot5 from '../../../assets/Proj-Vapeur/5.png';
 
 export const config = {
   id: 'vapeur-project',
@@ -38,7 +40,7 @@ const projectData = {
     "Travail en équipe",
     "Versioning Git"
   ],
-  images: [screenshot1, screenshot2, screenshot3]
+  images: [screenshot1, screenshot2, screenshot3, screenshot4, screenshot5]
 };
 
 export const Component = ({ onOpenApp }) => {
