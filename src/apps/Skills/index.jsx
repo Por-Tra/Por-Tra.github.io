@@ -14,21 +14,33 @@ export const config = {
 };
 
 const skills = [
-  { name: 'JavaScript', level: 85, category: 'Langages' },
+  { name: 'JavaScript', level: 60, category: 'Langages' },
   { name: 'Python', level: 80, category: 'Langages' },
-  { name: 'C++/C#/C', level: 75, category: 'Langages' },
+  { name: 'C++', level: 70, category: 'Langages' },
+  {name: 'C#', level: 80, category: 'Langages'},
+  {name: 'C', level: 50, category: 'Langages'},
   { name: 'PHP', level: 70, category: 'Langages' },
   { name: 'SQL', level: 75, category: 'Langages' },
-  { name: 'HTML/CSS', level: 85, category: 'Web' },
-  { name: 'React', level: 70, category: 'Web' },
-  { name: 'Blender', level: 65, category: 'Outils' },
+  { name: 'HTML', level: 85, category: 'Web' },
+  {name: 'CSS', level: 10, category: 'Web'},
+  { name: 'React', level: 40, category: 'Web' },
   { name: 'VS Code', level: 90, category: 'Outils' },
-  { name: 'Visual Studio', level: 80, category: 'Outils' },
-  { name: 'Git', level: 85, category: 'Outils' },
-  { name: 'Qt', level: 60, category: 'Outils' },
+  { name: 'Visual Studio', level: 90, category: 'Outils' },
+  { name: 'Git', level: 90, category: 'Outils' },
+  { name: 'Qt', level: 60, category: 'Outils' }
 ];
 
-const learningSkills = ['TypeScript', 'Docker', 'Node.js', 'MongoDB'];
+const AcadmicSkills = [
+  {name : "Développer des applications informatiques simples - Niveau 1", checked: true},
+  {name :" Appréhender et construire des algorithmes - Niveau 1", checked: true},
+  {name :" Installer et configurer un poste de travail - Niveau 1", checked: true},
+  {name : "Concevoir et mettre en place une base de données à partir d’un cahier des charges client - Niveau 1", checked: true},
+  {name : "Identifier les besoins métiers des clients et des utilisateurs - Niveau 1", checked: true},
+  {name : "Identifier ses aptitudes pour travailler dans une équipe - Niveau 1", checked: true}
+];
+
+
+const learningSkills = ['Cmake', 'Unity', 'Kotlin', 'Relation de base de données NoSQL'];
 
 export const Component = () => {
   const { zoom, zoomIn, zoomOut, resetZoom } = useZoom();
@@ -74,7 +86,12 @@ export const Component = () => {
               <img src="/icons/folder.png" alt="" className="w-4 h-4" />
               Catégories
             </div>
+
             <div className="xp-sidebar-content">
+              <a href="#academiques" className="xp-sidebar-link">
+                <img src="/icons/education.png" alt="" className="w-3 h-3" />
+                Académiques
+              </a>
               <a href="#langages" className="xp-sidebar-link">
                 <img src="/icons/code.png" alt="" className="w-3 h-3" />
                 Langages
@@ -96,7 +113,7 @@ export const Component = () => {
               Statistiques
             </div>
             <div className="xp-sidebar-content">
-              <p className="xp-sidebar-info"><strong>Total:</strong> {skills.length} compétences</p>
+              <p className="xp-sidebar-info"><strong>Total:</strong> {skills.length + AcadmicSkills.length} compétences</p>
               <p className="xp-sidebar-info"><strong>Formation:</strong> BUT Informatique</p>
               <p className="xp-sidebar-info"><strong>Lieu:</strong> Le Puy-en-Velay</p>
             </div>
@@ -111,6 +128,32 @@ export const Component = () => {
             <div>
               <h1 className="xp-title">Mes Compétences</h1>
               <p className="xp-subtitle">Langages de programmation et outils maîtrisés</p>
+            </div>
+          </div>
+
+          {/* Academic Skills Section */}
+          <div id="academiques" className="xp-box">
+            <div className="xp-box-header">
+              <img src="/icons/education.png" alt="" className="w-4 h-4" />
+              Compétences Académiques
+            </div>
+            <div className="xp-box-content">
+              <div className="space-y-2">
+                {AcadmicSkills.map((skill, index) => (
+                  <div key={index} className="flex items-center gap-3">
+                    <div className="flex-shrink-0">
+                      {skill.checked ? (
+                        <div className="w-4 h-4 border-2 border-[#003c74] bg-[#316ac5] flex items-center justify-center">
+                          <div className="w-2 h-2 bg-white transform rotate-45 border-r-2 border-b-2 border-white" style={{ borderWidth: '0 2px 2px 0', width: '6px', height: '10px', marginTop: '-2px', marginLeft: '-1px' }}></div>
+                        </div>
+                      ) : (
+                        <div className="w-4 h-4 border-2 border-[#808080] bg-white"></div>
+                      )}
+                    </div>
+                    <span className="text-xs text-[#000000]">{skill.name}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -160,7 +203,7 @@ export const Component = () => {
 
       {/* Status Bar */}
       <div className="xp-statusbar">
-        <span>{skills.length} compétences</span>
+        <span>{skills.length + AcadmicSkills.length} compétences</span>
         <span>BUT Informatique - Le Puy-en-Velay</span>
       </div>
     </div>

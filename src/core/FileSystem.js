@@ -124,7 +124,7 @@ class FileSystem {
           },
           'Réseau': {
             type: 'folder',
-            icon: '/icons/internet.svg',
+            icon: '/icons/explorer.png',
             children: {
               'GitHub': {
                 type: 'link',
@@ -142,7 +142,7 @@ class FileSystem {
           },
           'Disque local (C:)': {
             type: 'drive',
-            icon: '/icons/explorer.png',
+            icon: '/icons/PC.ico',
             children: {
               'Program Files': {
                 type: 'folder',

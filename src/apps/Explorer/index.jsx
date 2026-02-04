@@ -10,7 +10,7 @@ import fileSystem from '../../core/FileSystem';
 export const config = {
   id: 'explorer',
   name: 'Poste de travail',
-  icon: '/icons/computer.svg',
+  icon: '/icons/PC.ico',
   defaultWidth: 750,
   defaultHeight: 520,
 };
@@ -327,7 +327,7 @@ export const Component = ({ onOpenApp }) => {
                 onClick={() => navigateTo(['Poste de travail', 'Réseau'])}
                 className="flex items-center gap-1 text-[#215dc6] hover:underline cursor-pointer"
               >
-                <img src="/icons/internet.svg" alt="" className="w-3 h-3" />
+                <img src="/icons/explorer.png" alt="" className="w-3 h-3" />
                 Favoris réseau
               </div>
             </div>

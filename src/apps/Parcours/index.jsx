@@ -110,7 +110,7 @@ export const Component = () => {
               Diplômes obtenus
             </div>
             <div className="xp-sidebar-link">
-              <img src="/icons/explorer.png" alt="" />
+              <img src="/icons/file.png" alt="" />
               Certifications
             </div>
           </div>
@@ -151,14 +151,14 @@ export const Component = () => {
               </div>
               <div className="xp-box-content">
                 <div className="xp-flex xp-gap-2 xp-mb-2">
-                  <img src="/icons/explorer.png" alt="" className="w-4 h-4" />
+                  <img src="#" alt="" className="w-4 h-4" /> {/* IMAGE TITRE */}
                   <span className="xp-text-bold">{item.etablissement}</span>
                   <span className="xp-text-gray">•</span>
                   <span className="xp-text-gray">{item.periode}</span>
                 </div>
 
                 <div className="xp-flex xp-gap-2 xp-mb-2">
-                  <img src="/icons/signal.png" alt="" className="w-4 h-4" />
+                  <img src="/icons/location.ico" alt="" className="w-4 h-4" />
                   <span className="xp-text-gray">{item.adresse || item.lieu}</span>
                 </div>
 

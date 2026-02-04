@@ -130,14 +130,14 @@ const StartMenu = ({ isOpen, onClose, onOpenApp, apps, onShutdown, onRestart }) 
           onClick={onRestart}
           className="flex items-center gap-1 px-2 py-1 text-white text-[11px] hover:bg-white/20 rounded"
         >
-          <img src="/icons/signal.png" alt="" className="w-4 h-4" />
+          <img src="/icons/restart.png" alt="" className="w-4 h-4" />
           <span>Redémarrer</span>
         </button>
         <button 
           onClick={onShutdown}
           className="flex items-center gap-1 px-2 py-1 text-white text-[11px] hover:bg-white/20 rounded"
         >
-          <img src="/icons/live for xp.png" alt="" className="w-4 h-4" />
+          <img src="/icons/off.png" alt="" className="w-4 h-4" />
           <span>Arrêter</span>
         </button>
       </div>

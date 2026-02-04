@@ -57,7 +57,7 @@ const Taskbar = ({ windows, activeWindow, onWindowClick, onWindowClose, apps, on
         onClick={() => setStartMenuOpen(!startMenuOpen)}
         className={`xp-start-btn h-[28px] flex items-center gap-1 ${startMenuOpen ? 'xp-start-btn-active' : ''}`}
       >
-        <img src="/icons/live for xp.png" alt="Start" className="w-5 h-5" />
+        <img src="/icons/WINXP_ICO_COLOR.png" alt="Start" className="w-5 h-5" />
         <span className="text-sm">démarrer</span>
       </button>
 
