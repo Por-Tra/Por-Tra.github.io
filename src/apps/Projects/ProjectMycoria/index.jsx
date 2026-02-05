@@ -49,7 +49,28 @@ const projectData = {
     "Gestion d'équipe",
     "Travail en équipe"
   ],
+  steps: [
+    "Organisation et planification",
+    "Recherche, collecte et optimisation des ressources",
+    "Conception des environnements et du gameplay",
+    "Développement du jeu",
+    "Réglages des bugs + finitions"
+  ],
   images: [screenshot1, screenshot2, screenshot3, screenshot4, screenshot5, screenshot6, screenshot7, screenshot8, screenshot9, screenshot10, screenshot11, screenshot12],
+  screenshotSections: [
+    {
+      title: "Environnements",
+      images: [screenshot1, screenshot2, screenshot3, screenshot4, screenshot5]
+    },
+    {
+      title: "UI",
+      images: [screenshot6, screenshot7, screenshot8, screenshot9, screenshot10]
+    },
+    {
+      title: "Conception dans Unreal Engine",
+      images: [ screenshot11, screenshot12]
+    }
+  ]
 };
 
 export const Component = ({ onOpenApp }) => {

@@ -51,7 +51,20 @@ const projectData = {
     "Travail en équipe",
     "Versioning Git"
   ],
-  images: [screenshot1, screenshot2, screenshot3, screenshot4, screenshot5]
+  steps: [
+    "Analyse et cadrage",
+    "Modelisation de la base",
+    "Developpement des routes",
+    "Integration UI",
+    "Tests et finitions"
+  ],
+  images: [screenshot1, screenshot2, screenshot3, screenshot4, screenshot5],
+  screenshotSections: [
+    {
+      title: "Pages et gestion",
+      images: [screenshot1, screenshot2, screenshot3, screenshot4, screenshot5]
+    }
+  ]
 };
 
 export const Component = ({ onOpenApp }) => {

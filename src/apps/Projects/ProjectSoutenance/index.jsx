@@ -42,7 +42,23 @@ const projectData = {
     "Git",
     "Travail avec une grande équipe"
   ],
-  images: [screenshot1, screenshot2, screenshot3]
+  steps: [
+    "Mise en place et configuration de l'environnement de développement",
+    "Répartition des tâches et organisation du travail en équipe",
+    "Création de requêtes SQL pour la gestion des élèves, des notes et des projets",
+    "Création de vérifications, cryptage de mot de passe et tokenisation de lien pour sécuriser la base de données",
+    "Conception des fonctionnalités de l'application web (gestion des élèves, des notes, des projets, envoi de mail automatique)",
+    "Développement de l'application web en utilisant HTML, CSS et PHP",
+    "Tests et débogage de l'application",
+    "Finalisation et préparation de la présentation du projet"
+  ],
+  images: [screenshot1, screenshot2, screenshot3],
+  screenshotSections: [
+    {
+      title: "Interface de gestion des élèves",
+      images: [screenshot1, screenshot2, screenshot3]
+    }
+  ]
 };
 
 export const Component = ({ onOpenApp }) => {

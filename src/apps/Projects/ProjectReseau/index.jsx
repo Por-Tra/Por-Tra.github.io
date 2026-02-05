@@ -40,7 +40,30 @@ const projectData = {
     "Interface graphique",
     "Bibliothèques Python"
   ],
-  images: [screenshot1, screenshot2, screenshot3]
+  steps: [
+    "Documentation et recherche sur le fonctionnement des serveurs socket",
+    "Développement du serveur et du client",
+    "Ajout d'un historique des messages côté serveur",
+    "Ajout de la récupération de l'historique côté client",
+    "Ajout d'un système de mutlthreading pour permettre au client d'envoyer et de recevoir des messages en même temps et d'aavoir plusieurs clients connectés au serveur en même temps",
+    "Développement de l'interface graphique du client",
+    "Tests et finitions"
+  ],
+  images: [screenshot1, screenshot2, screenshot3],
+  screenshotSections: [
+    {
+      title: "Interface et messagerie",
+      images: [screenshot1]
+    },
+    {
+      title: "Connexion du client au serveur",
+      images: [screenshot2]
+    },
+    {
+      title: "Console du serveur affichant les connexions et les messages",
+      images: [screenshot3]
+    }
+  ]
 };
 
 export const Component = ({ onOpenApp }) => {

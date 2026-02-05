@@ -242,6 +242,29 @@ export const DescriptionBox = ({ description }) => (
 );
 
 /**
+ * Steps Box - Liste des etapes
+ * @param {string[]} steps - Liste des etapes
+ */
+export const StepsBox = ({ steps }) => (
+  <div className="xp-box xp-mb-3">
+    <div className="xp-box-header xp-box-header-green">
+      <img src="/icons/setting.png" alt="" />
+      Etapes
+    </div>
+    <div className="xp-box-content">
+      <ol className="xp-list">
+        {steps.map((step, i) => (
+          <li key={i} className="xp-list-item">
+            <img src="/icons/note.png" alt="" />
+            {step}
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+);
+
+/**
  * Role Box - Boîte du rôle
  * @param {string} role - Rôle dans le projet
  */
@@ -327,6 +350,48 @@ export const ScreenshotsBox = ({ images, onImageClick, projectTitle = 'Projet' }
 );
 
 /**
+ * Screenshots Sections Box - Galerie de captures d'ecran par section
+ * @param {{title: string, images: string[]}[]} sections - Sections d'images
+ * @param {function} onImageClick - Callback au clic sur une image (optionnel)
+ * @param {string} projectTitle - Titre du projet pour le nom des images
+ */
+export const ScreenshotsSectionsBox = ({ sections, onImageClick, projectTitle = 'Projet' }) => (
+  <div className="xp-box">
+    <div className="xp-box-header xp-box-header-orange">
+      <img src="/icons/explorer.png" alt="" />
+      Captures d'ecran
+    </div>
+    <div className="xp-box-content">
+      {sections.map((section, sectionIndex) => (
+        <div key={`${section.title}-${sectionIndex}`} className="xp-mb-3">
+          <div className="xp-text-bold" style={{ marginBottom: '6px' }}>
+            {section.title}
+          </div>
+          <div className="xp-grid-2" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
+            {section.images.map((img, imageIndex) => (
+              <div
+                key={`${sectionIndex}-${imageIndex}`}
+                className={`xp-screenshot ${onImageClick ? 'xp-screenshot-clickable' : ''}`}
+                onClick={() =>
+                  onImageClick &&
+                  onImageClick(
+                    img,
+                    `${projectTitle} - ${section.title} ${imageIndex + 1}`
+                  )
+                }
+                title={onImageClick ? 'Cliquez pour agrandir' : undefined}
+              >
+                <img src={img} alt={`Screenshot ${imageIndex + 1}`} />
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
+/**
  * ProjectLayout - Layout complet pour une page de projet
  * Encapsule tous les éléments communs
  * @param {object} projectData - Données du projet
@@ -396,17 +461,29 @@ export const ProjectLayout = ({
           <FeaturesBox features={projectData.features} />
           
           <SkillsBox skills={projectData.skills} />
-          
-          <ScreenshotsBox 
-            images={projectData.images} 
-            onImageClick={onOpenApp ? handleImageClick : null}
-            projectTitle={projectData.title}
-          />
-          
+
+          {projectData.steps && projectData.steps.length > 0 && (
+            <StepsBox steps={projectData.steps} />
+          )}
+
+          {projectData.screenshotSections && projectData.screenshotSections.length > 0 ? (
+            <ScreenshotsSectionsBox
+              sections={projectData.screenshotSections}
+              onImageClick={handleImageClick}
+              projectTitle={projectData.title}
+            />
+          ) : (
+            <ScreenshotsBox
+              images={projectData.images}
+              onImageClick={handleImageClick}
+              projectTitle={projectData.title}
+            />
+          )}
+
           {children}
         </div>
       </div>
-      
+
       <StatusBar 
         projectTitle={projectData.title} 
         featuresCount={projectData.features.length} 

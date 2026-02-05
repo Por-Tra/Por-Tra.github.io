@@ -42,7 +42,26 @@ const projectData = {
     "Gestion de bibliothèque",
     "Utilisation d'outil de conception de niveau"
   ],
-  images: [screenshot1, screenshot2, screenshot3]
+  steps: [
+    "Idee et documentation",
+    "Visualisation de tutoriels pour apprendre à utiliser les bibliothèques et avoir les premieres bases du jeu (gestion des déplacements, collisions, animations)",
+    "Conception du jeu (choix des personnages, niveaux, dialogues, ennemis, boss)",
+    "approfondissement des base vue lors des tutoriels pour l'adapter au projet (animation selon le personnage, dialogues avec les NPC, combat, ajout d'entités ...)",
+    "Conception des niveaux avec Tiled",
+    "Tests et finitions",
+    "Présentation du projet"
+  ],
+  images: [screenshot1, screenshot2, screenshot3],
+  screenshotSections: [
+    {
+      title: "Apercus du jeu",
+      images: [screenshot1, screenshot3]
+    },
+    {
+      title: "Conception des niveaux avec Tiled",
+      images: [screenshot2]
+    }
+  ]
 };
 
 export const Component = ({ onOpenApp }) => {
