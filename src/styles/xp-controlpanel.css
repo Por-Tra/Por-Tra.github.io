@@ -1,0 +1,290 @@
+/* Control Panel - Windows XP inspired layout */
+.cp-root {
+  background: #fff;
+  height: 100%;
+}
+
+.cp-menubar {
+  display: flex;
+  gap: 14px;
+  padding: 3px 8px;
+  font-size: 11px;
+  background: linear-gradient(to bottom, #ece9d8 0%, #d4d0c8 100%);
+  border-bottom: 1px solid #8a8a8a;
+}
+
+.cp-menubar span {
+  padding: 1px 6px;
+  cursor: default;
+}
+
+.cp-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px;
+  background: linear-gradient(to bottom, #ece9d8 0%, #d4d0c8 100%);
+  border-bottom: 1px solid #8a8a8a;
+}
+
+.cp-toolbar-group {
+  display: flex;
+  gap: 6px;
+}
+
+.cp-tool-btn {
+  font-size: 11px;
+  padding: 2px 8px;
+  border: 1px solid #7f7f7f;
+  background: linear-gradient(to bottom, #ffffff 0%, #e6e1d7 100%);
+}
+
+.cp-tool-btn:active {
+  background: linear-gradient(to bottom, #d4ccc0 0%, #ece9d8 100%);
+}
+
+.cp-addressbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  background: #ece9d8;
+  border-bottom: 1px solid #8a8a8a;
+  font-size: 11px;
+}
+
+.cp-address-label {
+  color: #000;
+}
+
+.cp-address-input {
+  flex: 1;
+  background: #fff;
+  border: 1px solid #7f9db9;
+  padding: 2px 6px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.cp-address-go {
+  background: linear-gradient(to bottom, #ffffff 0%, #e6e1d7 100%);
+  border: 1px solid #7f7f7f;
+  padding: 2px 10px;
+  font-size: 11px;
+}
+
+.cp-body {
+  display: flex;
+  height: calc(100% - 96px);
+}
+
+.cp-left {
+  width: 200px;
+  background: linear-gradient(to bottom, #6b88c4 0%, #4d6eb5 100%);
+  color: #fff;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cp-left-header {
+  font-weight: bold;
+  background: #1d4f99;
+  padding: 6px 8px;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+.cp-left-link {
+  background: #f6f7fb;
+  color: #245edb;
+  border: 1px solid #8aa6d9;
+  padding: 6px 8px;
+  text-align: left;
+  font-size: 11px;
+}
+
+.cp-left-box {
+  background: rgba(255, 255, 255, 0.92);
+  color: #1a1a1a;
+  padding: 8px;
+  border-radius: 3px;
+}
+
+.cp-left-title {
+  font-size: 11px;
+  font-weight: bold;
+  color: #245edb;
+  margin-bottom: 6px;
+}
+
+.cp-left-item {
+  font-size: 10px;
+  color: #245edb;
+  margin-bottom: 4px;
+}
+
+.cp-right {
+  flex: 1;
+  background: #6a7ecb;
+  padding: 14px 16px;
+  color: #fff;
+  overflow: auto;
+}
+
+.cp-right-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.cp-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.cp-category {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 10px;
+  text-align: left;
+  color: #fff;
+}
+
+.cp-category:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.cp-category-active {
+  background: rgba(255, 255, 255, 0.35);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.cp-category-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.cp-category-title {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.cp-category-desc {
+  font-size: 10px;
+  color: #e8efff;
+}
+
+.cp-panel {
+  margin-top: 16px;
+  background: #f6f7fb;
+  color: #1a1a1a;
+  border: 1px solid #c4c4c4;
+  padding: 12px;
+}
+
+.cp-panel-header {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  border-bottom: 1px solid #d0d0d0;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.cp-panel-header img {
+  width: 32px;
+  height: 32px;
+}
+
+.cp-panel-header h2 {
+  margin: 0 0 4px 0;
+  font-size: 14px;
+  color: #003399;
+}
+
+.cp-panel-header p {
+  margin: 0;
+  font-size: 11px;
+  color: #444;
+}
+
+.cp-panel-section {
+  margin-top: 10px;
+}
+
+.cp-panel-section h3 {
+  font-size: 12px;
+  margin: 0 0 8px 0;
+  color: #003399;
+}
+
+.cp-wallpaper-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.cp-wallpaper-tile {
+  border: 1px solid #7f9db9;
+  background: #fff;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.cp-wallpaper-tile-active {
+  border-color: #1b56b8;
+  box-shadow: inset 0 0 0 1px #8fb2e8;
+  background: #eef5ff;
+}
+
+.cp-wallpaper-preview {
+  width: 100%;
+  height: 64px;
+  object-fit: cover;
+  background: #2b2b2b;
+}
+
+.cp-wallpaper-title {
+  font-size: 10px;
+  color: #333;
+}
+
+.cp-upload-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cp-upload-button {
+  background: linear-gradient(180deg, #ffffff 0%, #ece9d8 50%, #d8d0c4 100%);
+  border: 1px solid #003c74;
+  padding: 4px 10px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.cp-upload-hint {
+  font-size: 10px;
+  color: #555;
+}
+
+@media (max-width: 900px) {
+  .cp-body {
+    flex-direction: column;
+  }
+
+  .cp-left {
+    width: 100%;
+  }
+}

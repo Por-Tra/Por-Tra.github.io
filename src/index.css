@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "./styles/xp-apps.css";
+@import "./styles/xp-controlpanel.css";
 
 /* Windows XP Classic Styling */
 * {
