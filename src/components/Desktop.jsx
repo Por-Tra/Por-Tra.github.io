@@ -18,6 +18,8 @@ const Desktop = () => {
   const [nextZIndex, setNextZIndex] = useState(100);
   const [selectedIcon, setSelectedIcon] = useState(null);
   const [wallpaperUrl, setWallpaperUrl] = useState('/wallpaper.jpg');
+  const [utcOffsetMinutes, setUtcOffsetMinutes] = useState(() => -new Date().getTimezoneOffset());
+  const [currentLanguage, setCurrentLanguage] = useState('FR');
   
   // Snap position to grid
   const snapToGrid = (x, y) => {
@@ -314,6 +316,16 @@ const Desktop = () => {
     setWallpaperUrl(nextUrl);
   }, []);
 
+  const handleSetUtcOffset = useCallback((nextOffsetMinutes) => {
+    if (Number.isNaN(Number(nextOffsetMinutes))) return;
+    setUtcOffsetMinutes(Number(nextOffsetMinutes));
+  }, []);
+
+  const handleSetLanguage = useCallback((nextLanguage) => {
+    if (!nextLanguage) return;
+    setCurrentLanguage(nextLanguage);
+  }, []);
+
   return (
     <div 
       className="xp-desktop w-full h-screen relative overflow-hidden no-select"
@@ -347,6 +359,10 @@ const Desktop = () => {
           onOpenApp={openAppById}
           onSetWallpaper={handleSetWallpaper}
           wallpaperUrl={wallpaperUrl}
+          utcOffsetMinutes={utcOffsetMinutes}
+          onSetUtcOffset={handleSetUtcOffset}
+          currentLanguage={currentLanguage}
+          onSetLanguage={handleSetLanguage}
         />
       ))}
 
@@ -358,6 +374,9 @@ const Desktop = () => {
         onWindowClose={closeWindow}
         apps={icons}
         onOpenApp={openApp}
+        utcOffsetMinutes={utcOffsetMinutes}
+        currentLanguage={currentLanguage}
+        onSetLanguage={handleSetLanguage}
       />
     </div>
   );

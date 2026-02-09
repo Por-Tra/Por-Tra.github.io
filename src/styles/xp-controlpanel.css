@@ -226,6 +226,88 @@
   color: #003399;
 }
 
+.cp-info-line {
+  font-size: 11px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.cp-form-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.cp-form-label {
+  font-size: 11px;
+  color: #333;
+}
+
+.cp-form-input {
+  font-size: 11px;
+  border: 1px solid #7f9db9;
+  padding: 2px 6px;
+  height: 24px;
+  background: #fff;
+}
+
+.cp-action-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.cp-action-btn {
+  background: linear-gradient(180deg, #ffffff 0%, #ece9d8 50%, #d8d0c4 100%);
+  border: 1px solid #003c74;
+  padding: 4px 12px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.cp-action-note {
+  font-size: 10px;
+  color: #555;
+}
+
+.cp-power-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+.cp-power-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid #7f9db9;
+  padding: 8px 10px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.cp-power-btn img {
+  width: 20px;
+  height: 20px;
+}
+
+.cp-language-list {
+  display: grid;
+  gap: 6px;
+}
+
+.cp-language-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: #333;
+}
+
 .cp-wallpaper-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));

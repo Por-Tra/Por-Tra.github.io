@@ -2,10 +2,19 @@ import { useState, useEffect } from 'react';
 import StartMenu from './StartMenu';
 import LanguageSwitcher from './LanguageSwitcher';
 
-const Taskbar = ({ windows, activeWindow, onWindowClick, onWindowClose, apps, onOpenApp }) => {
+const Taskbar = ({
+  windows,
+  activeWindow,
+  onWindowClick,
+  onWindowClose,
+  apps,
+  onOpenApp,
+  utcOffsetMinutes,
+  currentLanguage,
+  onSetLanguage,
+}) => {
   const [time, setTime] = useState(new Date());
   const [startMenuOpen, setStartMenuOpen] = useState(false);
-  const [currentLang, setCurrentLang] = useState('FR');
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -19,6 +28,11 @@ const Taskbar = ({ windows, activeWindow, onWindowClick, onWindowClose, apps, on
       hour: '2-digit',
       minute: '2-digit',
     });
+  };
+
+  const getAdjustedTime = (now, offsetMinutes) => {
+    const utcMs = now.getTime() + now.getTimezoneOffset() * 60000;
+    return new Date(utcMs + offsetMinutes * 60000);
   };
 
   const handleShutdown = () => {
@@ -85,9 +99,9 @@ const Taskbar = ({ windows, activeWindow, onWindowClick, onWindowClose, apps, on
       {/* System Tray */}
       <div className="xp-systray h-full flex items-center gap-2 px-2">
         <img src="/icons/signal.png" alt="" className="w-4 h-4 opacity-80" />
-        <LanguageSwitcher currentLang={currentLang} onChangeLang={setCurrentLang} />
+        <LanguageSwitcher currentLang={currentLanguage} onChangeLang={onSetLanguage} />
         <span className="text-white text-[11px]">
-          {formatTime(time)}
+          {formatTime(getAdjustedTime(time, utcOffsetMinutes ?? -time.getTimezoneOffset()))}
         </span>
       </div>
     </div>

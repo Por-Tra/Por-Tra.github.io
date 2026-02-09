@@ -54,7 +54,16 @@ IframeContent.displayName = 'IframeContent';
  * @param {object} window - Données de la fenêtre
  * @param {function} onOpenApp - Callback pour ouvrir une autre application
  */
-const AppContent = memo(({ window, onOpenApp, onSetWallpaper, wallpaperUrl }) => {
+const AppContent = memo(({
+  window,
+  onOpenApp,
+  onSetWallpaper,
+  wallpaperUrl,
+  utcOffsetMinutes,
+  onSetUtcOffset,
+  currentLanguage,
+  onSetLanguage,
+}) => {
   const app = useMemo(() => appRegistry.get(window.appId), [window.appId]);
   
   // Cas 1 : URL externe → iframe
@@ -86,6 +95,10 @@ const AppContent = memo(({ window, onOpenApp, onSetWallpaper, wallpaperUrl }) =>
             onOpenApp={onOpenApp}
             onSetWallpaper={onSetWallpaper}
             currentWallpaper={wallpaperUrl}
+            utcOffsetMinutes={utcOffsetMinutes}
+            onSetUtcOffset={onSetUtcOffset}
+            currentLanguage={currentLanguage}
+            onSetLanguage={onSetLanguage}
             {...extraProps}
           />
         </Suspense>

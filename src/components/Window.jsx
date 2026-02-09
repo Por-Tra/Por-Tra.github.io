@@ -13,6 +13,10 @@ const Window = ({
   onOpenApp,
   onSetWallpaper,
   wallpaperUrl,
+  utcOffsetMinutes,
+  onSetUtcOffset,
+  currentLanguage,
+  onSetLanguage,
 }) => {
   const windowRef = useRef(null);
   const isDragging = useRef(false);
@@ -188,6 +192,10 @@ const Window = ({
           onOpenApp={onOpenApp}
           onSetWallpaper={onSetWallpaper}
           wallpaperUrl={wallpaperUrl}
+          utcOffsetMinutes={utcOffsetMinutes}
+          onSetUtcOffset={onSetUtcOffset}
+          currentLanguage={currentLanguage}
+          onSetLanguage={onSetLanguage}
         />
         
         {/* Resize Handle */}
