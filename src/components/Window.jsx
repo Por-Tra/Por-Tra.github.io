@@ -11,6 +11,8 @@ const Window = ({
   onMove,
   onResize,
   onOpenApp,
+  onSetWallpaper,
+  wallpaperUrl,
 }) => {
   const windowRef = useRef(null);
   const isDragging = useRef(false);
@@ -181,7 +183,12 @@ const Window = ({
 
       {/* Window Content */}
       <div className="bg-[#ece9d8] h-[calc(100%-28px)] overflow-hidden relative">
-        <AppContent window={window} onOpenApp={onOpenApp} />
+        <AppContent
+          window={window}
+          onOpenApp={onOpenApp}
+          onSetWallpaper={onSetWallpaper}
+          wallpaperUrl={wallpaperUrl}
+        />
         
         {/* Resize Handle */}
         {!window.maximized && (

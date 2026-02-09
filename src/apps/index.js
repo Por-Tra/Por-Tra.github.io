@@ -70,6 +70,7 @@ import * as Contact from './Contact';
 import * as Chess from './Chess';
 import * as Explorer from './Explorer';
 import * as ImageViewer from './ImageViewer';
+import * as ControlPanel from './ControlPanel';
 import * as Blank from './utilities/Blank';
 
 // Projets détaillés
@@ -115,43 +116,44 @@ const apps = [
   
   // ===== UTILITAIRES =====
   { ...Explorer.config, component: Explorer.Component, desktopOrder: 10 },
-  { ...Chess.config, component: Chess.Component, desktopOrder: 11 },
+  { ...ControlPanel.config, component: ControlPanel.Component, desktopOrder: 11 },
+  { ...Chess.config, component: Chess.Component, desktopOrder: 12 },
   { 
     ...Blank.config, 
     component: Blank.Component,
     id: 'trash',
     name: 'Corbeille',
     icon: '/icons/trash.png',
-    desktopOrder: 12,
+    desktopOrder: 13,
   },
   
   // ===== PROJETS (sur le bureau) =====
-  { ...ProjectRPG.config, component: ProjectRPG.Component, desktopOrder: 13 },
-  { ...ProjectSoutenance.config, component: ProjectSoutenance.Component, desktopOrder: 14 },
-  { ...ProjectReseau.config, component: ProjectReseau.Component, desktopOrder: 15 },
-  { ...ProjectMycoria.config, component: ProjectMycoria.Component, desktopOrder: 16 },
-  { ...ProjectVapeur.config, component: ProjectVapeur.Component, desktopOrder: 17 },
+  { ...ProjectRPG.config, component: ProjectRPG.Component, desktopOrder: 14 },
+  { ...ProjectSoutenance.config, component: ProjectSoutenance.Component, desktopOrder: 15 },
+  { ...ProjectReseau.config, component: ProjectReseau.Component, desktopOrder: 16 },
+  { ...ProjectMycoria.config, component: ProjectMycoria.Component, desktopOrder: 17 },
+  { ...ProjectVapeur.config, component: ProjectVapeur.Component, desktopOrder: 18 },
   
   // ===== APPS UTILITAIRES (pas sur le bureau) =====
   { ...ImageViewer.config, component: ImageViewer.Component },
   
   // ===== APPS SYSTÈME (pas sur le bureau) =====
-  { 
-    ...Blank.config, 
-    component: Blank.Component,
-    id: 'settings',
-    name: 'Paramètres',
-    icon: '/icons/setting.png',
-    showOnDesktop: false,
-  },
-  { 
-    ...Blank.config, 
-    component: Blank.Component,
-    id: 'network',
-    name: 'Connexions réseau',
-    icon: '/icons/signal.png',
-    showOnDesktop: false,
-  },
+  // { 
+  //   ...Blank.config, 
+  //   component: Blank.Component,
+  //   id: 'settings',
+  //   name: 'Paramètres',
+  //   icon: '/icons/setting.png',
+  //   showOnDesktop: false,
+  // },
+  // { 
+  //   ...Blank.config, 
+  //   component: Blank.Component,
+  //   id: 'network',
+  //   name: 'Connexions réseau',
+  //   icon: '/icons/signal.png',
+  //   showOnDesktop: false,
+  // },
 ];
 
 // Enregistrement dans le registry

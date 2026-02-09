@@ -8,7 +8,7 @@ const MENU_CONFIG = {
   rightItems: [
     { appId: 'projects', label: 'Mes documents', icon: '/icons/folder.png' },
     { appId: 'explorer', label: 'Poste de travail', icon: '/icons/explorer.png' },
-    { appId: 'settings', label: 'Panneau de configuration', icon: '/icons/setting.png' },
+    { appId: 'control-panel', label: 'Panneau de configuration', icon: '/icons/setting.png' },
   ],
 };
 
@@ -149,12 +149,6 @@ const StartMenu = ({ isOpen, onClose, onOpenApp, apps, onShutdown, onRestart }) 
               </button>
             ))}
             
-            <div className="border-t border-[#a0c0e8] my-2"></div>
-            
-            <button className="w-full flex items-center gap-2 px-2 py-1.5 hover:bg-[#316ac5] hover:text-white rounded text-left text-xs">
-              <img src="/icons/questionMark.png" alt="" className="w-5 h-5" />
-              <span>Aide et support</span>
-            </button>
           </div>
         </div>
       </div>

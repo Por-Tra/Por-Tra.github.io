@@ -17,6 +17,7 @@ const Desktop = () => {
   const [activeWindow, setActiveWindow] = useState(null);
   const [nextZIndex, setNextZIndex] = useState(100);
   const [selectedIcon, setSelectedIcon] = useState(null);
+  const [wallpaperUrl, setWallpaperUrl] = useState('/wallpaper.jpg');
   
   // Snap position to grid
   const snapToGrid = (x, y) => {
@@ -308,9 +309,15 @@ const Desktop = () => {
     }
   }, [windows, activeWindow, restoreWindow, minimizeWindow, bringToFront]);
 
+  const handleSetWallpaper = useCallback((nextUrl) => {
+    if (!nextUrl) return;
+    setWallpaperUrl(nextUrl);
+  }, []);
+
   return (
     <div 
       className="xp-desktop w-full h-screen relative overflow-hidden no-select"
+      style={{ '--xp-wallpaper-url': `url("${wallpaperUrl}")` }}
       onClick={handleDesktopClick}
     >
       {/* Desktop Icons */}
@@ -338,6 +345,8 @@ const Desktop = () => {
           onMove={(x, y) => updateWindowPosition(window.id, x, y)}
           onResize={(width, height) => updateWindowSize(window.id, width, height)}
           onOpenApp={openAppById}
+          onSetWallpaper={handleSetWallpaper}
+          wallpaperUrl={wallpaperUrl}
         />
       ))}
 

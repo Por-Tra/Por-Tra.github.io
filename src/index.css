@@ -233,7 +233,7 @@ body {
 /* XP Desktop Background */
 .xp-desktop {
   background: linear-gradient(180deg, #245edb 0%, #3a8ff5 100%);
-  background-image: url('/wallpaper.jpg');
+  background-image: var(--xp-wallpaper-url, url('/wallpaper.jpg'));
   background-size: cover;
   background-position: center;
 }

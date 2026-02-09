@@ -41,14 +41,14 @@ export const Component = ({ imageSrc, imageName }) => {
           className="px-3 py-1 text-xs text-white bg-[#4a4a6a] hover:bg-[#5a5a7a] rounded border border-[#6a6a8a]"
           title="Zoom avant"
         >
-          🔍+
+          +
         </button>
         <button 
           onClick={handleZoomOut}
           className="px-3 py-1 text-xs text-white bg-[#4a4a6a] hover:bg-[#5a5a7a] rounded border border-[#6a6a8a]"
           title="Zoom arrière"
         >
-          🔍-
+          -
         </button>
         <div className="w-px h-5 bg-[#4a4a6a] mx-1"></div>
         <button 
