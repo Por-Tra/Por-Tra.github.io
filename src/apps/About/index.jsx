@@ -163,7 +163,7 @@ export const Component = () => {
           <div className="xp-flex xp-gap-3 xp-mb-3">
             <p className="xp-text-gray" style={{ lineHeight: '1.6' }}>
               Après m'être engagé dans le développement, j'ai intégré le BUT Informatique Graphique 
-              et commencé à travailler sur des projets allant des jeux vidéo aux logiciels web. 
+              et commencé à travailler sur des projets allant des jeux vidéo aux logiciels pratique. 
             </p>
           </div>
 

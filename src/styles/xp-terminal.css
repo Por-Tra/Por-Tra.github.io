@@ -1,0 +1,69 @@
+.xp-terminal {
+  height: 100%;
+  background: #ece9d8;
+  padding: 10px;
+}
+
+.xp-terminal-screen {
+  height: 100%;
+  background: #000;
+  border: 1px solid #808080;
+  box-shadow: inset 0 0 0 1px #2f2f2f;
+  padding: 10px 12px;
+  overflow: hidden;
+}
+
+.xp-terminal-lines {
+  height: 100%;
+  overflow-y: auto;
+  color: #f2f2f2;
+  font-family: 'Lucida Console', 'Courier New', monospace;
+  font-size: 12px;
+  line-height: 1.4;
+  letter-spacing: 0.2px;
+  white-space: pre-wrap;
+}
+
+.xp-terminal-line {
+  min-height: 1.2em;
+}
+
+.xp-terminal-system {
+  color: #e6e6e6;
+}
+
+.xp-terminal-output {
+  color: #d7d7d7;
+}
+
+.xp-terminal-command {
+  color: #f2f2f2;
+}
+
+.xp-terminal-input-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.xp-terminal-prompt {
+  color: #f2f2f2;
+  flex-shrink: 0;
+}
+
+.xp-terminal-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #f2f2f2;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1.4;
+  padding: 0;
+}
+
+.xp-terminal-input::selection {
+  background: #1f4b99;
+  color: #fff;
+}

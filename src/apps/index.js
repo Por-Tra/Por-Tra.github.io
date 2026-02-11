@@ -72,6 +72,7 @@ import * as Explorer from './Explorer';
 import * as ImageViewer from './ImageViewer';
 import * as ControlPanel from './ControlPanel';
 import * as Blank from './utilities/Blank';
+import * as Terminal from './Terminal';
 
 // Projets détaillés
 import * as ProjectRPG from './Projects/ProjectRPG';
@@ -113,6 +114,7 @@ const apps = [
     defaultHeight: 600,
     desktopOrder: 7,
   },
+  { ...Terminal.config, component: Terminal.Component, desktopOrder: 8 },
   
   // ===== UTILITAIRES =====
   { ...Explorer.config, component: Explorer.Component, desktopOrder: 10 },
