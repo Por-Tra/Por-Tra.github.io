@@ -78,15 +78,20 @@ export const MAN_PAGES = {
   'clear': 'Efface l\'écran du terminal.',
   'history': 'Affiche l\'historique des commandes.',
   'sudo': 'Tentative de privilèges administrateur (échoue intentionnellement).',
-  'coffee': 'Compile la motivation ☕',
+  'coffee': 'Compile la motivation',
 };
 
 export const EASTER_EGGS = {
-  'sudo rm -rf /': 'Permission denied. Nice try 😏',
-  'coffee': '☕ Compiling motivation...\n✓ Motivation compiled successfully!',
-  'lsb': 'Disant que tu regardes un portfolio d\'un développeur en herbe? C\'est moi! 😄',
-  'whoami?': 'Pas de point d\'interrogation, c\'est whoami.',
-  'date.now()': 'Date actuelle : ' + new Date().toLocaleString(),
+  'sudo rm -rf /': 'Permission denied. Nice try ;)',
+  'coffee': 'Compiling motivation...\n✓ Motivation compiled successfully!',
+  'lsb': 'Je sais que vous cherchez "lsb_release -a" pour les infos système, mais je ne suis pas une distribution Linux malheureuse.',
+  'whoami?': 'Pas de point d\'interrogation, c\'est whoami. ¬_¬',
+  'date.now()': 'Date actuelle : ' + new Date().toLocaleString() + '\n Tu aurais pu regarder en bas de l\'écran aussi...',
+  'caca' :  'Très mature tout ça ...',
+  'pipi' : 'Toujours aussi mature ...',
+  'prout' : 'Bon, on va arrêter là hein ...',
+  
+
 };
 
 export const getSkillsDisplay = () => {
