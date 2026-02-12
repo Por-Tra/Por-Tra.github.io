@@ -80,7 +80,33 @@ class FileSystem {
             icon: '/icons/folder.png',
             children: 
             {
-              // Ici mettre tout les projets téléchargeables (RPG 2D, Application Web, Chat Réseau) pour les retrouver facilement
+              'The_Elder_Scrolls_2D.zip':
+              {
+                type: 'file',
+                icon: '/icons/folder.png',
+                size: '5.2 Mo',
+                modified: '2026-02-12',
+                downloadFile: '/assets/RPG.zip',
+                downloadName: 'RPG.zip'
+              },
+              'RSL.zip':
+              {
+                type: 'file',
+                icon: '/icons/folder.png',
+                size: '1.8 Mo',
+                modified: '2026-02-12',
+                downloadFile: '/assets/Projet RSL.zip',
+                downloadName: 'Projet RSL.zip'
+              },
+              'Application_Web_Notation.zip':
+              {
+                type: 'file',
+                icon: '/icons/folder.png',
+                size: '2.4 Mo',
+                modified: '2026-02-12',
+                downloadFile: '/assets/projet_sql-main.zip',
+                downloadName: 'projet_sql-main.zip'
+              }
             }
           },
           'Images': 
@@ -105,6 +131,7 @@ class FileSystem {
                         {
                           type: 'image',
                           icon: '/images/ProjectIMG/Proj1/1.png',
+                          imageSrc: '/images/ProjectIMG/Proj1/1.png',
                           size: "209Ko",
                           modified: '2026-02-12'
                         },
@@ -112,6 +139,7 @@ class FileSystem {
                         {
                           type: 'image',
                           icon: '/images/ProjectIMG/Proj1/2.png',
+                          imageSrc: '/images/ProjectIMG/Proj1/2.png',
                           size: "432Ko",
                           modified: '2026-02-12'
                         },
@@ -119,6 +147,7 @@ class FileSystem {
                         {
                           type: 'image',
                           icon: '/images/ProjectIMG/Proj1/3.png',
+                          imageSrc: '/images/ProjectIMG/Proj1/3.png',
                           size: "357Ko",
                           modified: '2026-02-12'
                         }
@@ -134,6 +163,7 @@ class FileSystem {
                       {
                         type: 'image',
                         icon: '/images/ProjectIMG/Proj2/1.png',
+                        imageSrc: '/images/ProjectIMG/Proj2/1.png',
                         size: "74.1Ko",
                         modified: '2026-02-12'
                       },
@@ -141,6 +171,7 @@ class FileSystem {
                       {
                       type: 'image',
                       icon: '/images/ProjectIMG/Proj2/2.png',
+                      imageSrc: '/images/ProjectIMG/Proj2/2.png',
                       size: "237Ko",
                       modified: '2026-02-12'
                       },
@@ -148,6 +179,7 @@ class FileSystem {
                       {
                         type: 'image',
                         icon: '/images/ProjectIMG/Proj2/3.png',
+                        imageSrc: '/images/ProjectIMG/Proj2/3.png',
                         size: "211Ko",
                         modified: '2026-02-12'
                       }
@@ -163,6 +195,7 @@ class FileSystem {
                       {
                         type: 'image',
                         icon: '/images/ProjectIMG/Proj3/1.png',
+                        imageSrc: '/images/ProjectIMG/Proj3/1.png',
                         size: "20.4Ko",
                         modified: '2026-02-12'
                       },
@@ -170,6 +203,7 @@ class FileSystem {
                       {
                         type: 'image',
                         icon: '/images/ProjectIMG/Proj3/2.png',
+                        imageSrc: '/images/ProjectIMG/Proj3/2.png',
                         size: "6.49Ko",
                         modified: '2026-02-12'
                       },
@@ -177,6 +211,7 @@ class FileSystem {
                       {
                         type: 'image',
                         icon: '/images/ProjectIMG/Proj3/3.png',
+                        imageSrc: '/images/ProjectIMG/Proj3/3.png',
                         size: "21.8Ko",
                         modified: '2026-02-12'
                       }
@@ -192,6 +227,7 @@ class FileSystem {
                       {
                         type: 'image',
                         icon: '/images/ProjectIMG/Proj-Mycoria/1.png',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/1.png',
                         size: "1.4Mo",
                         modified: '2026-02-12'
                       },
@@ -199,6 +235,7 @@ class FileSystem {
                       {
                         type: 'image',
                         icon: '/images/ProjectIMG/Proj-Mycoria/2.png',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/2.png',
                         size: "1.3Mo",
                         modified: '2026-02-12'
                       },
@@ -206,6 +243,7 @@ class FileSystem {
                       {
                         type: 'image',
                         icon: '/images/ProjectIMG/Proj-Mycoria/3.png',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/3.png',
                         size: "1.46Mo",
                         modified: '2026-02-12'
                       },
@@ -213,6 +251,7 @@ class FileSystem {
                       {
                         type: 'image',
                         icon: '/images/ProjectIMG/Proj-Mycoria/4.png',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/4.png',
                         size: "1.52Mo",
                         modified: '2026-02-12'
                       },
@@ -220,6 +259,7 @@ class FileSystem {
                       {
                         type: 'image',
                         icon: '/images/ProjectIMG/Proj-Mycoria/5.png',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/5.png',
                         size: "1.38Mo",
                         modified: '2026-02-12'
                       },
@@ -227,6 +267,7 @@ class FileSystem {
                       {
                         type: 'image',
                         icon: '/images/ProjectIMG/Proj-Mycoria/6.png',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/6.png',
                         size: "2.24Mo",
                         modified: '2026-02-12'
                       },
@@ -234,6 +275,7 @@ class FileSystem {
                       {
                         type: 'image',
                         icon: '/images/ProjectIMG/Proj-Mycoria/7.png',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/7.png',
                         size: "2.15Mo",
                         modified: '2026-02-12'
                       },
@@ -241,6 +283,7 @@ class FileSystem {
                       {
                         type: 'image',
                         icon: '/images/ProjectIMG/Proj-Mycoria/8.png',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/8.png',
                         size: "2.67Mo",
                         modified: '2026-02-12'
                       },
@@ -248,6 +291,7 @@ class FileSystem {
                       {
                         type: 'image',
                         icon: '/images/ProjectIMG/Proj-Mycoria/9.png',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/9.png',
                         size: "1.66Mo",
                         modified: '2026-02-12'
                       },
@@ -255,6 +299,7 @@ class FileSystem {
                       {
                         type: 'image',
                         icon: '/images/ProjectIMG/Proj-Mycoria/10.png',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/10.png',
                         size: "1.58Mo",
                         modified: '2026-02-12'
                       },
@@ -262,6 +307,7 @@ class FileSystem {
                       {
                         type: 'image',
                         icon: '/images/ProjectIMG/Proj-Mycoria/11.png',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/11.png',
                         size: "388Ko",
                         modified: '2026-02-12'
                       },
@@ -269,6 +315,7 @@ class FileSystem {
                       {
                         type: 'image',
                         icon: '/images/ProjectIMG/Proj-Mycoria/12.png',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/12.png',
                         size: "454Ko",
                         modified: '2026-02-12'
                       }
@@ -284,6 +331,7 @@ class FileSystem {
                       {
                         type: 'image',
                         icon: '/images/ProjectIMG/Proj-Vapeur/1.png',
+                        imageSrc: '/images/ProjectIMG/Proj-Vapeur/1.png',
                         size: "243Ko",
                         modified: '2026-02-12'
                       },
@@ -291,6 +339,7 @@ class FileSystem {
                       {
                         type: 'image',
                         icon: '/images/ProjectIMG/Proj-Vapeur/2.png',
+                        imageSrc: '/images/ProjectIMG/Proj-Vapeur/2.png',
                         size: "362Ko",
                         modified: '2026-02-12'
                       },
@@ -298,6 +347,7 @@ class FileSystem {
                       {
                         type: 'image',
                         icon: '/images/ProjectIMG/Proj-Vapeur/3.png',
+                        imageSrc: '/images/ProjectIMG/Proj-Vapeur/3.png',
                         size: "263Ko",
                         modified: '2026-02-12'
                       },
@@ -305,6 +355,7 @@ class FileSystem {
                       {
                         type: 'image',
                         icon: '/images/ProjectIMG/Proj-Vapeur/4.png',
+                        imageSrc: '/images/ProjectIMG/Proj-Vapeur/4.png',
                         size: "214Ko",
                         modified: '2026-02-12'
                       },
@@ -312,6 +363,7 @@ class FileSystem {
                       {
                         type: 'image',
                         icon: '/images/ProjectIMG/Proj-Vapeur/5.png',
+                        imageSrc: '/images/ProjectIMG/Proj-Vapeur/5.png',
                         size: "198Ko",
                         modified: '2026-02-12'
                       }
@@ -331,6 +383,7 @@ class FileSystem {
                   {
                     type: 'image',
                     icon: '/images/wallpapers/dog.jpg',
+                    imageSrc: '/images/wallpapers/dog.jpg',
                     size: "329Ko",
                     modified: '2026-02-12'
                   },
@@ -338,6 +391,7 @@ class FileSystem {
                   {
                     type: 'image',
                     icon: '/images/wallpapers/Win11Dark.jpg',
+                    imageSrc: '/images/wallpapers/Win11Dark.jpg',
                     size: "269Ko",
                     modified: '2026-02-12'
                   },
@@ -345,6 +399,7 @@ class FileSystem {
                   {
                     type: 'image',
                     icon: '/images/wallpapers/winXPDark.jpeg',
+                    imageSrc: '/images/wallpapers/winXPDark.jpeg',
                     size: "78.8Ko",
                     modified: '2026-02-12'
                   }
