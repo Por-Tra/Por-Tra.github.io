@@ -31,12 +31,12 @@ const skills = [
 ];
 
 const AcadmicSkills = [
-  {name : "Développer des applications informatiques simples - Niveau 1", checked: true},
-  {name :" Appréhender et construire des algorithmes - Niveau 1", checked: true},
-  {name :" Installer et configurer un poste de travail - Niveau 1", checked: true},
-  {name : "Concevoir et mettre en place une base de données à partir d’un cahier des charges client - Niveau 1", checked: true},
-  {name : "Identifier les besoins métiers des clients et des utilisateurs - Niveau 1", checked: true},
-  {name : "Identifier ses aptitudes pour travailler dans une équipe - Niveau 1", checked: true}
+  {name : "Développer des applications informatiques simples", checked: true},
+  {name :" Appréhender et construire des algorithmes", checked: true},
+  {name :" Installer et configurer un poste de travail", checked: true},
+  {name : "Concevoir et mettre en place une base de données à partir d’un cahier des charges client", checked: true},
+  {name : "Identifier les besoins métiers des clients et des utilisateurs", checked: true},
+  {name : "Identifier ses aptitudes pour travailler dans une équipe", checked: true}
 ];
 
 

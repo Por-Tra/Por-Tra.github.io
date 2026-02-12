@@ -43,6 +43,7 @@
  * - icon: string            → Chemin vers l'icône (REQUIS)
  * - component: Component    → Composant React à afficher
  * - url: string             → URL externe (ouvre dans iframe)
+ * - openExternal: boolean   → Ouvre dans un nouvel onglet (false)
  * - defaultWidth: number    → Largeur par défaut (600)
  * - defaultHeight: number   → Hauteur par défaut (450)
  * - showOnDesktop: boolean  → Afficher sur le bureau (true)
@@ -101,6 +102,7 @@ const apps = [
     name: 'GitHub',
     icon: '/icons/git.png',
     url: 'https://github.com/Por-Tra',
+    openExternal: true,
     defaultWidth: 900,
     defaultHeight: 600,
     desktopOrder: 6,
@@ -110,11 +112,22 @@ const apps = [
     name: 'LinkedIn',
     icon: '/icons/link.png',
     url: 'https://linkedin.com/in/lucas-contreras-hodapp',
+    openExternal: true,
     defaultWidth: 900,
     defaultHeight: 600,
     desktopOrder: 7,
   },
   { ...Terminal.config, component: Terminal.Component, desktopOrder: 8 },
+  {
+    id : 'google',
+    name: 'Explorer',
+    icon: '/icons/explorer.png',
+    url: 'https://www.google.com',
+    openExternal: true,
+    defaultWidth: 900,
+    defaultHeight: 600,
+    desktopOrder: 9,
+  },
   
   // ===== UTILITAIRES =====
   { ...Explorer.config, component: Explorer.Component, desktopOrder: 10 },
