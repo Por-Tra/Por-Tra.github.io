@@ -6,6 +6,7 @@
  */
 import { useState, useCallback, useMemo, memo } from 'react';
 import fileSystem from '../../core/FileSystem';
+import XpMenuBar from '../../components/XpMenuBar';
 
 export const config = {
   id: 'explorer',
@@ -203,14 +204,11 @@ export const Component = ({ onOpenApp }) => {
   return (
     <div className="h-full bg-white flex flex-col select-none">
       {/* Menu Bar */}
-      <div className="bg-gradient-to-b from-[#ece9d8] to-[#d4d0c8] border-b border-[#808080] px-2 py-1 flex gap-4 text-xs">
-        <span className="text-gray-600 hover:underline cursor-pointer">Fichier</span>
-        <span className="text-gray-600 hover:underline cursor-pointer">Édition</span>
-        <span className="text-gray-600 hover:underline cursor-pointer">Affichage</span>
-        <span className="text-gray-600 hover:underline cursor-pointer">Favoris</span>
-        <span className="text-gray-600 hover:underline cursor-pointer">Outils</span>
-        <span className="text-gray-600 hover:underline cursor-pointer">?</span>
-      </div>
+      <XpMenuBar
+        preset="explorer"
+        className="bg-gradient-to-b from-[#ece9d8] to-[#d4d0c8] border-b border-[#808080] px-2 py-1 flex gap-4 text-xs"
+        itemClassName="text-gray-600 hover:underline cursor-pointer"
+      />
 
       {/* Toolbar */}
       <div className="bg-[#ece9d8] border-b border-[#808080] px-2 py-1 flex items-center gap-1">

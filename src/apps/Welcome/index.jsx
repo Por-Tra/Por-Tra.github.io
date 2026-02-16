@@ -4,6 +4,7 @@
  * Page d'accueil avec instructions de navigation - Style Windows XP
  */
 import profilePic from '../../assets/PP.jpg';
+import XpMenuBar from '../../components/XpMenuBar';
 
 export const config = {
   id: 'welcome',
@@ -17,12 +18,7 @@ export const Component = () => {
   return (
     <div className="xp-app">
       {/* Menu Bar */}
-      <div className="xp-menubar">
-        <span>Fichier</span>
-        <span>Édition</span>
-        <span>Affichage</span>
-        <span>?</span>
-      </div>
+      <XpMenuBar className="xp-menubar" itemClassName="" />
 
       {/* Toolbar */}
       <div className="xp-toolbar">

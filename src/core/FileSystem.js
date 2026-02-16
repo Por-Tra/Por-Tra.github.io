@@ -60,7 +60,22 @@ class FileSystem {
                     description: 'Application de messagerie en réseau local',
                     downloadFile: '/assets/ChatReseau.zip',
                     downloadName: 'ChatReseau.zip'
-                  }
+                  },
+                  'Mycoria (Unreal Engine)':
+                  {
+                    type: 'app',
+                    icon: '/icons/folder.png',
+                    appId: 'mycoria-project',
+                    description: 'Jeu vidéo développé sur Unreal Engine avec blueprints',
+                  },
+                  'Vapeur (javasript)':
+                  {
+                    type: 'app',
+                    icon: '/icons/folder.png',
+                    appId: 'vapeur-project',
+                    description: 'Application de gestion de bibliothèque de jeux développée en JavaScript',
+                  },
+                  
                 }
               },
               'CV_Lucas.pdf': 

@@ -3,6 +3,7 @@
  * Style Windows XP
  */
 import { useState } from 'react';
+import XpMenuBar from './XpMenuBar';
 
 // Hook et constantes pour le zoom
 const ZOOM_LEVELS = [50, 75, 100, 125, 150, 175, 200];
@@ -85,22 +86,23 @@ export const ZoomControls = ({ zoom, onZoomIn, onZoomOut, onReset }) => (
  * Menu Bar - Barre de menu standard avec zoom intégré
  */
 export const MenuBar = ({ zoom, onZoomIn, onZoomOut, onReset, showZoom = true }) => (
-  <div className="xp-menubar xp-menubar-with-zoom">
-    <div className="xp-menubar-items">
-      <span className="xp-menubar-item">Fichier</span>
-      <span className="xp-menubar-item">Édition</span>
-      <span className="xp-menubar-item">Affichage</span>
-      <span className="xp-menubar-item">?</span>
-    </div>
-    {showZoom && zoom && (
-      <ZoomControls 
-        zoom={zoom} 
-        onZoomIn={onZoomIn} 
-        onZoomOut={onZoomOut}
-        onReset={onReset}
-      />
-    )}
-  </div>
+  <XpMenuBar
+    preset="basic"
+    className="xp-menubar xp-menubar-with-zoom"
+    itemClassName="xp-menubar-item"
+    itemsWrapperClassName="xp-menubar-items"
+    useWrapper
+    rightSlot={
+      showZoom && zoom ? (
+        <ZoomControls
+          zoom={zoom}
+          onZoomIn={onZoomIn}
+          onZoomOut={onZoomOut}
+          onReset={onReset}
+        />
+      ) : null
+    }
+  />
 );
 
 /**

@@ -4,6 +4,7 @@
  * Panneau de configuration style Windows XP
  */
 import { useEffect, useMemo, useState } from 'react';
+import XpMenuBar from '../../components/XpMenuBar';
 
 export const config = {
   id: 'control-panel',
@@ -165,14 +166,11 @@ export const Component = ({
 
     return (
         <div className="xp-app cp-root">
-            <div className="cp-menubar">
-                <span>Fichier</span>
-                <span>Edition</span>
-                <span>Affichage</span>
-                <span>Favoris</span>
-                <span>Outils</span>
-                <span>?</span>
-            </div>
+            <XpMenuBar
+                className="cp-menubar"
+                itemClassName=""
+                items={['Fichier', 'Edition', 'Affichage', 'Favoris', 'Outils', '?']}
+            />
 
             <div className="cp-toolbar">
                 <div className="cp-toolbar-group">
