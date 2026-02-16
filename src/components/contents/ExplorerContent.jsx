@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import XpMenuBar from '../XpMenuBar';
+import { useSearchHighlight } from '../../hooks/useSearchHighlight.jsx';
 
 // Virtual file system structure
 const fileSystem = {
@@ -125,6 +126,7 @@ const ExplorerContent = () => {
   const [viewMode, setViewMode] = useState('icons'); // 'icons', 'list', 'details'
   const [history, setHistory] = useState([['C:']]);
   const [historyIndex, setHistoryIndex] = useState(0);
+  const { query, filterItems, highlightText, isSearching } = useSearchHighlight('explorer-window');
 
   const getCurrentFolder = useCallback(() => {
     let current = fileSystem;
@@ -191,6 +193,9 @@ const ExplorerContent = () => {
     if (a[1].type === 'file' && (b[1].type === 'folder' || b[1].type === 'drive')) return 1;
     return a[0].localeCompare(b[0]);
   });
+
+  // Filter items based on search query
+  const filteredItems = filterItems(sortedItems, ([name]) => name);
 
   return (
     <div className="h-full bg-white flex flex-col">
@@ -311,7 +316,7 @@ const ExplorerContent = () => {
         <div className="flex-1 bg-white overflow-auto p-2">
           {viewMode === 'icons' && (
             <div className="flex flex-wrap gap-4 p-2">
-              {sortedItems.map(([name, item]) => (
+              {filteredItems.map(([name, item]) => (
                 <div
                   key={name}
                   onClick={() => setSelectedItem({ name, item })}
@@ -322,7 +327,7 @@ const ExplorerContent = () => {
                 >
                   <img src={getIconForItem(item, name)} alt="" className="w-10 h-10 mb-1" />
                   <span className={`text-[11px] text-center break-all ${selectedItem?.name === name ? 'text-white' : ''}`}>
-                    {name}
+                    {highlightText(name)}
                   </span>
                 </div>
               ))}
@@ -331,7 +336,7 @@ const ExplorerContent = () => {
 
           {viewMode === 'list' && (
             <div className="space-y-0.5">
-              {sortedItems.map(([name, item]) => (
+              {filteredItems.map(([name, item]) => (
                 <div
                   key={name}
                   onClick={() => setSelectedItem({ name, item })}
@@ -341,7 +346,7 @@ const ExplorerContent = () => {
                   }`}
                 >
                   <img src={getIconForItem(item, name)} alt="" className="w-5 h-5" />
-                  <span className="text-xs">{name}</span>
+                  <span className="text-xs">{highlightText(name)}</span>
                 </div>
               ))}
             </div>
@@ -358,7 +363,7 @@ const ExplorerContent = () => {
                 </tr>
               </thead>
               <tbody>
-                {sortedItems.map(([name, item], i) => (
+                {filteredItems.map(([name, item], i) => (
                   <tr
                     key={name}
                     onClick={() => setSelectedItem({ name, item })}
@@ -371,7 +376,7 @@ const ExplorerContent = () => {
                   >
                     <td className="p-1 flex items-center gap-2">
                       <img src={getIconForItem(item, name)} alt="" className="w-4 h-4" />
-                      {name}
+                      {highlightText(name)}
                     </td>
                     <td className="p-1">{item.size || '-'}</td>
                     <td className="p-1">{item.type === 'folder' ? 'Dossier' : 'Fichier'}</td>
@@ -382,9 +387,9 @@ const ExplorerContent = () => {
             </table>
           )}
 
-          {sortedItems.length === 0 && (
+          {filteredItems.length === 0 && (
             <div className="flex items-center justify-center h-full text-gray-400 text-sm">
-              Ce dossier est vide
+              {isSearching ? 'Aucun fichier ne correspond à votre recherche' : 'Ce dossier est vide'}
             </div>
           )}
         </div>
@@ -392,7 +397,7 @@ const ExplorerContent = () => {
 
       {/* Status Bar */}
       <div className="bg-[#ece9d8] border-t border-[#808080] px-2 py-1 text-[10px] text-gray-600 flex justify-between">
-        <span>{sortedItems.length} objet(s)</span>
+        <span>{filteredItems.length} objet(s)</span>
         <span>{pathString}</span>
       </div>
     </div>

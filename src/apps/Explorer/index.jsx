@@ -7,6 +7,7 @@
 import { useState, useCallback, useMemo, memo } from 'react';
 import fileSystem from '../../core/FileSystem';
 import XpMenuBar from '../../components/XpMenuBar';
+import { useSearchHighlight } from '../../hooks/useSearchHighlight.jsx';
 
 export const config = {
   id: 'explorer',
@@ -17,7 +18,7 @@ export const config = {
 };
 
 // Composant pour un élément dans l'explorateur
-const FileItem = memo(({ name, item, isSelected, viewMode, onSelect, onDoubleClick }) => {
+const FileItem = memo(({ name, item, isSelected, viewMode, onSelect, onDoubleClick, highlightText }) => {
   const icon = fileSystem.getIcon(item, name);
   
   if (viewMode === 'icons') {
@@ -31,7 +32,7 @@ const FileItem = memo(({ name, item, isSelected, viewMode, onSelect, onDoubleCli
       >
         <img src={icon} alt="" className="w-10 h-10 mb-1" draggable={false} />
         <span className={`text-[11px] text-center break-all line-clamp-2 ${isSelected ? 'text-white' : ''}`}>
-          {name}
+          {highlightText ? highlightText(name) : name}
         </span>
       </div>
     );
@@ -47,7 +48,7 @@ const FileItem = memo(({ name, item, isSelected, viewMode, onSelect, onDoubleCli
         }`}
       >
         <img src={icon} alt="" className="w-5 h-5" draggable={false} />
-        <span className="text-xs truncate">{name}</span>
+        <span className="text-xs truncate">{highlightText ? highlightText(name) : name}</span>
       </div>
     );
   }
@@ -58,7 +59,7 @@ const FileItem = memo(({ name, item, isSelected, viewMode, onSelect, onDoubleCli
 FileItem.displayName = 'FileItem';
 
 // Composant pour la vue détaillée
-const DetailsRow = memo(({ name, item, isSelected, index, onSelect, onDoubleClick }) => {
+const DetailsRow = memo(({ name, item, isSelected, index, onSelect, onDoubleClick, highlightText }) => {
   const icon = fileSystem.getIcon(item, name);
   const typeLabels = {
     folder: 'Dossier de fichiers',
@@ -82,7 +83,7 @@ const DetailsRow = memo(({ name, item, isSelected, index, onSelect, onDoubleClic
     >
       <td className="p-1 flex items-center gap-2">
         <img src={icon} alt="" className="w-4 h-4" draggable={false} />
-        <span className="truncate">{name}</span>
+        <span className="truncate">{highlightText ? highlightText(name) : name}</span>
       </td>
       <td className="p-1">{item.size || '-'}</td>
       <td className="p-1">{typeLabels[item.type] || 'Inconnu'}</td>
@@ -99,6 +100,7 @@ export const Component = ({ onOpenApp }) => {
   const [viewMode, setViewMode] = useState('icons');
   const [history, setHistory] = useState([['Poste de travail']]);
   const [historyIndex, setHistoryIndex] = useState(0);
+  const { query, filterItems, highlightText, isSearching } = useSearchHighlight('explorer');
 
   // Récupère le contenu du dossier actuel
   const currentFolder = useMemo(() => {
@@ -116,6 +118,11 @@ export const Component = ({ onOpenApp }) => {
       return a[0].localeCompare(b[0]);
     });
   }, [currentFolder]);
+
+  // Filter items based on search query
+  const filteredItems = useMemo(() => {
+    return filterItems(sortedItems, ([name]) => name);
+  }, [sortedItems, query]);
 
   // Navigation
   const navigateTo = useCallback((path) => {
@@ -357,33 +364,47 @@ export const Component = ({ onOpenApp }) => {
         >
           {viewMode === 'icons' && (
             <div className="flex flex-wrap gap-2 p-3 content-start">
-              {sortedItems.map(([name, item]) => (
-                <FileItem
-                  key={name}
-                  name={name}
-                  item={item}
-                  isSelected={selectedItem?.name === name}
-                  viewMode={viewMode}
-                  onSelect={handleSelect}
-                  onDoubleClick={handleDoubleClick}
-                />
-              ))}
+              {filteredItems.length > 0 ? (
+                filteredItems.map(([name, item]) => (
+                  <FileItem
+                    key={name}
+                    name={name}
+                    item={item}
+                    isSelected={selectedItem?.name === name}
+                    viewMode={viewMode}
+                    onSelect={handleSelect}
+                    onDoubleClick={handleDoubleClick}
+                    highlightText={highlightText}
+                  />
+                ))
+              ) : (
+                <div className="text-gray-400 text-sm py-4">
+                  {isSearching ? 'Aucun fichier ne correspond à votre recherche' : 'Ce dossier est vide'}
+                </div>
+              )}
             </div>
           )}
 
           {viewMode === 'list' && (
             <div className="p-2 space-y-0.5">
-              {sortedItems.map(([name, item]) => (
-                <FileItem
-                  key={name}
-                  name={name}
-                  item={item}
-                  isSelected={selectedItem?.name === name}
-                  viewMode={viewMode}
-                  onSelect={handleSelect}
-                  onDoubleClick={handleDoubleClick}
-                />
-              ))}
+              {filteredItems.length > 0 ? (
+                filteredItems.map(([name, item]) => (
+                  <FileItem
+                    key={name}
+                    name={name}
+                    item={item}
+                    isSelected={selectedItem?.name === name}
+                    viewMode={viewMode}
+                    onSelect={handleSelect}
+                    onDoubleClick={handleDoubleClick}
+                    highlightText={highlightText}
+                  />
+                ))
+              ) : (
+                <div className="text-gray-400 text-sm py-4">
+                  {isSearching ? 'Aucun fichier ne correspond à votre recherche' : 'Ce dossier est vide'}
+                </div>
+              )}
             </div>
           )}
 
@@ -398,32 +419,41 @@ export const Component = ({ onOpenApp }) => {
                 </tr>
               </thead>
               <tbody>
-                {sortedItems.map(([name, item], index) => (
-                  <DetailsRow
-                    key={name}
-                    name={name}
-                    item={item}
-                    isSelected={selectedItem?.name === name}
-                    index={index}
-                    onSelect={handleSelect}
-                    onDoubleClick={handleDoubleClick}
-                  />
-                ))}
+                {filteredItems.length > 0 ? (
+                  filteredItems.map(([name, item], index) => (
+                    <DetailsRow
+                      key={name}
+                      name={name}
+                      item={item}
+                      isSelected={selectedItem?.name === name}
+                      index={index}
+                      onSelect={handleSelect}
+                      onDoubleClick={handleDoubleClick}
+                      highlightText={highlightText}
+                    />
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="4" className="p-4 text-center text-gray-400">
+                      {isSearching ? 'Aucun fichier ne correspond à votre recherche' : 'Ce dossier est vide'}
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           )}
 
-          {sortedItems.length === 0 && (
+          {filteredItems.length === 0 && viewMode !== 'icons' && viewMode !== 'list' && viewMode !== 'details' &&
             <div className="flex items-center justify-center h-full text-gray-400 text-sm">
               Ce dossier est vide
             </div>
-          )}
+          }
         </div>
       </div>
 
       {/* Status Bar */}
       <div className="bg-[#ece9d8] border-t border-[#808080] px-2 py-1 text-[10px] text-gray-600 flex justify-between">
-        <span>{sortedItems.length} objet(s){selectedItem ? ` • "${selectedItem.name}" sélectionné` : ''}</span>
+        <span>{filteredItems.length} objet(s){selectedItem ? ` • "${selectedItem.name}" sélectionné` : ''}</span>
         <span>{pathString}</span>
       </div>
     </div>

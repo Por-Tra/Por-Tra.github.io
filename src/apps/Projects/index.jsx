@@ -5,6 +5,7 @@
  */
 import { useState } from 'react';
 import { MenuBar, useZoom, getZoomStyle } from '../../components/ProjectLayout';
+import { useSearchHighlight } from '../../hooks/useSearchHighlight.jsx';
 
 export const config = {
   id: 'projects',
@@ -45,6 +46,10 @@ export const Component = () => {
   const { zoom, zoomIn, zoomOut, resetZoom } = useZoom();
   const [viewMode, setViewMode] = useState('list');
   const [selectedProject, setSelectedProject] = useState(null);
+  const { query, filterItems, highlightText, isSearching } = useSearchHighlight('projects');
+
+  // Filter projects based on search query
+  const filteredProjects = filterItems(projects, (p) => `${p.name} ${p.description}`);
 
   return (
     <div className="xp-app">
@@ -118,9 +123,9 @@ export const Component = () => {
               Détails
             </div>
             <div className="xp-sidebar-text">
-              <p><strong>Projets:</strong> {projects.length}</p>
-              <p><strong>En cours:</strong> {projects.filter(p => p.status === 'En cours').length}</p>
-              <p><strong>Terminés:</strong> {projects.filter(p => p.status === 'Terminé').length}</p>
+              <p><strong>Projets:</strong> {filteredProjects.length}</p>
+              <p><strong>En cours:</strong> {filteredProjects.filter(p => p.status === 'En cours').length}</p>
+              <p><strong>Terminés:</strong> {filteredProjects.filter(p => p.status === 'Terminé').length}</p>
             </div>
           </div>
         </div>
@@ -139,86 +144,98 @@ export const Component = () => {
           {/* List View */}
           {viewMode === 'list' && (
             <div className="xp-box">
-              {projects.map((project, index) => (
-                <div
-                  key={project.id}
-                  onClick={() => setSelectedProject(selectedProject === project.id ? null : project.id)}
-                  className={`xp-flex xp-gap-2 xp-items-center xp-p-2 cursor-pointer
-                             ${index !== projects.length - 1 ? 'border-b border-[#e0e0e0]' : ''}
-                             ${selectedProject === project.id ? 'bg-[#316ac5] text-white' : 'hover:bg-[#e8f0ff]'}`}
-                  style={{ padding: '8px' }}
-                >
-                  <img src="/icons/folder.png" alt="" className="w-8 h-8" />
-                  <div className="xp-flex-1">
-                    <div className="xp-flex xp-gap-2 xp-items-center">
-                      <span className="xp-text-bold">{project.name}</span>
-                      <span className={`xp-tag ${project.status === 'En cours' ? 'xp-tag-yellow' : 'xp-tag-green'}`}>
-                        {project.status}
-                      </span>
+              {filteredProjects.length > 0 ? (
+                filteredProjects.map((project, index) => (
+                  <div
+                    key={project.id}
+                    onClick={() => setSelectedProject(selectedProject === project.id ? null : project.id)}
+                    className={`xp-flex xp-gap-2 xp-items-center xp-p-2 cursor-pointer
+                               ${index !== filteredProjects.length - 1 ? 'border-b border-[#e0e0e0]' : ''}
+                               ${selectedProject === project.id ? 'bg-[#316ac5] text-white' : 'hover:bg-[#e8f0ff]'}`}
+                    style={{ padding: '8px' }}
+                  >
+                    <img src="/icons/folder.png" alt="" className="w-8 h-8" />
+                    <div className="xp-flex-1">
+                      <div className="xp-flex xp-gap-2 xp-items-center">
+                        <span className="xp-text-bold">{highlightText(project.name)}</span>
+                        <span className={`xp-tag ${project.status === 'En cours' ? 'xp-tag-yellow' : 'xp-tag-green'}`}>
+                          {project.status}
+                        </span>
+                      </div>
+                      <p className={`xp-text-sm ${selectedProject === project.id ? 'text-white' : 'xp-text-gray'}`}>
+                        {highlightText(project.description)}
+                      </p>
                     </div>
-                    <p className={`xp-text-sm ${selectedProject === project.id ? 'text-white' : 'xp-text-gray'}`}>
-                      {project.description}
-                    </p>
-                  </div>
-                  <div className="text-right">
-                    <p className={`xp-text-sm ${selectedProject === project.id ? 'text-white' : 'xp-text-gray'}`}>
-                      {project.date}
-                    </p>
-                    <div className="xp-flex xp-gap-1" style={{ justifyContent: 'flex-end', marginTop: '4px' }}>
-                      {project.languages.map((lang) => (
-                        <span key={lang} className="xp-tag xp-tag-blue">{lang}</span>
-                      ))}
+                    <div className="text-right">
+                      <p className={`xp-text-sm ${selectedProject === project.id ? 'text-white' : 'xp-text-gray'}`}>
+                        {project.date}
+                      </p>
+                      <div className="xp-flex xp-gap-1" style={{ justifyContent: 'flex-end', marginTop: '4px' }}>
+                        {project.languages.map((lang) => (
+                          <span key={lang} className="xp-tag xp-tag-blue">{lang}</span>
+                        ))}
+                      </div>
                     </div>
                   </div>
+                ))
+              ) : (
+                <div className="xp-text-gray" style={{ padding: '16px', textAlign: 'center' }}>
+                  {isSearching ? 'Aucun projet ne correspond à votre recherche' : 'Aucun projet disponible'}
                 </div>
-              ))}
+              )}
             </div>
           )}
 
           {/* Details View */}
           {viewMode === 'details' && (
             <div className="xp-box">
-              <table className="xp-table">
-                <thead>
-                  <tr>
-                    <th>Nom</th>
-                    <th>Description</th>
-                    <th>Technologies</th>
-                    <th>Date</th>
-                    <th>Statut</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {projects.map((project) => (
-                    <tr 
-                      key={project.id}
-                      onClick={() => setSelectedProject(selectedProject === project.id ? null : project.id)}
-                      className="cursor-pointer"
-                    >
-                      <td>
-                        <div className="xp-flex xp-gap-2 xp-items-center">
-                          <img src="/icons/folder.png" alt="" className="w-4 h-4" />
-                          <span className="xp-text-bold">{project.name}</span>
-                        </div>
-                      </td>
-                      <td className="xp-text-gray" style={{ maxWidth: '200px' }}>
-                        {project.description.substring(0, 50)}...
-                      </td>
-                      <td>
-                        {project.languages.map((lang) => (
-                          <span key={lang} className="xp-tag xp-tag-blue">{lang}</span>
-                        ))}
-                      </td>
-                      <td>{project.date}</td>
-                      <td>
-                        <span className={`xp-tag ${project.status === 'En cours' ? 'xp-tag-yellow' : 'xp-tag-green'}`}>
-                          {project.status}
-                        </span>
-                      </td>
+              {filteredProjects.length > 0 ? (
+                <table className="xp-table">
+                  <thead>
+                    <tr>
+                      <th>Nom</th>
+                      <th>Description</th>
+                      <th>Technologies</th>
+                      <th>Date</th>
+                      <th>Statut</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {filteredProjects.map((project) => (
+                      <tr 
+                        key={project.id}
+                        onClick={() => setSelectedProject(selectedProject === project.id ? null : project.id)}
+                        className="cursor-pointer"
+                      >
+                        <td>
+                          <div className="xp-flex xp-gap-2 xp-items-center">
+                            <img src="/icons/folder.png" alt="" className="w-4 h-4" />
+                            <span className="xp-text-bold">{highlightText(project.name)}</span>
+                          </div>
+                        </td>
+                        <td className="xp-text-gray" style={{ maxWidth: '200px' }}>
+                          {highlightText(project.description.substring(0, 50))}...
+                        </td>
+                        <td>
+                          {project.languages.map((lang) => (
+                            <span key={lang} className="xp-tag xp-tag-blue">{lang}</span>
+                          ))}
+                        </td>
+                        <td>{project.date}</td>
+                        <td>
+                          <span className={`xp-tag ${project.status === 'En cours' ? 'xp-tag-yellow' : 'xp-tag-green'}`}>
+                            {project.status}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              ) : (
+                <div className="xp-text-gray" style={{ padding: '16px', textAlign: 'center' }}>
+                  {isSearching ? 'Aucun projet ne correspond à votre recherche' : 'Aucun projet disponible'}
+                </div>
+              )}
             </div>
           )}
 
@@ -235,8 +252,8 @@ export const Component = () => {
 
       {/* Status Bar */}
       <div className="xp-statusbar">
-        <span>{projects.length} projets</span>
-        <span>{projects.filter(p => p.status === 'En cours').length} en cours</span>
+        <span>{filteredProjects.length} projets</span>
+        <span>{filteredProjects.filter(p => p.status === 'En cours').length} en cours</span>
       </div>
     </div>
   );
