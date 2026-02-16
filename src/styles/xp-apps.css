@@ -26,6 +26,16 @@
   font-size: 11px;
 }
 
+.xp-menubar button {
+  appearance: none;
+  border: none;
+  background: transparent;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
+}
+
 .xp-menubar-item {
   color: #000;
   cursor: pointer;
@@ -35,6 +45,131 @@
 .xp-menubar-item:hover {
   background: #316ac5;
   color: #fff;
+}
+
+.xp-menu {
+  position: relative;
+}
+
+.xp-menu-button {
+  padding: 2px 6px;
+}
+
+.xp-menubar .xp-menu-button:hover,
+.xp-menubar .xp-menu-button:focus-visible {
+  background: #316ac5;
+  color: #fff;
+  outline: none;
+}
+
+.xp-menu-dropdown {
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0;
+  min-width: 180px;
+  background: #f6f5ee;
+  border: 1px solid #6b6b6b;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.25);
+  padding: 4px 0;
+  z-index: 20;
+}
+
+.xp-menu-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 4px 12px;
+  font-size: 11px;
+  color: #000;
+}
+
+.xp-menu-item:hover,
+.xp-menu-item:focus-visible {
+  background: #316ac5;
+  color: #fff;
+  outline: none;
+}
+
+.xp-menu-separator {
+  height: 1px;
+  background: #b5b5b5;
+  margin: 4px 6px;
+}
+
+.xp-menu-shortcut {
+  font-size: 10px;
+  opacity: 0.7;
+}
+
+.xp-menu-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+}
+
+.xp-menu-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.xp-menu-modal-card {
+  position: relative;
+  width: min(360px, 90vw);
+  margin: 12vh auto 0;
+  background: #ece9d8;
+  border: 1px solid #6b6b6b;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.25);
+}
+
+.xp-menu-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to bottom, #3a6ea5 0%, #2b5a8a 100%);
+  color: #fff;
+  padding: 6px 8px;
+  font-size: 12px;
+}
+
+.xp-menu-modal-header button {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.xp-menu-modal-body {
+  padding: 12px;
+  font-size: 11px;
+  color: #222;
+}
+
+.xp-menu-modal-footer {
+  padding: 0 12px 12px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.xp-menu-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-bottom: 1px solid #808080;
+  background: #ece9d8;
+  font-size: 11px;
+}
+
+.xp-menu-search input {
+  flex: 1;
+  border: 1px solid #7f9db9;
+  padding: 2px 6px;
+  font-size: 11px;
 }
 
 /* ============================================

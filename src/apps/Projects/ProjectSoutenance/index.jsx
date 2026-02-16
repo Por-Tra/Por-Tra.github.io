@@ -15,14 +15,14 @@ import projectZip from '../../../assets/projet_sql-main.zip';
 
 export const config = {
   id: 'project-soutenance',
-  name: 'Projet Soutenance',
+  name: 'Application web de notation',
   icon: '/icons/folder.png',
   defaultWidth: 700,
   defaultHeight: 550,
 };
 
 const projectData = {
-  title: "Projet de Soutenance",
+  title: "Application web de notation",
   description: "Il s'agit d'un projet universitaire dont le but était de fabriquer une application web pour noter les élèves.",
   languages: ["HTML", "CSS", "PHP", "SQL"],
   team: "11 personnes (par groupe de classe)",
@@ -75,7 +75,7 @@ export const Component = ({ onOpenApp }) => {
           projectData={projectData}
           downloadFile={projectZip}
           downloadName="projet_soutenance.zip"
-          githubUrl="https://github.com/Por-Tra"
+          githubUrl="https://github.com/Corentino74/projet_sql"
           technologies={["HTML", "CSS", "PHP", "SQL"]}
         />
       }

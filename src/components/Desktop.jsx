@@ -187,6 +187,8 @@ const Desktop = () => {
       height: responsiveSize.height,
       minimized: false,
       maximized: false,
+      searchOpen: false,
+      searchQuery: '',
       zIndex: nextZIndex,
     };
     setWindows(prev => [...prev, newWindow]);
@@ -224,6 +226,8 @@ const Desktop = () => {
       height: responsiveSize.height,
       minimized: false,
       maximized: false,
+      searchOpen: false,
+      searchQuery: '',
       zIndex: nextZIndex,
       extraProps: extraProps, // Props supplémentaires pour le composant
     };
@@ -283,6 +287,28 @@ const Desktop = () => {
     ));
   }, []);
 
+  const updateWindowSearchQuery = useCallback((id, query) => {
+    setWindows(prev => {
+      const target = prev.find(w => w.id === id);
+      if (!target) return prev;
+      const next = prev.map(w =>
+        w.id === id ? { ...w, searchQuery: query } : w
+      );
+      window.dispatchEvent(
+        new CustomEvent('xp-menu-search', {
+          detail: { windowId: id, appId: target.appId, query }
+        })
+      );
+      return next;
+    });
+  }, []);
+
+  const closeWindowSearch = useCallback((id) => {
+    setWindows(prev => prev.map(w =>
+      w.id === id ? { ...w, searchOpen: false } : w
+    ));
+  }, []);
+
   const updateIconPosition = useCallback((appId, x, y) => {
     setIcons(prev => {
       const freePos = findFreePosition(x, y, appId, prev);
@@ -328,6 +354,40 @@ const Desktop = () => {
     setCurrentLanguage(nextLanguage);
   }, []);
 
+  useEffect(() => {
+    const handleMenuAction = (event) => {
+      const action = event?.detail?.action;
+      if (!action) return;
+
+      if (action === 'file.close') {
+        if (activeWindow) closeWindow(activeWindow);
+        return;
+      }
+
+      if (action === 'file.quit') {
+        setWindows([]);
+        setActiveWindow(null);
+        return;
+      }
+
+      if (action === 'edit.search') {
+        if (!activeWindow) return;
+        setWindows(prev => prev.map(w =>
+          w.id === activeWindow ? { ...w, searchOpen: !w.searchOpen } : w
+        ));
+        return;
+      }
+
+      if (action === 'view.fullscreen') {
+        if (!activeWindow) return;
+        maximizeWindow(activeWindow);
+      }
+    };
+
+    window.addEventListener('xp-menu-action', handleMenuAction);
+    return () => window.removeEventListener('xp-menu-action', handleMenuAction);
+  }, [activeWindow, closeWindow, maximizeWindow]);
+
   return (
     <div 
       className="xp-desktop w-full h-screen relative overflow-hidden no-select"
@@ -358,6 +418,8 @@ const Desktop = () => {
           onFocus={() => bringToFront(window.id)}
           onMove={(x, y) => updateWindowPosition(window.id, x, y)}
           onResize={(width, height) => updateWindowSize(window.id, width, height)}
+          onSearchChange={updateWindowSearchQuery}
+          onSearchClose={closeWindowSearch}
           onOpenApp={openAppById}
           onSetWallpaper={handleSetWallpaper}
           wallpaperUrl={wallpaperUrl}

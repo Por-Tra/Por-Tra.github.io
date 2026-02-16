@@ -13,9 +13,15 @@
   border-bottom: 1px solid #8a8a8a;
 }
 
-.cp-menubar span {
+.cp-menubar span,
+.cp-menubar button {
   padding: 1px 6px;
   cursor: default;
+  appearance: none;
+  border: none;
+  background: transparent;
+  font: inherit;
+  color: inherit;
 }
 
 .cp-toolbar {

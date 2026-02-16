@@ -17,6 +17,8 @@ const Window = ({
   onSetUtcOffset,
   currentLanguage,
   onSetLanguage,
+  onSearchChange,
+  onSearchClose,
 }) => {
   const windowRef = useRef(null);
   const isDragging = useRef(false);
@@ -187,6 +189,31 @@ const Window = ({
 
       {/* Window Content */}
       <div className="bg-[#ece9d8] h-[calc(100%-28px)] overflow-hidden relative">
+        {window.searchOpen && (
+          <div className="xp-menu-search">
+            <span>Rechercher:</span>
+            <input
+              type="text"
+              value={window.searchQuery || ''}
+              onChange={(event) => onSearchChange?.(window.id, event.target.value)}
+              placeholder="Filtrer..."
+            />
+            <button
+              type="button"
+              className="xp-button px-2 py-0.5 text-xs"
+              onClick={() => onSearchChange?.(window.id, '')}
+            >
+              Effacer
+            </button>
+            <button
+              type="button"
+              className="xp-button px-2 py-0.5 text-xs"
+              onClick={() => onSearchClose?.(window.id)}
+            >
+              Fermer
+            </button>
+          </div>
+        )}
         <AppContent
           window={window}
           onOpenApp={onOpenApp}

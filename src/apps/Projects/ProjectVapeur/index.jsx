@@ -86,6 +86,3 @@ export const Component = ({ onOpenApp }) => {
     />
   );
 };
-
-// Dépot git
-// https://github.com/Por-Tra/Projet-Vapeur

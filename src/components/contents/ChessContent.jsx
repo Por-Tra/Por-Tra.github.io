@@ -228,7 +228,7 @@ const ChessContent = () => {
       <XpMenuBar
         className="bg-gradient-to-b from-[#ece9d8] to-[#d4d0c8] border-b border-[#808080] px-2 py-1 flex gap-4 text-xs"
         itemClassName="text-gray-600 hover:underline cursor-pointer"
-        items={['Partie', 'Options', '?']}
+        items={['Partie', 'Options', 'Aide']}
       />
 
       <div className="flex-1 flex overflow-hidden">

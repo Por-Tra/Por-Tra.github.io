@@ -157,7 +157,8 @@ export const Component = () => {
               À propos de ce portfolio
             </div>
             <div className="xp-box-content">
-              <p className="text-xs">Ce portfolio est une simulation de Windows XP créé avec React et TailwindCSS. Naviguez comme vous le feriez sur un vrai système d'exploitation !</p>
+              <p className="text-xs">Ce portfolio est une simulation de Windows XP créé avec React et TailwindCSS. Naviguez comme vous le feriez sur un vrai système d'exploitation !
+                Il a été inspiré grandement du site <a href="https://xque.dev/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">xque portfolio</a>.</p>
             </div>
           </div>
         </div>

@@ -169,7 +169,7 @@ export const Component = ({
             <XpMenuBar
                 className="cp-menubar"
                 itemClassName=""
-                items={['Fichier', 'Edition', 'Affichage', 'Favoris', 'Outils', '?']}
+                items={['Fichier', 'Edition', 'Affichage', 'Favoris', 'Outils', 'Aide']}
             />
 
             <div className="cp-toolbar">
