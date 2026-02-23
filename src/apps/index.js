@@ -152,23 +152,7 @@ const apps = [
   // ===== APPS UTILITAIRES (pas sur le bureau) =====
   { ...ImageViewer.config, component: ImageViewer.Component },
   
-  // ===== APPS SYSTÈME (pas sur le bureau) =====
-  // { 
-  //   ...Blank.config, 
-  //   component: Blank.Component,
-  //   id: 'settings',
-  //   name: 'Paramètres',
-  //   icon: '/icons/setting.png',
-  //   showOnDesktop: false,
-  // },
-  // { 
-  //   ...Blank.config, 
-  //   component: Blank.Component,
-  //   id: 'network',
-  //   name: 'Connexions réseau',
-  //   icon: '/icons/signal.png',
-  //   showOnDesktop: false,
-  // },
+
 ];
 
 // Enregistrement dans le registry

@@ -12,7 +12,7 @@ import { useSearchHighlight } from '../../hooks/useSearchHighlight.jsx';
 export const config = {
   id: 'explorer',
   name: 'Poste de travail',
-  icon: '/icons/PC.ico',
+  icon: '/icons/PC.png',
   defaultWidth: 750,
   defaultHeight: 520,
 };

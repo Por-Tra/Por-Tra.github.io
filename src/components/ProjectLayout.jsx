@@ -360,7 +360,7 @@ export const ScreenshotsBox = ({ images, onImageClick, projectTitle = 'Projet' }
 export const ScreenshotsSectionsBox = ({ sections, onImageClick, projectTitle = 'Projet' }) => (
   <div className="xp-box">
     <div className="xp-box-header xp-box-header-orange">
-      <img src="/icons/explorer.png" alt="" />
+      <img src="/icons/image.png" alt="" />
       Captures d'ecran
     </div>
     <div className="xp-box-content">

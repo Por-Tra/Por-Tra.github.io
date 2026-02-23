@@ -25,7 +25,7 @@ class FileSystem {
           'Documents': 
           {
             type: 'folder',
-            icon: '/icons/document.svg',
+            icon: '/icons/note.png',
             children: 
             {
               'Projets': 
@@ -447,7 +447,7 @@ class FileSystem {
           'Disque local (C:)': 
           {
             type: 'drive',
-            icon: '/icons/PC.ico',
+            icon: '/icons/PC.png',
             children: 
             {
               'Program Files': 
