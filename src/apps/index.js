@@ -43,6 +43,7 @@
  * - icon: string            → Chemin vers l'icône (REQUIS)
  * - component: Component    → Composant React à afficher
  * - url: string             → URL externe (ouvre dans iframe)
+ * - openExternal: boolean   → Ouvre dans un nouvel onglet (false)
  * - defaultWidth: number    → Largeur par défaut (600)
  * - defaultHeight: number   → Hauteur par défaut (450)
  * - showOnDesktop: boolean  → Afficher sur le bureau (true)
@@ -70,12 +71,16 @@ import * as Contact from './Contact';
 import * as Chess from './Chess';
 import * as Explorer from './Explorer';
 import * as ImageViewer from './ImageViewer';
+import * as ControlPanel from './ControlPanel';
 import * as Blank from './utilities/Blank';
+import * as Terminal from './Terminal';
 
 // Projets détaillés
 import * as ProjectRPG from './Projects/ProjectRPG';
 import * as ProjectSoutenance from './Projects/ProjectSoutenance';
 import * as ProjectReseau from './Projects/ProjectReseau';
+import * as ProjectMycoria from './Projects/ProjectMycoria';
+import * as ProjectVapeur from './Projects/ProjectVapeur';
 
 // =========================================
 // ENREGISTREMENT DES APPLICATIONS
@@ -97,6 +102,7 @@ const apps = [
     name: 'GitHub',
     icon: '/icons/git.png',
     url: 'https://github.com/Por-Tra',
+    openExternal: true,
     defaultWidth: 900,
     defaultHeight: 600,
     desktopOrder: 6,
@@ -106,48 +112,47 @@ const apps = [
     name: 'LinkedIn',
     icon: '/icons/link.png',
     url: 'https://linkedin.com/in/lucas-contreras-hodapp',
+    openExternal: true,
     defaultWidth: 900,
     defaultHeight: 600,
     desktopOrder: 7,
   },
+  { ...Terminal.config, component: Terminal.Component, desktopOrder: 8 },
+  {
+    id : 'google',
+    name: 'Explorer',
+    icon: '/icons/explorer.png',
+    url: 'https://www.google.com',
+    openExternal: true,
+    defaultWidth: 900,
+    defaultHeight: 600,
+    desktopOrder: 9,
+  },
   
   // ===== UTILITAIRES =====
   { ...Explorer.config, component: Explorer.Component, desktopOrder: 10 },
-  { ...Chess.config, component: Chess.Component, desktopOrder: 11 },
+  { ...ControlPanel.config, component: ControlPanel.Component, desktopOrder: 11 },
+  { ...Chess.config, component: Chess.Component, desktopOrder: 12 },
   { 
     ...Blank.config, 
     component: Blank.Component,
     id: 'trash',
     name: 'Corbeille',
     icon: '/icons/trash.png',
-    desktopOrder: 12,
+    desktopOrder: 13,
   },
   
-  // ===== PROJETS (pas sur le bureau, accessibles via l'app Projects) =====
-  { ...ProjectRPG.config, component: ProjectRPG.Component, showOnDesktop: false },
-  { ...ProjectSoutenance.config, component: ProjectSoutenance.Component, showOnDesktop: false },
-  { ...ProjectReseau.config, component: ProjectReseau.Component, showOnDesktop: false },
+  // ===== PROJETS (sur le bureau) =====
+  { ...ProjectRPG.config, component: ProjectRPG.Component, desktopOrder: 14 },
+  { ...ProjectSoutenance.config, component: ProjectSoutenance.Component, desktopOrder: 15 },
+  { ...ProjectReseau.config, component: ProjectReseau.Component, desktopOrder: 16 },
+  { ...ProjectMycoria.config, component: ProjectMycoria.Component, desktopOrder: 17 },
+  { ...ProjectVapeur.config, component: ProjectVapeur.Component, desktopOrder: 18 },
   
   // ===== APPS UTILITAIRES (pas sur le bureau) =====
   { ...ImageViewer.config, component: ImageViewer.Component },
   
-  // ===== APPS SYSTÈME (pas sur le bureau) =====
-  { 
-    ...Blank.config, 
-    component: Blank.Component,
-    id: 'settings',
-    name: 'Paramètres',
-    icon: '/icons/setting.png',
-    showOnDesktop: false,
-  },
-  { 
-    ...Blank.config, 
-    component: Blank.Component,
-    id: 'network',
-    name: 'Connexions réseau',
-    icon: '/icons/signal.png',
-    showOnDesktop: false,
-  },
+
 ];
 
 // Enregistrement dans le registry

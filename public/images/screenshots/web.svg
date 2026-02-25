@@ -1,7 +1,0 @@
-<!-- Placeholder SVG for Web App Screenshot -->
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
-  <rect fill="#234e52" width="800" height="600"/>
-  <rect fill="#285e61" x="50" y="50" width="700" height="500" rx="10"/>
-  <text x="400" y="280" font-family="Arial, sans-serif" font-size="32" fill="#81e6d9" text-anchor="middle">🌐 Application Web Screenshot</text>
-  <text x="400" y="330" font-family="Arial, sans-serif" font-size="18" fill="#4fd1c5" text-anchor="middle">Application PHP avec MySQL</text>
-</svg>

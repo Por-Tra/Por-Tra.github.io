@@ -9,26 +9,33 @@ import appRegistry from './AppRegistry';
 
 class FileSystem {
   constructor() {
-    this.root = {
+    this.root = 
+    {
       'Poste de travail': {
         type: 'computer',
         icon: '/icons/computer.svg',
         children: {
-          'Bureau': {
+          'Bureau': 
+          {
             type: 'folder',
             icon: '/icons/folder.png',
             special: 'desktop', // Synchronisé avec le bureau
             children: {} // Rempli dynamiquement
           },
-          'Documents': {
+          'Documents': 
+          {
             type: 'folder',
-            icon: '/icons/document.svg',
-            children: {
-              'Projets': {
+            icon: '/icons/note.png',
+            children: 
+            {
+              'Projets': 
+              {
                 type: 'folder',
                 icon: '/icons/folder.png',
-                children: {
-                  'RPG 2D (Python)': {
+                children: 
+                {
+                  'RPG 2D (Python)': 
+                  {
                     type: 'app',
                     icon: '/icons/folder.png',
                     appId: 'project-rpg',
@@ -36,7 +43,8 @@ class FileSystem {
                     downloadFile: '/assets/RPG2D.zip',
                     downloadName: 'RPG2D.zip'
                   },
-                  'Application Web (PHP)': {
+                  'Application Web (PHP)': 
+                  {
                     type: 'app',
                     icon: '/icons/folder.png',
                     appId: 'project-soutenance',
@@ -44,17 +52,34 @@ class FileSystem {
                     downloadFile: '/assets/Soutenance.zip',
                     downloadName: 'Soutenance.zip'
                   },
-                  'Chat Réseau (Python)': {
+                  'Chat Réseau (Python)': 
+                  {
                     type: 'app',
                     icon: '/icons/folder.png',
                     appId: 'project-reseau',
                     description: 'Application de messagerie en réseau local',
                     downloadFile: '/assets/ChatReseau.zip',
                     downloadName: 'ChatReseau.zip'
-                  }
+                  },
+                  'Mycoria (Unreal Engine)':
+                  {
+                    type: 'app',
+                    icon: '/icons/folder.png',
+                    appId: 'mycoria-project',
+                    description: 'Jeu vidéo développé sur Unreal Engine avec blueprints',
+                  },
+                  'Vapeur (javasript)':
+                  {
+                    type: 'app',
+                    icon: '/icons/folder.png',
+                    appId: 'vapeur-project',
+                    description: 'Application de gestion de bibliothèque de jeux développée en JavaScript',
+                  },
+                  
                 }
               },
-              'CV_Lucas.pdf': {
+              'CV_Lucas.pdf': 
+              {
                 type: 'file',
                 icon: '/icons/document.svg',
                 size: '156 Ko',
@@ -64,114 +89,408 @@ class FileSystem {
               }
             }
           },
-          'Téléchargements': {
+          'Téléchargements': 
+          {
             type: 'folder',
             icon: '/icons/folder.png',
-            children: {}
+            children: 
+            {
+              'The_Elder_Scrolls_2D.zip':
+              {
+                type: 'file',
+                icon: '/icons/folder.png',
+                size: '5.2 Mo',
+                modified: '2026-02-12',
+                downloadFile: '/assets/RPG.zip',
+                downloadName: 'RPG.zip'
+              },
+              'RSL.zip':
+              {
+                type: 'file',
+                icon: '/icons/folder.png',
+                size: '1.8 Mo',
+                modified: '2026-02-12',
+                downloadFile: '/assets/Projet RSL.zip',
+                downloadName: 'Projet RSL.zip'
+              },
+              'Application_Web_Notation.zip':
+              {
+                type: 'file',
+                icon: '/icons/folder.png',
+                size: '2.4 Mo',
+                modified: '2026-02-12',
+                downloadFile: '/assets/projet_sql-main.zip',
+                downloadName: 'projet_sql-main.zip'
+              }
+            }
           },
-          'Images': {
+          'Images': 
+          {
             type: 'folder',
             icon: '/icons/folder.png',
-            children: {
-              'Captures': {
+            children: 
+            {
+              'Captures': 
+              {
                 type: 'folder',
                 icon: '/icons/folder.png',
-                children: {
-                  'screenshot_rpg.svg': {
-                    type: 'image',
-                    icon: '/icons/folder.png',
-                    imageSrc: '/images/screenshots/rpg.svg',
-                    size: '245 Ko',
-                    modified: '2024-06-15'
+                children: 
+                {
+                  'The Elder Scrolls 2D':
+                  {
+                     type: 'folder',
+                     icon: '/icons/folder.png',
+                     children:
+                     {
+                        'capture1.png':
+                        {
+                          type: 'image',
+                          icon: '/images/ProjectIMG/Proj1/1.png',
+                          imageSrc: '/images/ProjectIMG/Proj1/1.png',
+                          size: "209Ko",
+                          modified: '2026-02-12'
+                        },
+                        'capture2.png':
+                        {
+                          type: 'image',
+                          icon: '/images/ProjectIMG/Proj1/2.png',
+                          imageSrc: '/images/ProjectIMG/Proj1/2.png',
+                          size: "432Ko",
+                          modified: '2026-02-12'
+                        },
+                        'capture3.png':
+                        {
+                          type: 'image',
+                          icon: '/images/ProjectIMG/Proj1/3.png',
+                          imageSrc: '/images/ProjectIMG/Proj1/3.png',
+                          size: "357Ko",
+                          modified: '2026-02-12'
+                        }
+                     }
                   },
-                  'screenshot_chat.svg': {
-                    type: 'image',
+                  'Application Web de notation':
+                  {
+                    type: 'folder',
                     icon: '/icons/folder.png',
-                    imageSrc: '/images/screenshots/chat.svg',
-                    size: '180 Ko',
-                    modified: '2024-05-20'
+                    children:
+                    {
+                      'capture1.png':
+                      {
+                        type: 'image',
+                        icon: '/images/ProjectIMG/Proj2/1.png',
+                        imageSrc: '/images/ProjectIMG/Proj2/1.png',
+                        size: "74.1Ko",
+                        modified: '2026-02-12'
+                      },
+                      'capture2.png':
+                      {
+                      type: 'image',
+                      icon: '/images/ProjectIMG/Proj2/2.png',
+                      imageSrc: '/images/ProjectIMG/Proj2/2.png',
+                      size: "237Ko",
+                      modified: '2026-02-12'
+                      },
+                      'capture3.png':
+                      {
+                        type: 'image',
+                        icon: '/images/ProjectIMG/Proj2/3.png',
+                        imageSrc: '/images/ProjectIMG/Proj2/3.png',
+                        size: "211Ko",
+                        modified: '2026-02-12'
+                      }
+                    }
                   },
-                  'screenshot_web.svg': {
-                    type: 'image',
+                  'Réseau Social Local':
+                  {
+                    type: 'folder',
                     icon: '/icons/folder.png',
-                    imageSrc: '/images/screenshots/web.svg',
-                    size: '320 Ko',
-                    modified: '2025-10-01'
+                    children:
+                    {
+                      'capture1.png':
+                      {
+                        type: 'image',
+                        icon: '/images/ProjectIMG/Proj3/1.png',
+                        imageSrc: '/images/ProjectIMG/Proj3/1.png',
+                        size: "20.4Ko",
+                        modified: '2026-02-12'
+                      },
+                      'capture2.png':
+                      {
+                        type: 'image',
+                        icon: '/images/ProjectIMG/Proj3/2.png',
+                        imageSrc: '/images/ProjectIMG/Proj3/2.png',
+                        size: "6.49Ko",
+                        modified: '2026-02-12'
+                      },
+                      'capture3.png':
+                      {
+                        type: 'image',
+                        icon: '/images/ProjectIMG/Proj3/3.png',
+                        imageSrc: '/images/ProjectIMG/Proj3/3.png',
+                        size: "21.8Ko",
+                        modified: '2026-02-12'
+                      }
+                    }
+                  },
+                  'Mycoria' :
+                  {
+                    type: 'folder',
+                    icon: '/icons/folder.png',
+                    children:
+                    {
+                      'capture1.png':
+                      {
+                        type: 'image',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/1.png',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/1.png',
+                        size: "1.4Mo",
+                        modified: '2026-02-12'
+                      },
+                      'capture2.png':
+                      {
+                        type: 'image',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/2.png',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/2.png',
+                        size: "1.3Mo",
+                        modified: '2026-02-12'
+                      },
+                      'capture3.png':
+                      {
+                        type: 'image',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/3.png',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/3.png',
+                        size: "1.46Mo",
+                        modified: '2026-02-12'
+                      },
+                      'capture4.png':
+                      {
+                        type: 'image',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/4.png',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/4.png',
+                        size: "1.52Mo",
+                        modified: '2026-02-12'
+                      },
+                      'capture5.png':
+                      {
+                        type: 'image',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/5.png',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/5.png',
+                        size: "1.38Mo",
+                        modified: '2026-02-12'
+                      },
+                      'capture6.png':
+                      {
+                        type: 'image',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/6.png',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/6.png',
+                        size: "2.24Mo",
+                        modified: '2026-02-12'
+                      },
+                      'capture7.png':
+                      {
+                        type: 'image',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/7.png',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/7.png',
+                        size: "2.15Mo",
+                        modified: '2026-02-12'
+                      },
+                      'capture8.png':
+                      {
+                        type: 'image',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/8.png',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/8.png',
+                        size: "2.67Mo",
+                        modified: '2026-02-12'
+                      },
+                      'capture9.png':
+                      {
+                        type: 'image',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/9.png',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/9.png',
+                        size: "1.66Mo",
+                        modified: '2026-02-12'
+                      },
+                      'capture10.png':
+                      {
+                        type: 'image',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/10.png',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/10.png',
+                        size: "1.58Mo",
+                        modified: '2026-02-12'
+                      },
+                      'capture11.png':
+                      {
+                        type: 'image',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/11.png',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/11.png',
+                        size: "388Ko",
+                        modified: '2026-02-12'
+                      },
+                      'capture12.png':
+                      {
+                        type: 'image',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/12.png',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/12.png',
+                        size: "454Ko",
+                        modified: '2026-02-12'
+                      }
+                    }
+                  },
+                  'Vapeur':
+                  {
+                    type: 'folder',
+                    icon: '/icons/folder.png',
+                    children:
+                    {
+                      'capture1.png':
+                      {
+                        type: 'image',
+                        icon: '/images/ProjectIMG/Proj-Vapeur/1.png',
+                        imageSrc: '/images/ProjectIMG/Proj-Vapeur/1.png',
+                        size: "243Ko",
+                        modified: '2026-02-12'
+                      },
+                      'capture2.png':
+                      {
+                        type: 'image',
+                        icon: '/images/ProjectIMG/Proj-Vapeur/2.png',
+                        imageSrc: '/images/ProjectIMG/Proj-Vapeur/2.png',
+                        size: "362Ko",
+                        modified: '2026-02-12'
+                      },
+                      'capture3.png':
+                      {
+                        type: 'image',
+                        icon: '/images/ProjectIMG/Proj-Vapeur/3.png',
+                        imageSrc: '/images/ProjectIMG/Proj-Vapeur/3.png',
+                        size: "263Ko",
+                        modified: '2026-02-12'
+                      },
+                      'capture4.png':
+                      {
+                        type: 'image',
+                        icon: '/images/ProjectIMG/Proj-Vapeur/4.png',
+                        imageSrc: '/images/ProjectIMG/Proj-Vapeur/4.png',
+                        size: "214Ko",
+                        modified: '2026-02-12'
+                      },
+                      'capture5.png':
+                      {
+                        type: 'image',
+                        icon: '/images/ProjectIMG/Proj-Vapeur/5.png',
+                        imageSrc: '/images/ProjectIMG/Proj-Vapeur/5.png',
+                        size: "198Ko",
+                        modified: '2026-02-12'
+                      }
+
+                    }
                   }
+
+
                 }
               },
-              'Wallpapers': {
+              'Wallpapers': 
+              {
                 type: 'folder',
                 icon: '/icons/folder.png',
                 children: {
-                  'bliss.svg': {
+                  'Dog.jpg' :
+                  {
                     type: 'image',
-                    icon: '/icons/folder.png',
-                    imageSrc: '/images/wallpapers/bliss.svg',
-                    size: '1.2 Mo',
-                    modified: '2001-10-25'
+                    icon: '/images/wallpapers/dog.jpg',
+                    imageSrc: '/images/wallpapers/dog.jpg',
+                    size: "329Ko",
+                    modified: '2026-02-12'
                   },
-                  'xp_hills.svg': {
+                  "Win11Dark.jpg" :
+                  {
                     type: 'image',
-                    icon: '/icons/folder.png',
-                    imageSrc: '/images/wallpapers/xp_hills.svg',
-                    size: '890 Ko',
-                    modified: '2001-10-25'
+                    icon: '/images/wallpapers/Win11Dark.jpg',
+                    imageSrc: '/images/wallpapers/Win11Dark.jpg',
+                    size: "269Ko",
+                    modified: '2026-02-12'
+                  },
+                  'winXPDark.jpeg' :
+                  {
+                    type: 'image',
+                    icon: '/images/wallpapers/winXPDark.jpeg',
+                    imageSrc: '/images/wallpapers/winXPDark.jpeg',
+                    size: "78.8Ko",
+                    modified: '2026-02-12'
                   }
                 }
               }
             }
           },
-          'Réseau': {
+          'Réseau': 
+          {
             type: 'folder',
-            icon: '/icons/internet.svg',
-            children: {
-              'GitHub': {
+            icon: '/icons/explorer.png',
+            children: 
+            {
+              'GitHub': 
+              {
                 type: 'link',
                 icon: '/icons/github.svg',
-                url: 'https://github.com/lucasomusic',
+                url: 'https://github.com/Por-Tra',
                 description: 'Mon profil GitHub'
               },
-              'LinkedIn': {
+              'LinkedIn': 
+              {
                 type: 'link',
                 icon: '/icons/linkedin.svg',
-                url: 'https://linkedin.com/in/lucas',
+                url: 'https://www.linkedin.com/in/lucas-contreras-hodapp/',
                 description: 'Mon profil LinkedIn'
               }
             }
           },
-          'Disque local (C:)': {
+          'Disque local (C:)': 
+          {
             type: 'drive',
-            icon: '/icons/explorer.png',
-            children: {
-              'Program Files': {
+            icon: '/icons/PC.png',
+            children: 
+            {
+              'Program Files': 
+              {
                 type: 'folder',
                 icon: '/icons/folder.png',
                 children: {
-                  'Python 3.11': {
+                  'Python 3.11': 
+                  {
                     type: 'folder',
                     icon: '/icons/folder.png',
                     children: {
                       'python.exe': { type: 'file', icon: '/icons/setting.png', size: '45 Ko', modified: '2024-01-01' }
                     }
                   },
-                  'Visual Studio Code': {
+                  'Visual Studio Code': 
+                  {
                     type: 'folder',
                     icon: '/icons/folder.png',
                     children: {
-                      'Code.exe': { type: 'file', icon: '/icons/setting.png', size: '120 Mo', modified: '2024-06-01' }
+                      'Code.exe': 
+                      { 
+                        type: 'file', 
+                        icon: '/icons/setting.png', 
+                        size: '120 Mo', 
+                        modified: '2024-06-01'
+                      }
                     }
                   }
                 }
               },
-              'Windows': {
+              'Windows': 
+              {
                 type: 'folder',
                 icon: '/icons/folder.png',
-                children: {
-                  'System32': {
+                children: 
+                {
+                  'System32': 
+                  {
                     type: 'folder',
                     icon: '/icons/folder.png',
-                    children: {
+                    children: 
+                    {
                       'notepad.exe': { type: 'file', icon: '/icons/notepad.svg', size: '180 Ko', modified: '2001-10-25' },
                       'cmd.exe': { type: 'file', icon: '/icons/setting.png', size: '240 Ko', modified: '2001-10-25' }
                     }

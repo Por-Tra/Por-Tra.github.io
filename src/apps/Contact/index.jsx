@@ -3,146 +3,251 @@
  * 
  * Formulaire de contact style email XP
  */
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import emailjs from 'emailjs-com';
+import { MenuBar, useZoom, getZoomStyle } from '../../components/ProjectLayout';
+
+const EMAILJS_SERVICE_ID = 'service_6i7i8an';
+const EMAILJS_TEMPLATE_ID = 'template_tv9399m';
+const EMAILJS_PUBLIC_KEY = '3gmM9AHo9zW51AdS_';
 
 export const config = {
   id: 'contact',
   name: 'Contact',
-  icon: '/icons/folder.png',
-  defaultWidth: 480,
-  defaultHeight: 420,
+  icon: '/icons/message.ico',
+  defaultWidth: 600,
+  defaultHeight: 500,
 };
 
 export const Component = () => {
+  const { zoom, zoomIn, zoomOut, resetZoom } = useZoom();
+  const formRef = useRef();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: '',
   });
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState({ type: '', message: '' });
+  const [sending, setSending] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSent(true);
-    setTimeout(() => setSent(false), 3000);
-    setFormData({ name: '', email: '', message: '' });
+    
+    // Anti-bot honeypot check
+    if (formRef.current.company.value) {
+      setSending(false);
+      return;
+    }
+    
+    setSending(true);
+    setStatus({ type: '', message: '' });
+
+    emailjs.sendForm(
+      EMAILJS_SERVICE_ID,
+      EMAILJS_TEMPLATE_ID,
+      formRef.current,
+      EMAILJS_PUBLIC_KEY
+    )
+    .then(() => {
+      setStatus({ type: 'success', message: 'Message envoyé' });
+      setFormData({ name: '', email: '', message: '' });
+      setSending(false);
+      setTimeout(() => setStatus({ type: '', message: '' }), 5000);
+    })
+    .catch((error) => {
+      console.error('EmailJS Error:', error);
+      setStatus({ type: 'error', message: 'Erreur lors de l\'envoi. Réessayez ou contactez-moi directement par email.' });
+      setSending(false);
+    });
   };
 
   return (
-    <div className="h-full bg-[#ece9d8] overflow-auto">
-      {/* Toolbar */}
-      <div className="bg-gradient-to-b from-[#ece9d8] to-[#d4d0c8] border-b border-[#808080] px-2 py-1 flex gap-4 text-xs">
-        <span className="text-gray-600 hover:underline cursor-pointer">Fichier</span>
-        <span className="text-gray-600 hover:underline cursor-pointer">Édition</span>
-        <span className="text-gray-600 hover:underline cursor-pointer">Affichage</span>
-        <span className="text-gray-600 hover:underline cursor-pointer">?</span>
-      </div>
+    <div className="xp-app">
+      {/* Menu Bar avec Zoom */}
+      <MenuBar 
+        zoom={zoom} 
+        onZoomIn={zoomIn} 
+        onZoomOut={zoomOut} 
+        onReset={resetZoom}
+      />
 
-      {/* Button Bar */}
-      <div className="bg-[#ece9d8] border-b border-[#808080] px-2 py-1 flex items-center gap-1">
-        <button className="xp-button px-2 py-0.5 text-xs flex items-center gap-1">
-          <img src="/icons/signal.png" alt="" className="w-4 h-4" />
+      {/* Toolbar */}
+      <div className="xp-toolbar">
+        <button className="xp-toolbar-btn" type="submit" form="contact-form">
           Envoyer
         </button>
-        <button className="xp-button px-2 py-0.5 text-xs flex items-center gap-1">
-          <img src="/icons/folder.png" alt="" className="w-4 h-4" />
-          Joindre
-        </button>
       </div>
 
-      <div className="p-3">
-        {/* Contact Form */}
-        <div className="bg-white border border-[#808080] rounded shadow-sm">
-          <div className="bg-gradient-to-r from-[#0058e6] to-[#2878e8] text-white px-3 py-2 flex items-center gap-2">
-            <img src="/icons/signal.png" alt="" className="w-5 h-5" />
-            <h2 className="font-bold text-sm">Nouveau Message</h2>
+      {/* Address Bar */}
+      <div className="xp-addressbar">
+        <span className="xp-addressbar-label">Adresse</span>
+        <div className="xp-addressbar-input">
+          <img src="/icons/message.ico" alt="" className="w-4 h-4" />
+          <span>C:\Utilisateurs\Lucas\Contact</span>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="xp-content xp-content-zoomable" style={getZoomStyle(zoom)}>
+        {/* Sidebar */}
+        <div className="xp-sidebar">
+          <div className="xp-sidebar-box">
+            <div className="xp-sidebar-header">
+              <img src="/icons/message.ico" alt="" className="w-4 h-4" />
+              Contact direct
+            </div>
+            <div className="xp-sidebar-content">
+              <a href="mailto:lucascontrerashodapp@gmail.com" className="xp-sidebar-link">
+                <img src="/icons/message.ico" alt="" className="w-3 h-3" />
+                Email
+              </a>
+              <a href="https://linkedin.com/in/lucas-contreras-hodapp" target="_blank" rel="noopener noreferrer" className="xp-sidebar-link">
+                <img src="/icons/link.png" alt="" className="w-3 h-3" />
+                LinkedIn
+              </a>
+              <a href="https://github.com/Por-Tra" target="_blank" rel="noopener noreferrer" className="xp-sidebar-link">
+                <img src="/icons/git.png" alt="" className="w-3 h-3" />
+                GitHub
+              </a>
+            </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="p-3 space-y-2">
-            <div className="flex items-center gap-2 border-b border-[#d4d0c8] pb-2">
-              <label className="text-[11px] font-medium w-10">De :</label>
-              <input
-                type="text"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                placeholder="Votre nom"
-                className="flex-1 bg-white border border-[#7f9db9] px-2 py-1 text-[11px] focus:outline-none focus:border-[#0058e6]"
-                required
-              />
+          <div className="xp-sidebar-box">
+            <div className="xp-sidebar-header">
+              <img src="/icons/info.png" alt="" className="w-4 h-4" />
+              Informations
             </div>
-
-            <div className="flex items-center gap-2 border-b border-[#d4d0c8] pb-2">
-              <label className="text-[11px] font-medium w-10">Email :</label>
-              <input
-                type="email"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                placeholder="votre@email.com"
-                className="flex-1 bg-white border border-[#7f9db9] px-2 py-1 text-[11px] focus:outline-none focus:border-[#0058e6]"
-                required
-              />
+            <div className="xp-sidebar-content">
+              <p className="xp-sidebar-info"><strong>Lieu:</strong></p>
+              <p className="xp-sidebar-info-small">Le Puy-en-Velay, France</p>
+              <p className="xp-sidebar-info"><strong>Disponibilité:</strong></p>
+              <p className="xp-sidebar-info-small">Ouvert aux opportunités</p>
             </div>
+          </div>
+        </div>
 
+        {/* Main Panel */}
+        <div className="xp-content-main">
+          {/* Header */}
+          <div className="xp-content-header">
+            <img src="/icons/message.ico" alt="" className="w-12 h-12" />
             <div>
-              <label className="text-[11px] font-medium block mb-1">Message :</label>
-              <textarea
-                value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                placeholder="Écrivez votre message ici..."
-                className="w-full h-24 bg-white border border-[#7f9db9] px-2 py-1 text-[11px] focus:outline-none focus:border-[#0058e6] resize-none"
-                required
-              />
+              <h1 className="xp-title">Me Contacter</h1>
+              <p className="xp-subtitle">Envoyez-moi un message</p>
             </div>
-
-            <div className="flex justify-end gap-2 pt-2">
-              <button type="submit" className="xp-button px-3 py-1 text-[11px] flex items-center gap-1">
-                <img src="/icons/signal.png" alt="" className="w-3 h-3" />
-                Envoyer
-              </button>
-            </div>
-          </form>
-
-          {sent && (
-            <div className="mx-3 mb-3 bg-[#dff0d8] border border-[#3c763d] text-[#3c763d] p-2 text-[11px]">
-              Message envoyé avec succès !
-            </div>
-          )}
-        </div>
-
-        {/* Contact Links */}
-        <div className="mt-3 bg-white border border-[#808080] rounded shadow-sm">
-          <div className="bg-gradient-to-r from-[#0058e6] to-[#2878e8] text-white px-3 py-1 text-xs font-bold flex items-center gap-2">
-            <img src="/icons/signal.png" alt="" className="w-4 h-4" />
-            Autres moyens de contact
           </div>
-          <div className="p-3 space-y-2 text-[11px]">
-            <a
-              href="mailto:lucascontrerashodapp@gmail.com"
-              className="flex items-center gap-2 text-[#0058e6] hover:underline"
-            >
-              <img src="/icons/signal.png" alt="" className="w-4 h-4" />
-              lucascontrerashodapp@gmail.com
-            </a>
-            <a
-              href="https://linkedin.com/in/lucas-contreras-hodapp"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-[#0058e6] hover:underline"
-            >
-              <img src="/icons/explorer.png" alt="" className="w-4 h-4" />
-              LinkedIn - Lucas Contreras Hodapp
-            </a>
-            <a
-              href="https://github.com/Por-Tra"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-[#0058e6] hover:underline"
-            >
-              <img src="/icons/explorer.png" alt="" className="w-4 h-4" />
-              GitHub - Por-Tra
-            </a>
+
+          {/* Contact Form */}
+          <div className="xp-box xp-box-blue">
+            <div className="xp-box-header">
+              <img src="/icons/message.ico" alt="" className="w-4 h-4" />
+              Nouveau Message
+            </div>
+            <div className="xp-box-content">
+              <form id="contact-form" ref={formRef} onSubmit={handleSubmit} className="space-y-3">
+                {/* Honeypot anti-bot field */}
+                <input
+                  type="text"
+                  name="company"
+                  tabIndex="-1"
+                  autoComplete="off"
+                  style={{ display: 'none' }}
+                />
+                <div className="flex items-center gap-2">
+                  <label className="text-xs font-medium w-16">De :</label>
+                  <input
+                    type="text"
+                    name="from_name"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    placeholder="Votre nom"
+                    className="flex-1 bg-white border border-[#7f9db9] px-2 py-1 text-xs focus:outline-none focus:border-[#0058e6]"
+                    required
+                  />
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <label className="text-xs font-medium w-16">Email :</label>
+                  <input
+                    type="email"
+                    name="reply_to"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    placeholder="votre@email.com"
+                    className="flex-1 bg-white border border-[#7f9db9] px-2 py-1 text-xs focus:outline-none focus:border-[#0058e6]"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="text-xs font-medium block mb-1">Message :</label>
+                  <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    placeholder="Écrivez votre message ici..."
+                    className="w-full h-28 bg-white border border-[#7f9db9] px-2 py-1 text-xs focus:outline-none focus:border-[#0058e6] resize-none"
+                    required
+                  />
+                </div>
+
+                <div className="flex justify-end gap-2 pt-2">
+                  <button type="submit" className="xp-btn" disabled={sending}>
+                    <img src="/icons/message.ico" alt="" className="w-3 h-3" />
+                    {sending ? 'Envoi...' : 'Envoyer'}
+                  </button>
+                </div>
+              </form>
+
+              {status.type === 'success' && (
+                <div className="mt-3 bg-[#dff0d8] border border-[#3c763d] text-[#3c763d] p-2 text-xs">
+                  {status.message}
+                </div>
+              )}
+              {status.type === 'error' && (
+                <div className="mt-3 bg-[#f2dede] border border-[#a94442] text-[#a94442] p-2 text-xs">
+                  {status.message}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Contact Info */}
+          <div className="xp-box">
+            <div className="xp-box-header">
+              <img src="/icons/user.png" alt="" className="w-4 h-4" />
+              Coordonnées
+            </div>
+            <div className="xp-box-content">
+              <div className="space-y-2">
+                <a href="mailto:lucascontrerashodapp@gmail.com" className="flex items-center gap-2 text-[#0058e6] hover:underline text-xs">
+                  <img src="/icons/message.ico" alt="" className="w-4 h-4" />
+                  lucascontrerashodapp@gmail.com
+                </a>
+                <a href="https://linkedin.com/in/lucas-contreras-hodapp" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[#0058e6] hover:underline text-xs">
+                  <img src="/icons/link.png" alt="" className="w-4 h-4" />
+                  LinkedIn - Lucas Contreras Hodapp
+                </a>
+                <a href="https://github.com/Por-Tra" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[#0058e6] hover:underline text-xs">
+                  <img src="/icons/git.png" alt="" className="w-4 h-4" />
+                  GitHub - Por-Tra
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Tip */}
+          <div className="xp-tipbox">
+            <img src="/icons/questionMark.png" alt="" className="w-4 h-4 flex-shrink-0" />
+            <span>Je réponds généralement sous 24-48h. N'hésitez pas à me contacter pour toute question ou opportunité !</span>
           </div>
         </div>
+      </div>
+
+      {/* Status Bar */}
+      <div className="xp-statusbar">
+        <span>Prêt</span>
+        <span>lucascontrerashodapp@gmail.com</span>
       </div>
     </div>
   );

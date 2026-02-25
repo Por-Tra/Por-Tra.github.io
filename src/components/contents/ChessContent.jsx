@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import { Chess } from 'chess.js';
+import XpMenuBar from '../XpMenuBar';
 
 const PIECES = {
   'wK': '♔', 'wQ': '♕', 'wR': '♖', 'wB': '♗', 'wN': '♘', 'wP': '♙',
@@ -224,11 +225,11 @@ const ChessContent = () => {
   return (
     <div className="h-full bg-white flex flex-col">
       {/* Toolbar */}
-      <div className="bg-gradient-to-b from-[#ece9d8] to-[#d4d0c8] border-b border-[#808080] px-2 py-1 flex gap-4 text-xs">
-        <span className="text-gray-600 hover:underline cursor-pointer">Partie</span>
-        <span className="text-gray-600 hover:underline cursor-pointer">Options</span>
-        <span className="text-gray-600 hover:underline cursor-pointer">?</span>
-      </div>
+      <XpMenuBar
+        className="bg-gradient-to-b from-[#ece9d8] to-[#d4d0c8] border-b border-[#808080] px-2 py-1 flex gap-4 text-xs"
+        itemClassName="text-gray-600 hover:underline cursor-pointer"
+        items={['Partie', 'Options', 'Aide']}
+      />
 
       <div className="flex-1 flex overflow-hidden">
         {/* Left Panel - Game Info */}

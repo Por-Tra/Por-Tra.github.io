@@ -4,6 +4,8 @@
  * Application vide réutilisable pour les apps non implémentées
  */
 
+import XpMenuBar from '../../../components/XpMenuBar';
+
 export const config = {
   id: 'blank',
   name: 'Application',
@@ -16,12 +18,10 @@ export const Component = ({ title = "Application" }) => {
   return (
     <div className="h-full bg-white flex flex-col">
       {/* XP Explorer Toolbar */}
-      <div className="bg-gradient-to-b from-[#ece9d8] to-[#d4d0c8] border-b border-[#808080] px-2 py-1 flex gap-4 text-xs">
-        <span className="text-gray-600 hover:underline cursor-pointer">Fichier</span>
-        <span className="text-gray-600 hover:underline cursor-pointer">Édition</span>
-        <span className="text-gray-600 hover:underline cursor-pointer">Affichage</span>
-        <span className="text-gray-600 hover:underline cursor-pointer">?</span>
-      </div>
+      <XpMenuBar
+        className="bg-gradient-to-b from-[#ece9d8] to-[#d4d0c8] border-b border-[#808080] px-2 py-1 flex gap-4 text-xs"
+        itemClassName="text-gray-600 hover:underline cursor-pointer"
+      />
 
       {/* Content Area */}
       <div className="flex-1 flex items-center justify-center bg-white">

@@ -6,17 +6,19 @@
  */
 import { useState, useCallback, useMemo, memo } from 'react';
 import fileSystem from '../../core/FileSystem';
+import XpMenuBar from '../../components/XpMenuBar';
+import { useSearchHighlight } from '../../hooks/useSearchHighlight.jsx';
 
 export const config = {
   id: 'explorer',
   name: 'Poste de travail',
-  icon: '/icons/computer.svg',
+  icon: '/icons/PC.png',
   defaultWidth: 750,
   defaultHeight: 520,
 };
 
 // Composant pour un élément dans l'explorateur
-const FileItem = memo(({ name, item, isSelected, viewMode, onSelect, onDoubleClick }) => {
+const FileItem = memo(({ name, item, isSelected, viewMode, onSelect, onDoubleClick, highlightText }) => {
   const icon = fileSystem.getIcon(item, name);
   
   if (viewMode === 'icons') {
@@ -30,7 +32,7 @@ const FileItem = memo(({ name, item, isSelected, viewMode, onSelect, onDoubleCli
       >
         <img src={icon} alt="" className="w-10 h-10 mb-1" draggable={false} />
         <span className={`text-[11px] text-center break-all line-clamp-2 ${isSelected ? 'text-white' : ''}`}>
-          {name}
+          {highlightText ? highlightText(name) : name}
         </span>
       </div>
     );
@@ -46,7 +48,7 @@ const FileItem = memo(({ name, item, isSelected, viewMode, onSelect, onDoubleCli
         }`}
       >
         <img src={icon} alt="" className="w-5 h-5" draggable={false} />
-        <span className="text-xs truncate">{name}</span>
+        <span className="text-xs truncate">{highlightText ? highlightText(name) : name}</span>
       </div>
     );
   }
@@ -57,7 +59,7 @@ const FileItem = memo(({ name, item, isSelected, viewMode, onSelect, onDoubleCli
 FileItem.displayName = 'FileItem';
 
 // Composant pour la vue détaillée
-const DetailsRow = memo(({ name, item, isSelected, index, onSelect, onDoubleClick }) => {
+const DetailsRow = memo(({ name, item, isSelected, index, onSelect, onDoubleClick, highlightText }) => {
   const icon = fileSystem.getIcon(item, name);
   const typeLabels = {
     folder: 'Dossier de fichiers',
@@ -81,7 +83,7 @@ const DetailsRow = memo(({ name, item, isSelected, index, onSelect, onDoubleClic
     >
       <td className="p-1 flex items-center gap-2">
         <img src={icon} alt="" className="w-4 h-4" draggable={false} />
-        <span className="truncate">{name}</span>
+        <span className="truncate">{highlightText ? highlightText(name) : name}</span>
       </td>
       <td className="p-1">{item.size || '-'}</td>
       <td className="p-1">{typeLabels[item.type] || 'Inconnu'}</td>
@@ -98,6 +100,7 @@ export const Component = ({ onOpenApp }) => {
   const [viewMode, setViewMode] = useState('icons');
   const [history, setHistory] = useState([['Poste de travail']]);
   const [historyIndex, setHistoryIndex] = useState(0);
+  const { query, filterItems, highlightText, isSearching } = useSearchHighlight('explorer');
 
   // Récupère le contenu du dossier actuel
   const currentFolder = useMemo(() => {
@@ -115,6 +118,11 @@ export const Component = ({ onOpenApp }) => {
       return a[0].localeCompare(b[0]);
     });
   }, [currentFolder]);
+
+  // Filter items based on search query
+  const filteredItems = useMemo(() => {
+    return filterItems(sortedItems, ([name]) => name);
+  }, [sortedItems, query]);
 
   // Navigation
   const navigateTo = useCallback((path) => {
@@ -203,14 +211,11 @@ export const Component = ({ onOpenApp }) => {
   return (
     <div className="h-full bg-white flex flex-col select-none">
       {/* Menu Bar */}
-      <div className="bg-gradient-to-b from-[#ece9d8] to-[#d4d0c8] border-b border-[#808080] px-2 py-1 flex gap-4 text-xs">
-        <span className="text-gray-600 hover:underline cursor-pointer">Fichier</span>
-        <span className="text-gray-600 hover:underline cursor-pointer">Édition</span>
-        <span className="text-gray-600 hover:underline cursor-pointer">Affichage</span>
-        <span className="text-gray-600 hover:underline cursor-pointer">Favoris</span>
-        <span className="text-gray-600 hover:underline cursor-pointer">Outils</span>
-        <span className="text-gray-600 hover:underline cursor-pointer">?</span>
-      </div>
+      <XpMenuBar
+        preset="explorer"
+        className="bg-gradient-to-b from-[#ece9d8] to-[#d4d0c8] border-b border-[#808080] px-2 py-1 flex gap-4 text-xs"
+        itemClassName="text-gray-600 hover:underline cursor-pointer"
+      />
 
       {/* Toolbar */}
       <div className="bg-[#ece9d8] border-b border-[#808080] px-2 py-1 flex items-center gap-1">
@@ -276,7 +281,7 @@ export const Component = ({ onOpenApp }) => {
         {/* Left Sidebar */}
         <div className="w-44 bg-gradient-to-b from-[#6b88c4] to-[#4d6eb5] p-2 overflow-y-auto flex-shrink-0">
           {/* Tâches système */}
-          <div className="bg-white/90 rounded-lg p-2 mb-2">
+          <div className="bg-white/90 p-2 mb-2">
             <h3 className="text-[11px] font-bold text-[#215dc6] mb-2">Tâches système</h3>
             <div className="space-y-1 text-[10px]">
               {selectedItem?.item?.downloadFile && (
@@ -284,7 +289,7 @@ export const Component = ({ onOpenApp }) => {
                   onClick={() => handleDoubleClick(selectedItem.name, selectedItem.item)}
                   className="flex items-center gap-1 text-[#215dc6] hover:underline cursor-pointer"
                 >
-                  <span>📥</span> Télécharger
+                  <span></span> Télécharger
                 </div>
               )}
               {selectedItem?.item?.type === 'app' && (
@@ -292,14 +297,14 @@ export const Component = ({ onOpenApp }) => {
                   onClick={() => handleDoubleClick(selectedItem.name, selectedItem.item)}
                   className="flex items-center gap-1 text-[#215dc6] hover:underline cursor-pointer"
                 >
-                  <span>▶</span> Ouvrir
+                  <span></span> Ouvrir
                 </div>
               )}
             </div>
           </div>
 
           {/* Raccourcis */}
-          <div className="bg-white/90 rounded-lg p-2 mb-2">
+          <div className="bg-white/90 p-2 mb-2">
             <h3 className="text-[11px] font-bold text-[#215dc6] mb-2">Autres emplacements</h3>
             <div className="space-y-1 text-[10px]">
               <div 
@@ -327,7 +332,7 @@ export const Component = ({ onOpenApp }) => {
                 onClick={() => navigateTo(['Poste de travail', 'Réseau'])}
                 className="flex items-center gap-1 text-[#215dc6] hover:underline cursor-pointer"
               >
-                <img src="/icons/internet.svg" alt="" className="w-3 h-3" />
+                <img src="/icons/explorer.png" alt="" className="w-3 h-3" />
                 Favoris réseau
               </div>
             </div>
@@ -335,7 +340,7 @@ export const Component = ({ onOpenApp }) => {
 
           {/* Détails de l'élément sélectionné */}
           {selectedItem && (
-            <div className="bg-white/90 rounded-lg p-2">
+            <div className="bg-white/90 p-2">
               <h3 className="text-[11px] font-bold text-[#215dc6] mb-2">Détails</h3>
               <div className="text-[10px] text-gray-700 space-y-1">
                 <p className="truncate"><strong>Nom:</strong> {selectedItem.name}</p>
@@ -359,33 +364,47 @@ export const Component = ({ onOpenApp }) => {
         >
           {viewMode === 'icons' && (
             <div className="flex flex-wrap gap-2 p-3 content-start">
-              {sortedItems.map(([name, item]) => (
-                <FileItem
-                  key={name}
-                  name={name}
-                  item={item}
-                  isSelected={selectedItem?.name === name}
-                  viewMode={viewMode}
-                  onSelect={handleSelect}
-                  onDoubleClick={handleDoubleClick}
-                />
-              ))}
+              {filteredItems.length > 0 ? (
+                filteredItems.map(([name, item]) => (
+                  <FileItem
+                    key={name}
+                    name={name}
+                    item={item}
+                    isSelected={selectedItem?.name === name}
+                    viewMode={viewMode}
+                    onSelect={handleSelect}
+                    onDoubleClick={handleDoubleClick}
+                    highlightText={highlightText}
+                  />
+                ))
+              ) : (
+                <div className="text-gray-400 text-sm py-4">
+                  {isSearching ? 'Aucun fichier ne correspond à votre recherche' : 'Ce dossier est vide'}
+                </div>
+              )}
             </div>
           )}
 
           {viewMode === 'list' && (
             <div className="p-2 space-y-0.5">
-              {sortedItems.map(([name, item]) => (
-                <FileItem
-                  key={name}
-                  name={name}
-                  item={item}
-                  isSelected={selectedItem?.name === name}
-                  viewMode={viewMode}
-                  onSelect={handleSelect}
-                  onDoubleClick={handleDoubleClick}
-                />
-              ))}
+              {filteredItems.length > 0 ? (
+                filteredItems.map(([name, item]) => (
+                  <FileItem
+                    key={name}
+                    name={name}
+                    item={item}
+                    isSelected={selectedItem?.name === name}
+                    viewMode={viewMode}
+                    onSelect={handleSelect}
+                    onDoubleClick={handleDoubleClick}
+                    highlightText={highlightText}
+                  />
+                ))
+              ) : (
+                <div className="text-gray-400 text-sm py-4">
+                  {isSearching ? 'Aucun fichier ne correspond à votre recherche' : 'Ce dossier est vide'}
+                </div>
+              )}
             </div>
           )}
 
@@ -400,32 +419,41 @@ export const Component = ({ onOpenApp }) => {
                 </tr>
               </thead>
               <tbody>
-                {sortedItems.map(([name, item], index) => (
-                  <DetailsRow
-                    key={name}
-                    name={name}
-                    item={item}
-                    isSelected={selectedItem?.name === name}
-                    index={index}
-                    onSelect={handleSelect}
-                    onDoubleClick={handleDoubleClick}
-                  />
-                ))}
+                {filteredItems.length > 0 ? (
+                  filteredItems.map(([name, item], index) => (
+                    <DetailsRow
+                      key={name}
+                      name={name}
+                      item={item}
+                      isSelected={selectedItem?.name === name}
+                      index={index}
+                      onSelect={handleSelect}
+                      onDoubleClick={handleDoubleClick}
+                      highlightText={highlightText}
+                    />
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="4" className="p-4 text-center text-gray-400">
+                      {isSearching ? 'Aucun fichier ne correspond à votre recherche' : 'Ce dossier est vide'}
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           )}
 
-          {sortedItems.length === 0 && (
+          {filteredItems.length === 0 && viewMode !== 'icons' && viewMode !== 'list' && viewMode !== 'details' &&
             <div className="flex items-center justify-center h-full text-gray-400 text-sm">
               Ce dossier est vide
             </div>
-          )}
+          }
         </div>
       </div>
 
       {/* Status Bar */}
       <div className="bg-[#ece9d8] border-t border-[#808080] px-2 py-1 text-[10px] text-gray-600 flex justify-between">
-        <span>{sortedItems.length} objet(s){selectedItem ? ` • "${selectedItem.name}" sélectionné` : ''}</span>
+        <span>{filteredItems.length} objet(s){selectedItem ? ` • "${selectedItem.name}" sélectionné` : ''}</span>
         <span>{pathString}</span>
       </div>
     </div>
