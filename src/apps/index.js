@@ -74,6 +74,7 @@ import * as ImageViewer from './ImageViewer';
 import * as ControlPanel from './ControlPanel';
 import * as Blank from './utilities/Blank';
 import * as Terminal from './Terminal';
+import * as WebReminder from './WebReminder';
 
 // Projets détaillés
 import * as ProjectRPG from './Projects/ProjectRPG';
@@ -151,6 +152,7 @@ const apps = [
   
   // ===== APPS UTILITAIRES (pas sur le bureau) =====
   { ...ImageViewer.config, component: ImageViewer.Component },
+  { ...WebReminder.config, component: WebReminder.Component },
   
 
 ];

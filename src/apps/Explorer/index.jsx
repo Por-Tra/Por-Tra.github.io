@@ -164,8 +164,8 @@ export const Component = ({ onOpenApp }) => {
       return;
     }
 
-    // Ouverture d'une application
-    if (item.type === 'app' && item.appId && onOpenApp) {
+    // Ouverture d'une application liée (raccourci ou fichier spécial)
+    if (item.appId && onOpenApp) {
       onOpenApp(item.appId);
       return;
     }

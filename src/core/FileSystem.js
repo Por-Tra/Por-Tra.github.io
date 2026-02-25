@@ -460,7 +460,13 @@ class FileSystem {
                     type: 'folder',
                     icon: '/icons/folder.png',
                     children: {
-                      'python.exe': { type: 'file', icon: '/icons/setting.png', size: '45 Ko', modified: '2024-01-01' }
+                      'python.exe': {
+                        type: 'file',
+                        icon: '/icons/setting.png',
+                        size: '45 Ko',
+                        modified: '2024-01-01',
+                        appId: 'web-reminder'
+                      }
                     }
                   },
                   'Visual Studio Code': 
@@ -469,11 +475,12 @@ class FileSystem {
                     icon: '/icons/folder.png',
                     children: {
                       'Code.exe': 
-                      { 
+                      {
                         type: 'file', 
                         icon: '/icons/setting.png', 
                         size: '120 Mo', 
-                        modified: '2024-06-01'
+                        modified: '2024-06-01',
+                        appId: 'web-reminder'
                       }
                     }
                   }
@@ -491,8 +498,20 @@ class FileSystem {
                     icon: '/icons/folder.png',
                     children: 
                     {
-                      'notepad.exe': { type: 'file', icon: '/icons/notepad.svg', size: '180 Ko', modified: '2001-10-25' },
-                      'cmd.exe': { type: 'file', icon: '/icons/setting.png', size: '240 Ko', modified: '2001-10-25' }
+                      'notepad.exe': {
+                        type: 'file',
+                        icon: '/icons/notepad.svg',
+                        size: '180 Ko',
+                        modified: '2001-10-25',
+                        appId: 'web-reminder'
+                      },
+                      'cmd.exe': {
+                        type: 'file',
+                        icon: '/icons/setting.png',
+                        size: '240 Ko',
+                        modified: '2001-10-25',
+                        appId: 'web-reminder'
+                      }
                     }
                   }
                 }
