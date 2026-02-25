@@ -74,7 +74,6 @@ export const Component = () => {
       {/* Toolbar */}
       <div className="xp-toolbar">
         <button className="xp-toolbar-btn" type="submit" form="contact-form">
-          <img src="/icons/message.ico" alt="" className="w-4 h-4" />
           Envoyer
         </button>
       </div>
@@ -131,7 +130,7 @@ export const Component = () => {
         <div className="xp-content-main">
           {/* Header */}
           <div className="xp-content-header">
-            <img src="/icons/signal.png" alt="" className="w-12 h-12" />
+            <img src="/icons/message.ico" alt="" className="w-12 h-12" />
             <div>
               <h1 className="xp-title">Me Contacter</h1>
               <p className="xp-subtitle">Envoyez-moi un message</p>
@@ -141,7 +140,7 @@ export const Component = () => {
           {/* Contact Form */}
           <div className="xp-box xp-box-blue">
             <div className="xp-box-header">
-              <img src="/icons/signal.png" alt="" className="w-4 h-4" />
+              <img src="/icons/message.ico" alt="" className="w-4 h-4" />
               Nouveau Message
             </div>
             <div className="xp-box-content">
@@ -194,7 +193,7 @@ export const Component = () => {
 
                 <div className="flex justify-end gap-2 pt-2">
                   <button type="submit" className="xp-btn" disabled={sending}>
-                    <img src="/icons/signal.png" alt="" className="w-3 h-3" />
+                    <img src="/icons/message.ico" alt="" className="w-3 h-3" />
                     {sending ? 'Envoi...' : 'Envoyer'}
                   </button>
                 </div>
@@ -222,7 +221,7 @@ export const Component = () => {
             <div className="xp-box-content">
               <div className="space-y-2">
                 <a href="mailto:lucascontrerashodapp@gmail.com" className="flex items-center gap-2 text-[#0058e6] hover:underline text-xs">
-                  <img src="/icons/signal.png" alt="" className="w-4 h-4" />
+                  <img src="/icons/message.ico" alt="" className="w-4 h-4" />
                   lucascontrerashodapp@gmail.com
                 </a>
                 <a href="https://linkedin.com/in/lucas-contreras-hodapp" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[#0058e6] hover:underline text-xs">

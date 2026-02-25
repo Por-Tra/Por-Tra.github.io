@@ -14,7 +14,30 @@ export const config = {
   defaultHeight: 500,
 };
 
-export const Component = () => {
+export const Component = ({ onOpenApp }) => {
+  const openWelcomeItem = (target) => {
+    if (target === 'github') {
+      window.open('https://github.com/Por-Tra', '_blank', 'noopener,noreferrer');
+      return;
+    }
+
+    if (target === 'linkedin') {
+      window.open('https://linkedin.com/in/lucas-contreras-hodapp', '_blank', 'noopener,noreferrer');
+      return;
+    }
+
+    if (onOpenApp) {
+      onOpenApp(target);
+    }
+  };
+
+  const handleItemKeyDown = (event, target) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      openWelcomeItem(target);
+    }
+  };
+
   return (
     <div className="xp-app">
       {/* Menu Bar */}
@@ -122,27 +145,63 @@ export const Component = () => {
             </div>
             <div className="xp-box-content">
               <div className="grid grid-cols-2 gap-2">
-                <div className="xp-app-item">
+                <div
+                  className="xp-app-item"
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => openWelcomeItem('about')}
+                  onKeyDown={(event) => handleItemKeyDown(event, 'about')}
+                >
                   <img src="/icons/user.png" alt="" className="w-6 h-6" />
                   <span>À propos de moi</span>
                 </div>
-                <div className="xp-app-item">
+                <div
+                  className="xp-app-item"
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => openWelcomeItem('projects')}
+                  onKeyDown={(event) => handleItemKeyDown(event, 'projects')}
+                >
                   <img src="/icons/folder.png" alt="" className="w-6 h-6" />
                   <span>Mes Projets</span>
                 </div>
-                <div className="xp-app-item">
+                <div
+                  className="xp-app-item"
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => openWelcomeItem('skills')}
+                  onKeyDown={(event) => handleItemKeyDown(event, 'skills')}
+                >
                   <img src="/icons/note.png" alt="" className="w-6 h-6" />
                   <span>Compétences</span>
                 </div>
-                <div className="xp-app-item">
-                  <img src="/icons/signal.png" alt="" className="w-6 h-6" />
+                <div
+                  className="xp-app-item"
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => openWelcomeItem('contact')}
+                  onKeyDown={(event) => handleItemKeyDown(event, 'contact')}
+                >
+                  <img src="/icons/message.ico" alt="" className="w-6 h-6" />
                   <span>Contact</span>
                 </div>
-                <div className="xp-app-item">
+                <div
+                  className="xp-app-item"
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => openWelcomeItem('github')}
+                  onKeyDown={(event) => handleItemKeyDown(event, 'github')}
+                >
                   <img src="/icons/git.png" alt="" className="w-6 h-6" />
                   <span>GitHub</span>
                 </div>
-                <div className="xp-app-item">
+                <div
+                  className="xp-app-item"
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => openWelcomeItem('linkedin')}
+                  onKeyDown={(event) => handleItemKeyDown(event, 'linkedin')}
+                >
                   <img src="/icons/link.png" alt="" className="w-6 h-6" />
                   <span>LinkedIn</span>
                 </div>

@@ -71,6 +71,31 @@ const WALLPAPER_OPTIONS = [
     title: 'WXP Dark',
     src: '/images/wallpapers/winXPDark.jpeg',
   },
+  {
+    id : 'FunWallpaper',
+    title: 'Fun',
+    src: '/images/wallpapers/1.jpg',
+  },
+  {
+    id : 'Desert',
+    title: 'Desert',
+    src: '/images/wallpapers/2.jpg',
+  },
+  {
+    id : 'mountains',
+    title: 'Mountains',
+    src : '/images/wallpapers/mountain.jpg',
+  },
+  {
+    id: 'forest',
+    title: 'Forest',
+    src: '/images/wallpapers/forest.jpg',
+  },
+  {
+    id: 'city',
+    title: 'City',
+    src: '/images/wallpapers/city.jpg',
+  },
 ];
 
 export const Component = ({

@@ -133,10 +133,6 @@ export const Component = () => {
               <img src="/icons/folder.png" alt="" />
               Docker
             </div>
-            <div className="xp-sidebar-link">
-              <img src="/icons/folder.png" alt="" />
-              Blender
-            </div>
 
           </div>
         </div>
