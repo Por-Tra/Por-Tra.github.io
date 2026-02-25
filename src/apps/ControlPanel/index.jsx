@@ -38,7 +38,7 @@ const CONFIG_SECTIONS = [
     {
         id: 'language',
         title: 'Choix de la langue',
-        description: 'Selectionner la langue de l’interface.',
+        description: "Selectionner la langue de l'interface.",
         icon: '/icons/user.svg',
     },
 ];
@@ -82,8 +82,7 @@ export const Component = ({
         onSetLanguage,
 }) => {
   const [activeSection, setActiveSection] = useState(CONFIG_SECTIONS[0]?.id);
-  const [uploadUrl, setUploadUrl] = useState(null);
-        const [selectedLanguage, setSelectedLanguage] = useState(currentLanguage || 'FR');
+    const [selectedLanguage, setSelectedLanguage] = useState(currentLanguage || 'FR');
     const [dateValue, setDateValue] = useState(() => {
         const now = new Date();
         return now.toISOString().slice(0, 10);
@@ -107,11 +106,8 @@ export const Component = ({
 
     return () => {
             clearInterval(timer);
-      if (uploadUrl) {
-        URL.revokeObjectURL(uploadUrl);
-      }
     };
-  }, [uploadUrl]);
+    }, []);
 
     useEffect(() => {
         if (currentLanguage && currentLanguage !== selectedLanguage) {
@@ -128,12 +124,12 @@ export const Component = ({
     const file = event.target.files?.[0];
     if (!file) return;
 
-    const nextUrl = URL.createObjectURL(file);
-    if (uploadUrl) {
-      URL.revokeObjectURL(uploadUrl);
-    }
-    setUploadUrl(nextUrl);
-    onSetWallpaper?.(nextUrl);
+        const reader = new FileReader();
+        reader.onload = () => {
+            if (typeof reader.result !== 'string') return;
+            onSetWallpaper?.(reader.result);
+        };
+        reader.readAsDataURL(file);
   };
 
     const getAdjustedTime = (now, offsetMinutes) => {
@@ -277,6 +273,7 @@ export const Component = ({
                                     <span className="cp-upload-hint">Formats supportes : JPG, PNG, SVG</span>
                                 </div>
                             </div>
+
                         </div>
                     )}
 

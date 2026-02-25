@@ -5,11 +5,24 @@ import Taskbar from './Taskbar';
 // Import du registry et initialisation des apps
 import appRegistry from '../apps';
 
+const STORAGE_KEY = 'xp-desktop-preferences-v1';
+
 // Grid configuration for icon snapping
 const GRID_SIZE = 80;
 const ICON_WIDTH = 70;
 const ICON_HEIGHT = 80;
 const GRID_PADDING = 10;
+
+const readStoredPreferences = () => {
+  try {
+    const raw = globalThis.localStorage?.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === 'object' ? parsed : null;
+  } catch (error) {
+    return null;
+  }
+};
 
 const Desktop = () => {
   const [windows, setWindows] = useState([]);
@@ -17,9 +30,19 @@ const Desktop = () => {
   const [activeWindow, setActiveWindow] = useState(null);
   const [nextZIndex, setNextZIndex] = useState(100);
   const [selectedIcon, setSelectedIcon] = useState(null);
-  const [wallpaperUrl, setWallpaperUrl] = useState('/wallpaper.jpg');
-  const [utcOffsetMinutes, setUtcOffsetMinutes] = useState(() => -new Date().getTimezoneOffset());
-  const [currentLanguage, setCurrentLanguage] = useState('FR');
+  const [wallpaperUrl, setWallpaperUrl] = useState(() => {
+    const stored = readStoredPreferences();
+    return typeof stored?.wallpaperUrl === 'string' ? stored.wallpaperUrl : '/wallpaper.jpg';
+  });
+  const [utcOffsetMinutes, setUtcOffsetMinutes] = useState(() => {
+    const stored = readStoredPreferences();
+    const fallback = -new Date().getTimezoneOffset();
+    return Number.isFinite(stored?.utcOffsetMinutes) ? stored.utcOffsetMinutes : fallback;
+  });
+  const [currentLanguage, setCurrentLanguage] = useState(() => {
+    const stored = readStoredPreferences();
+    return typeof stored?.currentLanguage === 'string' ? stored.currentLanguage : 'FR';
+  });
   
   // Snap position to grid
   const snapToGrid = (x, y) => {
@@ -73,8 +96,19 @@ const Desktop = () => {
   const [icons, setIcons] = useState(() => {
     const desktopApps = appRegistry.getDesktopApps();
     const iconsPerColumn = getIconsPerColumn();
+    const stored = readStoredPreferences();
+    const storedPositions = stored?.iconPositions || {};
     
     return desktopApps.map((app, index) => {
+      const savedPosition = storedPositions?.[app.id];
+      if (savedPosition && Number.isFinite(savedPosition.x) && Number.isFinite(savedPosition.y)) {
+        return {
+          ...app,
+          x: savedPosition.x,
+          y: savedPosition.y,
+        };
+      }
+
       const column = Math.floor(index / iconsPerColumn);
       const row = index % iconsPerColumn;
       return {
@@ -355,6 +389,26 @@ const Desktop = () => {
   }, []);
 
   useEffect(() => {
+    try {
+      const iconPositions = icons.reduce((acc, icon) => {
+        acc[icon.id] = { x: icon.x, y: icon.y };
+        return acc;
+      }, {});
+
+      const payload = {
+        wallpaperUrl,
+        utcOffsetMinutes,
+        currentLanguage,
+        iconPositions,
+      };
+
+      globalThis.localStorage?.setItem(STORAGE_KEY, JSON.stringify(payload));
+    } catch (error) {
+      console.warn('Unable to persist desktop preferences', error);
+    }
+  }, [icons, wallpaperUrl, utcOffsetMinutes, currentLanguage]);
+
+  useEffect(() => {
     const handleMenuAction = (event) => {
       const action = event?.detail?.action;
       if (!action) return;
@@ -395,53 +449,53 @@ const Desktop = () => {
       onClick={handleDesktopClick}
     >
       {/* Desktop Icons */}
-      {icons.map(icon => (
-        <DesktopIcon
-          key={icon.id}
-          app={icon}
-          isSelected={selectedIcon === icon.id}
-          onSelect={() => handleIconSelect(icon.id)}
-          onDoubleClick={() => openApp(icon)}
-          onMove={(x, y) => updateIconPosition(icon.id, x, y)}
-        />
-      ))}
+        {icons.map(icon => (
+          <DesktopIcon
+            key={icon.id}
+            app={icon}
+            isSelected={selectedIcon === icon.id}
+            onSelect={() => handleIconSelect(icon.id)}
+            onDoubleClick={() => openApp(icon)}
+            onMove={(x, y) => updateIconPosition(icon.id, x, y)}
+          />
+        ))}
 
-      {/* Windows */}
-      {windows.filter(w => !w.minimized).map(window => (
-        <Window
-          key={window.id}
-          window={window}
-          isActive={activeWindow === window.id}
-          onClose={() => closeWindow(window.id)}
-          onMinimize={() => minimizeWindow(window.id)}
-          onMaximize={() => maximizeWindow(window.id)}
-          onFocus={() => bringToFront(window.id)}
-          onMove={(x, y) => updateWindowPosition(window.id, x, y)}
-          onResize={(width, height) => updateWindowSize(window.id, width, height)}
-          onSearchChange={updateWindowSearchQuery}
-          onSearchClose={closeWindowSearch}
-          onOpenApp={openAppById}
-          onSetWallpaper={handleSetWallpaper}
-          wallpaperUrl={wallpaperUrl}
+        {/* Windows */}
+        {windows.filter(w => !w.minimized).map(window => (
+          <Window
+            key={window.id}
+            window={window}
+            isActive={activeWindow === window.id}
+            onClose={() => closeWindow(window.id)}
+            onMinimize={() => minimizeWindow(window.id)}
+            onMaximize={() => maximizeWindow(window.id)}
+            onFocus={() => bringToFront(window.id)}
+            onMove={(x, y) => updateWindowPosition(window.id, x, y)}
+            onResize={(width, height) => updateWindowSize(window.id, width, height)}
+            onSearchChange={updateWindowSearchQuery}
+            onSearchClose={closeWindowSearch}
+            onOpenApp={openAppById}
+            onSetWallpaper={handleSetWallpaper}
+            wallpaperUrl={wallpaperUrl}
+            utcOffsetMinutes={utcOffsetMinutes}
+            onSetUtcOffset={handleSetUtcOffset}
+            currentLanguage={currentLanguage}
+            onSetLanguage={handleSetLanguage}
+          />
+        ))}
+
+        {/* Taskbar */}
+        <Taskbar
+          windows={windows}
+          activeWindow={activeWindow}
+          onWindowClick={handleTaskbarClick}
+          onWindowClose={closeWindow}
+          apps={icons}
+          onOpenApp={openApp}
           utcOffsetMinutes={utcOffsetMinutes}
-          onSetUtcOffset={handleSetUtcOffset}
           currentLanguage={currentLanguage}
           onSetLanguage={handleSetLanguage}
         />
-      ))}
-
-      {/* Taskbar */}
-      <Taskbar
-        windows={windows}
-        activeWindow={activeWindow}
-        onWindowClick={handleTaskbarClick}
-        onWindowClose={closeWindow}
-        apps={icons}
-        onOpenApp={openApp}
-        utcOffsetMinutes={utcOffsetMinutes}
-        currentLanguage={currentLanguage}
-        onSetLanguage={handleSetLanguage}
-      />
     </div>
   );
 };
