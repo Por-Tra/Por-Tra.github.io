@@ -142,13 +142,24 @@ const apps = [
     icon: '/icons/trash.png',
     desktopOrder: 13,
   },
+  {
+    id: 'projects-folder-shortcut',
+    name: 'Projets',
+    icon: '/icons/folder.png',
+    component: Explorer.Component,
+    extraProps: {
+      initialPath: ['Poste de travail', 'Documents', 'Projets'],
+    },
+    showInStartMenu: false,
+    desktopOrder: 14,
+  },
   
-  // ===== PROJETS (sur le bureau) =====
-  { ...ProjectRPG.config, component: ProjectRPG.Component, desktopOrder: 14 },
-  { ...ProjectSoutenance.config, component: ProjectSoutenance.Component, desktopOrder: 15 },
-  { ...ProjectReseau.config, component: ProjectReseau.Component, desktopOrder: 16 },
-  { ...ProjectMycoria.config, component: ProjectMycoria.Component, desktopOrder: 17 },
-  { ...ProjectVapeur.config, component: ProjectVapeur.Component, desktopOrder: 18 },
+  // ===== PROJETS (hors bureau, accessibles via l'explorateur) =====
+  { ...ProjectRPG.config, component: ProjectRPG.Component, showOnDesktop: false },
+  { ...ProjectSoutenance.config, component: ProjectSoutenance.Component, showOnDesktop: false },
+  { ...ProjectReseau.config, component: ProjectReseau.Component, showOnDesktop: false },
+  { ...ProjectMycoria.config, component: ProjectMycoria.Component, showOnDesktop: false },
+  { ...ProjectVapeur.config, component: ProjectVapeur.Component, showOnDesktop: false },
   
   // ===== APPS UTILITAIRES (pas sur le bureau) =====
   { ...ImageViewer.config, component: ImageViewer.Component },

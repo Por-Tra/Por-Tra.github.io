@@ -224,12 +224,55 @@ const Desktop = () => {
       searchOpen: false,
       searchQuery: '',
       zIndex: nextZIndex,
+      extraProps: app.extraProps || {},
     };
     setWindows(prev => [...prev, newWindow]);
     setActiveWindow(nextId);
     setNextId(prev => prev + 1);
     setNextZIndex(prev => prev + 1);
   }, [windows, nextId, nextZIndex]);
+
+  // Ouvir l'app Welcome au lancement du desktop
+  useEffect(() => {
+    const welcomeApp = appRegistry.get('welcome');
+    if (!welcomeApp) return;
+
+    const responsiveSize = getResponsiveWindowSize(
+      welcomeApp.defaultWidth || 800,
+      welcomeApp.defaultHeight || 500
+    );
+    const isMobile = window.innerWidth < 768;
+
+    const welcomeWindow = {
+      id: 1,
+      appId: welcomeApp.id,
+      title: welcomeApp.name,
+      icon: welcomeApp.icon,
+      url: welcomeApp.url,
+      content: welcomeApp.content,
+      openExternal: welcomeApp.openExternal,
+      x: isMobile ? responsiveSize.x : responsiveSize.x,
+      y: isMobile ? responsiveSize.y : responsiveSize.y,
+      width: responsiveSize.width,
+      height: responsiveSize.height,
+      minimized: false,
+      maximized: false,
+      searchOpen: false,
+      searchQuery: '',
+      zIndex: 100,
+      extraProps: welcomeApp.extraProps || {},
+    };
+
+    setWindows(prev => {
+      if (prev.some(windowItem => windowItem.appId === 'welcome')) {
+        return prev;
+      }
+      return [...prev, welcomeWindow];
+    });
+    setActiveWindow(1);
+    setNextId(prev => Math.max(prev, 2));
+    setNextZIndex(prev => Math.max(prev, 101));
+  }, []);
 
   // Ouvre une app par son ID (utilisé par l'Explorer et autres apps)
   const openAppById = useCallback((appId, extraProps = {}) => {

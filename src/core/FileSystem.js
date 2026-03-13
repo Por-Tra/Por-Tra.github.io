@@ -34,47 +34,75 @@ class FileSystem {
                 icon: '/icons/folder.png',
                 children: 
                 {
-                  'RPG 2D (Python)': 
+
+                  'Python':
                   {
-                    type: 'app',
+                    type: 'folder',
                     icon: '/icons/folder.png',
-                    appId: 'project-rpg',
-                    description: 'Jeu RPG 2D développé en Python avec Pygame',
-                    downloadFile: '/assets/RPG2D.zip',
-                    downloadName: 'RPG2D.zip'
+                    children:
+                    {
+                        'The Elder Scroll 2D': 
+                        {
+                          type: 'app',
+                          icon: '/icons/folder.png',
+                          appId: 'project-rpg',
+                          description: 'Jeu RPG 2D développé en Python avec Pygame',
+                          downloadFile: '/assets/RPG2D.zip',
+                          downloadName: 'RPG2D.zip'
+                        },
+                        'Réseau Social Local (RSL)': 
+                        {
+                          type: 'app',
+                          icon: '/icons/folder.png',
+                          appId: 'project-reseau',
+                          description: 'Application de messagerie en réseau local',
+                          downloadFile: '/assets/ChatReseau.zip',
+                          downloadName: 'ChatReseau.zip'
+                        },
+                    }
                   },
-                  'Application Web (PHP)': 
+                  'Web':
                   {
-                    type: 'app',
+                    type: 'folder',
                     icon: '/icons/folder.png',
-                    appId: 'project-soutenance',
-                    description: 'Application web de gestion développée en PHP',
-                    downloadFile: '/assets/Soutenance.zip',
-                    downloadName: 'Soutenance.zip'
+                    children:
+                    {
+                      'Application Web (PHP)': 
+                      {
+                        type: 'app',
+                        icon: '/icons/folder.png',
+                        appId: 'project-soutenance',
+                        description: 'Application web de gestion développée en PHP',
+                        downloadFile: '/assets/Soutenance.zip',
+                        downloadName: 'Soutenance.zip'
+                      },
+                      'Vapeur (javasript)':
+                      {
+                        type: 'app',
+                        icon: '/icons/folder.png',
+                        appId: 'vapeur-project',
+                        description: 'Application de gestion de bibliothèque de jeux développée en JavaScript',
+                      },
+                    }
+
+
                   },
-                  'Chat Réseau (Python)': 
+
+                  "Video Games - make with Unreal Engine and Unity":
                   {
-                    type: 'app',
+                    type: 'folder',
                     icon: '/icons/folder.png',
-                    appId: 'project-reseau',
-                    description: 'Application de messagerie en réseau local',
-                    downloadFile: '/assets/ChatReseau.zip',
-                    downloadName: 'ChatReseau.zip'
-                  },
-                  'Mycoria (Unreal Engine)':
-                  {
-                    type: 'app',
-                    icon: '/icons/folder.png',
-                    appId: 'mycoria-project',
-                    description: 'Jeu vidéo développé sur Unreal Engine avec blueprints',
-                  },
-                  'Vapeur (javasript)':
-                  {
-                    type: 'app',
-                    icon: '/icons/folder.png',
-                    appId: 'vapeur-project',
-                    description: 'Application de gestion de bibliothèque de jeux développée en JavaScript',
-                  },
+                    children:
+                    {
+                        'Mycoria (Unreal Engine)':
+                        {
+                          type: 'app',
+                          icon: '/icons/folder.png',
+                          appId: 'mycoria-project',
+                          description: 'Jeu vidéo développé sur Unreal Engine avec blueprints',
+                        },
+                    }
+                  }
                   
                 }
               },

@@ -94,11 +94,19 @@ const DetailsRow = memo(({ name, item, isSelected, index, onSelect, onDoubleClic
 
 DetailsRow.displayName = 'DetailsRow';
 
-export const Component = ({ onOpenApp }) => {
-  const [currentPath, setCurrentPath] = useState(['Poste de travail']);
+export const Component = ({ onOpenApp, initialPath }) => {
+  const resolvedInitialPath = useMemo(() => {
+    const fallbackPath = ['Poste de travail'];
+    if (!Array.isArray(initialPath) || initialPath.length === 0) {
+      return fallbackPath;
+    }
+    return fileSystem.getFolder(initialPath) ? initialPath : fallbackPath;
+  }, [initialPath]);
+
+  const [currentPath, setCurrentPath] = useState(resolvedInitialPath);
   const [selectedItem, setSelectedItem] = useState(null);
   const [viewMode, setViewMode] = useState('icons');
-  const [history, setHistory] = useState([['Poste de travail']]);
+  const [history, setHistory] = useState([resolvedInitialPath]);
   const [historyIndex, setHistoryIndex] = useState(0);
   const { query, filterItems, highlightText, isSearching } = useSearchHighlight('explorer');
 

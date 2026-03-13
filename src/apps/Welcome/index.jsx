@@ -127,13 +127,17 @@ export const Component = ({ onOpenApp }) => {
           <div className="xp-tipbox">
             <img src="/icons/questionMark.png" alt="" className="w-5 h-5 flex-shrink-0" />
             <div>
-              <strong>Comment naviguer ?</strong>
+              {/* <strong>Comment naviguer ?</strong>
               <ul className="mt-2 space-y-1 text-xs">
-                <li><strong>1.</strong> Double-cliquez sur les icônes du bureau pour ouvrir les applications</li>
-                <li><strong>2.</strong> Glissez les icônes pour les réorganiser sur le bureau</li>
-                <li><strong>3.</strong> Déplacez les fenêtres par leur barre de titre</li>
-                <li><strong>4.</strong> Utilisez le menu Démarrer pour accéder aux applications</li>
-              </ul>
+                <li><strong>*</strong> Double-cliquez sur les icônes du bureau pour ouvrir les applications</li>
+                <li><strong>*</strong> Glissez les icônes pour les réorganiser sur le bureau</li>
+                <li><strong>*</strong> Déplacez les fenêtres par leur barre de titre</li>
+                <li><strong>*</strong> Utilisez le menu Démarrer pour accéder aux applications</li>
+              </ul> */}
+              <strong>Comment utilsier mon portfolio ?</strong>
+              <h1>Tu sais utiliser un ordinateur ?</h1>
+              <p>Alors tu sais utiliser mon portfolio. Il fonctionne comme un vrai système d'exploitation, tu peux naviguer dans l'explorateur de fichier, ouvrir des dossier et applications, modifier des paramètres et bien plus encore.</p>
+
             </div>
           </div>
 
@@ -159,8 +163,8 @@ export const Component = ({ onOpenApp }) => {
                   className="xp-app-item"
                   role="button"
                   tabIndex={0}
-                  onClick={() => openWelcomeItem('projects')}
-                  onKeyDown={(event) => handleItemKeyDown(event, 'projects')}
+                  onClick={() => openWelcomeItem('projects-folder-shortcut')}
+                  onKeyDown={(event) => handleItemKeyDown(event, 'projects-folder-shortcut')}
                 >
                   <img src="/icons/folder.png" alt="" className="w-6 h-6" />
                   <span>Mes Projets</span>
