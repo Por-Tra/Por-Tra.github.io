@@ -6,6 +6,7 @@ import Taskbar from './Taskbar';
 import appRegistry from '../apps';
 
 const STORAGE_KEY = 'xp-desktop-preferences-v1';
+const WELCOME_SESSION_KEY = 'xp-welcome-opened-session-v1';
 
 // Grid configuration for icon snapping
 const GRID_SIZE = 80;
@@ -234,6 +235,14 @@ const Desktop = () => {
 
   // Ouvir l'app Welcome au lancement du desktop
   useEffect(() => {
+    try {
+      if (globalThis.sessionStorage?.getItem(WELCOME_SESSION_KEY) === '1') {
+        return;
+      }
+    } catch (error) {
+      // no-op
+    }
+
     const welcomeApp = appRegistry.get('welcome');
     if (!welcomeApp) return;
 
@@ -272,6 +281,12 @@ const Desktop = () => {
     setActiveWindow(1);
     setNextId(prev => Math.max(prev, 2));
     setNextZIndex(prev => Math.max(prev, 101));
+
+    try {
+      globalThis.sessionStorage?.setItem(WELCOME_SESSION_KEY, '1');
+    } catch (error) {
+      // no-op
+    }
   }, []);
 
   // Ouvre une app par son ID (utilisé par l'Explorer et autres apps)
