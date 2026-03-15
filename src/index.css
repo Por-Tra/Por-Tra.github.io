@@ -13,6 +13,263 @@ body {
   overflow: hidden;
 }
 
+/* XP Boot Screen */
+.xp-boot-screen {
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  position: relative;
+}
+
+.xp-boot-logo img {
+  height: 140px;
+  object-fit: contain;
+}
+
+/* Barre de progression XP : blocs segmentés */
+.xp-boot-progress {
+  width: 200px;
+  height: 20px;
+  border: 1px solid #555;
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+  background: #000;
+}
+
+.xp-boot-progress::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  width: 45px;
+  background: 
+    linear-gradient(180deg, #6a9ef5 0%, #3a6ee0 40%, #2456cc 100%);
+  box-shadow:
+    20px 0 0 0 #3a6ee0,
+    40px 0 0 0 #3a6ee0;
+  /* Simule 3 blocs avec des gaps */
+  background-image: repeating-linear-gradient(
+    90deg,
+    #3a6ee0 0px,
+    #3a6ee0 12px,
+    transparent 12px,
+    transparent 16px
+  );
+  width: 50px;
+  animation: xp-boot-slide 1.2s linear infinite;
+}
+
+@keyframes xp-boot-slide {
+  0%   { transform: translateX(-60px); }
+  100% { transform: translateX(220px); }
+}
+
+/* Textes copyright en bas */
+.xp-boot-copyright {
+  position: absolute;
+  bottom: 16px;
+  left: 20px;
+  color: #aaa;
+  font-size: 12px;
+}
+
+.xp-boot-brand {
+  position: absolute;
+  bottom: 16px;
+  right: 20px;
+  color: #ccc;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+}
+
+/* XP Login Screen */
+.xp-login-screen {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #7b93d0; /* bleu pervenche XP */
+  color: #fff;
+  overflow: hidden;
+}
+
+/* Barre du haut */
+.xp-login-topbar {
+  height: 36px;
+  background: linear-gradient(180deg, #1c3c8a 0%, #2255b0 100%);
+  border-bottom: 2px solid #f5a623;
+  flex-shrink: 0;
+}
+
+/* Zone centrale */
+.xp-login-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.xp-login-panel {
+  display: flex;
+  align-items: center;
+  width: min(780px, 90vw);
+  gap: 0;
+}
+
+.xp-login-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding-right: 32px;
+}
+
+.xp-login-logo {
+  width: 260px;
+  max-width: 100%;
+}
+
+.xp-login-copy {
+  margin: 0;
+  font-size: 15px;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+}
+
+.xp-login-divider {
+  width: 2px;
+  height: 260px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255,255,255,0.6) 20%,
+    rgba(255,255,255,0.6) 80%,
+    transparent 100%
+  );
+  margin: 0 32px;
+  flex-shrink: 0;
+}
+
+/* Zone utilisateurs à droite */
+.xp-login-users {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-left: 8px;
+}
+
+/* Bouton utilisateur — horizontal comme l'original */
+.xp-login-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 4px;
+  text-align: left;
+  transition: background 120ms ease;
+}
+
+.xp-login-user:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+.xp-login-avatar-wrapper {
+  width: 54px;
+  height: 54px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 2px solid rgba(255,255,255,0.7);
+  flex-shrink: 0;
+}
+
+.xp-login-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.xp-login-name {
+  font-size: 15px;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.xp-login-status {
+  font-size: 12px;
+  color: #90ee90; /* vert clair comme "Logged on" */
+  font-style: italic;
+}
+
+/* Barre du bas */
+.xp-login-bottombar {
+  height: 52px;
+  background: linear-gradient(180deg, #1c3c8a 0%, #1a3580 100%);
+  border-top: 2px solid #f5a623;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  flex-shrink: 0;
+}
+
+.xp-login-shutdown {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 120ms;
+}
+
+.xp-login-shutdown:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.xp-login-shutdown-icon {
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(180deg, #e8742a 0%, #c0521a 100%);
+  border: 2px solid #8b3a10;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.xp-login-hint {
+  font-size: 11px;
+  color: rgba(255,255,255,0.8);
+  text-align: right;
+  max-width: 300px;
+  line-height: 1.4;
+}
+
+.LoginOffBtn {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
 /* XP Window Title Bar Gradient */
 .xp-titlebar {
   background: linear-gradient(180deg, 

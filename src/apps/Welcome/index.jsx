@@ -69,7 +69,7 @@ export const Component = ({ onOpenApp }) => {
       <div className="xp-content">
         {/* Sidebar */}
         <div className="xp-sidebar">
-          <div className="xp-sidebar-box">
+          {/* <div className="xp-sidebar-box">
             <div className="xp-sidebar-header">
               <img src="/icons/folder.png" alt="" className="w-4 h-4" />
               Navigation
@@ -92,7 +92,7 @@ export const Component = ({ onOpenApp }) => {
                 Contact
               </a>
             </div>
-          </div>
+          </div> */}
 
           <div className="xp-sidebar-box">
             <div className="xp-sidebar-header">
