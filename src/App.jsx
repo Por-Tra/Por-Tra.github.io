@@ -10,8 +10,7 @@ const BootScreen = () => (
       <img src={xpLogo} alt="Microsoft Windows XP" />
     </div>
     <div className="xp-boot-progress" />
-    <span className="xp-boot-copyright">Copyright © Microsoft Corporation</span>
-    <span className="xp-boot-brand">Microsoft<sup>®</sup></span>
+    <span className="xp-boot-brand">Portfolio<sup>®</sup></span>
   </div>
 )
 
@@ -23,7 +22,7 @@ const LoginScreen = ({ onContinue }) => (
       <div className="xp-login-panel">
         <div className="xp-login-left">
           <img src={xpLogo} alt="Microsoft Windows XP" className="xp-login-logo" />
-          <p className="xp-login-copy">Pour commencer, cliquez sur votre nom</p>
+          <p className="xp-login-copy">Pour commencer, cliquez sur votre profil</p>
         </div>
 
         <div className="xp-login-divider" />
@@ -52,9 +51,9 @@ const LoginScreen = ({ onContinue }) => (
 
 function App() {
   const [stage, setStage] = useState('boot')
-
+// 
   useEffect(() => {
-    const timer = setTimeout(() => setStage('login'), 2600)
+    const timer = setTimeout(() => setStage('login'), 3600) // 3600ms
     return () => clearTimeout(timer)
   }, [])
 
