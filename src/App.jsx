@@ -4,6 +4,8 @@ import xpLogo from './assets/BOOT-LOGO.png'
 import profilePic from './assets/PP.jpg'
 import offButton from '../public/icons/off.png'
 
+const BOOT_SESSION_KEY = 'xp-boot-shown-session-v1'
+
 const BootScreen = () => (
   <div className="xp-boot-screen">
     <div className="xp-boot-logo">
@@ -50,12 +52,33 @@ const LoginScreen = ({ onContinue }) => (
 )
 
 function App() {
-  const [stage, setStage] = useState('boot')
-// 
+  const [stage, setStage] = useState(() => {
+    try {
+      if (globalThis.sessionStorage?.getItem(BOOT_SESSION_KEY) === '1') {
+        return 'desktop'
+      }
+    } catch (error) {
+      // no-op
+    }
+    return 'boot'
+  })
+
   useEffect(() => {
+    if (stage === 'desktop') return
+
+    try {
+      globalThis.sessionStorage?.setItem(BOOT_SESSION_KEY, '1')
+    } catch (error) {
+      // no-op
+    }
+  }, [stage])
+
+  useEffect(() => {
+    if (stage !== 'boot') return
+
     const timer = setTimeout(() => setStage('login'), 3600) // 3600ms
     return () => clearTimeout(timer)
-  }, [])
+  }, [stage])
 
   if (stage === 'boot') return <BootScreen />
   if (stage === 'login') return <LoginScreen onContinue={() => setStage('desktop')} />
