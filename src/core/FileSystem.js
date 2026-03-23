@@ -466,7 +466,7 @@ class FileSystem {
               'LinkedIn': 
               {
                 type: 'link',
-                icon: '/icons/linkedin.svg',
+                icon: '/icons/link.png',
                 url: 'https://www.linkedin.com/in/lucas-contreras-hodapp/',
                 description: 'Mon profil LinkedIn'
               }

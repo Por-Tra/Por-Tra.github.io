@@ -77,30 +77,6 @@ export const Component = ({ onOpenApp }) => {
       <div className="xp-content">
         {/* Sidebar */}
         <div className="xp-sidebar">
-          {/* <div className="xp-sidebar-box">
-            <div className="xp-sidebar-header">
-              <img src="/icons/folder.png" alt="" className="w-4 h-4" />
-              Navigation
-            </div>
-            <div className="xp-sidebar-content">
-              <a href="#" className="xp-sidebar-link">
-                <img src="/icons/user.png" alt="" className="w-3 h-3" />
-                À propos
-              </a>
-              <a href="#" className="xp-sidebar-link">
-                <img src="/icons/folder.png" alt="" className="w-3 h-3" />
-                Mes Projets
-              </a>
-              <a href="#" className="xp-sidebar-link">
-                <img src="/icons/note.png" alt="" className="w-3 h-3" />
-                Compétences
-              </a>
-              <a href="#" className="xp-sidebar-link">
-                <img src="/icons/message.ico" alt="" className="w-3 h-3" />
-                Contact
-              </a>
-            </div>
-          </div> */}
 
           <div className="xp-sidebar-box">
             <div className="xp-sidebar-header">
@@ -157,13 +133,6 @@ export const Component = ({ onOpenApp }) => {
               className="w-5 h-5 flex-shrink-0"
             />
             <div>
-              {/* <strong>Comment naviguer ?</strong>
-              <ul className="mt-2 space-y-1 text-xs">
-                <li><strong>*</strong> Double-cliquez sur les icônes du bureau pour ouvrir les applications</li>
-                <li><strong>*</strong> Glissez les icônes pour les réorganiser sur le bureau</li>
-                <li><strong>*</strong> Déplacez les fenêtres par leur barre de titre</li>
-                <li><strong>*</strong> Utilisez le menu Démarrer pour accéder aux applications</li>
-              </ul> */}
               <strong>Comment utilsier mon portfolio ?</strong>
               <h1>Tu sais utiliser un ordinateur ?</h1>
               <p>
@@ -190,7 +159,7 @@ export const Component = ({ onOpenApp }) => {
                   onClick={() => openWelcomeItem("about")}
                   onKeyDown={(event) => handleItemKeyDown(event, "about")}
                 >
-                  <img src="/icons/user.png" alt="" className="w-6 h-6" />
+                  <img src="/icons/note.png" alt="" className="w-6 h-6" />
                   <span>À propos de moi</span>
                 </div>
                 <div
@@ -254,7 +223,7 @@ export const Component = ({ onOpenApp }) => {
           {/* Info Box */}
           <div className="xp-box">
             <div className="xp-box-header">
-              <img src="/icons/info.png" alt="" className="w-4 h-4" />À propos
+              <img src="/icons/questionMark.png" alt="" className="w-4 h-4" />À propos
               de ce portfolio
             </div>
             <div className="xp-box-content">

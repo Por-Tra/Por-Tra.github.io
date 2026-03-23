@@ -39,7 +39,7 @@
 .xp-menubar-item {
   color: #000;
   cursor: pointer;
-  padding: 2px 6px;
+  padding: 2px 6px 2px 8px;
 }
 
 .xp-menubar-item:hover {
@@ -52,7 +52,7 @@
 }
 
 .xp-menu-button {
-  padding: 2px 6px;
+  padding: 2px 6px 2px 8px;
 }
 
 .xp-menubar .xp-menu-button:hover,
