@@ -210,7 +210,9 @@ export const Component = ({ onOpenApp }) => {
                   role="button"
                   tabIndex={0}
                   onClick={() => openWelcomeItem("skills")}
-                  onKeyDown={(event) => handleItemKeyDown(event, "skills")}
+                  onKeyDown={(event) =>
+                    handleItemKeyDown(event, "skills")
+                  }
                 >
                   <img src="/icons/note.png" alt="" className="w-6 h-6" />
                   <span>Compétences</span>

@@ -297,8 +297,13 @@ const Desktop = () => {
       return;
     }
 
+    const resolvedExtraProps = {
+      ...(app.extraProps || {}),
+      ...extraProps,
+    };
+
     // Si extraProps contient un titre personnalisé, on l'utilise
-    const customTitle = extraProps.windowTitle || app.name;
+    const customTitle = resolvedExtraProps.windowTitle || app.name;
     
     // Pour les apps avec extraProps, on crée toujours une nouvelle fenêtre
     // (par exemple, plusieurs images peuvent être ouvertes)
@@ -321,7 +326,7 @@ const Desktop = () => {
       searchOpen: false,
       searchQuery: '',
       zIndex: nextZIndex,
-      extraProps: extraProps, // Props supplémentaires pour le composant
+      extraProps: resolvedExtraProps, // Props supplémentaires pour le composant
     };
     
     setWindows(prev => [...prev, newWindow]);
