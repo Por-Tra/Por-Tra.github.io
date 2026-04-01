@@ -40,7 +40,8 @@ const AcadmicSkills = [
 ];
 
 
-const learningSkills = ['Cmake', 'Unity', 'Kotlin', 'Relation de base de données NoSQL'];
+const learningSkills = ['Cmake', 'Unity', 'Kotlin', 'Relation de base de données NoSQL',
+   'Docker', 'virtualisation', 'deep learning'];
 
 export const Component = () => {
   const { zoom, zoomIn, zoomOut, resetZoom } = useZoom();

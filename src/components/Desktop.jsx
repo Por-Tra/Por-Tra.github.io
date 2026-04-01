@@ -6,6 +6,7 @@ import Taskbar from './Taskbar';
 import appRegistry from '../apps';
 
 const STORAGE_KEY = 'xp-desktop-preferences-v1';
+const WELCOME_SESSION_KEY = 'xp-welcome-opened-session-v1';
 
 // Grid configuration for icon snapping
 const GRID_SIZE = 80;
@@ -224,12 +225,69 @@ const Desktop = () => {
       searchOpen: false,
       searchQuery: '',
       zIndex: nextZIndex,
+      extraProps: app.extraProps || {},
     };
     setWindows(prev => [...prev, newWindow]);
     setActiveWindow(nextId);
     setNextId(prev => prev + 1);
     setNextZIndex(prev => prev + 1);
   }, [windows, nextId, nextZIndex]);
+
+  // Ouvir l'app Welcome au lancement du desktop
+  useEffect(() => {
+    try {
+      if (globalThis.sessionStorage?.getItem(WELCOME_SESSION_KEY) === '1') {
+        return;
+      }
+    } catch (error) {
+      // no-op
+    }
+
+    const welcomeApp = appRegistry.get('welcome');
+    if (!welcomeApp) return;
+
+    const responsiveSize = getResponsiveWindowSize(
+      welcomeApp.defaultWidth || 800,
+      welcomeApp.defaultHeight || 500
+    );
+    const isMobile = window.innerWidth < 768;
+
+    const welcomeWindow = {
+      id: 1,
+      appId: welcomeApp.id,
+      title: welcomeApp.name,
+      icon: welcomeApp.icon,
+      url: welcomeApp.url,
+      content: welcomeApp.content,
+      openExternal: welcomeApp.openExternal,
+      x: isMobile ? responsiveSize.x : responsiveSize.x,
+      y: isMobile ? responsiveSize.y : responsiveSize.y,
+      width: responsiveSize.width,
+      height: responsiveSize.height,
+      minimized: false,
+      maximized: false,
+      searchOpen: false,
+      searchQuery: '',
+      zIndex: 100,
+      extraProps: welcomeApp.extraProps || {},
+    };
+
+    setWindows(prev => {
+      if (prev.some(windowItem => windowItem.appId === 'welcome')) {
+        return prev;
+      }
+      return [...prev, welcomeWindow];
+    });
+    setActiveWindow(1);
+    setNextId(prev => Math.max(prev, 2));
+    setNextZIndex(prev => Math.max(prev, 101));
+
+    try {
+      globalThis.sessionStorage?.setItem(WELCOME_SESSION_KEY, '1');
+    } catch (error) {
+      // no-op
+    }
+  }, []);
 
   // Ouvre une app par son ID (utilisé par l'Explorer et autres apps)
   const openAppById = useCallback((appId, extraProps = {}) => {
@@ -239,8 +297,13 @@ const Desktop = () => {
       return;
     }
 
+    const resolvedExtraProps = {
+      ...(app.extraProps || {}),
+      ...extraProps,
+    };
+
     // Si extraProps contient un titre personnalisé, on l'utilise
-    const customTitle = extraProps.windowTitle || app.name;
+    const customTitle = resolvedExtraProps.windowTitle || app.name;
     
     // Pour les apps avec extraProps, on crée toujours une nouvelle fenêtre
     // (par exemple, plusieurs images peuvent être ouvertes)
@@ -263,7 +326,7 @@ const Desktop = () => {
       searchOpen: false,
       searchQuery: '',
       zIndex: nextZIndex,
-      extraProps: extraProps, // Props supplémentaires pour le composant
+      extraProps: resolvedExtraProps, // Props supplémentaires pour le composant
     };
     
     setWindows(prev => [...prev, newWindow]);

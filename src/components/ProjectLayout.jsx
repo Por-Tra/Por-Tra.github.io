@@ -6,8 +6,8 @@ import { useState } from 'react';
 import XpMenuBar from './XpMenuBar';
 
 // Hook et constantes pour le zoom
-const ZOOM_LEVELS = [50, 75, 100, 125, 150, 175, 200];
-const DEFAULT_ZOOM = 100;
+const ZOOM_LEVELS = [50, 75, 100, 125, 150, 175, 200, 225, 250, 275, 300, 350, 400];
+const DEFAULT_ZOOM = 150;
 
 /**
  * Hook pour gérer le zoom

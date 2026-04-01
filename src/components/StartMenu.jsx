@@ -7,7 +7,7 @@ const MENU_CONFIG = {
   allProgramIds: [],
   rightItems: [
     { appId: 'projects', label: 'Mes documents', icon: '/icons/folder.png' },
-    { appId: 'explorer', label: 'Poste de travail', icon: '/icons/explorer.png' },
+    { appId: 'explorer', label: 'Poste de travail', icon: '/icons/PC.png' },
     { appId: 'control-panel', label: 'Panneau de configuration', icon: '/icons/setting.png' },
   ],
 };

@@ -34,47 +34,89 @@ class FileSystem {
                 icon: '/icons/folder.png',
                 children: 
                 {
-                  'RPG 2D (Python)': 
+
+                  'Python':
                   {
-                    type: 'app',
+                    type: 'folder',
                     icon: '/icons/folder.png',
-                    appId: 'project-rpg',
-                    description: 'Jeu RPG 2D développé en Python avec Pygame',
-                    downloadFile: '/assets/RPG2D.zip',
-                    downloadName: 'RPG2D.zip'
+                    children:
+                    {
+                        'The Elder Scroll 2D': 
+                        {
+                          type: 'app',
+                          icon: '/icons/folder.png',
+                          appId: 'project-rpg',
+                          description: 'Jeu RPG 2D développé en Python avec Pygame',
+                          downloadFile: '/assets/RPG2D.zip',
+                          downloadName: 'RPG2D.zip'
+                        },
+                        'Réseau Social Local (RSL)': 
+                        {
+                          type: 'app',
+                          icon: '/icons/folder.png',
+                          appId: 'project-reseau',
+                          description: 'Application de messagerie en réseau local',
+                          downloadFile: '/assets/ChatReseau.zip',
+                          downloadName: 'ChatReseau.zip'
+                        },
+                    }
                   },
-                  'Application Web (PHP)': 
+                  'Web':
                   {
-                    type: 'app',
+                    type: 'folder',
                     icon: '/icons/folder.png',
-                    appId: 'project-soutenance',
-                    description: 'Application web de gestion développée en PHP',
-                    downloadFile: '/assets/Soutenance.zip',
-                    downloadName: 'Soutenance.zip'
+                    children:
+                    {
+                      'Application Web (PHP)': 
+                      {
+                        type: 'app',
+                        icon: '/icons/folder.png',
+                        appId: 'project-soutenance',
+                        description: 'Application web de gestion développée en PHP',
+                        downloadFile: '/assets/Soutenance.zip',
+                        downloadName: 'Soutenance.zip'
+                      },
+                      'Vapeur (javasript)':
+                      {
+                        type: 'app',
+                        icon: '/icons/folder.png',
+                        appId: 'vapeur-project',
+                        description: 'Application de gestion de bibliothèque de jeux développée en JavaScript',
+                      },
+                      'Forge des héros (Symfony + React)':
+                      {
+                        type: 'app',
+                        icon: '/icons/folder.png',
+                        appId: 'FDH-project',
+                        description: 'Application de création et gestion de personnages de jeu de rôle, développée en Symfony et React',
+                      }
+                    }
+
+
                   },
-                  'Chat Réseau (Python)': 
+
+                  "Video Games - make with Unreal Engine and Unity":
                   {
-                    type: 'app',
+                    type: 'folder',
                     icon: '/icons/folder.png',
-                    appId: 'project-reseau',
-                    description: 'Application de messagerie en réseau local',
-                    downloadFile: '/assets/ChatReseau.zip',
-                    downloadName: 'ChatReseau.zip'
-                  },
-                  'Mycoria (Unreal Engine)':
-                  {
-                    type: 'app',
-                    icon: '/icons/folder.png',
-                    appId: 'mycoria-project',
-                    description: 'Jeu vidéo développé sur Unreal Engine avec blueprints',
-                  },
-                  'Vapeur (javasript)':
-                  {
-                    type: 'app',
-                    icon: '/icons/folder.png',
-                    appId: 'vapeur-project',
-                    description: 'Application de gestion de bibliothèque de jeux développée en JavaScript',
-                  },
+                    children:
+                    {
+                        'Mycoria (Unreal Engine)':
+                        {
+                          type: 'app',
+                          icon: '/icons/folder.png',
+                          appId: 'mycoria-project',
+                          description: 'Jeu vidéo développé sur Unreal Engine avec blueprints',
+                        },
+                        'LIBET (Unity)':
+                        {
+                          type: 'app',
+                          icon: '/icons/folder.png',
+                          appId: 'LIBET-project',
+                          description: 'Jeu vidéo développé sur Unity avec C#'
+                        }
+                    }
+                  }
                   
                 }
               },
@@ -438,7 +480,7 @@ class FileSystem {
               'LinkedIn': 
               {
                 type: 'link',
-                icon: '/icons/linkedin.svg',
+                icon: '/icons/link.png',
                 url: 'https://www.linkedin.com/in/lucas-contreras-hodapp/',
                 description: 'Mon profil LinkedIn'
               }
@@ -460,7 +502,13 @@ class FileSystem {
                     type: 'folder',
                     icon: '/icons/folder.png',
                     children: {
-                      'python.exe': { type: 'file', icon: '/icons/setting.png', size: '45 Ko', modified: '2024-01-01' }
+                      'python.exe': {
+                        type: 'file',
+                        icon: '/icons/setting.png',
+                        size: '45 Ko',
+                        modified: '2024-01-01',
+                        appId: 'web-reminder'
+                      }
                     }
                   },
                   'Visual Studio Code': 
@@ -469,11 +517,12 @@ class FileSystem {
                     icon: '/icons/folder.png',
                     children: {
                       'Code.exe': 
-                      { 
+                      {
                         type: 'file', 
                         icon: '/icons/setting.png', 
                         size: '120 Mo', 
-                        modified: '2024-06-01'
+                        modified: '2024-06-01',
+                        appId: 'web-reminder'
                       }
                     }
                   }
@@ -491,8 +540,20 @@ class FileSystem {
                     icon: '/icons/folder.png',
                     children: 
                     {
-                      'notepad.exe': { type: 'file', icon: '/icons/notepad.svg', size: '180 Ko', modified: '2001-10-25' },
-                      'cmd.exe': { type: 'file', icon: '/icons/setting.png', size: '240 Ko', modified: '2001-10-25' }
+                      'notepad.exe': {
+                        type: 'file',
+                        icon: '/icons/notepad.svg',
+                        size: '180 Ko',
+                        modified: '2001-10-25',
+                        appId: 'web-reminder'
+                      },
+                      'cmd.exe': {
+                        type: 'file',
+                        icon: '/icons/setting.png',
+                        size: '240 Ko',
+                        modified: '2001-10-25',
+                        appId: 'web-reminder'
+                      }
                     }
                   }
                 }
