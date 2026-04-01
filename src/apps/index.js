@@ -82,6 +82,8 @@ import * as ProjectSoutenance from './Projects/ProjectSoutenance';
 import * as ProjectReseau from './Projects/ProjectReseau';
 import * as ProjectMycoria from './Projects/ProjectMycoria';
 import * as ProjectVapeur from './Projects/ProjectVapeur';
+import * as ProjectLIBET from './Projects/LIBET';
+import * as ProjectFDH from './Projects/Forge-des-heros';
 
 // =========================================
 // ENREGISTREMENT DES APPLICATIONS
@@ -160,6 +162,8 @@ const apps = [
   { ...ProjectReseau.config, component: ProjectReseau.Component, showOnDesktop: false },
   { ...ProjectMycoria.config, component: ProjectMycoria.Component, showOnDesktop: false },
   { ...ProjectVapeur.config, component: ProjectVapeur.Component, showOnDesktop: false },
+  { ...ProjectLIBET.config, component: ProjectLIBET.Component, showOnDesktop: false },
+  { ...ProjectFDH.config, component: ProjectFDH.Component, showOnDesktop: false },
   
   // ===== APPS UTILITAIRES (pas sur le bureau) =====
   { ...ImageViewer.config, component: ImageViewer.Component },

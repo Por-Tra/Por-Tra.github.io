@@ -83,6 +83,13 @@ class FileSystem {
                         appId: 'vapeur-project',
                         description: 'Application de gestion de bibliothèque de jeux développée en JavaScript',
                       },
+                      'Forge des héros (Symfony + React)':
+                      {
+                        type: 'app',
+                        icon: '/icons/folder.png',
+                        appId: 'FDH-project',
+                        description: 'Application de création et gestion de personnages de jeu de rôle, développée en Symfony et React',
+                      }
                     }
 
 
@@ -101,6 +108,13 @@ class FileSystem {
                           appId: 'mycoria-project',
                           description: 'Jeu vidéo développé sur Unreal Engine avec blueprints',
                         },
+                        'LIBET (Unity)':
+                        {
+                          type: 'app',
+                          icon: '/icons/folder.png',
+                          appId: 'LIBET-project',
+                          description: 'Jeu vidéo développé sur Unity avec C#'
+                        }
                     }
                   }
                   
