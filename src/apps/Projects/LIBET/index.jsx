@@ -38,7 +38,7 @@ const projectData = {
     "Système de sauvegarde et de chargement",
     "Système de note et de journal pour suivre les souvenirs retrouvés"
   ],
-  role: "Développeur du système de quête, ainsi que d'autre mécaniques de gameplay.",
+  role: "Développeur du système de quête ainsi que d'autre mécaniques de gameplay.",
   skills: [
     "C#",
     "Unity",

@@ -71,7 +71,7 @@ export const Component = ({ onOpenApp }) => {
     <ProjectLayout
       projectData={projectData}
       addressPath="C:\Projets\ReseauSocialLocal"
-      addressIcon="/icons/signal.png"
+      addressIcon="/icons/folder.png"
       subtitle="Application de messagerie en réseau local"
       headerIcon="/icons/signal.png"
       onOpenApp={onOpenApp}

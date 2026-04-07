@@ -20,7 +20,7 @@ const projectData = {
   description: "Projet universitaire de deuxième année consistant à créer une application fullstack de création et gestion de personnages de jeu de rôle, inspirée de l'univers de Donjons & Dragons. Le projet se compose d'une application Symfony (fullstack + API REST) et d'une application React consommant cette API.",
   languages: ["PHP", "Symfony", "JavaScript", "React", "SQLite"],
   team: "Travaillé en équipe de 5",
-  date: "mars 2026",
+  date: "mars 2026 - durée: 1 semaine",
   features: [
     "Inscription et connexion avec gestion des rôles (admin automatique pour le premier inscrit)",
     "CRUD des personnages avec système de stats Point Buy (27 points à répartir entre 8 et 15)",
@@ -37,7 +37,7 @@ const projectData = {
     "Navigation fluide entre personnages et groupes côté React",
     "Fixtures Doctrine pour les races, classes et compétences de base"
   ],
-  role: "À compléter selon ta contribution réelle",
+  role: "Configuration de la base de donnée, développeur backend",
   skills: [
     "PHP / Symfony",
     "React / Vite",

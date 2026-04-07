@@ -59,6 +59,13 @@ class FileSystem {
                           downloadFile: '/assets/ChatReseau.zip',
                           downloadName: 'ChatReseau.zip'
                         },
+                        'PORTR-AI (LLM from scratch en Python)':
+                        {
+                          type: 'app',
+                          icon: '/icons/folder.png',
+                          appId: 'Port-AI-project',
+                          description: 'LLM from scratch développé en Python avec une architecture de transformer',
+                        }
                     }
                   },
                   'Web':
