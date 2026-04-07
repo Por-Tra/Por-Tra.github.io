@@ -110,7 +110,7 @@ export const MenuBar = ({ zoom, onZoomIn, onZoomOut, onReset, showZoom = true })
  * @param {string} path - Chemin à afficher
  * @param {string} icon - Icône à afficher (optionnel)
  */
-export const AddressBar = ({ path, icon = '/icons/folder.png' }) => (
+export const AddressBar = ({ path, icon = '/icons/folder.webp' }) => (
   <div className="xp-addressbar">
     <span className="xp-addressbar-label">Adresse</span>
     <div className="xp-addressbar-input">
@@ -139,7 +139,7 @@ export const StatusBar = ({ projectTitle, featuresCount }) => (
  * @param {string} icon - Icône du titre
  * @param {React.ReactNode} children - Contenu
  */
-export const SidebarBox = ({ title, icon = '/icons/questionMark.png', children }) => (
+export const SidebarBox = ({ title, icon = '/icons/questionMark.webp', children }) => (
   <div className="xp-sidebar-box">
     <div className="xp-sidebar-title">
       <img src={icon} alt="" />
@@ -168,16 +168,16 @@ export const ProjectSidebar = ({
   <div className="xp-sidebar">
     {/* Gestion du projet */}
     {(downloadFile || githubUrl) && (
-      <SidebarBox title="Gestion du projet" icon="/icons/folder.png">
+      <SidebarBox title="Gestion du projet" icon="/icons/folder.webp">
         {downloadFile && (
           <a href={downloadFile} download={downloadName} className="xp-sidebar-link">
-            <img src="/icons/folder.png" alt="" />
+            <img src="/icons/folder.webp" alt="" />
             Télécharger (.zip)
           </a>
         )}
         {githubUrl && (
           <a href={githubUrl} target="_blank" rel="noopener noreferrer" className="xp-sidebar-link">
-            <img src="/icons/git.png" alt="" />
+            <img src="/icons/git.webp" alt="" />
             Voir sur GitHub
           </a>
         )}
@@ -185,7 +185,7 @@ export const ProjectSidebar = ({
     )}
 
     {/* Détails */}
-    <SidebarBox title="Détails" icon="/icons/questionMark.png">
+    <SidebarBox title="Détails" icon="/icons/questionMark.webp">
       <div className="xp-sidebar-text">
         <p><strong>Date:</strong> {projectData.date}</p>
         <p><strong>Équipe:</strong> {projectData.team}</p>
@@ -195,7 +195,7 @@ export const ProjectSidebar = ({
 
     {/* Technologies */}
     {technologies.length > 0 && (
-      <SidebarBox title="Technologies" icon="/icons/setting.png">
+      <SidebarBox title="Technologies" icon="/icons/setting.webp">
         <div className="xp-sidebar-text">
           {technologies.map((tech, i) => (
             <p key={i}>{tech}</p>
@@ -215,7 +215,7 @@ export const ProjectSidebar = ({
  * @param {string} subtitle - Sous-titre
  * @param {string} icon - Icône
  */
-export const PageHeader = ({ title, subtitle, icon = '/icons/folder.png' }) => (
+export const PageHeader = ({ title, subtitle, icon = '/icons/folder.webp' }) => (
   <div className="xp-page-header">
     <img src={icon} alt="" className="xp-page-header-icon" />
     <div>
@@ -232,7 +232,7 @@ export const PageHeader = ({ title, subtitle, icon = '/icons/folder.png' }) => (
 export const DescriptionBox = ({ description }) => (
   <div className="xp-box xp-mb-3">
     <div className="xp-box-header">
-      <img src="/icons/questionMark.png" alt="" />
+      <img src="/icons/questionMark.webp" alt="" />
       Description
     </div>
     <div className="xp-box-content">
@@ -250,14 +250,14 @@ export const DescriptionBox = ({ description }) => (
 export const StepsBox = ({ steps }) => (
   <div className="xp-box xp-mb-3">
     <div className="xp-box-header xp-box-header-green">
-      <img src="/icons/setting.png" alt="" />
+      <img src="/icons/setting.webp" alt="" />
       Etapes
     </div>
     <div className="xp-box-content">
       <ol className="xp-list">
         {steps.map((step, i) => (
           <li key={i} className="xp-list-item">
-            <img src="/icons/note.png" alt="" />
+            <img src="/icons/note.webp" alt="" />
             {step}
           </li>
         ))}
@@ -272,7 +272,7 @@ export const StepsBox = ({ steps }) => (
  */
 export const RoleBox = ({ role }) => (
   <div className="xp-tipbox xp-mb-3">
-    <img src="/icons/setting.png" alt="" />
+    <img src="/icons/setting.webp" alt="" />
     <div className="xp-tipbox-text">
       <strong>Mon rôle:</strong> {role}
     </div>
@@ -286,14 +286,14 @@ export const RoleBox = ({ role }) => (
 export const FeaturesBox = ({ features }) => (
   <div className="xp-box xp-mb-3">
     <div className="xp-box-header xp-box-header-green">
-      <img src="/icons/folder.png" alt="" />
+      <img src="/icons/folder.webp" alt="" />
       Fonctionnalités
     </div>
     <div className="xp-box-content">
       <ul className="xp-list">
         {features.map((feature, i) => (
           <li key={i} className="xp-list-item">
-            <img src="/icons/folder.png" alt="" />
+            <img src="/icons/folder.webp" alt="" />
             {feature}
           </li>
         ))}
@@ -309,7 +309,7 @@ export const FeaturesBox = ({ features }) => (
 export const SkillsBox = ({ skills }) => (
   <div className="xp-box xp-mb-3">
     <div className="xp-box-header xp-box-header-cyan">
-      <img src="/icons/setting.png" alt="" />
+      <img src="/icons/setting.webp" alt="" />
       Compétences développées
     </div>
     <div className="xp-box-content">
@@ -331,7 +331,7 @@ export const SkillsBox = ({ skills }) => (
 export const ScreenshotsBox = ({ images, onImageClick, projectTitle = 'Projet' }) => (
   <div className="xp-box">
     <div className="xp-box-header xp-box-header-orange">
-      <img src="/icons/explorer.png" alt="" />
+      <img src="/icons/explorer.webp" alt="" />
       Captures d'écran
     </div>
     <div className="xp-box-content">
@@ -360,7 +360,7 @@ export const ScreenshotsBox = ({ images, onImageClick, projectTitle = 'Projet' }
 export const ScreenshotsSectionsBox = ({ sections, onImageClick, projectTitle = 'Projet' }) => (
   <div className="xp-box">
     <div className="xp-box-header xp-box-header-orange">
-      <img src="/icons/image.png" alt="" />
+      <img src="/icons/image.webp" alt="" />
       Captures d'ecran
     </div>
     <div className="xp-box-content">
@@ -408,9 +408,9 @@ export const ScreenshotsSectionsBox = ({ sections, onImageClick, projectTitle = 
 export const ProjectLayout = ({
   projectData,
   addressPath,
-  addressIcon = '/icons/folder.png',
+  addressIcon = '/icons/folder.webp',
   subtitle,
-  headerIcon = '/icons/folder.png',
+  headerIcon = '/icons/folder.webp',
   sidebar,
   children,
   onOpenApp

@@ -28,7 +28,7 @@ const SkillsContent = () => {
       <div className="bg-[#ece9d8] border-b border-[#808080] px-2 py-1 flex items-center gap-2">
         <span className="text-xs text-gray-600">Adresse</span>
         <div className="flex-1 bg-white border border-[#7f9db9] px-2 py-0.5 text-xs flex items-center gap-1">
-          <img src="/icons/folder.png" alt="" className="w-4 h-4" />
+          <img src="/icons/folder.webp" alt="" className="w-4 h-4" />
           <span>C:\Utilisateurs\Lucas\Compétences</span>
         </div>
       </div>
@@ -65,7 +65,7 @@ const SkillsContent = () => {
         <div className="flex-1 bg-white overflow-y-auto p-4">
           {/* Header */}
           <div className="flex items-start gap-4 mb-4 pb-4 border-b border-[#ece9d8]">
-            <img src="/icons/setting.png" alt="" className="w-12 h-12" />
+            <img src="/icons/setting.webp" alt="" className="w-12 h-12" />
             <div>
               <h1 className="text-lg font-bold text-[#003399]">Mes Compétences</h1>
               <p className="text-xs text-gray-500">Langages de programmation et outils maîtrisés</p>
@@ -76,7 +76,7 @@ const SkillsContent = () => {
           {['Langages', 'Web', 'Outils'].map((category) => (
             <div key={category} className="mb-4">
               <h2 className="text-sm font-bold text-[#003399] mb-2 flex items-center gap-2">
-                <img src="/icons/folder.png" alt="" className="w-4 h-4" />
+                <img src="/icons/folder.webp" alt="" className="w-4 h-4" />
                 {category}
               </h2>
               <div className="bg-[#f5f5f5] border border-[#ddd] rounded p-3 space-y-2">
@@ -102,7 +102,7 @@ const SkillsContent = () => {
           {/* Learning Section */}
           <div className="bg-[#ffffd5] border border-[#808080] rounded p-3">
             <h2 className="text-sm font-bold text-[#003399] mb-2 flex items-center gap-2">
-              <img src="/icons/questionMark.png" alt="" className="w-4 h-4" />
+              <img src="/icons/questionMark.webp" alt="" className="w-4 h-4" />
               En cours d'apprentissage
             </h2>
             <div className="flex flex-wrap gap-2">

@@ -71,7 +71,7 @@ const Taskbar = ({
         onClick={() => setStartMenuOpen(!startMenuOpen)}
         className={`xp-start-btn h-[28px] flex items-center gap-1 ${startMenuOpen ? 'xp-start-btn-active' : ''}`}
       >
-        <img src="/icons/WINXP_ICO_COLOR.png" alt="Start" className="w-5 h-5" />
+        <img src="/icons/WINXP_ICO_COLOR.webp" alt="Start" className="w-5 h-5" />
         <span className="text-sm">démarrer</span>
       </button>
 
@@ -98,7 +98,7 @@ const Taskbar = ({
 
       {/* System Tray */}
       <div className="xp-systray h-full flex items-center gap-2 px-2">
-        <img src="/icons/signal.png" alt="" className="w-4 h-4 opacity-80" />
+        <img src="/icons/signal.webp" alt="" className="w-4 h-4 opacity-80" />
         <LanguageSwitcher currentLang={currentLanguage} onChangeLang={onSetLanguage} />
         <span className="text-white text-[11px]">
           {formatTime(getAdjustedTime(time, utcOffsetMinutes ?? -time.getTimezoneOffset()))}

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import Desktop from './components/Desktop'
-import xpLogo from './assets/BOOT-LOGO.png'
-import profilePic from './assets/PP.jpg'
-import offButton from '../public/icons/off.png'
+import xpLogo from './assets/BOOT-LOGO.webp'
+import profilePic from './assets/PP.webp'
+import offButton from '../public/icons/off.webp'
 
 const BOOT_SESSION_KEY = 'xp-boot-shown-session-v1'
 

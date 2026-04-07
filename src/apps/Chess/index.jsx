@@ -9,7 +9,7 @@ import { Chess } from 'chess.js';
 export const config = {
   id: 'chess',
   name: 'Échecs',
-  icon: '/icons/chess.png',
+  icon: '/icons/chess.webp',
   defaultWidth: 550,
   defaultHeight: 480,
 };

@@ -6,9 +6,9 @@
 import { ProjectLayout, ProjectSidebar } from '../../../components/ProjectLayout';
 
 // Import des images
-import screenshot1 from '../../../assets/Proj1/Capture d\'écran 2025-05-14 100424.png';
-import screenshot2 from '../../../assets/Proj1/Capture d\'écran 2025-05-30 165033.png';
-import screenshot3 from '../../../assets/Proj1/image.png';
+import screenshot1 from '../../../assets/Proj1/TES2D1.webp';
+import screenshot2 from '../../../assets/Proj1/TES2D2.webp';
+import screenshot3 from '../../../assets/Proj1/TES2D3.webp';
 
 // Import du fichier de téléchargement
 import projectZip from '../../../assets/RPG.zip';
@@ -16,7 +16,7 @@ import projectZip from '../../../assets/RPG.zip';
 export const config = {
   id: 'project-rpg',
   name: 'RPG 2D',
-  icon: '/icons/folder.png',
+  icon: '/icons/folder.webp',
   defaultWidth: 700,
   defaultHeight: 520,
 };
@@ -69,9 +69,9 @@ export const Component = ({ onOpenApp }) => {
     <ProjectLayout
       projectData={projectData}
       addressPath={`C:\\Projets\\${projectData.title}`}
-      addressIcon="/icons/folder.png"
+      addressIcon="/icons/folder.webp"
       subtitle="Projet de jeu vidéo"
-      headerIcon="/icons/folder.png"
+      headerIcon="/icons/folder.webp"
       onOpenApp={onOpenApp}
       sidebar={
         <ProjectSidebar

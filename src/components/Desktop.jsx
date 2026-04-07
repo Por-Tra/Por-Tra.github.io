@@ -33,7 +33,7 @@ const Desktop = () => {
   const [selectedIcon, setSelectedIcon] = useState(null);
   const [wallpaperUrl, setWallpaperUrl] = useState(() => {
     const stored = readStoredPreferences();
-    return typeof stored?.wallpaperUrl === 'string' ? stored.wallpaperUrl : '/wallpaper.jpg';
+    return typeof stored?.wallpaperUrl === 'string' ? stored.wallpaperUrl : '/wallpaper.webp';
   });
   const [utcOffsetMinutes, setUtcOffsetMinutes] = useState(() => {
     const stored = readStoredPreferences();

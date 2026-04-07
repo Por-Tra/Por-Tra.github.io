@@ -1,14 +1,14 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
-import profilePic from '../assets/PP.jpg';
+import profilePic from '../assets/PP.webp';
 import appRegistry from '../apps';
 
 const MENU_CONFIG = {
   pinnedIds: ['welcome', 'projects', 'skills', 'contact', 'chess'],
   allProgramIds: [],
   rightItems: [
-    { appId: 'projects', label: 'Mes documents', icon: '/icons/folder.png' },
-    { appId: 'explorer', label: 'Poste de travail', icon: '/icons/PC.png' },
-    { appId: 'control-panel', label: 'Panneau de configuration', icon: '/icons/setting.png' },
+    { appId: 'projects', label: 'Mes documents', icon: '/icons/folder.webp' },
+    { appId: 'explorer', label: 'Poste de travail', icon: '/icons/PC.webp' },
+    { appId: 'control-panel', label: 'Panneau de configuration', icon: '/icons/setting.webp' },
   ],
 };
 
@@ -121,7 +121,7 @@ const StartMenu = ({ isOpen, onClose, onOpenApp, apps, onShutdown, onRestart }) 
                 onClick={() => setShowAllPrograms(prev => !prev)}
                 className="w-full flex items-center gap-2 px-2 py-1.5 hover:bg-[#316ac5] hover:text-white rounded text-left text-xs font-bold"
               >
-                <img src="/icons/folder.png" alt="" className="w-5 h-5" />
+                <img src="/icons/folder.webp" alt="" className="w-5 h-5" />
                 <span>{showAllPrograms ? 'Retour' : 'Tous les programmes'}</span>
                 <span className="ml-auto">{showAllPrograms ? '◀' : '▶'}</span>
               </button>
@@ -159,14 +159,14 @@ const StartMenu = ({ isOpen, onClose, onOpenApp, apps, onShutdown, onRestart }) 
           onClick={onRestart}
           className="flex items-center gap-1 px-2 py-1 text-white text-[11px] hover:bg-white/20 rounded"
         >
-          <img src="/icons/restart.png" alt="" className="w-4 h-4" />
+          <img src="/icons/restart.webp" alt="" className="w-4 h-4" />
           <span>Redémarrer</span>
         </button>
         <button 
           onClick={onShutdown}
           className="flex items-center gap-1 px-2 py-1 text-white text-[11px] hover:bg-white/20 rounded"
         >
-          <img src="/icons/off.png" alt="" className="w-4 h-4" />
+          <img src="/icons/off.webp" alt="" className="w-4 h-4" />
           <span>Arrêter</span>
         </button>
       </div>

@@ -10,7 +10,7 @@ import screenshot3 from '../../../assets/Proj-P-AI/logo.png';
 export const config = {
   id: 'Port-AI-project',
   name: 'PORTR-AI',
-  icon: '/icons/P-AI-logo.png',
+  icon: '/icons/P-AI-logo.webp',
   defaultWidth: 700,
   defaultHeight: 520,
 };
@@ -71,9 +71,9 @@ export const Component = ({ onOpenApp }) => {
     <ProjectLayout
       projectData={projectData}
       addressPath="C:\\Projets\\PORTR-AI"
-      addressIcon="/icons/folder.png"
+      addressIcon="/icons/folder.webp"
       subtitle="LLM from scratch en Python"
-      headerIcon="/icons/P-AI-logo.png"
+      headerIcon="/icons/P-AI-logo.webp"
       onOpenApp={onOpenApp}
       sidebar={
         <ProjectSidebar

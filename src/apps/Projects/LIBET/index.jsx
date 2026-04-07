@@ -18,7 +18,7 @@ import screenshot10 from '../../../assets/Proj-LIBET/10.png';
 export const config = {
   id: 'LIBET-project',
   name: 'LIBET',
-  icon: '/icons/folder.png',
+  icon: '/icons/folder.webp',
   defaultWidth: 700,
   defaultHeight: 520,
 };
@@ -70,9 +70,9 @@ export const Component = ({ onOpenApp }) => {
     <ProjectLayout
       projectData={projectData}
       addressPath="C:\\Projets\\LIBET"
-      addressIcon="/icons/signal.png"
+      addressIcon="/icons/signal.webp"
       subtitle="Jeu vidéo 3D - Unity"
-      headerIcon="/icons/signal.png"
+      headerIcon="/icons/signal.webp"
       onOpenApp={onOpenApp}
       sidebar={
         <ProjectSidebar

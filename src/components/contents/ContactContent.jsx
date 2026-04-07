@@ -27,11 +27,11 @@ const ContactContent = () => {
       {/* Button Bar */}
       <div className="bg-[#ece9d8] border-b border-[#808080] px-2 py-1 flex items-center gap-1">
         <button className="xp-button px-2 py-0.5 text-xs flex items-center gap-1">
-          <img src="/icons/signal.png" alt="" className="w-4 h-4" />
+          <img src="/icons/signal.webp" alt="" className="w-4 h-4" />
           Envoyer
         </button>
         <button className="xp-button px-2 py-0.5 text-xs flex items-center gap-1">
-          <img src="/icons/folder.png" alt="" className="w-4 h-4" />
+          <img src="/icons/folder.webp" alt="" className="w-4 h-4" />
           Joindre
         </button>
       </div>
@@ -40,7 +40,7 @@ const ContactContent = () => {
         {/* Contact Form */}
         <div className="bg-white border border-[#808080] rounded shadow-sm">
           <div className="bg-gradient-to-r from-[#0058e6] to-[#2878e8] text-white px-3 py-2 flex items-center gap-2">
-            <img src="/icons/signal.png" alt="" className="w-5 h-5" />
+            <img src="/icons/signal.webp" alt="" className="w-5 h-5" />
             <h2 className="font-bold text-sm">Nouveau Message</h2>
           </div>
 
@@ -82,7 +82,7 @@ const ContactContent = () => {
 
             <div className="flex justify-end gap-2 pt-2">
               <button type="submit" className="xp-button px-3 py-1 text-[11px] flex items-center gap-1">
-                <img src="/icons/signal.png" alt="" className="w-3 h-3" />
+                <img src="/icons/signal.webp" alt="" className="w-3 h-3" />
                 Envoyer
               </button>
             </div>
@@ -98,7 +98,7 @@ const ContactContent = () => {
         {/* Contact Links */}
         <div className="mt-3 bg-white border border-[#808080] rounded shadow-sm">
           <div className="bg-gradient-to-r from-[#0058e6] to-[#2878e8] text-white px-3 py-1 text-xs font-bold flex items-center gap-2">
-            <img src="/icons/signal.png" alt="" className="w-4 h-4" />
+            <img src="/icons/signal.webp" alt="" className="w-4 h-4" />
             Autres moyens de contact
           </div>
           <div className="p-3 space-y-2 text-[11px]">
@@ -106,7 +106,7 @@ const ContactContent = () => {
               href="mailto:lucascontrerashodapp@gmail.com"
               className="flex items-center gap-2 text-[#0058e6] hover:underline"
             >
-              <img src="/icons/signal.png" alt="" className="w-4 h-4" />
+              <img src="/icons/signal.webp" alt="" className="w-4 h-4" />
               lucascontrerashodapp@gmail.com
             </a>
             <a
@@ -115,7 +115,7 @@ const ContactContent = () => {
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-[#0058e6] hover:underline"
             >
-              <img src="/icons/explorer.png" alt="" className="w-4 h-4" />
+              <img src="/icons/explorer.webp" alt="" className="w-4 h-4" />
               LinkedIn - Lucas Contreras Hodapp
             </a>
             <a
@@ -124,7 +124,7 @@ const ContactContent = () => {
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-[#0058e6] hover:underline"
             >
-              <img src="/icons/explorer.png" alt="" className="w-4 h-4" />
+              <img src="/icons/explorer.webp" alt="" className="w-4 h-4" />
               GitHub - Por-Tra
             </a>
           </div>

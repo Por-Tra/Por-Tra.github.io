@@ -8,7 +8,7 @@
 export const config = {
   id: 'web-reminder',
   name: 'Exécutable introuvable',
-  icon: '/icons/questionMark.png',
+  icon: '/icons/questionMark.webp',
   defaultWidth: 460,
   defaultHeight: 260,
   showOnDesktop: false,
@@ -21,7 +21,7 @@ export const Component = () => {
       <div className="xp-content" style={{ padding: '16px' }}>
         <div className="xp-box xp-box-blue" style={{ width: '100%' }}>
           <div className="xp-box-header">
-            <img src="/icons/questionMark.png" alt="" className="w-4 h-4" />
+            <img src="/icons/questionMark.webp" alt="" className="w-4 h-4" />
             Petit rappel
           </div>
           <div className="xp-box-content">

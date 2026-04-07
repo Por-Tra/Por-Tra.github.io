@@ -9,7 +9,7 @@ import XpMenuBar from '../../components/XpMenuBar';
 export const config = {
   id: 'control-panel',
   name: 'Panneau de configuration',
-  icon: '/icons/setting.png',
+  icon: '/icons/setting.webp',
   defaultWidth: 760,
   defaultHeight: 540,
   showOnDesktop: false,
@@ -21,19 +21,19 @@ const CONFIG_SECTIONS = [
     id: 'personalize',
     title: 'Personnaliser',
     description: "Changer l'apparence du bureau et du fond d'ecran.",
-    icon: '/icons/setting.png',
+    icon: '/icons/setting.webp',
   },
     {
         id: 'datetime',
         title: "Reglage de la date et de l'heure",
         description: "Modifier l'horloge et la date du systeme.",
-        icon: '/icons/setting.png',
+        icon: '/icons/setting.webp',
     },
     {
         id: 'power',
         title: 'Menu systeme',
         description: 'Eteindre ou redemarrer la session.',
-        icon: '/icons/off.png',
+        icon: '/icons/off.webp',
     },
     {
         id: 'language',
@@ -54,7 +54,7 @@ const WALLPAPER_OPTIONS = [
   {
     id: 'default',
     title: 'Defaut',
-    src: '/wallpaper.jpg',
+    src: '/wallpaper.webp',
   },
   {
     id: 'win11Dark',
@@ -251,7 +251,7 @@ export const Component = ({
                     {activeSection === 'personalize' && (
                         <div className="cp-panel">
                             <div className="cp-panel-header">
-                                <img src="/icons/setting.png" alt="" />
+                                <img src="/icons/setting.webp" alt="" />
                                 <div>
                                     <h2>Personnaliser</h2>
                                     <p>Changer le fond d'ecran du bureau.</p>
@@ -305,7 +305,7 @@ export const Component = ({
                     {activeSection === 'datetime' && (
                         <div className="cp-panel">
                             <div className="cp-panel-header">
-                                <img src="/icons/setting.png" alt="" />
+                                <img src="/icons/setting.webp" alt="" />
                                 <div>
                                     <h2>Reglage de la date et de l'heure</h2>
                                     <p>Modifier la date et l'heure de l'ordinateur.</p>
@@ -351,7 +351,7 @@ export const Component = ({
                     {activeSection === 'power' && (
                         <div className="cp-panel">
                             <div className="cp-panel-header">
-                                <img src="/icons/off.png" alt="" />
+                                <img src="/icons/off.webp" alt="" />
                                 <div>
                                     <h2>Menu systeme</h2>
                                     <p>Eteindre ou redemarrer la session.</p>
@@ -361,11 +361,11 @@ export const Component = ({
                             <div className="cp-panel-section">
                                 <div className="cp-power-grid">
                                     <button type="button" className="cp-power-btn" onClick={handleShutdown}>
-                                        <img src="/icons/off.png" alt="" />
+                                        <img src="/icons/off.webp" alt="" />
                                         Eteindre
                                     </button>
                                     <button type="button" className="cp-power-btn" onClick={handleRestart}>
-                                        <img src="/icons/restart.png" alt="" />
+                                        <img src="/icons/restart.webp" alt="" />
                                         Redemarrer
                                     </button>
                                 </div>

@@ -9,7 +9,7 @@ import XpMenuBar from '../../../components/XpMenuBar';
 export const config = {
   id: 'blank',
   name: 'Application',
-  icon: '/icons/folder.png',
+  icon: '/icons/folder.webp',
   defaultWidth: 400,
   defaultHeight: 300,
 };

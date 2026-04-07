@@ -8,7 +8,7 @@ import { useState } from 'react';
 export const config = {
   id: 'image-viewer',
   name: 'Aperçu des images',
-  icon: '/icons/folder.png',
+  icon: '/icons/folder.webp',
   defaultWidth: 650,
   defaultHeight: 500,
   showOnDesktop: false,
@@ -90,7 +90,7 @@ export const Component = ({ imageSrc, imageName }) => {
             alt={name}
             className="max-w-none shadow-2xl"
             onError={(e) => {
-              e.target.src = '/icons/questionMark.png';
+              e.target.src = '/icons/questionMark.webp';
               e.target.className = 'w-32 h-32 opacity-50';
             }}
           />

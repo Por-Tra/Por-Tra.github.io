@@ -15,7 +15,7 @@
  * export const config = {
  *   id: 'mon-app',           // ID unique (requis)
  *   name: 'Mon Application', // Nom affiché (requis)
- *   icon: '/icons/folder.png', // Icône (requis)
+ *   icon: '/icons/folder.webp', // Icône (requis)
  *   defaultWidth: 600,       // Largeur par défaut
  *   defaultHeight: 450,      // Hauteur par défaut
  * };
@@ -104,7 +104,7 @@ const apps = [
   {
     id: 'github',
     name: 'GitHub',
-    icon: '/icons/git.png',
+    icon: '/icons/git.webp',
     url: 'https://github.com/Por-Tra',
     openExternal: true,
     defaultWidth: 900,
@@ -114,7 +114,7 @@ const apps = [
   {
     id: 'linkedin',
     name: 'LinkedIn',
-    icon: '/icons/link.png',
+    icon: '/icons/link.webp',
     url: 'https://linkedin.com/in/lucas-contreras-hodapp',
     openExternal: true,
     defaultWidth: 900,
@@ -125,7 +125,7 @@ const apps = [
   {
     id : 'google',
     name: 'Explorer',
-    icon: '/icons/explorer.png',
+    icon: '/icons/explorer.webp',
     url: 'https://www.google.com',
     openExternal: true,
     defaultWidth: 900,
@@ -142,13 +142,13 @@ const apps = [
     component: Blank.Component,
     id: 'trash',
     name: 'Corbeille',
-    icon: '/icons/trash.png',
+    icon: '/icons/trash.webp',
     desktopOrder: 13,
   },
   {
     id: 'projects-folder-shortcut',
     name: 'Projets',
-    icon: '/icons/folder.png',
+    icon: '/icons/folder.webp',
     component: Explorer.Component,
     extraProps: {
       initialPath: ['Poste de travail', 'Documents', 'Projets'],

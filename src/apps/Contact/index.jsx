@@ -102,11 +102,11 @@ export const Component = () => {
                 Email
               </a>
               <a href="https://linkedin.com/in/lucas-contreras-hodapp" target="_blank" rel="noopener noreferrer" className="xp-sidebar-link">
-                <img src="/icons/link.png" alt="" className="w-3 h-3" />
+                <img src="/icons/link.webp" alt="" className="w-3 h-3" />
                 LinkedIn
               </a>
               <a href="https://github.com/Por-Tra" target="_blank" rel="noopener noreferrer" className="xp-sidebar-link">
-                <img src="/icons/git.png" alt="" className="w-3 h-3" />
+                <img src="/icons/git.webp" alt="" className="w-3 h-3" />
                 GitHub
               </a>
             </div>
@@ -225,11 +225,11 @@ export const Component = () => {
                   lucascontrerashodapp@gmail.com
                 </a>
                 <a href="https://linkedin.com/in/lucas-contreras-hodapp" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[#0058e6] hover:underline text-xs">
-                  <img src="/icons/link.png" alt="" className="w-4 h-4" />
+                  <img src="/icons/link.webp" alt="" className="w-4 h-4" />
                   LinkedIn - Lucas Contreras Hodapp
                 </a>
                 <a href="https://github.com/Por-Tra" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[#0058e6] hover:underline text-xs">
-                  <img src="/icons/git.png" alt="" className="w-4 h-4" />
+                  <img src="/icons/git.webp" alt="" className="w-4 h-4" />
                   GitHub - Por-Tra
                 </a>
               </div>
@@ -238,7 +238,7 @@ export const Component = () => {
 
           {/* Tip */}
           <div className="xp-tipbox">
-            <img src="/icons/questionMark.png" alt="" className="w-4 h-4 flex-shrink-0" />
+            <img src="/icons/questionMark.webp" alt="" className="w-4 h-4 flex-shrink-0" />
             <span>Je réponds généralement sous 24-48h. N'hésitez pas à me contacter pour toute question ou opportunité !</span>
           </div>
         </div>

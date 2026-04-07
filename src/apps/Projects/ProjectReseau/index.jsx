@@ -16,7 +16,7 @@ import projectZip from '../../../assets/Projet RSL.zip';
 export const config = {
   id: 'project-reseau',
   name: 'Réseau Social Local',
-  icon: '/icons/folder.png',
+  icon: '/icons/folder.webp',
   defaultWidth: 700,
   defaultHeight: 520,
 };
@@ -71,9 +71,9 @@ export const Component = ({ onOpenApp }) => {
     <ProjectLayout
       projectData={projectData}
       addressPath="C:\Projets\ReseauSocialLocal"
-      addressIcon="/icons/folder.png"
+      addressIcon="/icons/folder.webp"
       subtitle="Application de messagerie en réseau local"
-      headerIcon="/icons/signal.png"
+      headerIcon="/icons/signal.webp"
       onOpenApp={onOpenApp}
       sidebar={
         <ProjectSidebar

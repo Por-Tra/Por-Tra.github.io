@@ -10,7 +10,7 @@ import screenshot5 from '../../../assets/Proj-FDH/5.png';
 export const config = {
   id: 'FDH-project',
   name: 'Forge des héros',
-  icon: '/icons/folder.png',
+  icon: '/icons/folder.webp',
   defaultWidth: 700,
   defaultHeight: 520,
 };
@@ -75,9 +75,9 @@ export const Component = ({ onOpenApp }) => {
     <ProjectLayout
       projectData={projectData}
       addressPath="C:\\Projets\\Forge-de-Heros"
-      addressIcon="/icons/folder.png"
+      addressIcon="/icons/folder.webp"
       subtitle="Application fullstack de gestion de personnages D&D"
-      headerIcon="/icons/folder.png"
+      headerIcon="/icons/folder.webp"
       onOpenApp={onOpenApp}
       sidebar={
         <ProjectSidebar

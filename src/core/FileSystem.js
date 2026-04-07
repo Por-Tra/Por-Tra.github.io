@@ -18,33 +18,33 @@ class FileSystem {
           'Bureau': 
           {
             type: 'folder',
-            icon: '/icons/folder.png',
+            icon: '/icons/folder.webp',
             special: 'desktop', // Synchronisé avec le bureau
             children: {} // Rempli dynamiquement
           },
           'Documents': 
           {
             type: 'folder',
-            icon: '/icons/note.png',
+            icon: '/icons/note.webp',
             children: 
             {
               'Projets': 
               {
                 type: 'folder',
-                icon: '/icons/folder.png',
+                icon: '/icons/folder.webp',
                 children: 
                 {
 
                   'Python':
                   {
                     type: 'folder',
-                    icon: '/icons/folder.png',
+                    icon: '/icons/folder.webp',
                     children:
                     {
                         'The Elder Scroll 2D': 
                         {
                           type: 'app',
-                          icon: '/icons/folder.png',
+                          icon: '/icons/folder.webp',
                           appId: 'project-rpg',
                           description: 'Jeu RPG 2D développé en Python avec Pygame',
                           downloadFile: '/assets/RPG2D.zip',
@@ -53,7 +53,7 @@ class FileSystem {
                         'Réseau Social Local (RSL)': 
                         {
                           type: 'app',
-                          icon: '/icons/folder.png',
+                          icon: '/icons/folder.webp',
                           appId: 'project-reseau',
                           description: 'Application de messagerie en réseau local',
                           downloadFile: '/assets/ChatReseau.zip',
@@ -62,7 +62,7 @@ class FileSystem {
                         'PORTR-AI (LLM from scratch en Python)':
                         {
                           type: 'app',
-                          icon: '/icons/folder.png',
+                          icon: '/icons/folder.webp',
                           appId: 'Port-AI-project',
                           description: 'LLM from scratch développé en Python avec une architecture de transformer',
                         }
@@ -71,13 +71,13 @@ class FileSystem {
                   'Web':
                   {
                     type: 'folder',
-                    icon: '/icons/folder.png',
+                    icon: '/icons/folder.webp',
                     children:
                     {
                       'Application Web (PHP)': 
                       {
                         type: 'app',
-                        icon: '/icons/folder.png',
+                        icon: '/icons/folder.webp',
                         appId: 'project-soutenance',
                         description: 'Application web de gestion développée en PHP',
                         downloadFile: '/assets/Soutenance.zip',
@@ -86,14 +86,14 @@ class FileSystem {
                       'Vapeur (javasript)':
                       {
                         type: 'app',
-                        icon: '/icons/folder.png',
+                        icon: '/icons/folder.webp',
                         appId: 'vapeur-project',
                         description: 'Application de gestion de bibliothèque de jeux développée en JavaScript',
                       },
                       'Forge des héros (Symfony + React)':
                       {
                         type: 'app',
-                        icon: '/icons/folder.png',
+                        icon: '/icons/folder.webp',
                         appId: 'FDH-project',
                         description: 'Application de création et gestion de personnages de jeu de rôle, développée en Symfony et React',
                       }
@@ -105,20 +105,20 @@ class FileSystem {
                   "Video Games - make with Unreal Engine and Unity":
                   {
                     type: 'folder',
-                    icon: '/icons/folder.png',
+                    icon: '/icons/folder.webp',
                     children:
                     {
                         'Mycoria (Unreal Engine)':
                         {
                           type: 'app',
-                          icon: '/icons/folder.png',
+                          icon: '/icons/folder.webp',
                           appId: 'mycoria-project',
                           description: 'Jeu vidéo développé sur Unreal Engine avec blueprints',
                         },
                         'LIBET (Unity)':
                         {
                           type: 'app',
-                          icon: '/icons/folder.png',
+                          icon: '/icons/folder.webp',
                           appId: 'LIBET-project',
                           description: 'Jeu vidéo développé sur Unity avec C#'
                         }
@@ -141,13 +141,13 @@ class FileSystem {
           'Téléchargements': 
           {
             type: 'folder',
-            icon: '/icons/folder.png',
+            icon: '/icons/folder.webp',
             children: 
             {
               'The_Elder_Scrolls_2D.zip':
               {
                 type: 'file',
-                icon: '/icons/folder.png',
+                icon: '/icons/folder.webp',
                 size: '5.2 Mo',
                 modified: '2026-02-12',
                 downloadFile: '/assets/RPG.zip',
@@ -156,7 +156,7 @@ class FileSystem {
               'RSL.zip':
               {
                 type: 'file',
-                icon: '/icons/folder.png',
+                icon: '/icons/folder.webp',
                 size: '1.8 Mo',
                 modified: '2026-02-12',
                 downloadFile: '/assets/Projet RSL.zip',
@@ -165,7 +165,7 @@ class FileSystem {
               'Application_Web_Notation.zip':
               {
                 type: 'file',
-                icon: '/icons/folder.png',
+                icon: '/icons/folder.webp',
                 size: '2.4 Mo',
                 modified: '2026-02-12',
                 downloadFile: '/assets/projet_sql-main.zip',
@@ -176,19 +176,19 @@ class FileSystem {
           'Images': 
           {
             type: 'folder',
-            icon: '/icons/folder.png',
+            icon: '/icons/folder.webp',
             children: 
             {
               'Captures': 
               {
                 type: 'folder',
-                icon: '/icons/folder.png',
+                icon: '/icons/folder.webp',
                 children: 
                 {
                   'The Elder Scrolls 2D':
                   {
                      type: 'folder',
-                     icon: '/icons/folder.png',
+                     icon: '/icons/folder.webp',
                      children:
                      {
                         'capture1.png':
@@ -220,7 +220,7 @@ class FileSystem {
                   'Application Web de notation':
                   {
                     type: 'folder',
-                    icon: '/icons/folder.png',
+                    icon: '/icons/folder.webp',
                     children:
                     {
                       'capture1.png':
@@ -252,7 +252,7 @@ class FileSystem {
                   'Réseau Social Local':
                   {
                     type: 'folder',
-                    icon: '/icons/folder.png',
+                    icon: '/icons/folder.webp',
                     children:
                     {
                       'capture1.png':
@@ -284,7 +284,7 @@ class FileSystem {
                   'Mycoria' :
                   {
                     type: 'folder',
-                    icon: '/icons/folder.png',
+                    icon: '/icons/folder.webp',
                     children:
                     {
                       'capture1.png':
@@ -388,7 +388,7 @@ class FileSystem {
                   'Vapeur':
                   {
                     type: 'folder',
-                    icon: '/icons/folder.png',
+                    icon: '/icons/folder.webp',
                     children:
                     {
                       'capture1.png':
@@ -441,7 +441,7 @@ class FileSystem {
               'Wallpapers': 
               {
                 type: 'folder',
-                icon: '/icons/folder.png',
+                icon: '/icons/folder.webp',
                 children: {
                   'Dog.jpg' :
                   {
@@ -474,7 +474,7 @@ class FileSystem {
           'Réseau': 
           {
             type: 'folder',
-            icon: '/icons/explorer.png',
+            icon: '/icons/explorer.webp',
             children: 
             {
               'GitHub': 
@@ -487,7 +487,7 @@ class FileSystem {
               'LinkedIn': 
               {
                 type: 'link',
-                icon: '/icons/link.png',
+                icon: '/icons/link.webp',
                 url: 'https://www.linkedin.com/in/lucas-contreras-hodapp/',
                 description: 'Mon profil LinkedIn'
               }
@@ -496,22 +496,22 @@ class FileSystem {
           'Disque local (C:)': 
           {
             type: 'drive',
-            icon: '/icons/PC.png',
+            icon: '/icons/PC.webp',
             children: 
             {
               'Program Files': 
               {
                 type: 'folder',
-                icon: '/icons/folder.png',
+                icon: '/icons/folder.webp',
                 children: {
                   'Python 3.11': 
                   {
                     type: 'folder',
-                    icon: '/icons/folder.png',
+                    icon: '/icons/folder.webp',
                     children: {
                       'python.exe': {
                         type: 'file',
-                        icon: '/icons/setting.png',
+                        icon: '/icons/setting.webp',
                         size: '45 Ko',
                         modified: '2024-01-01',
                         appId: 'web-reminder'
@@ -521,12 +521,12 @@ class FileSystem {
                   'Visual Studio Code': 
                   {
                     type: 'folder',
-                    icon: '/icons/folder.png',
+                    icon: '/icons/folder.webp',
                     children: {
                       'Code.exe': 
                       {
                         type: 'file', 
-                        icon: '/icons/setting.png', 
+                        icon: '/icons/setting.webp', 
                         size: '120 Mo', 
                         modified: '2024-06-01',
                         appId: 'web-reminder'
@@ -538,13 +538,13 @@ class FileSystem {
               'Windows': 
               {
                 type: 'folder',
-                icon: '/icons/folder.png',
+                icon: '/icons/folder.webp',
                 children: 
                 {
                   'System32': 
                   {
                     type: 'folder',
-                    icon: '/icons/folder.png',
+                    icon: '/icons/folder.webp',
                     children: 
                     {
                       'notepad.exe': {
@@ -556,7 +556,7 @@ class FileSystem {
                       },
                       'cmd.exe': {
                         type: 'file',
-                        icon: '/icons/setting.png',
+                        icon: '/icons/setting.webp',
                         size: '240 Ko',
                         modified: '2001-10-25',
                         appId: 'web-reminder'
@@ -647,33 +647,33 @@ class FileSystem {
   getIcon(item, name) {
     if (item.icon) return item.icon;
     
-    if (item.type === 'drive') return '/icons/explorer.png';
-    if (item.type === 'folder') return '/icons/folder.png';
+    if (item.type === 'drive') return '/icons/explorer.webp';
+    if (item.type === 'folder') return '/icons/folder.webp';
     if (item.type === 'computer') return '/icons/computer.svg';
-    if (item.type === 'app') return '/icons/setting.png';
-    if (item.type === 'image') return '/icons/folder.png';
-    if (item.type === 'link') return '/icons/link.png';
+    if (item.type === 'app') return '/icons/setting.webp';
+    if (item.type === 'image') return '/icons/folder.webp';
+    if (item.type === 'link') return '/icons/link.webp';
     
     // Icône basée sur l'extension
     const ext = name.split('.').pop().toLowerCase();
     const iconMap = {
-      'py': '/icons/setting.png',
-      'php': '/icons/explorer.png',
-      'html': '/icons/explorer.png',
-      'css': '/icons/explorer.png',
-      'js': '/icons/explorer.png',
+      'py': '/icons/setting.webp',
+      'php': '/icons/explorer.webp',
+      'html': '/icons/explorer.webp',
+      'css': '/icons/explorer.webp',
+      'js': '/icons/explorer.webp',
       'txt': '/icons/notepad.svg',
       'pdf': '/icons/document.svg',
-      'jpg': '/icons/folder.png',
-      'jpeg': '/icons/folder.png',
-      'png': '/icons/folder.png',
-      'gif': '/icons/folder.png',
-      'exe': '/icons/setting.png',
-      'sql': '/icons/signal.png',
-      'zip': '/icons/folder.png'
+      'jpg': '/icons/folder.webp',
+      'jpeg': '/icons/folder.webp',
+      'png': '/icons/folder.webp',
+      'gif': '/icons/folder.webp',
+      'exe': '/icons/setting.webp',
+      'sql': '/icons/signal.webp',
+      'zip': '/icons/folder.webp'
     };
     
-    return iconMap[ext] || '/icons/questionMark.png';
+    return iconMap[ext] || '/icons/questionMark.webp';
   }
 
   /**

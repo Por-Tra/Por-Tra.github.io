@@ -4,12 +4,12 @@
  * Page "À propos" avec les informations personnelles - Style Windows XP
  */
 import { MenuBar, useZoom, getZoomStyle } from '../../components/ProjectLayout';
-import profilePic from '../../assets/PP.jpg';
+import profilePic from '../../assets/PP.webp';
 
 export const config = {
   id: 'about',
   name: 'À propos',
-  icon: '/icons/note.png',
+  icon: '/icons/note.webp',
   defaultWidth: 700,
   defaultHeight: 520,
 };
@@ -39,11 +39,11 @@ export const Component = () => {
         </button>
         <div className="xp-toolbar-separator" />
         <button className="xp-toolbar-btn">
-          <img src="/icons/folder.png" alt="" className="w-4 h-4" />
+          <img src="/icons/folder.webp" alt="" className="w-4 h-4" />
           Mes Projets
         </button>
         <button className="xp-toolbar-btn">
-          <img src="/icons/note.png" alt="" className="w-4 h-4" />
+          <img src="/icons/note.webp" alt="" className="w-4 h-4" />
           Mon CV
         </button>
       </div>
@@ -52,7 +52,7 @@ export const Component = () => {
       <div className="xp-addressbar">
         <span className="xp-addressbar-label">Adresse</span>
         <div className="xp-addressbar-input">
-          <img src="/icons/note.png" alt="" className="w-4 h-4" />
+          <img src="/icons/note.webp" alt="" className="w-4 h-4" />
           <span>À propos de moi</span>
         </div>
         <button className="xp-addressbar-go">OK</button>
@@ -65,19 +65,19 @@ export const Component = () => {
           {/* Social Links */}
           <div className="xp-sidebar-box">
             <div className="xp-sidebar-title">
-              <img src="/icons/link.png" alt="" />
+              <img src="/icons/link.webp" alt="" />
               Social Links
             </div>
             <a href="https://www.instagram.com/lucas_contreras_hodapp_/" target="_blank" rel="noopener noreferrer" className="xp-sidebar-link">
-              <img src="/icons/explorer.png" alt="" />
+              <img src="/icons/explorer.webp" alt="" />
               Instagram
             </a>
             <a href="https://github.com/Por-Tra" target="_blank" rel="noopener noreferrer" className="xp-sidebar-link">
-              <img src="/icons/git.png" alt="" />
+              <img src="/icons/git.webp" alt="" />
               Github
             </a>
             <a href="https://linkedin.com/in/lucas-contreras-hodapp" target="_blank" rel="noopener noreferrer" className="xp-sidebar-link">
-              <img src="/icons/link.png" alt="" />
+              <img src="/icons/link.webp" alt="" />
               LinkedIn
             </a>
           </div>
@@ -85,28 +85,28 @@ export const Component = () => {
           {/* Skills */}
           <div className="xp-sidebar-box">
             <div className="xp-sidebar-title">
-              <img src="/icons/setting.png" alt="" />
+              <img src="/icons/setting.webp" alt="" />
               Skills
             </div>
             <div className="xp-sidebar-link">
-              <img src="/icons/folder.png" alt="" />
+              <img src="/icons/folder.webp" alt="" />
               Développement Web
             </div>
             <div className="xp-sidebar-link">
-              <img src="/icons/folder.png" alt="" />
+              <img src="/icons/folder.webp" alt="" />
               Développement logiciels
             </div>
             <div className="xp-sidebar-link">
-              <img src="/icons/setting.png" alt="" />
+              <img src="/icons/setting.webp" alt="" />
               Perfectionniste
             </div>
             <div className="xp-sidebar-link">
-              <img src="/icons/questionMark.png" alt="" />
+              <img src="/icons/questionMark.webp" alt="" />
               Créativité
             </div>
 
             <div className="xp-sidebar-link">
-              <img src="/icons/setting.png" alt="" />
+              <img src="/icons/setting.webp" alt="" />
               Résolution de problèmes
             </div>
           </div>
@@ -114,23 +114,23 @@ export const Component = () => {
           {/* Software */}
           <div className="xp-sidebar-box">
             <div className="xp-sidebar-title">
-              <img src="/icons/folder.png" alt="" />
+              <img src="/icons/folder.webp" alt="" />
               Software
             </div>
             <div className="xp-sidebar-link">
-              <img src="/icons/folder.png" alt="" />
+              <img src="/icons/folder.webp" alt="" />
               VS Code
             </div>
             <div className="xp-sidebar-link">
-              <img src="/icons/folder.png" alt="" />
+              <img src="/icons/folder.webp" alt="" />
               VS 2022
             </div>
             <div className="xp-sidebar-link">
-              <img src="/icons/git.png" alt="" />
+              <img src="/icons/git.webp" alt="" />
               Git/GitHub 
             </div>
             <div className="xp-sidebar-link">
-              <img src="/icons/folder.png" alt="" />
+              <img src="/icons/folder.webp" alt="" />
               Docker
             </div>
 

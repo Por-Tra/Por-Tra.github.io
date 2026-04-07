@@ -24,7 +24,7 @@ import screenshot12 from '../../../assets/Proj-Mycoria/12.png';
 export const config = {
   id: 'mycoria-project',
   name: 'Mycoria',
-  icon: '/icons/folder.png',
+  icon: '/icons/folder.webp',
   defaultWidth: 700,
   defaultHeight: 520,
 };
@@ -78,9 +78,9 @@ export const Component = ({ onOpenApp }) => {
     <ProjectLayout
       projectData={projectData}
       addressPath="C:\\Projets\\Mycoria"
-      addressIcon="/icons/signal.png"
+      addressIcon="/icons/signal.webp"
       subtitle="Jeu vidéo 3D - Unreal Engine"
-      headerIcon="/icons/signal.png"
+      headerIcon="/icons/signal.webp"
       onOpenApp={onOpenApp}
       sidebar={
         <ProjectSidebar

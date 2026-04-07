@@ -16,7 +16,7 @@ import projectZip from '../../../assets/projet_sql-main.zip';
 export const config = {
   id: 'project-soutenance',
   name: 'Application web de notation',
-  icon: '/icons/folder.png',
+  icon: '/icons/folder.webp',
   defaultWidth: 700,
   defaultHeight: 550,
 };
@@ -66,9 +66,9 @@ export const Component = ({ onOpenApp }) => {
     <ProjectLayout
       projectData={projectData}
       addressPath="C:\Projets\Soutenance"
-      addressIcon="/icons/folder.png"
+      addressIcon="/icons/folder.webp"
       subtitle="Projet universitaire - Application web de notation"
-      headerIcon="/icons/folder.png"
+      headerIcon="/icons/folder.webp"
       onOpenApp={onOpenApp}
       sidebar={
         <ProjectSidebar

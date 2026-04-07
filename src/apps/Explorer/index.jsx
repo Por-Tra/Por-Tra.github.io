@@ -12,7 +12,7 @@ import { useSearchHighlight } from '../../hooks/useSearchHighlight.jsx';
 export const config = {
   id: 'explorer',
   name: 'Poste de travail',
-  icon: '/icons/PC.png',
+  icon: '/icons/PC.webp',
   defaultWidth: 750,
   defaultHeight: 520,
 };
@@ -279,7 +279,7 @@ export const Component = ({ onOpenApp, initialPath }) => {
       <div className="bg-[#ece9d8] border-b border-[#808080] px-2 py-1 flex items-center gap-2">
         <span className="text-xs text-gray-600 shrink-0">Adresse</span>
         <div className="flex-1 bg-white border border-[#7f9db9] px-2 py-0.5 text-xs flex items-center gap-1 min-w-0">
-          <img src={currentFolder?.icon || '/icons/folder.png'} alt="" className="w-4 h-4 shrink-0" />
+          <img src={currentFolder?.icon || '/icons/folder.webp'} alt="" className="w-4 h-4 shrink-0" />
           <span className="truncate">{pathString}</span>
         </div>
       </div>
@@ -319,7 +319,7 @@ export const Component = ({ onOpenApp, initialPath }) => {
                 onClick={() => navigateTo(['Poste de travail', 'Bureau'])}
                 className="flex items-center gap-1 text-[#215dc6] hover:underline cursor-pointer"
               >
-                <img src="/icons/folder.png" alt="" className="w-3 h-3" />
+                <img src="/icons/folder.webp" alt="" className="w-3 h-3" />
                 Bureau
               </div>
               <div 
@@ -340,7 +340,7 @@ export const Component = ({ onOpenApp, initialPath }) => {
                 onClick={() => navigateTo(['Poste de travail', 'Réseau'])}
                 className="flex items-center gap-1 text-[#215dc6] hover:underline cursor-pointer"
               >
-                <img src="/icons/explorer.png" alt="" className="w-3 h-3" />
+                <img src="/icons/explorer.webp" alt="" className="w-3 h-3" />
                 Favoris réseau
               </div>
             </div>

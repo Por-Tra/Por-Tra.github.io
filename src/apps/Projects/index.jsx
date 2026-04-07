@@ -10,7 +10,7 @@ import { useSearchHighlight } from '../../hooks/useSearchHighlight.jsx';
 export const config = {
   id: 'projects',
   name: 'Mes Projets',
-  icon: '/icons/folder.png',
+  icon: '/icons/folder.webp',
   defaultWidth: 750,
   defaultHeight: 550,
 };
@@ -76,14 +76,14 @@ export const Component = () => {
           className={`xp-toolbar-btn ${viewMode === 'list' ? 'bg-[#316ac5] text-white' : ''}`}
           onClick={() => setViewMode('list')}
         >
-          <img src="/icons/folder.png" alt="" className="w-4 h-4" />
+          <img src="/icons/folder.webp" alt="" className="w-4 h-4" />
           Liste
         </button>
         <button 
           className={`xp-toolbar-btn ${viewMode === 'details' ? 'bg-[#316ac5] text-white' : ''}`}
           onClick={() => setViewMode('details')}
         >
-          <img src="/icons/note.png" alt="" className="w-4 h-4" />
+          <img src="/icons/note.webp" alt="" className="w-4 h-4" />
           Détails
         </button>
       </div>
@@ -92,7 +92,7 @@ export const Component = () => {
       <div className="xp-addressbar">
         <span className="xp-addressbar-label">Adresse</span>
         <div className="xp-addressbar-input">
-          <img src="/icons/folder.png" alt="" className="w-4 h-4" />
+          <img src="/icons/folder.webp" alt="" className="w-4 h-4" />
           <span>C:\Projets</span>
         </div>
         <button className="xp-addressbar-go">OK</button>
@@ -104,22 +104,22 @@ export const Component = () => {
         <div className="xp-sidebar">
           <div className="xp-sidebar-box">
             <div className="xp-sidebar-title">
-              <img src="/icons/folder.png" alt="" />
+              <img src="/icons/folder.webp" alt="" />
               Gestion des fichiers
             </div>
             <div className="xp-sidebar-link">
-              <img src="/icons/folder.png" alt="" />
+              <img src="/icons/folder.webp" alt="" />
               Créer un dossier
             </div>
             <div className="xp-sidebar-link">
-              <img src="/icons/explorer.png" alt="" />
+              <img src="/icons/explorer.webp" alt="" />
               Publier ce dossier
             </div>
           </div>
 
           <div className="xp-sidebar-box">
             <div className="xp-sidebar-title">
-              <img src="/icons/questionMark.png" alt="" />
+              <img src="/icons/questionMark.webp" alt="" />
               Détails
             </div>
             <div className="xp-sidebar-text">
@@ -134,7 +134,7 @@ export const Component = () => {
         <div className="xp-content-main">
           {/* Page Header */}
           <div className="xp-page-header">
-            <img src="/icons/folder.png" alt="" className="xp-page-header-icon" />
+            <img src="/icons/folder.webp" alt="" className="xp-page-header-icon" />
             <div>
               <h1 className="xp-page-title">Mes Projets</h1>
               <p className="xp-page-subtitle">Portfolio de développement</p>
@@ -154,7 +154,7 @@ export const Component = () => {
                                ${selectedProject === project.id ? 'bg-[#316ac5] text-white' : 'hover:bg-[#e8f0ff]'}`}
                     style={{ padding: '8px' }}
                   >
-                    <img src="/icons/folder.png" alt="" className="w-8 h-8" />
+                    <img src="/icons/folder.webp" alt="" className="w-8 h-8" />
                     <div className="xp-flex-1">
                       <div className="xp-flex xp-gap-2 xp-items-center">
                         <span className="xp-text-bold">{highlightText(project.name)}</span>
@@ -209,7 +209,7 @@ export const Component = () => {
                       >
                         <td>
                           <div className="xp-flex xp-gap-2 xp-items-center">
-                            <img src="/icons/folder.png" alt="" className="w-4 h-4" />
+                            <img src="/icons/folder.webp" alt="" className="w-4 h-4" />
                             <span className="xp-text-bold">{highlightText(project.name)}</span>
                           </div>
                         </td>
@@ -241,7 +241,7 @@ export const Component = () => {
 
           {/* Tip Box */}
           <div className="xp-tipbox xp-mt-3">
-            <img src="/icons/questionMark.png" alt="" />
+            <img src="/icons/questionMark.webp" alt="" />
             <div className="xp-tipbox-text">
               <strong>Astuce:</strong> Double-cliquez sur les dossiers de projets sur le bureau pour voir 
               les détails complets avec captures d'écran et liens GitHub!
