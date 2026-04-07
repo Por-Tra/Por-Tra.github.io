@@ -315,17 +315,17 @@ export const Component = ({ onOpenApp }) => {
               {/* Section images */}
               <div className="xp-eco-gallery">
                 <img
-                  src="/ecoindex/1.png"
+                  src="/ecoindex/1.webp"
                   alt="Résultat EcoIndex 1"
                   className="xp-eco-image"
                 />
                 <img
-                  src="/ecoindex/2.png"
+                  src="/ecoindex/2.webp"
                   alt="Résultat EcoIndex 2"
                   className="xp-eco-image"
                 />
                 <img
-                  src="/ecoindex/3.png"
+                  src="/ecoindex/3.webp"
                   alt="Résultat EcoIndex 3"
                   className="xp-eco-image"
                 />

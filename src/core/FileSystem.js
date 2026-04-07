@@ -191,27 +191,27 @@ class FileSystem {
                      icon: '/icons/folder.webp',
                      children:
                      {
-                        'capture1.png':
+                        'capture1.webp':
                         {
                           type: 'image',
-                          icon: '/images/ProjectIMG/Proj1/1.png',
-                          imageSrc: '/images/ProjectIMG/Proj1/1.png',
+                          icon: '/images/ProjectIMG/Proj1/1.webp',
+                          imageSrc: '/images/ProjectIMG/Proj1/1.webp',
                           size: "209Ko",
                           modified: '2026-02-12'
                         },
-                        'capture2.png':
+                        'capture2.webp':
                         {
                           type: 'image',
-                          icon: '/images/ProjectIMG/Proj1/2.png',
-                          imageSrc: '/images/ProjectIMG/Proj1/2.png',
+                          icon: '/images/ProjectIMG/Proj1/2.webp',
+                          imageSrc: '/images/ProjectIMG/Proj1/2.webp',
                           size: "432Ko",
                           modified: '2026-02-12'
                         },
-                        'capture3.png':
+                        'capture3.webp':
                         {
                           type: 'image',
-                          icon: '/images/ProjectIMG/Proj1/3.png',
-                          imageSrc: '/images/ProjectIMG/Proj1/3.png',
+                          icon: '/images/ProjectIMG/Proj1/3.webp',
+                          imageSrc: '/images/ProjectIMG/Proj1/3.webp',
                           size: "357Ko",
                           modified: '2026-02-12'
                         }
@@ -223,27 +223,27 @@ class FileSystem {
                     icon: '/icons/folder.webp',
                     children:
                     {
-                      'capture1.png':
+                      'capture1.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj2/1.png',
-                        imageSrc: '/images/ProjectIMG/Proj2/1.png',
+                        icon: '/images/ProjectIMG/Proj2/1.webp',
+                        imageSrc: '/images/ProjectIMG/Proj2/1.webp',
                         size: "74.1Ko",
                         modified: '2026-02-12'
                       },
-                      'capture2.png':
+                      'capture2.webp':
                       {
                       type: 'image',
-                      icon: '/images/ProjectIMG/Proj2/2.png',
-                      imageSrc: '/images/ProjectIMG/Proj2/2.png',
+                      icon: '/images/ProjectIMG/Proj2/2.webp',
+                      imageSrc: '/images/ProjectIMG/Proj2/2.webp',
                       size: "237Ko",
                       modified: '2026-02-12'
                       },
-                      'capture3.png':
+                      'capture3.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj2/3.png',
-                        imageSrc: '/images/ProjectIMG/Proj2/3.png',
+                        icon: '/images/ProjectIMG/Proj2/3.webp',
+                        imageSrc: '/images/ProjectIMG/Proj2/3.webp',
                         size: "211Ko",
                         modified: '2026-02-12'
                       }
@@ -255,27 +255,27 @@ class FileSystem {
                     icon: '/icons/folder.webp',
                     children:
                     {
-                      'capture1.png':
+                      'capture1.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj3/1.png',
-                        imageSrc: '/images/ProjectIMG/Proj3/1.png',
+                        icon: '/images/ProjectIMG/Proj3/1.webp',
+                        imageSrc: '/images/ProjectIMG/Proj3/1.webp',
                         size: "20.4Ko",
                         modified: '2026-02-12'
                       },
-                      'capture2.png':
+                      'capture2.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj3/2.png',
-                        imageSrc: '/images/ProjectIMG/Proj3/2.png',
+                        icon: '/images/ProjectIMG/Proj3/2.webp',
+                        imageSrc: '/images/ProjectIMG/Proj3/2.webp',
                         size: "6.49Ko",
                         modified: '2026-02-12'
                       },
-                      'capture3.png':
+                      'capture3.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj3/3.png',
-                        imageSrc: '/images/ProjectIMG/Proj3/3.png',
+                        icon: '/images/ProjectIMG/Proj3/3.webp',
+                        imageSrc: '/images/ProjectIMG/Proj3/3.webp',
                         size: "21.8Ko",
                         modified: '2026-02-12'
                       }
@@ -287,99 +287,99 @@ class FileSystem {
                     icon: '/icons/folder.webp',
                     children:
                     {
-                      'capture1.png':
+                      'capture1.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj-Mycoria/1.png',
-                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/1.png',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/1.webp',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/1.webp',
                         size: "1.4Mo",
                         modified: '2026-02-12'
                       },
-                      'capture2.png':
+                      'capture2.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj-Mycoria/2.png',
-                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/2.png',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/2.webp',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/2.webp',
                         size: "1.3Mo",
                         modified: '2026-02-12'
                       },
-                      'capture3.png':
+                      'capture3.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj-Mycoria/3.png',
-                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/3.png',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/3.webp',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/3.webp',
                         size: "1.46Mo",
                         modified: '2026-02-12'
                       },
-                      'capture4.png':
+                      'capture4.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj-Mycoria/4.png',
-                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/4.png',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/4.webp',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/4.webp',
                         size: "1.52Mo",
                         modified: '2026-02-12'
                       },
-                      'capture5.png':
+                      'capture5.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj-Mycoria/5.png',
-                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/5.png',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/5.webp',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/5.webp',
                         size: "1.38Mo",
                         modified: '2026-02-12'
                       },
-                      'capture6.png':
+                      'capture6.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj-Mycoria/6.png',
-                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/6.png',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/6.webp',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/6.webp',
                         size: "2.24Mo",
                         modified: '2026-02-12'
                       },
-                      'capture7.png':
+                      'capture7.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj-Mycoria/7.png',
-                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/7.png',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/7.webp',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/7.webp',
                         size: "2.15Mo",
                         modified: '2026-02-12'
                       },
-                      'capture8.png':
+                      'capture8.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj-Mycoria/8.png',
-                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/8.png',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/8.webp',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/8.webp',
                         size: "2.67Mo",
                         modified: '2026-02-12'
                       },
-                      'capture9.png':
+                      'capture9.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj-Mycoria/9.png',
-                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/9.png',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/9.webp',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/9.webp',
                         size: "1.66Mo",
                         modified: '2026-02-12'
                       },
-                      'capture10.png':
+                      'capture10.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj-Mycoria/10.png',
-                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/10.png',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/10.webp',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/10.webp',
                         size: "1.58Mo",
                         modified: '2026-02-12'
                       },
-                      'capture11.png':
+                      'capture11.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj-Mycoria/11.png',
-                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/11.png',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/11.webp',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/11.webp',
                         size: "388Ko",
                         modified: '2026-02-12'
                       },
-                      'capture12.png':
+                      'capture12.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj-Mycoria/12.png',
-                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/12.png',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/12.webp',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/12.webp',
                         size: "454Ko",
                         modified: '2026-02-12'
                       }
@@ -391,43 +391,43 @@ class FileSystem {
                     icon: '/icons/folder.webp',
                     children:
                     {
-                      'capture1.png':
+                      'capture1.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj-Vapeur/1.png',
-                        imageSrc: '/images/ProjectIMG/Proj-Vapeur/1.png',
+                        icon: '/images/ProjectIMG/Proj-Vapeur/1.webp',
+                        imageSrc: '/images/ProjectIMG/Proj-Vapeur/1.webp',
                         size: "243Ko",
                         modified: '2026-02-12'
                       },
-                      'capture2.png':
+                      'capture2.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj-Vapeur/2.png',
-                        imageSrc: '/images/ProjectIMG/Proj-Vapeur/2.png',
+                        icon: '/images/ProjectIMG/Proj-Vapeur/2.webp',
+                        imageSrc: '/images/ProjectIMG/Proj-Vapeur/2.webp',
                         size: "362Ko",
                         modified: '2026-02-12'
                       },
-                      'capture3.png':
+                      'capture3.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj-Vapeur/3.png',
-                        imageSrc: '/images/ProjectIMG/Proj-Vapeur/3.png',
+                        icon: '/images/ProjectIMG/Proj-Vapeur/3.webp',
+                        imageSrc: '/images/ProjectIMG/Proj-Vapeur/3.webp',
                         size: "263Ko",
                         modified: '2026-02-12'
                       },
-                      'capture4.png':
+                      'capture4.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj-Vapeur/4.png',
-                        imageSrc: '/images/ProjectIMG/Proj-Vapeur/4.png',
+                        icon: '/images/ProjectIMG/Proj-Vapeur/4.webp',
+                        imageSrc: '/images/ProjectIMG/Proj-Vapeur/4.webp',
                         size: "214Ko",
                         modified: '2026-02-12'
                       },
-                      'capture5.png':
+                      'capture5.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj-Vapeur/5.png',
-                        imageSrc: '/images/ProjectIMG/Proj-Vapeur/5.png',
+                        icon: '/images/ProjectIMG/Proj-Vapeur/5.webp',
+                        imageSrc: '/images/ProjectIMG/Proj-Vapeur/5.webp',
                         size: "198Ko",
                         modified: '2026-02-12'
                       }
@@ -443,19 +443,19 @@ class FileSystem {
                 type: 'folder',
                 icon: '/icons/folder.webp',
                 children: {
-                  'Dog.jpg' :
+                  'Dog.webp' :
                   {
                     type: 'image',
-                    icon: '/images/wallpapers/dog.jpg',
-                    imageSrc: '/images/wallpapers/dog.jpg',
+                    icon: '/images/wallpapers/Dog.webp',
+                    imageSrc: '/images/wallpapers/Dog.webp',
                     size: "329Ko",
                     modified: '2026-02-12'
                   },
-                  "Win11Dark.jpg" :
+                  "win11Dark.webp" :
                   {
                     type: 'image',
-                    icon: '/images/wallpapers/Win11Dark.jpg',
-                    imageSrc: '/images/wallpapers/Win11Dark.jpg',
+                    icon: '/images/wallpapers/win11Dark.webp',
+                    imageSrc: '/images/wallpapers/win11Dark.webp',
                     size: "269Ko",
                     modified: '2026-02-12'
                   },

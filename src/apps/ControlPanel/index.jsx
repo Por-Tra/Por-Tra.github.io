@@ -59,42 +59,42 @@ const WALLPAPER_OPTIONS = [
   {
     id: 'win11Dark',
     title: 'W11D',
-    src: '/images/wallpapers/win11Dark.jpg',
+    src: '/images/wallpapers/win11Dark.webp',
   },
   {
     id: 'dog',
     title: 'DOG',
-    src: '/images/wallpapers/Dog.jpg',
+    src: '/images/wallpapers/Dog.webp',
   },
   {
     id: 'winXPDark',
     title: 'WXP Dark',
-    src: '/images/wallpapers/winXPDark.jpeg',
+    src: '/images/wallpapers/winXPDark.webp',
   },
   {
     id : 'FunWallpaper',
     title: 'Fun',
-    src: '/images/wallpapers/1.jpg',
+    src: '/images/wallpapers/1.webp',
   },
   {
     id : 'Desert',
     title: 'Desert',
-    src: '/images/wallpapers/2.jpg',
+    src: '/images/wallpapers/2.webp',
   },
   {
     id : 'mountains',
     title: 'Mountains',
-    src : '/images/wallpapers/mountain.jpg',
+    src : '/images/wallpapers/mountain.webp',
   },
   {
     id: 'forest',
     title: 'Forest',
-    src: '/images/wallpapers/forest.jpg',
+    src: '/images/wallpapers/forest.webp',
   },
   {
     id: 'city',
     title: 'City',
-    src: '/images/wallpapers/city.jpg',
+    src: '/images/wallpapers/city.webp',
   },
 ];
 

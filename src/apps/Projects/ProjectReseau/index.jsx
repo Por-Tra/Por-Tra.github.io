@@ -6,9 +6,9 @@
 import { ProjectLayout, ProjectSidebar } from '../../../components/ProjectLayout';
 
 // Import des images
-import screenshot1 from '../../../assets/Proj3/Capture d\'écran 2025-10-25 192040.png';
-import screenshot2 from '../../../assets/Proj3/Capture d\'écran 2025-10-25 192048.png';
-import screenshot3 from '../../../assets/Proj3/Capture d\'écran 2025-10-25 192101.png';
+import screenshot1 from '../../../assets/Proj3/1.webp';
+import screenshot2 from '../../../assets/Proj3/2.webp';
+import screenshot3 from '../../../assets/Proj3/3.webp';
 
 // Import du fichier de téléchargement
 import projectZip from '../../../assets/Projet RSL.zip';

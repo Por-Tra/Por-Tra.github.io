@@ -8,18 +8,18 @@
 import { ProjectLayout, ProjectSidebar } from '../../../components/ProjectLayout';
 
 // Import des images
-import screenshot1 from '../../../assets/Proj-Mycoria/1.png';
-import screenshot2 from '../../../assets/Proj-Mycoria/2.png';
-import screenshot3 from '../../../assets/Proj-Mycoria/3.png';
-import screenshot4 from '../../../assets/Proj-Mycoria/4.png';
-import screenshot5 from '../../../assets/Proj-Mycoria/5.png';
-import screenshot6 from '../../../assets/Proj-Mycoria/6.png';
-import screenshot7 from '../../../assets/Proj-Mycoria/7.png';
-import screenshot8 from '../../../assets/Proj-Mycoria/8.png';
-import screenshot9 from '../../../assets/Proj-Mycoria/9.png';
-import screenshot10 from '../../../assets/Proj-Mycoria/10.png';
-import screenshot11 from '../../../assets/Proj-Mycoria/11.png';
-import screenshot12 from '../../../assets/Proj-Mycoria/12.png';
+import screenshot1 from '../../../assets/Proj-Mycoria/1.webp';
+import screenshot2 from '../../../assets/Proj-Mycoria/2.webp';
+import screenshot3 from '../../../assets/Proj-Mycoria/3.webp';
+import screenshot4 from '../../../assets/Proj-Mycoria/4.webp';
+import screenshot5 from '../../../assets/Proj-Mycoria/5.webp';
+import screenshot6 from '../../../assets/Proj-Mycoria/6.webp';
+import screenshot7 from '../../../assets/Proj-Mycoria/7.webp';
+import screenshot8 from '../../../assets/Proj-Mycoria/8.webp';
+import screenshot9 from '../../../assets/Proj-Mycoria/9.webp';
+import screenshot10 from '../../../assets/Proj-Mycoria/10.webp';
+import screenshot11 from '../../../assets/Proj-Mycoria/11.webp';
+import screenshot12 from '../../../assets/Proj-Mycoria/12.webp';
 
 export const config = {
   id: 'mycoria-project',

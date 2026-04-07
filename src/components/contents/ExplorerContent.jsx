@@ -56,8 +56,8 @@ const fileSystem = {
           'Images': {
             type: 'folder',
             children: {
-              'photo1.jpg': { type: 'file', size: '1.2 Mo', modified: '2024-06-15' },
-              'photo2.jpg': { type: 'file', size: '980 Ko', modified: '2024-06-15' },
+              'photo1.webp': { type: 'file', size: '1.2 Mo', modified: '2024-06-15' },
+              'photo2.webp': { type: 'file', size: '980 Ko', modified: '2024-06-15' },
               'wallpaper.webp': { type: 'file', size: '2.5 Mo', modified: '2024-01-01' },
             }
           },

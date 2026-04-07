@@ -6,9 +6,9 @@
 import { ProjectLayout, ProjectSidebar } from '../../../components/ProjectLayout';
 
 // Import des images
-import screenshot1 from '../../../assets/Proj2/Capture d\'écran 2025-10-07 085609.png';
-import screenshot2 from '../../../assets/Proj2/Capture d\'écran 2025-10-07 085646.png';
-import screenshot3 from '../../../assets/Proj2/Capture d\'écran 2025-10-07 085653.png';
+import screenshot1 from '../../../assets/Proj2/1.webp';
+import screenshot2 from '../../../assets/Proj2/2.webp';
+import screenshot3 from '../../../assets/Proj2/2.webp';
 
 // Import du fichier de téléchargement
 import projectZip from '../../../assets/projet_sql-main.zip';

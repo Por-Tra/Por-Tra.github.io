@@ -2,9 +2,9 @@
 
 import { ProjectLayout, ProjectSidebar } from '../../../components/ProjectLayout';
 
-import screenshot1 from '../../../assets/Proj-P-AI/1.png';
-import screenshot2 from '../../../assets/Proj-P-AI/2.png';
-import screenshot3 from '../../../assets/Proj-P-AI/logo.png';
+import screenshot1 from '../../../assets/Proj-P-AI/1.webp';
+import screenshot2 from '../../../assets/Proj-P-AI/2.webp';
+import screenshot3 from '../../../assets/Proj-P-AI/logo.webp';
 
 
 export const config = {
