@@ -2,7 +2,7 @@ export const apps = [
   {
     id: 'welcome',
     name: 'Bienvenue',
-    icon: '/icons/questionMark.png',
+    icon: '/icons/questionMark.webp',
     content: 'welcome',
     defaultWidth: 650,
     defaultHeight: 450,
@@ -10,7 +10,7 @@ export const apps = [
   {
     id: 'about',
     name: 'À propos',
-    icon: '/icons/note.png',
+    icon: '/icons/note.webp',
     content: 'about',
     defaultWidth: 600,
     defaultHeight: 500,
@@ -18,7 +18,7 @@ export const apps = [
   {
     id: 'parcours',
     name: 'Mon Parcours',
-    icon: '/icons/note.png',
+    icon: '/icons/note.webp',
     content: 'parcours',
     defaultWidth: 650,
     defaultHeight: 520,
@@ -26,7 +26,7 @@ export const apps = [
   {
     id: 'projects',
     name: 'Mes Projets',
-    icon: '/icons/folder.png',
+    icon: '/icons/folder.webp',
     content: 'projects',
     defaultWidth: 750,
     defaultHeight: 550,
@@ -34,7 +34,7 @@ export const apps = [
   {
     id: 'skills',
     name: 'Compétences',
-    icon: '/icons/note.png',
+    icon: '/icons/note.webp',
     content: 'skills',
     defaultWidth: 500,
     defaultHeight: 450,
@@ -42,7 +42,7 @@ export const apps = [
   {
     id: 'contact',
     name: 'Contact',
-    icon: '/icons/folder.png',
+    icon: '/icons/folder.webp',
     content: 'contact',
     defaultWidth: 480,
     defaultHeight: 420,
@@ -50,7 +50,7 @@ export const apps = [
   {
     id: 'github',
     name: 'GitHub',
-    icon: '/icons/git.png',
+    icon: '/icons/git.webp',
     url: 'https://github.com/Por-Tra',
     openExternal: true,
     defaultWidth: 900,
@@ -59,7 +59,7 @@ export const apps = [
   {
     id: 'linkedin',
     name: 'LinkedIn',
-    icon: '/icons/link.png',
+    icon: '/icons/link.webp',
     url: 'https://linkedin.com/in/lucas-contreras-hodapp',
     openExternal: true,
     defaultWidth: 900,
@@ -68,7 +68,7 @@ export const apps = [
   {
     id : 'google',
     name: 'Google',
-    icon: '/icons/explorer.png',
+    icon: '/icons/explorer.webp',
     url: 'https://www.google.com',
     openExternal: true,
     defaultWidth: 900,
@@ -77,7 +77,7 @@ export const apps = [
   {
     id: 'trash',
     name: 'Corbeille',
-    icon: '/icons/trash.png',
+    icon: '/icons/trash.webp',
     content: 'blank',
     defaultWidth: 400,
     defaultHeight: 300,
@@ -85,7 +85,7 @@ export const apps = [
   {
     id: 'chess',
     name: 'Échecs',
-    icon: '/icons/chess.png',
+    icon: '/icons/chess.webp',
     content: 'chess',
     defaultWidth: 550,
     defaultHeight: 480,
@@ -93,7 +93,7 @@ export const apps = [
   {
     id: 'explorer',
     name: 'Poste de travail',
-    icon: '/icons/folder.png',
+    icon: '/icons/folder.webp',
     content: 'explorer',
     defaultWidth: 700,
     defaultHeight: 500,
@@ -101,7 +101,7 @@ export const apps = [
   {
     id: 'settings',
     name: 'Paramètres',
-    icon: '/icons/setting.png',
+    icon: '/icons/setting.webp',
     content: 'blank',
     defaultWidth: 450,
     defaultHeight: 350,
@@ -109,7 +109,7 @@ export const apps = [
   {
     id: 'network',
     name: 'Connexions réseau',
-    icon: '/icons/signal.png',
+    icon: '/icons/signal.webp',
     content: 'blank',
     defaultWidth: 450,
     defaultHeight: 350,
@@ -118,7 +118,7 @@ export const apps = [
   {
     id: 'project-rpg',
     name: 'RPG 2D',
-    icon: '/icons/folder.png',
+    icon: '/icons/folder.webp',
     content: 'project-rpg',
     defaultWidth: 650,
     defaultHeight: 500,
@@ -126,7 +126,7 @@ export const apps = [
   {
     id: 'project-soutenance',
     name: 'Projet Soutenance',
-    icon: '/icons/folder.png',
+    icon: '/icons/folder.webp',
     content: 'project-soutenance',
     defaultWidth: 650,
     defaultHeight: 500,
@@ -134,7 +134,7 @@ export const apps = [
   {
     id: 'project-reseau',
     name: 'Réseau Social Local',
-    icon: '/icons/folder.png',
+    icon: '/icons/folder.webp',
     content: 'project-reseau',
     defaultWidth: 650,
     defaultHeight: 500,

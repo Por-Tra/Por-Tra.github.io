@@ -37,7 +37,7 @@ const ProjectRPGContent = () => {
       <div className="bg-[#ece9d8] border-b border-[#808080] px-2 py-1 flex items-center gap-2">
         <span className="text-xs text-gray-600">Adresse</span>
         <div className="flex-1 bg-white border border-[#7f9db9] px-2 py-0.5 text-xs flex items-center gap-1">
-          <img src="/icons/folder.png" alt="" className="w-4 h-4" />
+          <img src="/icons/folder.webp" alt="" className="w-4 h-4" />
           <span>C:\Projets\{projectData.title}</span>
         </div>
       </div>
@@ -76,7 +76,7 @@ const ProjectRPGContent = () => {
         <div className="flex-1 bg-white overflow-y-auto p-4">
           {/* Header */}
           <div className="flex items-start gap-4 mb-4 pb-4 border-b border-[#ece9d8]">
-            <img src="/icons/folder.png" alt="" className="w-12 h-12" />
+            <img src="/icons/folder.webp" alt="" className="w-12 h-12" />
             <div>
               <h1 className="text-lg font-bold text-[#003399]">{projectData.title}</h1>
               <p className="text-xs text-gray-500">Projet de jeu vidéo</p>
@@ -86,7 +86,7 @@ const ProjectRPGContent = () => {
           {/* Description */}
           <div className="mb-4">
             <h2 className="text-sm font-bold text-[#003399] mb-2 flex items-center gap-2">
-              <img src="/icons/questionMark.png" alt="" className="w-4 h-4" />
+              <img src="/icons/questionMark.webp" alt="" className="w-4 h-4" />
               Description
             </h2>
             <p className="text-xs text-gray-700 leading-relaxed bg-[#f5f5f5] p-3 rounded border border-[#ddd]">

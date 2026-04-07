@@ -8,7 +8,7 @@ import { MenuBar, useZoom, getZoomStyle } from '../../components/ProjectLayout';
 export const config = {
   id: 'skills',
   name: 'Compétences',
-  icon: '/icons/note.png',
+  icon: '/icons/note.webp',
   defaultWidth: 650,
   defaultHeight: 500,
 };
@@ -59,12 +59,12 @@ export const Component = () => {
       {/* Toolbar */}
       <div className="xp-toolbar">
         <button className="xp-toolbar-btn">
-          <img src="/icons/back.png" alt="" className="w-4 h-4" />
+          <img src="/icons/back.webp" alt="" className="w-4 h-4" />
           Précédent
         </button>
         <div className="xp-toolbar-separator"></div>
         <button className="xp-toolbar-btn">
-          <img src="/icons/folder.png" alt="" className="w-4 h-4" />
+          <img src="/icons/folder.webp" alt="" className="w-4 h-4" />
           Dossiers
         </button>
       </div>
@@ -73,7 +73,7 @@ export const Component = () => {
       <div className="xp-addressbar">
         <span className="xp-addressbar-label">Adresse</span>
         <div className="xp-addressbar-input">
-          <img src="/icons/note.png" alt="" className="w-4 h-4" />
+          <img src="/icons/note.webp" alt="" className="w-4 h-4" />
           <span>C:\Utilisateurs\Lucas\Compétences</span>
         </div>
       </div>
@@ -84,7 +84,7 @@ export const Component = () => {
         <div className="xp-sidebar">
           <div className="xp-sidebar-box">
             <div className="xp-sidebar-header">
-              <img src="/icons/folder.png" alt="" className="w-4 h-4" />
+              <img src="/icons/folder.webp" alt="" className="w-4 h-4" />
               Catégories
             </div>
 
@@ -102,7 +102,7 @@ export const Component = () => {
                 Web
               </a>
               <a href="#outils" className="xp-sidebar-link">
-                <img src="/icons/setting.png" alt="" className="w-3 h-3" />
+                <img src="/icons/setting.webp" alt="" className="w-3 h-3" />
                 Outils
               </a>
             </div>
@@ -125,7 +125,7 @@ export const Component = () => {
         <div className="xp-content-main">
           {/* Header */}
           <div className="xp-content-header">
-            <img src="/icons/note.png" alt="" className="w-12 h-12" />
+            <img src="/icons/note.webp" alt="" className="w-12 h-12" />
             <div>
               <h1 className="xp-title">Mes Compétences</h1>
               <p className="xp-subtitle">Langages de programmation et outils maîtrisés</p>
@@ -162,7 +162,7 @@ export const Component = () => {
           {['Langages', 'Web', 'Outils'].map((category) => (
             <div key={category} id={category.toLowerCase()} className="xp-box">
               <div className="xp-box-header">
-                <img src={category === 'Langages' ? '/icons/code.png' : category === 'Web' ? '/icons/web.png' : '/icons/setting.png'} alt="" className="w-4 h-4" />
+                <img src={category === 'Langages' ? '/icons/code.png' : category === 'Web' ? '/icons/web.png' : '/icons/setting.webp'} alt="" className="w-4 h-4" />
                 {category}
               </div>
               <div className="xp-box-content">
@@ -189,7 +189,7 @@ export const Component = () => {
 
           {/* Learning Section */}
           <div className="xp-tipbox">
-            <img src="/icons/questionMark.png" alt="" className="w-5 h-5 flex-shrink-0" />
+            <img src="/icons/questionMark.webp" alt="" className="w-5 h-5 flex-shrink-0" />
             <div>
               <strong>En cours d'apprentissage:</strong>
               <div className="xp-tags mt-2">

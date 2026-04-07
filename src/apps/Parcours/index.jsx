@@ -8,7 +8,7 @@ import { MenuBar, useZoom, getZoomStyle } from '../../components/ProjectLayout';
 export const config = {
   id: 'parcours',
   name: 'Mon Parcours',
-  icon: '/icons/note.png',
+  icon: '/icons/note.webp',
   defaultWidth: 700,
   defaultHeight: 520,
 };
@@ -73,11 +73,11 @@ export const Component = () => {
         </button>
         <div className="xp-toolbar-separator" />
         <button className="xp-toolbar-btn">
-          <img src="/icons/folder.png" alt="" className="w-4 h-4" />
+          <img src="/icons/folder.webp" alt="" className="w-4 h-4" />
           Mes Projets
         </button>
         <button className="xp-toolbar-btn">
-          <img src="/icons/note.png" alt="" className="w-4 h-4" />
+          <img src="/icons/note.webp" alt="" className="w-4 h-4" />
           Mon CV
         </button>
       </div>
@@ -86,7 +86,7 @@ export const Component = () => {
       <div className="xp-addressbar">
         <span className="xp-addressbar-label">Adresse</span>
         <div className="xp-addressbar-input">
-          <img src="/icons/note.png" alt="" className="w-4 h-4" />
+          <img src="/icons/note.webp" alt="" className="w-4 h-4" />
           <span>Mon Parcours Scolaire</span>
         </div>
         <button className="xp-addressbar-go">OK</button>
@@ -98,15 +98,15 @@ export const Component = () => {
         <div className="xp-sidebar">
           <div className="xp-sidebar-box">
             <div className="xp-sidebar-title">
-              <img src="/icons/folder.png" alt="" />
+              <img src="/icons/folder.webp" alt="" />
               Navigation
             </div>
             <div className="xp-sidebar-link">
-              <img src="/icons/folder.png" alt="" />
+              <img src="/icons/folder.webp" alt="" />
               Formation actuelle
             </div>
             <div className="xp-sidebar-link">
-              <img src="/icons/folder.png" alt="" />
+              <img src="/icons/folder.webp" alt="" />
               Diplômes obtenus
             </div>
             <div className="xp-sidebar-link">
@@ -117,7 +117,7 @@ export const Component = () => {
 
           <div className="xp-sidebar-box">
             <div className="xp-sidebar-title">
-              <img src="/icons/questionMark.png" alt="" />
+              <img src="/icons/questionMark.webp" alt="" />
               Informations
             </div>
             <div className="xp-sidebar-text">
@@ -132,7 +132,7 @@ export const Component = () => {
         <div className="xp-content-main">
           {/* Page Header */}
           <div className="xp-page-header">
-            <img src="/icons/note.png" alt="" className="xp-page-header-icon" />
+            <img src="/icons/note.webp" alt="" className="xp-page-header-icon" />
             <div>
               <h1 className="xp-page-title">Mon Parcours Scolaire</h1>
               <p className="xp-page-subtitle">Formation et études</p>
@@ -143,7 +143,7 @@ export const Component = () => {
           {parcours.map((item) => (
             <div key={item.id} className="xp-box xp-mb-3">
               <div className={`xp-box-header ${item.enCours ? '' : 'xp-box-header-green'}`}>
-                <img src="/icons/folder.png" alt="" />
+                <img src="/icons/folder.webp" alt="" />
                 {item.titre}
                 {item.enCours && (
                   <span className="xp-tag-yellow" style={{ marginLeft: 'auto' }}>En cours</span>
@@ -167,13 +167,13 @@ export const Component = () => {
                 </p>
 
                 <div className="xp-tipbox">
-                  <img src="/icons/questionMark.png" alt="" />
+                  <img src="/icons/questionMark.webp" alt="" />
                   <div>
                     <strong>Points clés:</strong>
                     <ul className="xp-list xp-mt-1">
                       {item.details.map((detail, i) => (
                         <li key={i} className="xp-list-item">
-                          <img src="/icons/folder.png" alt="" />
+                          <img src="/icons/folder.webp" alt="" />
                           {detail}
                         </li>
                       ))}
@@ -187,7 +187,7 @@ export const Component = () => {
                   rel="noopener noreferrer"
                   className="xp-btn xp-mt-2"
                 >
-                  <img src="/icons/explorer.png" alt="" />
+                  <img src="/icons/explorer.webp" alt="" />
                   Visiter le site
                 </a>
               </div>

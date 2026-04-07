@@ -3,13 +3,13 @@
  *
  * Page d'accueil avec instructions de navigation - Style Windows XP
  */
-import profilePic from "../../assets/PP.jpg";
+import profilePic from "../../assets/PP.webp";
 import XpMenuBar from "../../components/XpMenuBar";
 
 export const config = {
   id: "welcome",
   name: "Bienvenue",
-  icon: "/icons/questionMark.png",
+  icon: "/icons/questionMark.webp",
   defaultWidth: 700,
   defaultHeight: 500,
 };
@@ -54,12 +54,12 @@ export const Component = ({ onOpenApp }) => {
       {/* Toolbar */}
       <div className="xp-toolbar">
         <button className="xp-toolbar-btn">
-          <img src="/icons/back.png" alt="" className="w-4 h-4" />
+          <img src="/icons/back.webp" alt="" className="w-4 h-4" />
           Précédent
         </button>
         <div className="xp-toolbar-separator"></div>
         <button className="xp-toolbar-btn">
-          <img src="/icons/folder.png" alt="" className="w-4 h-4" />
+          <img src="/icons/folder.webp" alt="" className="w-4 h-4" />
           Dossiers
         </button>
       </div>
@@ -68,7 +68,7 @@ export const Component = ({ onOpenApp }) => {
       <div className="xp-addressbar">
         <span className="xp-addressbar-label">Adresse</span>
         <div className="xp-addressbar-input">
-          <img src="/icons/folder.png" alt="" className="w-4 h-4" />
+          <img src="/icons/folder.webp" alt="" className="w-4 h-4" />
           <span>C:\Utilisateurs\Lucas\Bienvenue</span>
         </div>
       </div>
@@ -90,7 +90,7 @@ export const Component = ({ onOpenApp }) => {
                 rel="noopener noreferrer"
                 className="xp-sidebar-link"
               >
-                <img src="/icons/git.png" alt="" className="w-3 h-3" />
+                <img src="/icons/git.webp" alt="" className="w-3 h-3" />
                 GitHub
               </a>
               <a
@@ -99,7 +99,7 @@ export const Component = ({ onOpenApp }) => {
                 rel="noopener noreferrer"
                 className="xp-sidebar-link"
               >
-                <img src="/icons/link.png" alt="" className="w-3 h-3" />
+                <img src="/icons/link.webp" alt="" className="w-3 h-3" />
                 LinkedIn
               </a>
             </div>
@@ -128,7 +128,7 @@ export const Component = ({ onOpenApp }) => {
           {/* Welcome Box */}
           <div className="xp-tipbox">
             <img
-              src="/icons/questionMark.png"
+              src="/icons/questionMark.webp"
               alt=""
               className="w-5 h-5 flex-shrink-0"
             />
@@ -147,7 +147,7 @@ export const Component = ({ onOpenApp }) => {
           {/* Applications Grid */}
           <div className="xp-box xp-box-blue">
             <div className="xp-box-header">
-              <img src="/icons/folder.png" alt="" className="w-4 h-4" />
+              <img src="/icons/folder.webp" alt="" className="w-4 h-4" />
               Applications disponibles
             </div>
             <div className="xp-box-content">
@@ -159,7 +159,7 @@ export const Component = ({ onOpenApp }) => {
                   onClick={() => openWelcomeItem("about")}
                   onKeyDown={(event) => handleItemKeyDown(event, "about")}
                 >
-                  <img src="/icons/note.png" alt="" className="w-6 h-6" />
+                  <img src="/icons/note.webp" alt="" className="w-6 h-6" />
                   <span>À propos de moi</span>
                 </div>
                 <div
@@ -171,7 +171,7 @@ export const Component = ({ onOpenApp }) => {
                     handleItemKeyDown(event, "projects-folder-shortcut")
                   }
                 >
-                  <img src="/icons/folder.png" alt="" className="w-6 h-6" />
+                  <img src="/icons/folder.webp" alt="" className="w-6 h-6" />
                   <span>Mes Projets</span>
                 </div>
                 <div
@@ -183,7 +183,7 @@ export const Component = ({ onOpenApp }) => {
                     handleItemKeyDown(event, "skills")
                   }
                 >
-                  <img src="/icons/note.png" alt="" className="w-6 h-6" />
+                  <img src="/icons/note.webp" alt="" className="w-6 h-6" />
                   <span>Compétences</span>
                 </div>
                 <div
@@ -203,7 +203,7 @@ export const Component = ({ onOpenApp }) => {
                   onClick={() => openWelcomeItem("github")}
                   onKeyDown={(event) => handleItemKeyDown(event, "github")}
                 >
-                  <img src="/icons/git.png" alt="" className="w-6 h-6" />
+                  <img src="/icons/git.webp" alt="" className="w-6 h-6" />
                   <span>GitHub</span>
                 </div>
                 <div
@@ -213,7 +213,7 @@ export const Component = ({ onOpenApp }) => {
                   onClick={() => openWelcomeItem("linkedin")}
                   onKeyDown={(event) => handleItemKeyDown(event, "linkedin")}
                 >
-                  <img src="/icons/link.png" alt="" className="w-6 h-6" />
+                  <img src="/icons/link.webp" alt="" className="w-6 h-6" />
                   <span>LinkedIn</span>
                 </div>
               </div>
@@ -223,7 +223,7 @@ export const Component = ({ onOpenApp }) => {
           {/* Info Box */}
           <div className="xp-box">
             <div className="xp-box-header">
-              <img src="/icons/questionMark.png" alt="" className="w-4 h-4" />À propos
+              <img src="/icons/questionMark.webp" alt="" className="w-4 h-4" />À propos
               de ce portfolio
             </div>
             <div className="xp-box-content">
@@ -247,7 +247,7 @@ export const Component = ({ onOpenApp }) => {
           <div className="xp-box xp-box-blue">
             <div className="xp-box-header">
               <img
-                src="/icons/ecoConcep.png"
+                src="/icons/ecoConcep.webp"
                 alt="logo-eco"
                 className="w-4 h-4"
               />
@@ -315,17 +315,17 @@ export const Component = ({ onOpenApp }) => {
               {/* Section images */}
               <div className="xp-eco-gallery">
                 <img
-                  src="/ecoindex/1.png"
+                  src="/ecoindex/1.webp"
                   alt="Résultat EcoIndex 1"
                   className="xp-eco-image"
                 />
                 <img
-                  src="/ecoindex/2.png"
+                  src="/ecoindex/2.webp"
                   alt="Résultat EcoIndex 2"
                   className="xp-eco-image"
                 />
                 <img
-                  src="/ecoindex/3.png"
+                  src="/ecoindex/3.webp"
                   alt="Résultat EcoIndex 3"
                   className="xp-eco-image"
                 />

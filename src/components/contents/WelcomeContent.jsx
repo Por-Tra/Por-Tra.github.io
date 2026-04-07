@@ -17,19 +17,19 @@ const WelcomeContent = () => {
             <h3 className="text-[11px] font-bold text-[#215dc6] mb-2">Navigation</h3>
             <div className="space-y-1 text-[10px]">
               <div className="flex items-center gap-1 text-[#215dc6] hover:underline cursor-pointer">
-                <img src="/icons/folder.png" alt="" className="w-4 h-4" />
+                <img src="/icons/folder.webp" alt="" className="w-4 h-4" />
                 À propos
               </div>
               <div className="flex items-center gap-1 text-[#215dc6] hover:underline cursor-pointer">
-                <img src="/icons/folder.png" alt="" className="w-4 h-4" />
+                <img src="/icons/folder.webp" alt="" className="w-4 h-4" />
                 Mes Projets
               </div>
               <div className="flex items-center gap-1 text-[#215dc6] hover:underline cursor-pointer">
-                <img src="/icons/folder.png" alt="" className="w-4 h-4" />
+                <img src="/icons/folder.webp" alt="" className="w-4 h-4" />
                 Compétences
               </div>
               <div className="flex items-center gap-1 text-[#215dc6] hover:underline cursor-pointer">
-                <img src="/icons/folder.png" alt="" className="w-4 h-4" />
+                <img src="/icons/folder.webp" alt="" className="w-4 h-4" />
                 Contact
               </div>
             </div>
@@ -39,11 +39,11 @@ const WelcomeContent = () => {
             <h3 className="text-[11px] font-bold text-[#215dc6] mb-2">Liens externes</h3>
             <div className="space-y-1 text-[10px]">
               <a href="https://github.com/Por-Tra" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-[#215dc6] hover:underline">
-                <img src="/icons/git.png" alt="" className="w-4 h-4" />
+                <img src="/icons/git.webp" alt="" className="w-4 h-4" />
                 GitHub
               </a>
               <a href="https://linkedin.com/in/lucas-contreras-hodapp" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-[#215dc6] hover:underline">
-                <img src="/icons/link.png" alt="" className="w-4 h-4" />
+                <img src="/icons/link.webp" alt="" className="w-4 h-4" />
                 LinkedIn
               </a>
             </div>
@@ -55,7 +55,7 @@ const WelcomeContent = () => {
           {/* Blue Header Banner */}
           <div className="bg-gradient-to-r from-[#0058e6] via-[#2878e8] to-[#3a8ff5] p-4">
             <div className="flex items-center gap-4">
-              <img src="/icons/questionMark.png" alt="" className="w-12 h-12" />
+              <img src="/icons/questionMark.webp" alt="" className="w-12 h-12" />
               <div>
                 <h1 className="text-xl font-bold text-white">Bienvenue sur mon Portfolio</h1>
                 <p className="text-sm text-blue-100">Windows XP Edition - Lucas Contreras Hodapp</p>
@@ -67,7 +67,7 @@ const WelcomeContent = () => {
             {/* Welcome Box */}
             <div className="bg-[#ffffd5] border border-[#808080] rounded shadow-sm p-4 mb-4">
               <h2 className="text-sm font-bold text-[#003399] mb-2 flex items-center gap-2">
-                <img src="/icons/questionMark.png" alt="" className="w-5 h-5" />
+                <img src="/icons/questionMark.webp" alt="" className="w-5 h-5" />
                 Comment naviguer ?
               </h2>
               <ul className="space-y-2 text-xs text-gray-700">
@@ -93,32 +93,32 @@ const WelcomeContent = () => {
             {/* Applications Grid */}
             <div className="bg-white border border-[#808080] rounded shadow-sm">
               <div className="bg-gradient-to-r from-[#0058e6] to-[#2878e8] text-white px-3 py-1 text-xs font-bold flex items-center gap-2">
-                <img src="/icons/folder.png" alt="" className="w-4 h-4" />
+                <img src="/icons/folder.webp" alt="" className="w-4 h-4" />
                 Applications disponibles
               </div>
               <div className="p-3 grid grid-cols-2 gap-2">
                 <div className="flex items-center gap-2 p-2 hover:bg-[#316ac5] hover:text-white rounded cursor-pointer text-xs">
-                  <img src="/icons/folder.png" alt="" className="w-6 h-6" />
+                  <img src="/icons/folder.webp" alt="" className="w-6 h-6" />
                   <span>À propos de moi</span>
                 </div>
                 <div className="flex items-center gap-2 p-2 hover:bg-[#316ac5] hover:text-white rounded cursor-pointer text-xs">
-                  <img src="/icons/folder.png" alt="" className="w-6 h-6" />
+                  <img src="/icons/folder.webp" alt="" className="w-6 h-6" />
                   <span>Mes Projets</span>
                 </div>
                 <div className="flex items-center gap-2 p-2 hover:bg-[#316ac5] hover:text-white rounded cursor-pointer text-xs">
-                  <img src="/icons/folder.png" alt="" className="w-6 h-6" />
+                  <img src="/icons/folder.webp" alt="" className="w-6 h-6" />
                   <span>Compétences</span>
                 </div>
                 <div className="flex items-center gap-2 p-2 hover:bg-[#316ac5] hover:text-white rounded cursor-pointer text-xs">
-                  <img src="/icons/folder.png" alt="" className="w-6 h-6" />
+                  <img src="/icons/folder.webp" alt="" className="w-6 h-6" />
                   <span>Contact</span>
                 </div>
                 <div className="flex items-center gap-2 p-2 hover:bg-[#316ac5] hover:text-white rounded cursor-pointer text-xs">
-                  <img src="/icons/git.png" alt="" className="w-6 h-6" />
+                  <img src="/icons/git.webp" alt="" className="w-6 h-6" />
                   <span>GitHub</span>
                 </div>
                 <div className="flex items-center gap-2 p-2 hover:bg-[#316ac5] hover:text-white rounded cursor-pointer text-xs">
-                  <img src="/icons/link.png" alt="" className="w-6 h-6" />
+                  <img src="/icons/link.webp" alt="" className="w-6 h-6" />
                   <span>LinkedIn</span>
                 </div>
               </div>

@@ -6,9 +6,9 @@
 import { ProjectLayout, ProjectSidebar } from '../../../components/ProjectLayout';
 
 // Import des images
-import screenshot1 from '../../../assets/Proj3/Capture d\'écran 2025-10-25 192040.png';
-import screenshot2 from '../../../assets/Proj3/Capture d\'écran 2025-10-25 192048.png';
-import screenshot3 from '../../../assets/Proj3/Capture d\'écran 2025-10-25 192101.png';
+import screenshot1 from '../../../assets/Proj3/1.webp';
+import screenshot2 from '../../../assets/Proj3/2.webp';
+import screenshot3 from '../../../assets/Proj3/3.webp';
 
 // Import du fichier de téléchargement
 import projectZip from '../../../assets/Projet RSL.zip';
@@ -16,7 +16,7 @@ import projectZip from '../../../assets/Projet RSL.zip';
 export const config = {
   id: 'project-reseau',
   name: 'Réseau Social Local',
-  icon: '/icons/folder.png',
+  icon: '/icons/folder.webp',
   defaultWidth: 700,
   defaultHeight: 520,
 };
@@ -71,9 +71,9 @@ export const Component = ({ onOpenApp }) => {
     <ProjectLayout
       projectData={projectData}
       addressPath="C:\Projets\ReseauSocialLocal"
-      addressIcon="/icons/signal.png"
+      addressIcon="/icons/folder.webp"
       subtitle="Application de messagerie en réseau local"
-      headerIcon="/icons/signal.png"
+      headerIcon="/icons/signal.webp"
       onOpenApp={onOpenApp}
       sidebar={
         <ProjectSidebar

@@ -1,16 +1,16 @@
 import { ProjectLayout, ProjectSidebar } from '../../../components/ProjectLayout';
 
 // Import des images
-import screenshot1 from '../../../assets/Proj-FDH/1.png';
-import screenshot2 from '../../../assets/Proj-FDH/2.png';
-import screenshot3 from '../../../assets/Proj-FDH/3.png';
-import screenshot4 from '../../../assets/Proj-FDH/4.png';
-import screenshot5 from '../../../assets/Proj-FDH/5.png';
+import screenshot1 from '../../../assets/Proj-FDH/1.webp';
+import screenshot2 from '../../../assets/Proj-FDH/2.webp';
+import screenshot3 from '../../../assets/Proj-FDH/3.webp';
+import screenshot4 from '../../../assets/Proj-FDH/4.webp';
+import screenshot5 from '../../../assets/Proj-FDH/5.webp';
 
 export const config = {
   id: 'FDH-project',
   name: 'Forge des héros',
-  icon: '/icons/folder.png',
+  icon: '/icons/folder.webp',
   defaultWidth: 700,
   defaultHeight: 520,
 };
@@ -20,7 +20,7 @@ const projectData = {
   description: "Projet universitaire de deuxième année consistant à créer une application fullstack de création et gestion de personnages de jeu de rôle, inspirée de l'univers de Donjons & Dragons. Le projet se compose d'une application Symfony (fullstack + API REST) et d'une application React consommant cette API.",
   languages: ["PHP", "Symfony", "JavaScript", "React", "SQLite"],
   team: "Travaillé en équipe de 5",
-  date: "mars 2026",
+  date: "mars 2026 - durée: 1 semaine",
   features: [
     "Inscription et connexion avec gestion des rôles (admin automatique pour le premier inscrit)",
     "CRUD des personnages avec système de stats Point Buy (27 points à répartir entre 8 et 15)",
@@ -37,7 +37,7 @@ const projectData = {
     "Navigation fluide entre personnages et groupes côté React",
     "Fixtures Doctrine pour les races, classes et compétences de base"
   ],
-  role: "À compléter selon ta contribution réelle",
+  role: "Configuration de la base de donnée, développeur backend",
   skills: [
     "PHP / Symfony",
     "React / Vite",
@@ -75,9 +75,9 @@ export const Component = ({ onOpenApp }) => {
     <ProjectLayout
       projectData={projectData}
       addressPath="C:\\Projets\\Forge-de-Heros"
-      addressIcon="/icons/folder.png"
+      addressIcon="/icons/folder.webp"
       subtitle="Application fullstack de gestion de personnages D&D"
-      headerIcon="/icons/folder.png"
+      headerIcon="/icons/folder.webp"
       onOpenApp={onOpenApp}
       sidebar={
         <ProjectSidebar

@@ -4,7 +4,7 @@ import { SKILLS, PROJECTS, MAN_PAGES, EASTER_EGGS, getSkillsDisplay, getProjectD
 export const config = {
   id: 'terminal',
   name: 'Terminal',
-  icon: '/icons/terminal.png',
+  icon: '/icons/terminal.webp',
   defaultWidth: 640,
   defaultHeight: 420,
   showOnDesktop: false,

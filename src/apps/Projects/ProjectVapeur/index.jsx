@@ -6,16 +6,16 @@
 import { ProjectLayout, ProjectSidebar } from '../../../components/ProjectLayout';
 
 // Import des images
-import screenshot1 from '../../../assets/Proj-Vapeur/1.png';
-import screenshot2 from '../../../assets/Proj-Vapeur/2.png';
-import screenshot3 from '../../../assets/Proj-Vapeur/3.png';
-import screenshot4 from '../../../assets/Proj-Vapeur/4.png';
-import screenshot5 from '../../../assets/Proj-Vapeur/5.png';
+import screenshot1 from '../../../assets/Proj-Vapeur/1.webp';
+import screenshot2 from '../../../assets/Proj-Vapeur/2.webp';
+import screenshot3 from '../../../assets/Proj-Vapeur/3.webp';
+import screenshot4 from '../../../assets/Proj-Vapeur/4.webp';
+import screenshot5 from '../../../assets/Proj-Vapeur/5.webp';
 
 export const config = {
   id: 'vapeur-project',
   name: 'Vapeur',
-  icon: '/icons/folder.png',
+  icon: '/icons/folder.webp',
   defaultWidth: 700,
   defaultHeight: 520,
 };
@@ -72,9 +72,9 @@ export const Component = ({ onOpenApp }) => {
     <ProjectLayout
       projectData={projectData}
       addressPath="C:\Projets\Vapeur"
-      addressIcon="/icons/folder.png"
+      addressIcon="/icons/folder.webp"
       subtitle="Application web connectée à une base de données"
-      headerIcon="/icons/folder.png"
+      headerIcon="/icons/folder.webp"
       onOpenApp={onOpenApp}
       sidebar={
         <ProjectSidebar

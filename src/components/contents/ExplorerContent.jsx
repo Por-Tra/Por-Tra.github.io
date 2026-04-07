@@ -56,9 +56,9 @@ const fileSystem = {
           'Images': {
             type: 'folder',
             children: {
-              'photo1.jpg': { type: 'file', size: '1.2 Mo', modified: '2024-06-15' },
-              'photo2.jpg': { type: 'file', size: '980 Ko', modified: '2024-06-15' },
-              'wallpaper.jpg': { type: 'file', size: '2.5 Mo', modified: '2024-01-01' },
+              'photo1.webp': { type: 'file', size: '1.2 Mo', modified: '2024-06-15' },
+              'photo2.webp': { type: 'file', size: '980 Ko', modified: '2024-06-15' },
+              'wallpaper.webp': { type: 'file', size: '2.5 Mo', modified: '2024-01-01' },
             }
           },
           'CV_Lucas.pdf': { type: 'file', size: '156 Ko', modified: '2025-11-01' },
@@ -99,24 +99,24 @@ const fileSystem = {
 };
 
 const getIconForItem = (item, name) => {
-  if (item.type === 'drive') return '/icons/explorer.png';
-  if (item.type === 'folder') return '/icons/folder.png';
+  if (item.type === 'drive') return '/icons/explorer.webp';
+  if (item.type === 'folder') return '/icons/folder.webp';
   
   const ext = name.split('.').pop().toLowerCase();
   switch (ext) {
-    case 'py': return '/icons/setting.png';
+    case 'py': return '/icons/setting.webp';
     case 'php':
     case 'html':
     case 'css':
-    case 'js': return '/icons/explorer.png';
+    case 'js': return '/icons/explorer.webp';
     case 'txt':
-    case 'pdf': return '/icons/questionMark.png';
+    case 'pdf': return '/icons/questionMark.webp';
     case 'jpg':
     case 'png':
-    case 'gif': return '/icons/folder.png';
-    case 'exe': return '/icons/setting.png';
-    case 'sql': return '/icons/signal.png';
-    default: return '/icons/questionMark.png';
+    case 'gif': return '/icons/folder.webp';
+    case 'exe': return '/icons/setting.webp';
+    case 'sql': return '/icons/signal.webp';
+    default: return '/icons/questionMark.webp';
   }
 };
 
@@ -254,7 +254,7 @@ const ExplorerContent = () => {
       <div className="bg-[#ece9d8] border-b border-[#808080] px-2 py-1 flex items-center gap-2">
         <span className="text-xs text-gray-600">Adresse</span>
         <div className="flex-1 bg-white border border-[#7f9db9] px-2 py-0.5 text-xs flex items-center gap-1">
-          <img src="/icons/folder.png" alt="" className="w-4 h-4" />
+          <img src="/icons/folder.webp" alt="" className="w-4 h-4" />
           <span>{pathString || 'Poste de travail'}</span>
         </div>
         <button className="xp-button px-2 py-0.5 text-xs">OK</button>
@@ -286,14 +286,14 @@ const ExplorerContent = () => {
                 onClick={() => navigateTo(['C:', 'Mes Documents'])}
                 className="flex items-center gap-1 text-[#215dc6] hover:underline cursor-pointer"
               >
-                <img src="/icons/folder.png" alt="" className="w-3 h-3" />
+                <img src="/icons/folder.webp" alt="" className="w-3 h-3" />
                 Mes Documents
               </div>
               <div 
                 onClick={() => navigateTo(['C:'])}
                 className="flex items-center gap-1 text-[#215dc6] hover:underline cursor-pointer"
               >
-                <img src="/icons/explorer.png" alt="" className="w-3 h-3" />
+                <img src="/icons/explorer.webp" alt="" className="w-3 h-3" />
                 Poste de travail
               </div>
             </div>

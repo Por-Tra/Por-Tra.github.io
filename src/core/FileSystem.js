@@ -18,33 +18,33 @@ class FileSystem {
           'Bureau': 
           {
             type: 'folder',
-            icon: '/icons/folder.png',
+            icon: '/icons/folder.webp',
             special: 'desktop', // Synchronisé avec le bureau
             children: {} // Rempli dynamiquement
           },
           'Documents': 
           {
             type: 'folder',
-            icon: '/icons/note.png',
+            icon: '/icons/note.webp',
             children: 
             {
               'Projets': 
               {
                 type: 'folder',
-                icon: '/icons/folder.png',
+                icon: '/icons/folder.webp',
                 children: 
                 {
 
                   'Python':
                   {
                     type: 'folder',
-                    icon: '/icons/folder.png',
+                    icon: '/icons/folder.webp',
                     children:
                     {
                         'The Elder Scroll 2D': 
                         {
                           type: 'app',
-                          icon: '/icons/folder.png',
+                          icon: '/icons/folder.webp',
                           appId: 'project-rpg',
                           description: 'Jeu RPG 2D développé en Python avec Pygame',
                           downloadFile: '/assets/RPG2D.zip',
@@ -53,24 +53,31 @@ class FileSystem {
                         'Réseau Social Local (RSL)': 
                         {
                           type: 'app',
-                          icon: '/icons/folder.png',
+                          icon: '/icons/folder.webp',
                           appId: 'project-reseau',
                           description: 'Application de messagerie en réseau local',
                           downloadFile: '/assets/ChatReseau.zip',
                           downloadName: 'ChatReseau.zip'
                         },
+                        'PORTR-AI (LLM from scratch en Python)':
+                        {
+                          type: 'app',
+                          icon: '/icons/folder.webp',
+                          appId: 'Port-AI-project',
+                          description: 'LLM from scratch développé en Python avec une architecture de transformer',
+                        }
                     }
                   },
                   'Web':
                   {
                     type: 'folder',
-                    icon: '/icons/folder.png',
+                    icon: '/icons/folder.webp',
                     children:
                     {
                       'Application Web (PHP)': 
                       {
                         type: 'app',
-                        icon: '/icons/folder.png',
+                        icon: '/icons/folder.webp',
                         appId: 'project-soutenance',
                         description: 'Application web de gestion développée en PHP',
                         downloadFile: '/assets/Soutenance.zip',
@@ -79,14 +86,14 @@ class FileSystem {
                       'Vapeur (javasript)':
                       {
                         type: 'app',
-                        icon: '/icons/folder.png',
+                        icon: '/icons/folder.webp',
                         appId: 'vapeur-project',
                         description: 'Application de gestion de bibliothèque de jeux développée en JavaScript',
                       },
                       'Forge des héros (Symfony + React)':
                       {
                         type: 'app',
-                        icon: '/icons/folder.png',
+                        icon: '/icons/folder.webp',
                         appId: 'FDH-project',
                         description: 'Application de création et gestion de personnages de jeu de rôle, développée en Symfony et React',
                       }
@@ -98,20 +105,20 @@ class FileSystem {
                   "Video Games - make with Unreal Engine and Unity":
                   {
                     type: 'folder',
-                    icon: '/icons/folder.png',
+                    icon: '/icons/folder.webp',
                     children:
                     {
                         'Mycoria (Unreal Engine)':
                         {
                           type: 'app',
-                          icon: '/icons/folder.png',
+                          icon: '/icons/folder.webp',
                           appId: 'mycoria-project',
                           description: 'Jeu vidéo développé sur Unreal Engine avec blueprints',
                         },
                         'LIBET (Unity)':
                         {
                           type: 'app',
-                          icon: '/icons/folder.png',
+                          icon: '/icons/folder.webp',
                           appId: 'LIBET-project',
                           description: 'Jeu vidéo développé sur Unity avec C#'
                         }
@@ -134,13 +141,13 @@ class FileSystem {
           'Téléchargements': 
           {
             type: 'folder',
-            icon: '/icons/folder.png',
+            icon: '/icons/folder.webp',
             children: 
             {
               'The_Elder_Scrolls_2D.zip':
               {
                 type: 'file',
-                icon: '/icons/folder.png',
+                icon: '/icons/folder.webp',
                 size: '5.2 Mo',
                 modified: '2026-02-12',
                 downloadFile: '/assets/RPG.zip',
@@ -149,7 +156,7 @@ class FileSystem {
               'RSL.zip':
               {
                 type: 'file',
-                icon: '/icons/folder.png',
+                icon: '/icons/folder.webp',
                 size: '1.8 Mo',
                 modified: '2026-02-12',
                 downloadFile: '/assets/Projet RSL.zip',
@@ -158,7 +165,7 @@ class FileSystem {
               'Application_Web_Notation.zip':
               {
                 type: 'file',
-                icon: '/icons/folder.png',
+                icon: '/icons/folder.webp',
                 size: '2.4 Mo',
                 modified: '2026-02-12',
                 downloadFile: '/assets/projet_sql-main.zip',
@@ -169,42 +176,42 @@ class FileSystem {
           'Images': 
           {
             type: 'folder',
-            icon: '/icons/folder.png',
+            icon: '/icons/folder.webp',
             children: 
             {
               'Captures': 
               {
                 type: 'folder',
-                icon: '/icons/folder.png',
+                icon: '/icons/folder.webp',
                 children: 
                 {
                   'The Elder Scrolls 2D':
                   {
                      type: 'folder',
-                     icon: '/icons/folder.png',
+                     icon: '/icons/folder.webp',
                      children:
                      {
-                        'capture1.png':
+                        'capture1.webp':
                         {
                           type: 'image',
-                          icon: '/images/ProjectIMG/Proj1/1.png',
-                          imageSrc: '/images/ProjectIMG/Proj1/1.png',
+                          icon: '/images/ProjectIMG/Proj1/1.webp',
+                          imageSrc: '/images/ProjectIMG/Proj1/1.webp',
                           size: "209Ko",
                           modified: '2026-02-12'
                         },
-                        'capture2.png':
+                        'capture2.webp':
                         {
                           type: 'image',
-                          icon: '/images/ProjectIMG/Proj1/2.png',
-                          imageSrc: '/images/ProjectIMG/Proj1/2.png',
+                          icon: '/images/ProjectIMG/Proj1/2.webp',
+                          imageSrc: '/images/ProjectIMG/Proj1/2.webp',
                           size: "432Ko",
                           modified: '2026-02-12'
                         },
-                        'capture3.png':
+                        'capture3.webp':
                         {
                           type: 'image',
-                          icon: '/images/ProjectIMG/Proj1/3.png',
-                          imageSrc: '/images/ProjectIMG/Proj1/3.png',
+                          icon: '/images/ProjectIMG/Proj1/3.webp',
+                          imageSrc: '/images/ProjectIMG/Proj1/3.webp',
                           size: "357Ko",
                           modified: '2026-02-12'
                         }
@@ -213,30 +220,30 @@ class FileSystem {
                   'Application Web de notation':
                   {
                     type: 'folder',
-                    icon: '/icons/folder.png',
+                    icon: '/icons/folder.webp',
                     children:
                     {
-                      'capture1.png':
+                      'capture1.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj2/1.png',
-                        imageSrc: '/images/ProjectIMG/Proj2/1.png',
+                        icon: '/images/ProjectIMG/Proj2/1.webp',
+                        imageSrc: '/images/ProjectIMG/Proj2/1.webp',
                         size: "74.1Ko",
                         modified: '2026-02-12'
                       },
-                      'capture2.png':
+                      'capture2.webp':
                       {
                       type: 'image',
-                      icon: '/images/ProjectIMG/Proj2/2.png',
-                      imageSrc: '/images/ProjectIMG/Proj2/2.png',
+                      icon: '/images/ProjectIMG/Proj2/2.webp',
+                      imageSrc: '/images/ProjectIMG/Proj2/2.webp',
                       size: "237Ko",
                       modified: '2026-02-12'
                       },
-                      'capture3.png':
+                      'capture3.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj2/3.png',
-                        imageSrc: '/images/ProjectIMG/Proj2/3.png',
+                        icon: '/images/ProjectIMG/Proj2/3.webp',
+                        imageSrc: '/images/ProjectIMG/Proj2/3.webp',
                         size: "211Ko",
                         modified: '2026-02-12'
                       }
@@ -245,30 +252,30 @@ class FileSystem {
                   'Réseau Social Local':
                   {
                     type: 'folder',
-                    icon: '/icons/folder.png',
+                    icon: '/icons/folder.webp',
                     children:
                     {
-                      'capture1.png':
+                      'capture1.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj3/1.png',
-                        imageSrc: '/images/ProjectIMG/Proj3/1.png',
+                        icon: '/images/ProjectIMG/Proj3/1.webp',
+                        imageSrc: '/images/ProjectIMG/Proj3/1.webp',
                         size: "20.4Ko",
                         modified: '2026-02-12'
                       },
-                      'capture2.png':
+                      'capture2.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj3/2.png',
-                        imageSrc: '/images/ProjectIMG/Proj3/2.png',
+                        icon: '/images/ProjectIMG/Proj3/2.webp',
+                        imageSrc: '/images/ProjectIMG/Proj3/2.webp',
                         size: "6.49Ko",
                         modified: '2026-02-12'
                       },
-                      'capture3.png':
+                      'capture3.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj3/3.png',
-                        imageSrc: '/images/ProjectIMG/Proj3/3.png',
+                        icon: '/images/ProjectIMG/Proj3/3.webp',
+                        imageSrc: '/images/ProjectIMG/Proj3/3.webp',
                         size: "21.8Ko",
                         modified: '2026-02-12'
                       }
@@ -277,102 +284,102 @@ class FileSystem {
                   'Mycoria' :
                   {
                     type: 'folder',
-                    icon: '/icons/folder.png',
+                    icon: '/icons/folder.webp',
                     children:
                     {
-                      'capture1.png':
+                      'capture1.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj-Mycoria/1.png',
-                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/1.png',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/1.webp',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/1.webp',
                         size: "1.4Mo",
                         modified: '2026-02-12'
                       },
-                      'capture2.png':
+                      'capture2.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj-Mycoria/2.png',
-                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/2.png',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/2.webp',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/2.webp',
                         size: "1.3Mo",
                         modified: '2026-02-12'
                       },
-                      'capture3.png':
+                      'capture3.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj-Mycoria/3.png',
-                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/3.png',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/3.webp',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/3.webp',
                         size: "1.46Mo",
                         modified: '2026-02-12'
                       },
-                      'capture4.png':
+                      'capture4.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj-Mycoria/4.png',
-                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/4.png',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/4.webp',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/4.webp',
                         size: "1.52Mo",
                         modified: '2026-02-12'
                       },
-                      'capture5.png':
+                      'capture5.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj-Mycoria/5.png',
-                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/5.png',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/5.webp',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/5.webp',
                         size: "1.38Mo",
                         modified: '2026-02-12'
                       },
-                      'capture6.png':
+                      'capture6.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj-Mycoria/6.png',
-                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/6.png',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/6.webp',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/6.webp',
                         size: "2.24Mo",
                         modified: '2026-02-12'
                       },
-                      'capture7.png':
+                      'capture7.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj-Mycoria/7.png',
-                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/7.png',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/7.webp',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/7.webp',
                         size: "2.15Mo",
                         modified: '2026-02-12'
                       },
-                      'capture8.png':
+                      'capture8.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj-Mycoria/8.png',
-                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/8.png',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/8.webp',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/8.webp',
                         size: "2.67Mo",
                         modified: '2026-02-12'
                       },
-                      'capture9.png':
+                      'capture9.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj-Mycoria/9.png',
-                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/9.png',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/9.webp',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/9.webp',
                         size: "1.66Mo",
                         modified: '2026-02-12'
                       },
-                      'capture10.png':
+                      'capture10.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj-Mycoria/10.png',
-                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/10.png',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/10.webp',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/10.webp',
                         size: "1.58Mo",
                         modified: '2026-02-12'
                       },
-                      'capture11.png':
+                      'capture11.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj-Mycoria/11.png',
-                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/11.png',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/11.webp',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/11.webp',
                         size: "388Ko",
                         modified: '2026-02-12'
                       },
-                      'capture12.png':
+                      'capture12.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj-Mycoria/12.png',
-                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/12.png',
+                        icon: '/images/ProjectIMG/Proj-Mycoria/12.webp',
+                        imageSrc: '/images/ProjectIMG/Proj-Mycoria/12.webp',
                         size: "454Ko",
                         modified: '2026-02-12'
                       }
@@ -381,46 +388,46 @@ class FileSystem {
                   'Vapeur':
                   {
                     type: 'folder',
-                    icon: '/icons/folder.png',
+                    icon: '/icons/folder.webp',
                     children:
                     {
-                      'capture1.png':
+                      'capture1.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj-Vapeur/1.png',
-                        imageSrc: '/images/ProjectIMG/Proj-Vapeur/1.png',
+                        icon: '/images/ProjectIMG/Proj-Vapeur/1.webp',
+                        imageSrc: '/images/ProjectIMG/Proj-Vapeur/1.webp',
                         size: "243Ko",
                         modified: '2026-02-12'
                       },
-                      'capture2.png':
+                      'capture2.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj-Vapeur/2.png',
-                        imageSrc: '/images/ProjectIMG/Proj-Vapeur/2.png',
+                        icon: '/images/ProjectIMG/Proj-Vapeur/2.webp',
+                        imageSrc: '/images/ProjectIMG/Proj-Vapeur/2.webp',
                         size: "362Ko",
                         modified: '2026-02-12'
                       },
-                      'capture3.png':
+                      'capture3.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj-Vapeur/3.png',
-                        imageSrc: '/images/ProjectIMG/Proj-Vapeur/3.png',
+                        icon: '/images/ProjectIMG/Proj-Vapeur/3.webp',
+                        imageSrc: '/images/ProjectIMG/Proj-Vapeur/3.webp',
                         size: "263Ko",
                         modified: '2026-02-12'
                       },
-                      'capture4.png':
+                      'capture4.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj-Vapeur/4.png',
-                        imageSrc: '/images/ProjectIMG/Proj-Vapeur/4.png',
+                        icon: '/images/ProjectIMG/Proj-Vapeur/4.webp',
+                        imageSrc: '/images/ProjectIMG/Proj-Vapeur/4.webp',
                         size: "214Ko",
                         modified: '2026-02-12'
                       },
-                      'capture5.png':
+                      'capture5.webp':
                       {
                         type: 'image',
-                        icon: '/images/ProjectIMG/Proj-Vapeur/5.png',
-                        imageSrc: '/images/ProjectIMG/Proj-Vapeur/5.png',
+                        icon: '/images/ProjectIMG/Proj-Vapeur/5.webp',
+                        imageSrc: '/images/ProjectIMG/Proj-Vapeur/5.webp',
                         size: "198Ko",
                         modified: '2026-02-12'
                       }
@@ -434,21 +441,21 @@ class FileSystem {
               'Wallpapers': 
               {
                 type: 'folder',
-                icon: '/icons/folder.png',
+                icon: '/icons/folder.webp',
                 children: {
-                  'Dog.jpg' :
+                  'Dog.webp' :
                   {
                     type: 'image',
-                    icon: '/images/wallpapers/dog.jpg',
-                    imageSrc: '/images/wallpapers/dog.jpg',
+                    icon: '/images/wallpapers/Dog.webp',
+                    imageSrc: '/images/wallpapers/Dog.webp',
                     size: "329Ko",
                     modified: '2026-02-12'
                   },
-                  "Win11Dark.jpg" :
+                  "win11Dark.webp" :
                   {
                     type: 'image',
-                    icon: '/images/wallpapers/Win11Dark.jpg',
-                    imageSrc: '/images/wallpapers/Win11Dark.jpg',
+                    icon: '/images/wallpapers/win11Dark.webp',
+                    imageSrc: '/images/wallpapers/win11Dark.webp',
                     size: "269Ko",
                     modified: '2026-02-12'
                   },
@@ -467,7 +474,7 @@ class FileSystem {
           'Réseau': 
           {
             type: 'folder',
-            icon: '/icons/explorer.png',
+            icon: '/icons/explorer.webp',
             children: 
             {
               'GitHub': 
@@ -480,7 +487,7 @@ class FileSystem {
               'LinkedIn': 
               {
                 type: 'link',
-                icon: '/icons/link.png',
+                icon: '/icons/link.webp',
                 url: 'https://www.linkedin.com/in/lucas-contreras-hodapp/',
                 description: 'Mon profil LinkedIn'
               }
@@ -489,22 +496,22 @@ class FileSystem {
           'Disque local (C:)': 
           {
             type: 'drive',
-            icon: '/icons/PC.png',
+            icon: '/icons/PC.webp',
             children: 
             {
               'Program Files': 
               {
                 type: 'folder',
-                icon: '/icons/folder.png',
+                icon: '/icons/folder.webp',
                 children: {
                   'Python 3.11': 
                   {
                     type: 'folder',
-                    icon: '/icons/folder.png',
+                    icon: '/icons/folder.webp',
                     children: {
                       'python.exe': {
                         type: 'file',
-                        icon: '/icons/setting.png',
+                        icon: '/icons/setting.webp',
                         size: '45 Ko',
                         modified: '2024-01-01',
                         appId: 'web-reminder'
@@ -514,12 +521,12 @@ class FileSystem {
                   'Visual Studio Code': 
                   {
                     type: 'folder',
-                    icon: '/icons/folder.png',
+                    icon: '/icons/folder.webp',
                     children: {
                       'Code.exe': 
                       {
                         type: 'file', 
-                        icon: '/icons/setting.png', 
+                        icon: '/icons/setting.webp', 
                         size: '120 Mo', 
                         modified: '2024-06-01',
                         appId: 'web-reminder'
@@ -531,13 +538,13 @@ class FileSystem {
               'Windows': 
               {
                 type: 'folder',
-                icon: '/icons/folder.png',
+                icon: '/icons/folder.webp',
                 children: 
                 {
                   'System32': 
                   {
                     type: 'folder',
-                    icon: '/icons/folder.png',
+                    icon: '/icons/folder.webp',
                     children: 
                     {
                       'notepad.exe': {
@@ -549,7 +556,7 @@ class FileSystem {
                       },
                       'cmd.exe': {
                         type: 'file',
-                        icon: '/icons/setting.png',
+                        icon: '/icons/setting.webp',
                         size: '240 Ko',
                         modified: '2001-10-25',
                         appId: 'web-reminder'
@@ -640,33 +647,33 @@ class FileSystem {
   getIcon(item, name) {
     if (item.icon) return item.icon;
     
-    if (item.type === 'drive') return '/icons/explorer.png';
-    if (item.type === 'folder') return '/icons/folder.png';
+    if (item.type === 'drive') return '/icons/explorer.webp';
+    if (item.type === 'folder') return '/icons/folder.webp';
     if (item.type === 'computer') return '/icons/computer.svg';
-    if (item.type === 'app') return '/icons/setting.png';
-    if (item.type === 'image') return '/icons/folder.png';
-    if (item.type === 'link') return '/icons/link.png';
+    if (item.type === 'app') return '/icons/setting.webp';
+    if (item.type === 'image') return '/icons/folder.webp';
+    if (item.type === 'link') return '/icons/link.webp';
     
     // Icône basée sur l'extension
     const ext = name.split('.').pop().toLowerCase();
     const iconMap = {
-      'py': '/icons/setting.png',
-      'php': '/icons/explorer.png',
-      'html': '/icons/explorer.png',
-      'css': '/icons/explorer.png',
-      'js': '/icons/explorer.png',
+      'py': '/icons/setting.webp',
+      'php': '/icons/explorer.webp',
+      'html': '/icons/explorer.webp',
+      'css': '/icons/explorer.webp',
+      'js': '/icons/explorer.webp',
       'txt': '/icons/notepad.svg',
       'pdf': '/icons/document.svg',
-      'jpg': '/icons/folder.png',
-      'jpeg': '/icons/folder.png',
-      'png': '/icons/folder.png',
-      'gif': '/icons/folder.png',
-      'exe': '/icons/setting.png',
-      'sql': '/icons/signal.png',
-      'zip': '/icons/folder.png'
+      'jpg': '/icons/folder.webp',
+      'jpeg': '/icons/folder.webp',
+      'png': '/icons/folder.webp',
+      'gif': '/icons/folder.webp',
+      'exe': '/icons/setting.webp',
+      'sql': '/icons/signal.webp',
+      'zip': '/icons/folder.webp'
     };
     
-    return iconMap[ext] || '/icons/questionMark.png';
+    return iconMap[ext] || '/icons/questionMark.webp';
   }
 
   /**
