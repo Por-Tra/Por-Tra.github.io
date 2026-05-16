@@ -7,9 +7,9 @@ import { useState, useRef } from 'react';
 import emailjs from 'emailjs-com';
 import { MenuBar, useZoom, getZoomStyle } from '../../components/ProjectLayout';
 
-const EMAILJS_SERVICE_ID = 'service_6i7i8an';
-const EMAILJS_TEMPLATE_ID = 'template_tv9399m';
-const EMAILJS_PUBLIC_KEY = '3gmM9AHo9zW51AdS_';
+const EMAILJS_SERVICE_ID = 'service_9238i9o';
+const EMAILJS_TEMPLATE_ID = 'template_z0t6obo';
+const EMAILJS_PUBLIC_KEY = 'JXym1o248Cu8QeyUi';
 
 export const config = {
   id: 'contact',
