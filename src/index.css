@@ -32,6 +32,75 @@ body {
   overflow: hidden;
 }
 
+/* Custom cursors (from public/cursor) */
+:root{
+  --cursor-default: url('/cursor/default_arrow.cur'), auto;
+  --cursor-link: url('/cursor/default_link.cur'), pointer;
+  --cursor-wait: url('/cursor/default_wait.cur'), progress;
+  --cursor-beam: url('/cursor/default_beam.cur'), text;
+  --cursor-move: url('/cursor/default_move.cur'), move;
+  --cursor-size1: url('/cursor/default_size1.cur'), nwse-resize;
+  --cursor-size2: url('/cursor/default_size2.cur'), nesw-resize;
+  --cursor-size3: url('/cursor/default_size3.cur'), ew-resize;
+  --cursor-size4: url('/cursor/default_size4.cur'), ns-resize;
+}
+
+body{
+  cursor: var(--cursor-default);
+}
+
+/* Links, buttons and interactive icons */
+a,
+button,
+.clickable,
+.cursor-pointer,
+[role="button"],
+[tabindex="0"],
+[data-clickable="true"],
+.DesktopIcon,
+.xp-login-user,
+.xp-login-shutdown,
+.xp-login-user:hover,
+.xp-login-shutdown:hover {
+  cursor: var(--cursor-link);
+}
+
+/* Text inputs */
+input,
+textarea,
+[contenteditable="true"],
+.cursor-text,
+.text-input {
+  cursor: var(--cursor-beam);
+}
+
+/* Draggables / move handles */
+.draggable,
+.dragging,
+.cursor-move,
+.move-handle {
+  cursor: var(--cursor-move);
+}
+
+/* Resize handles: add classes resize-nwse / resize-nesw / resize-ew / resize-ns on handles */
+.resize-nwse { cursor: var(--cursor-size1); }
+.resize-nesw { cursor: var(--cursor-size2); }
+.resize-ew   { cursor: var(--cursor-size3); }
+.resize-ns   { cursor: var(--cursor-size4); }
+
+/* Default resize handle fallback */
+.resize-handle {
+  cursor: var(--cursor-size1);
+}
+
+/* Use wait cursor for busy/disabled states */
+button[disabled],
+.loading,
+body.busy,
+.xp-boot-screen.busy {
+  cursor: var(--cursor-wait) !important;
+}
+
 /* XP Boot Screen */
 .xp-boot-screen {
   width: 100vw;
