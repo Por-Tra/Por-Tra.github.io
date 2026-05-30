@@ -25,16 +25,16 @@ export const Component = () => {
             Petit rappel
           </div>
           <div className="xp-box-content">
-            <p className="text-xs mb-2">Eh bien non... vous êtes sur un site web 😄</p>
+            <p className="text-xs mb-2">Fatal Error: File not found</p>
             <p className="text-xs text-gray-700">
-              Ces fichiers <strong>.exe</strong> sont des éléments décoratifs pour l'ambiance Windows XP.
+              Oups ! Il semble que vous ayez essayé d'ouvrir un exécutable qui n'existe pas.
             </p>
           </div>
         </div>
       </div>
       <div className="status-bar">
         <p className="status-bar-field">Astuce</p>
-        <p className="status-bar-field">Explorez les autres apps du portfolio</p>
+        <p className="status-bar-field">Tentez de supprimer le système32.</p>
       </div>
     </div>
   );
