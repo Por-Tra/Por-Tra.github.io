@@ -779,6 +779,42 @@ body.busy,
   background: rgba(11, 97, 255, 0.25);
 }
 
+/* XP Desktop Context Menu */
+.xp-desktop-context-menu {
+  position: absolute;
+  min-width: 190px;
+  background: #f6f5ee;
+  border: 1px solid #6b6b6b;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.25);
+  padding: 4px 0;
+  z-index: 2000;
+}
+
+.xp-desktop-context-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 12px;
+  font-size: 11px;
+  color: #000000;
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.xp-desktop-context-item:hover {
+  background: #316ac5;
+  color: #ffffff;
+}
+
+.xp-desktop-context-separator {
+  height: 1px;
+  background: #b5b5b5;
+  margin: 4px 6px;
+}
+
 /* XP System Tray */
 .xp-systray {
   background: linear-gradient(180deg, #0d4ca3 0%, #0b469a 50%, #0e4ba5 100%);

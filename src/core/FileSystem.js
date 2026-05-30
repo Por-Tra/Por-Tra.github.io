@@ -6,6 +6,7 @@
  */
 
 import appRegistry from './AppRegistry';
+import recycleBin from './recycleBin';
 
 class FileSystem {
   constructor() {
@@ -576,7 +577,8 @@ class FileSystem {
    * Récupère le contenu du Bureau depuis le AppRegistry
    */
   getDesktopItems() {
-    const desktopApps = appRegistry.getDesktopApps();
+    const trashedIds = recycleBin.getTrashedIds();
+    const desktopApps = appRegistry.getDesktopApps().filter(app => !trashedIds.has(app.id));
     const items = {};
     
     desktopApps.forEach(app => {

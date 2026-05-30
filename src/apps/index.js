@@ -72,7 +72,7 @@ import * as Chess from './Chess';
 import * as Explorer from './Explorer';
 import * as ImageViewer from './ImageViewer';
 import * as ControlPanel from './ControlPanel';
-import * as Blank from './utilities/Blank';
+import * as RecycleBin from './utilities/RecycleBin';
 import * as Terminal from './Terminal';
 import * as WebReminder from './WebReminder';
 
@@ -138,11 +138,8 @@ const apps = [
   { ...ControlPanel.config, component: ControlPanel.Component, desktopOrder: 11 },
   { ...Chess.config, component: Chess.Component, desktopOrder: 12 },
   { 
-    ...Blank.config, 
-    component: Blank.Component,
-    id: 'trash',
-    name: 'Corbeille',
-    icon: '/icons/trash.webp',
+    ...RecycleBin.config, 
+    component: RecycleBin.Component,
     desktopOrder: 13,
   },
   {

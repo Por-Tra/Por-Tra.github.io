@@ -1,9 +1,10 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import DesktopIcon from './DesktopIcon';
 import Window from './Window';
 import Taskbar from './Taskbar';
 // Import du registry et initialisation des apps
 import appRegistry from '../apps';
+import recycleBin from '../core/recycleBin';
 
 const STORAGE_KEY = 'xp-desktop-preferences-v1';
 const WELCOME_SESSION_KEY = 'xp-welcome-opened-session-v1';
@@ -13,6 +14,7 @@ const GRID_SIZE = 80;
 const ICON_WIDTH = 70;
 const ICON_HEIGHT = 80;
 const GRID_PADDING = 10;
+const TRASH_APP_ID = 'trash';
 
 const readStoredPreferences = () => {
   try {
@@ -30,7 +32,10 @@ const Desktop = () => {
   const [nextId, setNextId] = useState(1);
   const [activeWindow, setActiveWindow] = useState(null);
   const [nextZIndex, setNextZIndex] = useState(100);
-  const [selectedIcon, setSelectedIcon] = useState(null);
+  const [selectedIcons, setSelectedIcons] = useState([]);
+  const [contextMenu, setContextMenu] = useState(null);
+  const lastSelectedId = useRef(null);
+  const [dragGhost, setDragGhost] = useState(null);
   const [wallpaperUrl, setWallpaperUrl] = useState(() => {
     const stored = readStoredPreferences();
     return typeof stored?.wallpaperUrl === 'string' ? stored.wallpaperUrl : '/wallpaper.webp';
@@ -44,6 +49,15 @@ const Desktop = () => {
     const stored = readStoredPreferences();
     return typeof stored?.currentLanguage === 'string' ? stored.currentLanguage : 'FR';
   });
+
+  const clampPosition = useCallback((x, y) => {
+    const maxX = Math.max(0, window.innerWidth - ICON_WIDTH);
+    const maxY = Math.max(0, window.innerHeight - 120);
+    return {
+      x: Math.max(0, Math.min(maxX, x)),
+      y: Math.max(0, Math.min(maxY, y)),
+    };
+  }, []);
   
   // Snap position to grid
   const snapToGrid = (x, y) => {
@@ -96,11 +110,13 @@ const Desktop = () => {
   // Initialize icons with grid positions using the registry
   const [icons, setIcons] = useState(() => {
     const desktopApps = appRegistry.getDesktopApps();
+    const trashedIds = recycleBin.getTrashedIds();
+    const visibleApps = desktopApps.filter(app => !trashedIds.has(app.id) || app.id === TRASH_APP_ID);
     const iconsPerColumn = getIconsPerColumn();
     const stored = readStoredPreferences();
     const storedPositions = stored?.iconPositions || {};
     
-    return desktopApps.map((app, index) => {
+    return visibleApps.map((app, index) => {
       const savedPosition = storedPositions?.[app.id];
       if (savedPosition && Number.isFinite(savedPosition.x) && Number.isFinite(savedPosition.y)) {
         return {
@@ -407,23 +423,206 @@ const Desktop = () => {
   }, []);
 
   const updateIconPosition = useCallback((appId, x, y) => {
+    const clamped = clampPosition(x, y);
     setIcons(prev => {
-      const freePos = findFreePosition(x, y, appId, prev);
       return prev.map(icon => 
-        icon.id === appId ? { ...icon, x: freePos.x, y: freePos.y } : icon
+        icon.id === appId ? { ...icon, x: clamped.x, y: clamped.y } : icon
       );
     });
+  }, [clampPosition]);
+
+  const isDroppedOnTrash = useCallback((x, y) => {
+    const trashIcon = icons.find(icon => icon.id === TRASH_APP_ID);
+    if (!trashIcon) return false;
+
+    const bounds = {
+      left: trashIcon.x,
+      top: trashIcon.y,
+      right: trashIcon.x + ICON_WIDTH,
+      bottom: trashIcon.y + ICON_HEIGHT,
+    };
+
+    const right = x + ICON_WIDTH;
+    const bottom = y + ICON_HEIGHT;
+
+    return right > bounds.left && x < bounds.right && bottom > bounds.top && y < bounds.bottom;
+  }, [icons]);
+
+  const moveToTrash = useCallback((appId, position) => {
+    if (appId === TRASH_APP_ID) return;
+
+    setIcons(prev => {
+      const target = prev.find(icon => icon.id === appId);
+      if (!target) return prev;
+
+      recycleBin.addItem({
+        id: target.id,
+        name: target.name,
+        icon: target.icon,
+        restorePosition: position || { x: target.x, y: target.y },
+      });
+
+      return prev.filter(icon => icon.id !== appId);
+    });
+
+    setSelectedIcons(current => current.filter(id => id !== appId));
   }, []);
+
+  const restoreFromTrash = useCallback((item) => {
+    if (!item?.id) return;
+    const app = appRegistry.get(item.id);
+    if (!app) return;
+
+    setIcons(prev => {
+      if (prev.some(icon => icon.id === app.id)) {
+        return prev;
+      }
+
+      const basePosition = item.restorePosition;
+      const desired = basePosition && Number.isFinite(basePosition.x) && Number.isFinite(basePosition.y)
+        ? basePosition
+        : { x: GRID_PADDING, y: GRID_PADDING };
+      const clamped = clampPosition(desired.x, desired.y);
+
+      return [...prev, { ...app, x: clamped.x, y: clamped.y }];
+    });
+  }, [clampPosition]);
+
+  const handleIconDragMove = useCallback((appId, x, y) => {
+    const clamped = clampPosition(x, y);
+    setDragGhost({ id: appId, x: clamped.x, y: clamped.y });
+  }, [clampPosition]);
+
+  const handleIconDragEnd = useCallback((appId, x, y) => {
+    setDragGhost(null);
+    if (appId === TRASH_APP_ID) {
+      updateIconPosition(appId, x, y);
+      return;
+    }
+
+    if (isDroppedOnTrash(x, y)) {
+      moveToTrash(appId, { x, y });
+      return;
+    }
+
+    updateIconPosition(appId, x, y);
+  }, [isDroppedOnTrash, moveToTrash, updateIconPosition]);
+
+  useEffect(() => {
+    const handleRestore = (event) => {
+      const item = event?.detail?.item;
+      restoreFromTrash(item);
+    };
+
+    window.addEventListener('xp-recycle-bin-restore', handleRestore);
+    return () => window.removeEventListener('xp-recycle-bin-restore', handleRestore);
+  }, [restoreFromTrash]);
 
   const handleDesktopClick = useCallback((e) => {
     if (e.target === e.currentTarget) {
-      setSelectedIcon(null);
+      setSelectedIcons([]);
+      setContextMenu(null);
+      lastSelectedId.current = null;
     }
   }, []);
 
-  const handleIconSelect = useCallback((appId) => {
-    setSelectedIcon(appId);
+  const handleIconSelect = useCallback((appId, event) => {
+    const isCtrl = event?.ctrlKey || event?.metaKey;
+    const isShift = event?.shiftKey;
+
+    setSelectedIcons(prev => {
+      const orderedIds = icons.map(icon => icon.id);
+
+      if (isShift && lastSelectedId.current) {
+        const start = orderedIds.indexOf(lastSelectedId.current);
+        const end = orderedIds.indexOf(appId);
+        if (start === -1 || end === -1) {
+          return [appId];
+        }
+
+        const [minIndex, maxIndex] = start < end ? [start, end] : [end, start];
+        const range = orderedIds.slice(minIndex, maxIndex + 1);
+        const base = isCtrl ? prev : [];
+        return Array.from(new Set([...base, ...range]));
+      }
+
+      if (isCtrl) {
+        if (prev.includes(appId)) {
+          return prev.filter(id => id !== appId);
+        }
+        return [...prev, appId];
+      }
+
+      if (prev.includes(appId)) {
+        return prev;
+      }
+
+      return [appId];
+    });
+
+    lastSelectedId.current = appId;
+  }, [icons]);
+
+  const alignIconsToGrid = useCallback(() => {
+    const iconsPerColumn = getIconsPerColumn();
+    setIcons(prev => prev.map((icon, index) => {
+      const column = Math.floor(index / iconsPerColumn);
+      const row = index % iconsPerColumn;
+      return {
+        ...icon,
+        x: GRID_PADDING + column * GRID_SIZE,
+        y: GRID_PADDING + row * GRID_SIZE,
+      };
+    }));
   }, []);
+
+  const handleContextAction = useCallback((action) => {
+    if (action === 'refresh') {
+      setIcons(prev => [...prev]);
+      setContextMenu(null);
+      return;
+    }
+
+    if (action === 'align') {
+      alignIconsToGrid();
+      setContextMenu(null);
+      return;
+    }
+
+    if (action === 'select-all') {
+      setSelectedIcons(icons.map(icon => icon.id));
+      setContextMenu(null);
+      return;
+    }
+
+    if (action === 'properties') {
+      const controlPanel = appRegistry.get('control-panel');
+      if (controlPanel) {
+        openApp(controlPanel);
+      }
+      setContextMenu(null);
+    }
+  }, [alignIconsToGrid, icons, openApp]);
+
+  const handleDesktopContextMenu = useCallback((e) => {
+    if (e.target !== e.currentTarget) return;
+    e.preventDefault();
+
+    const menuWidth = 190;
+    const menuHeight = 160;
+    const maxX = Math.max(0, window.innerWidth - menuWidth);
+    const maxY = Math.max(0, window.innerHeight - menuHeight);
+    const x = Math.min(e.clientX, maxX);
+    const y = Math.min(e.clientY, maxY);
+
+    setContextMenu({ x, y });
+  }, []);
+
+  const handleDesktopMouseDown = useCallback((e) => {
+    if (e.button !== 0) return;
+    if (!contextMenu) return;
+    setContextMenu(null);
+  }, [contextMenu]);
 
   const handleTaskbarClick = useCallback((id) => {
     const window = windows.find(w => w.id === id);
@@ -450,6 +649,8 @@ const Desktop = () => {
     if (!nextLanguage) return;
     setCurrentLanguage(nextLanguage);
   }, []);
+
+  const dragGhostApp = dragGhost ? icons.find(icon => icon.id === dragGhost.id) : null;
 
   useEffect(() => {
     try {
@@ -509,6 +710,8 @@ const Desktop = () => {
     <div 
       className="xp-desktop w-full h-screen relative overflow-hidden no-select"
       style={{ '--xp-wallpaper-url': `url("${wallpaperUrl}")` }}
+      onContextMenu={handleDesktopContextMenu}
+      onMouseDown={handleDesktopMouseDown}
       onClick={handleDesktopClick}
     >
       {/* Desktop Icons */}
@@ -516,12 +719,75 @@ const Desktop = () => {
           <DesktopIcon
             key={icon.id}
             app={icon}
-            isSelected={selectedIcon === icon.id}
-            onSelect={() => handleIconSelect(icon.id)}
+            isSelected={selectedIcons.includes(icon.id)}
+            onSelect={handleIconSelect}
             onDoubleClick={() => openApp(icon)}
-            onMove={(x, y) => updateIconPosition(icon.id, x, y)}
+            onDragMove={handleIconDragMove}
+            onDragEnd={handleIconDragEnd}
           />
         ))}
+
+        {dragGhost && dragGhostApp && (
+          <div
+            className="absolute flex flex-col items-center p-1 w-[75px] pointer-events-none opacity-50"
+            style={{
+              left: dragGhost.x,
+              top: dragGhost.y,
+            }}
+          >
+            <div className="w-12 h-12 flex items-center justify-center mb-1">
+              <img
+                src={dragGhostApp.icon}
+                alt=""
+                className="w-10 h-10 drop-shadow-[1px_1px_1px_rgba(0,0,0,0.5)]"
+                draggable={false}
+              />
+            </div>
+            <span
+              className="text-[11px] text-center leading-tight break-words w-full px-1 text-white"
+              style={{
+                textShadow: '1px 1px 2px rgba(0,0,0,0.9)',
+              }}
+            >
+              {dragGhostApp.name}
+            </span>
+          </div>
+        )}
+
+        {contextMenu && (
+          <div
+            className="xp-desktop-context-menu"
+            style={{ left: contextMenu.x, top: contextMenu.y }}
+            onMouseDown={(e) => e.stopPropagation()}
+          >
+            <button
+              className="xp-desktop-context-item"
+              onClick={() => handleContextAction('refresh')}
+            >
+              Actualiser
+            </button>
+            <div className="xp-desktop-context-separator"></div>
+            <button
+              className="xp-desktop-context-item"
+              onClick={() => handleContextAction('align')}
+            >
+              Aligner les icones
+            </button>
+            <button
+              className="xp-desktop-context-item"
+              onClick={() => handleContextAction('select-all')}
+            >
+              Tout selectionner
+            </button>
+            <div className="xp-desktop-context-separator"></div>
+            <button
+              className="xp-desktop-context-item"
+              onClick={() => handleContextAction('properties')}
+            >
+              Proprietes
+            </button>
+          </div>
+        )}
 
         {/* Windows */}
         {windows.filter(w => !w.minimized).map(window => (
