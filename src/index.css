@@ -779,6 +779,21 @@ body.busy,
   background: rgba(11, 97, 255, 0.25);
 }
 
+.xp-icon-drop-target {
+  background: rgba(49, 106, 197, 0.25);
+  outline: 1px dotted rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 8px rgba(49, 106, 197, 0.9);
+  border-radius: 4px;
+}
+
+.xp-lasso {
+  position: absolute;
+  border: 1px dotted #ffffff;
+  background: rgba(49, 106, 197, 0.2);
+  pointer-events: none;
+  z-index: 1500;
+}
+
 /* XP Desktop Context Menu */
 .xp-desktop-context-menu {
   position: absolute;

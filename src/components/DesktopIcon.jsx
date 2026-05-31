@@ -1,6 +1,6 @@
 import { useRef, useCallback, useEffect } from 'react';
 
-const DesktopIcon = ({ app, isSelected, onSelect, onDoubleClick, onDragMove, onDragEnd }) => {
+const DesktopIcon = ({ app, isSelected, isDropTarget, onSelect, onDoubleClick, onDragMove, onDragEnd }) => {
   const iconRef = useRef(null);
   const isDragging = useRef(false);
   const hasMoved = useRef(false);
@@ -70,7 +70,7 @@ const DesktopIcon = ({ app, isSelected, onSelect, onDoubleClick, onDragMove, onD
       }}
       className={`absolute flex flex-col items-center p-1 w-[75px] cursor-pointer ${
         isSelected ? 'xp-icon-selected' : 'xp-icon'
-      }`}
+      } ${isDropTarget ? 'xp-icon-drop-target' : ''}`}
       style={{
         left: app.x,
         top: app.y,

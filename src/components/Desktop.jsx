@@ -35,6 +35,12 @@ const Desktop = () => {
   const [selectedIcons, setSelectedIcons] = useState([]);
   const [contextMenu, setContextMenu] = useState(null);
   const lastSelectedId = useRef(null);
+  const [lassoRect, setLassoRect] = useState(null);
+  const lassoActive = useRef(false);
+  const lassoStart = useRef({ x: 0, y: 0 });
+  const lassoBaseSelection = useRef([]);
+  const lassoHasMoved = useRef(false);
+  const lassoJustFinished = useRef(false);
   const [dragGhost, setDragGhost] = useState(null);
   const [wallpaperUrl, setWallpaperUrl] = useState(() => {
     const stored = readStoredPreferences();
@@ -423,10 +429,12 @@ const Desktop = () => {
   }, []);
 
   const updateIconPosition = useCallback((appId, x, y) => {
-    const clamped = clampPosition(x, y);
     setIcons(prev => {
-      return prev.map(icon => 
-        icon.id === appId ? { ...icon, x: clamped.x, y: clamped.y } : icon
+      const clamped = clampPosition(x, y);
+      const freePos = findFreePosition(clamped.x, clamped.y, appId, prev);
+      const finalPos = clampPosition(freePos.x, freePos.y);
+      return prev.map(icon =>
+        icon.id === appId ? { ...icon, x: finalPos.x, y: finalPos.y } : icon
       );
     });
   }, [clampPosition]);
@@ -483,8 +491,10 @@ const Desktop = () => {
         ? basePosition
         : { x: GRID_PADDING, y: GRID_PADDING };
       const clamped = clampPosition(desired.x, desired.y);
+      const freePos = findFreePosition(clamped.x, clamped.y, app.id, prev);
+      const finalPos = clampPosition(freePos.x, freePos.y);
 
-      return [...prev, { ...app, x: clamped.x, y: clamped.y }];
+      return [...prev, { ...app, x: finalPos.x, y: finalPos.y }];
     });
   }, [clampPosition]);
 
@@ -519,6 +529,10 @@ const Desktop = () => {
   }, [restoreFromTrash]);
 
   const handleDesktopClick = useCallback((e) => {
+    if (lassoJustFinished.current) {
+      lassoJustFinished.current = false;
+      return;
+    }
     if (e.target === e.currentTarget) {
       setSelectedIcons([]);
       setContextMenu(null);
@@ -620,9 +634,80 @@ const Desktop = () => {
 
   const handleDesktopMouseDown = useCallback((e) => {
     if (e.button !== 0) return;
-    if (!contextMenu) return;
-    setContextMenu(null);
-  }, [contextMenu]);
+    if (e.target !== e.currentTarget) return;
+
+    if (contextMenu) {
+      setContextMenu(null);
+    }
+
+    lassoActive.current = true;
+    lassoHasMoved.current = false;
+    lassoJustFinished.current = false;
+    lassoStart.current = { x: e.clientX, y: e.clientY };
+
+    const isCtrl = e.ctrlKey || e.metaKey;
+    lassoBaseSelection.current = isCtrl ? selectedIcons : [];
+    setSelectedIcons(lassoBaseSelection.current);
+
+    setLassoRect({ left: e.clientX, top: e.clientY, width: 0, height: 0 });
+  }, [contextMenu, selectedIcons]);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (!lassoActive.current) return;
+
+      const start = lassoStart.current;
+      const left = Math.min(start.x, e.clientX);
+      const top = Math.min(start.y, e.clientY);
+      const width = Math.abs(e.clientX - start.x);
+      const height = Math.abs(e.clientY - start.y);
+
+      if (width > 2 || height > 2) {
+        lassoHasMoved.current = true;
+      }
+
+      const rect = { left, top, width, height };
+      setLassoRect(rect);
+
+      const selected = icons
+        .filter(icon => {
+          const iconRect = {
+            left: icon.x,
+            top: icon.y,
+            right: icon.x + ICON_WIDTH,
+            bottom: icon.y + ICON_HEIGHT,
+          };
+          const rectRight = left + width;
+          const rectBottom = top + height;
+          return rectRight > iconRect.left && left < iconRect.right && rectBottom > iconRect.top && top < iconRect.bottom;
+        })
+        .map(icon => icon.id);
+
+      const merged = Array.from(new Set([...lassoBaseSelection.current, ...selected]));
+      setSelectedIcons(merged);
+    };
+
+    const handleMouseUp = () => {
+      if (!lassoActive.current) return;
+      lassoActive.current = false;
+      setLassoRect(null);
+
+      if (!lassoHasMoved.current) {
+        setSelectedIcons([]);
+        lastSelectedId.current = null;
+      }
+
+      lassoJustFinished.current = true;
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseup', handleMouseUp);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [icons]);
 
   const handleTaskbarClick = useCallback((id) => {
     const window = windows.find(w => w.id === id);
@@ -651,6 +736,9 @@ const Desktop = () => {
   }, []);
 
   const dragGhostApp = dragGhost ? icons.find(icon => icon.id === dragGhost.id) : null;
+  const isTrashHovered = dragGhost && dragGhost.id !== TRASH_APP_ID
+    ? isDroppedOnTrash(dragGhost.x, dragGhost.y)
+    : false;
 
   useEffect(() => {
     try {
@@ -720,12 +808,25 @@ const Desktop = () => {
             key={icon.id}
             app={icon}
             isSelected={selectedIcons.includes(icon.id)}
+            isDropTarget={icon.id === TRASH_APP_ID && isTrashHovered}
             onSelect={handleIconSelect}
             onDoubleClick={() => openApp(icon)}
             onDragMove={handleIconDragMove}
             onDragEnd={handleIconDragEnd}
           />
         ))}
+
+        {lassoRect && (
+          <div
+            className="xp-lasso"
+            style={{
+              left: lassoRect.left,
+              top: lassoRect.top,
+              width: lassoRect.width,
+              height: lassoRect.height,
+            }}
+          ></div>
+        )}
 
         {dragGhost && dragGhostApp && (
           <div
