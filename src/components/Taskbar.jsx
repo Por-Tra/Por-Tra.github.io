@@ -55,7 +55,7 @@ const Taskbar = ({
   };
 
   return (
-    <div className="xp-taskbar absolute bottom-0 left-0 right-0 h-[30px] flex items-center">
+    <div className="xp-taskbar absolute bottom-0 left-0 right-0 h-[35px] flex items-center">
       {/* Start Menu */}
       <StartMenu 
         isOpen={startMenuOpen}
@@ -69,9 +69,9 @@ const Taskbar = ({
       {/* Start Button */}
       <button 
         onClick={() => setStartMenuOpen(!startMenuOpen)}
-        className={`xp-start-btn h-[28px] flex items-center gap-1 ${startMenuOpen ? 'xp-start-btn-active' : ''}`}
+        className={`xp-start-btn h-full flex items-center gap-1 overflow-hidden ${startMenuOpen ? 'xp-start-btn-active' : ''}`}
       >
-        <img src="/icons/WINXP_ICO_COLOR.webp" alt="Start" className="w-5 h-5" />
+        <img src="/icons/win_logo_task_bar.webp" alt="Start" className="w-5 h-5" />
         <span className="text-sm">démarrer</span>
       </button>
 

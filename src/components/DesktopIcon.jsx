@@ -1,23 +1,26 @@
 import { useRef, useCallback, useEffect } from 'react';
 
-const DesktopIcon = ({ app, isSelected, onSelect, onDoubleClick, onMove }) => {
+const DesktopIcon = ({ app, isSelected, isDropTarget, onSelect, onDoubleClick, onDragMove, onDragEnd }) => {
   const iconRef = useRef(null);
   const isDragging = useRef(false);
   const hasMoved = useRef(false);
   const dragOffset = useRef({ x: 0, y: 0 });
+  const lastPosition = useRef({ x: app.x, y: app.y });
 
   const handleMouseDown = useCallback((e) => {
+    if (e.button !== 0) return;
     e.preventDefault();
     e.stopPropagation();
-    onSelect();
+    onSelect(app.id, e);
     
     isDragging.current = true;
     hasMoved.current = false;
+    lastPosition.current = { x: app.x, y: app.y };
     dragOffset.current = {
       x: e.clientX - app.x,
       y: e.clientY - app.y,
     };
-  }, [app.x, app.y, onSelect]);
+  }, [app.id, app.x, app.y, onSelect]);
 
   const handleDoubleClick = useCallback((e) => {
     e.preventDefault();
@@ -31,12 +34,20 @@ const DesktopIcon = ({ app, isSelected, onSelect, onDoubleClick, onMove }) => {
         hasMoved.current = true;
         const newX = Math.max(0, e.clientX - dragOffset.current.x);
         const newY = Math.max(0, Math.min(window.innerHeight - 120, e.clientY - dragOffset.current.y));
-        onMove(newX, newY);
+        lastPosition.current = { x: newX, y: newY };
+        if (typeof onDragMove === 'function') {
+          onDragMove(app.id, newX, newY);
+        }
       }
     };
 
-    const handleMouseUp = () => {
+    const handleMouseUp = (e) => {
+      if (!isDragging.current) return;
       isDragging.current = false;
+
+      if (hasMoved.current && typeof onDragEnd === 'function') {
+        onDragEnd(app.id, lastPosition.current.x, lastPosition.current.y);
+      }
     };
 
     document.addEventListener('mousemove', handleMouseMove);
@@ -46,16 +57,20 @@ const DesktopIcon = ({ app, isSelected, onSelect, onDoubleClick, onMove }) => {
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
     };
-  }, [onMove]);
+  }, [app.id, onDragEnd, onDragMove]);
 
   return (
     <div
       ref={iconRef}
       onMouseDown={handleMouseDown}
       onDoubleClick={handleDoubleClick}
+      onContextMenu={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      }}
       className={`absolute flex flex-col items-center p-1 w-[75px] cursor-pointer ${
         isSelected ? 'xp-icon-selected' : 'xp-icon'
-      }`}
+      } ${isDropTarget ? 'xp-icon-drop-target' : ''}`}
       style={{
         left: app.x,
         top: app.y,
