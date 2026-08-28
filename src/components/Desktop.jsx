@@ -5,6 +5,7 @@ import Taskbar from './Taskbar';
 // Import du registry et initialisation des apps
 import appRegistry from '../apps';
 import recycleBin from '../core/recycleBin';
+import { t, getAppLabel } from '../i18n/text';
 
 const STORAGE_KEY = 'xp-desktop-preferences-v1';
 const WELCOME_SESSION_KEY = 'xp-welcome-opened-session-v1';
@@ -15,6 +16,13 @@ const ICON_WIDTH = 70;
 const ICON_HEIGHT = 80;
 const GRID_PADDING = 10;
 const TRASH_APP_ID = 'trash';
+
+const DESKTOP_MENU_LABELS = {
+  refresh: { FR: 'Actualiser', EN: 'Refresh', ES: 'Actualizar' },
+  align: { FR: 'Aligner les icones', EN: 'Align icons', ES: 'Alinear iconos' },
+  selectAll: { FR: 'Tout selectionner', EN: 'Select all', ES: 'Seleccionar todo' },
+  properties: { FR: 'Proprietes', EN: 'Properties', ES: 'Propiedades' },
+};
 
 const readStoredPreferences = () => {
   try {
@@ -234,6 +242,7 @@ const Desktop = () => {
       id: nextId,
       appId: app.id,
       title: app.name,
+      titleKey: app.id,
       icon: app.icon,
       url: app.url,
       content: app.content,
@@ -278,6 +287,7 @@ const Desktop = () => {
       id: 1,
       appId: welcomeApp.id,
       title: welcomeApp.name,
+      titleKey: welcomeApp.id,
       icon: welcomeApp.icon,
       url: welcomeApp.url,
       content: welcomeApp.content,
@@ -336,6 +346,7 @@ const Desktop = () => {
       id: nextId,
       appId: app.id,
       title: customTitle,
+      titleKey: extraProps.windowTitle ? null : app.id,
       icon: app.icon,
       url: app.url,
       openExternal: app.openExternal,
@@ -807,6 +818,7 @@ const Desktop = () => {
           <DesktopIcon
             key={icon.id}
             app={icon}
+            currentLanguage={currentLanguage}
             isSelected={selectedIcons.includes(icon.id)}
             isDropTarget={icon.id === TRASH_APP_ID && isTrashHovered}
             onSelect={handleIconSelect}
@@ -850,7 +862,7 @@ const Desktop = () => {
                 textShadow: '1px 1px 2px rgba(0,0,0,0.9)',
               }}
             >
-              {dragGhostApp.name}
+              {getAppLabel(dragGhostApp.id, dragGhostApp.name, currentLanguage)}
             </span>
           </div>
         )}
@@ -865,27 +877,27 @@ const Desktop = () => {
               className="xp-desktop-context-item"
               onClick={() => handleContextAction('refresh')}
             >
-              Actualiser
+              {t(DESKTOP_MENU_LABELS.refresh, currentLanguage)}
             </button>
             <div className="xp-desktop-context-separator"></div>
             <button
               className="xp-desktop-context-item"
               onClick={() => handleContextAction('align')}
             >
-              Aligner les icones
+              {t(DESKTOP_MENU_LABELS.align, currentLanguage)}
             </button>
             <button
               className="xp-desktop-context-item"
               onClick={() => handleContextAction('select-all')}
             >
-              Tout selectionner
+              {t(DESKTOP_MENU_LABELS.selectAll, currentLanguage)}
             </button>
             <div className="xp-desktop-context-separator"></div>
             <button
               className="xp-desktop-context-item"
               onClick={() => handleContextAction('properties')}
             >
-              Proprietes
+              {t(DESKTOP_MENU_LABELS.properties, currentLanguage)}
             </button>
           </div>
         )}

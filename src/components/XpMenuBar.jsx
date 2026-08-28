@@ -1,72 +1,141 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { t } from '../i18n/text';
+
+const MENU_KEY_ALIASES = {
+  Fichier: 'file',
+  'Édition': 'edit',
+  Edition: 'edit',
+  Affichage: 'view',
+  Favoris: 'favorites',
+  Outils: 'tools',
+  Aide: 'help',
+};
+
+const MENU_LABELS = {
+  file: { FR: 'Fichier', EN: 'File', ES: 'Archivo' },
+  edit: { FR: 'Édition', EN: 'Edit', ES: 'Edicion' },
+  view: { FR: 'Affichage', EN: 'View', ES: 'Ver'},
+  favorites: { FR: 'Favoris', EN: 'Favorites', ES: 'Favoritos' },
+  tools: { FR: 'Outils', EN: 'Tools', ES: 'Herramientas' },
+  help: { FR: 'Aide', EN: 'Help', ES: 'Ayuda' },
+};
 
 const MENU_PRESETS = {
-  basic: ['Fichier', 'Édition', 'Affichage', 'Aide'],
-  explorer: ['Fichier', 'Édition', 'Affichage', 'Favoris', 'Outils', 'Aide'],
+  basic: ['file', 'edit', 'view', 'help'],
+  explorer: ['file', 'edit', 'view', 'favorites', 'tools', 'help'],
 };
 
 const DEFAULT_MENUS = {
-  Fichier: [
-    { label: 'Nouveau', action: 'file.new' },
-    { label: 'Ouvrir', action: 'file.open' },
-    { label: 'Imprimer', action: 'file.print' },
+  file: [
+    { label: { FR: 'Nouveau', EN: 'New', ES: 'Nuevo' }, action: 'file.new' },
+    { label: { FR: 'Ouvrir', EN: 'Open', ES: 'Abrir' }, action: 'file.open' },
+    { label: { FR: 'Imprimer', EN: 'Print', ES: 'Imprimir' }, action: 'file.print' },
     { divider: true },
-    { label: 'Fermer', action: 'file.close' },
-    { label: 'Quitter', action: 'file.quit' },
+    { label: { FR: 'Fermer', EN: 'Close', ES: 'Cerrar' }, action: 'file.close' },
+    { label: { FR: 'Quitter', EN: 'Quit', ES: 'Salir' }, action: 'file.quit' },
   ],
-  'Édition': [
-    { label: 'Annuler', action: 'edit.undo' },
+  edit: [
+    { label: { FR: 'Annuler', EN: 'Undo', ES: 'Deshacer' }, action: 'edit.undo' },
     { divider: true },
-    { label: 'Couper', action: 'edit.cut' },
-    { label: 'Copier', action: 'edit.copy' },
-    { label: 'Coller', action: 'edit.paste' },
+    { label: { FR: 'Couper', EN: 'Cut', ES: 'Cortar' }, action: 'edit.cut' },
+    { label: { FR: 'Copier', EN: 'Copy', ES: 'Copiar' }, action: 'edit.copy' },
+    { label: { FR: 'Coller', EN: 'Paste', ES: 'Pegar' }, action: 'edit.paste' },
     { divider: true },
-    { label: 'Sélectionner tout', action: 'edit.selectAll' },
-    { label: 'Rechercher', action: 'edit.search' },
-    { label: 'Préférences', action: 'edit.preferences' },
+    { label: { FR: 'Sélectionner tout', EN: 'Select all', ES: 'Seleccionar todo' }, action: 'edit.selectAll' },
+    { label: { FR: 'Rechercher', EN: 'Search', ES: 'Buscar' }, action: 'edit.search' },
+    { label: { FR: 'Préférences', EN: 'Preferences', ES: 'Preferencias' }, action: 'edit.preferences' },
   ],
-  Edition: [
-    { label: 'Annuler', action: 'edit.undo' },
+  view: [
+    { label: { FR: 'Actualiser', EN: 'Refresh', ES: 'Actualizar' }, action: 'view.refresh' },
     { divider: true },
-    { label: 'Couper', action: 'edit.cut' },
-    { label: 'Copier', action: 'edit.copy' },
-    { label: 'Coller', action: 'edit.paste' },
+    { label: { FR: 'Mode icônes', EN: 'Icons view', ES: 'Vista de iconos' }, action: 'view.mode.icons' },
+    { label: { FR: 'Mode liste', EN: 'List view', ES: 'Vista de lista' }, action: 'view.mode.list' },
+    { label: { FR: 'Mode détails', EN: 'Details view', ES: 'Vista de detalles' }, action: 'view.mode.details' },
     { divider: true },
-    { label: 'Sélectionner tout', action: 'edit.selectAll' },
-    { label: 'Rechercher', action: 'edit.search' },
-    { label: 'Préférences', action: 'edit.preferences' },
-  ],
-  Affichage: [
-    { label: 'Actualiser', action: 'view.refresh' },
+    { label: { FR: 'Plein écran', EN: 'Full screen', ES: 'Pantalla completa' }, action: 'view.fullscreen' },
+    { label: { FR: "Barre d'outils", EN: 'Toolbar', ES: 'Barra de herramientas' }, action: 'view.toolbar' },
+    { label: { FR: 'Thèmes', EN: 'Themes', ES: 'Temas' }, action: 'view.themes' },
     { divider: true },
-    { label: 'Mode icônes', action: 'view.mode.icons' },
-    { label: 'Mode liste', action: 'view.mode.list' },
-    { label: 'Mode détails', action: 'view.mode.details' },
-    { divider: true },
-    { label: 'Plein écran', action: 'view.fullscreen' },
-    { label: "Barre d'outils", action: 'view.toolbar' },
-    { label: 'Thèmes', action: 'view.themes' },
-    { divider: true },
-    { label: 'Trier par nom', action: 'view.sort.name' },
-    { label: 'Trier par date', action: 'view.sort.date' },
-    { label: 'Trier par compétence', action: 'view.sort.skill' },
+    { label: { FR: 'Trier par nom', EN: 'Sort by name', ES: 'Ordenar por nombre' }, action: 'view.sort.name' },
+    { label: { FR: 'Trier par date', EN: 'Sort by date', ES: 'Ordenar por fecha' }, action: 'view.sort.date' },
+    { label: { FR: 'Trier par compétence', EN: 'Sort by skill', ES: 'Ordenar por habilidad' }, action: 'view.sort.skill' },
   ],
-  Favoris: [
-    { label: 'Ajouter aux favoris', action: 'favorites.add' },
-    { label: 'Organiser les favoris', action: 'favorites.organize' },
+  favorites: [
+    { label: { FR: 'Ajouter aux favoris', EN: 'Add to favorites', ES: 'Anadir a favoritos' }, action: 'favorites.add' },
+    { label: { FR: 'Organiser les favoris', EN: 'Organize favorites', ES: 'Organizar favoritos' }, action: 'favorites.organize' },
   ],
-  Outils: [
-    { label: 'Options des dossiers', action: 'tools.folderOptions' },
-    { label: 'Synchroniser', action: 'tools.sync' },
+  tools: [
+    { label: { FR: 'Options des dossiers', EN: 'Folder options', ES: 'Opciones de carpeta' }, action: 'tools.folderOptions' },
+    { label: { FR: 'Synchroniser', EN: 'Sync', ES: 'Sincronizar' }, action: 'tools.sync' },
   ],
-  Aide: [
-    { label: 'Aide', action: 'help.tutorial' },
-    { label: 'À propos', action: 'help.about' },
-    { label: 'Contact', action: 'help.contact' },
-    { label: 'Crédits', action: 'help.credits' },
-    { label: 'Mettre à jour', action: 'help.update' },
-    { label: 'Mode debug', action: 'help.debug' },
+  help: [
+    { label: { FR: 'Aide', EN: 'Help', ES: 'Ayuda' }, action: 'help.tutorial' },
+    { label: { FR: 'À propos', EN: 'About', ES: 'Acerca de' }, action: 'help.about' },
+    { label: { FR: 'Contact', EN: 'Contact', ES: 'Contacto' }, action: 'help.contact' },
+    { label: { FR: 'Crédits', EN: 'Credits', ES: 'Creditos' }, action: 'help.credits' },
+    { label: { FR: 'Mettre à jour', EN: 'Update', ES: 'Actualizar' }, action: 'help.update' },
+    { label: { FR: 'Mode debug', EN: 'Debug mode', ES: 'Modo debug' }, action: 'help.debug' },
   ],
+};
+
+const COPY = {
+  fileNew: {
+    FR: 'Nouveau dossier / projet fictif.',
+    EN: 'New folder / demo project.',
+    ES: 'Nueva carpeta / proyecto de demo.',
+  },
+  fileOpen: {
+    FR: 'Ouvrir un projet selectionne.',
+    EN: 'Open a selected project.',
+    ES: 'Abrir un proyecto seleccionado.',
+  },
+  copyLinkOk: {
+    FR: 'Lien copie dans le presse-papiers.',
+    EN: 'Link copied to clipboard.',
+    ES: 'Enlace copiado al portapapeles.',
+  },
+  copyLinkFail: {
+    FR: 'Impossible de copier le lien.',
+    EN: 'Unable to copy the link.',
+    ES: 'No se pudo copiar el enlace.',
+  },
+  helpTitle: { FR: 'Aide', EN: 'Help', ES: 'Ayuda', DE: 'Hilfe' },
+  helpBody: {
+    FR: 'Clique sur les icones pour ouvrir les applications. Utilise la barre de menu pour les actions rapides.',
+    EN: 'Click icons to open apps. Use the menu bar for quick actions.',
+    ES: 'Haz clic en los iconos para abrir apps. Usa la barra de menu para acciones rapidas.',
+  },
+  aboutTitle: { FR: 'A propos', EN: 'About', ES: 'Acerca de', DE: 'Info' },
+  aboutBody: {
+    FR: 'Portfolio Windows XP Edition. Menu Aide pour les fonctions rapides.',
+    EN: 'Windows XP portfolio edition. Help menu for quick actions.',
+    ES: 'Edicion portfolio Windows XP. Menu de ayuda para acciones rapidas.',
+  },
+  contactTitle: { FR: 'Contact', EN: 'Contact', ES: 'Contacto', DE: 'Kontakt' },
+  contactBody: {
+    FR: 'Ouvre le formulaire de contact via le menu Demarrer ou l application Contact.',
+    EN: 'Open the contact form from the Start menu or the Contact app.',
+    ES: 'Abre el formulario desde el menu Inicio o la app Contacto.',
+  },
+  creditsTitle: { FR: 'Credits', EN: 'Credits', ES: 'Creditos', DE: 'Credits' },
+  creditsBody: {
+    FR: 'Inspirations: Windows XP. Tools: Vite, React, GitHub Pages.',
+    EN: 'Inspiration: Windows XP. Tools: Vite, React, GitHub Pages.',
+    ES: 'Inspiracion: Windows XP. Tools: Vite, React, GitHub Pages.',
+  },
+  updateTitle: { FR: 'Mettre a jour', EN: 'Update', ES: 'Actualizar', DE: 'Aktualisieren' },
+  updateBody: {
+    FR: 'Aucune mise a jour critique. Changelog: plus de pixels, moins de bugs.',
+    EN: 'No critical updates. Changelog: more pixels, fewer bugs.',
+    ES: 'Sin actualizaciones criticas. Cambios: mas pixeles, menos bugs.',
+  },
+  debugTitle: { FR: 'Mode debug', EN: 'Debug mode', ES: 'Modo debug', DE: 'Debug-Modus' },
+  debugBody: {
+    FR: 'Mode debug active.',
+    EN: 'Debug mode enabled.',
+    ES: 'Modo debug activado.',
+  },
+  ok: { FR: 'OK', EN: 'OK', ES: 'OK', DE: 'OK' },
 };
 
 const resolveItems = ({ preset, items }) => {
@@ -87,6 +156,7 @@ const XpMenuBar = ({
   itemsWrapperClassName = '',
   useWrapper = false,
   rightSlot = null,
+  currentLanguage = 'FR',
 }) => {
   const [openMenu, setOpenMenu] = useState(null);
   const [modal, setModal] = useState(null);
@@ -130,8 +200,8 @@ const XpMenuBar = ({
   };
 
   const defaultHandlers = {
-    'file.new': () => window.alert('Nouveau dossier / projet fictif.'),
-    'file.open': () => window.alert('Ouvrir un projet selectionne.'),
+    'file.new': () => window.alert(t(COPY.fileNew, currentLanguage)),
+    'file.open': () => window.alert(t(COPY.fileOpen, currentLanguage)),
     'file.print': () => window.print(),
     'file.close': () => dispatchMenuEvent('file.close'),
     'file.quit': () => dispatchMenuEvent('file.quit'),
@@ -140,9 +210,9 @@ const XpMenuBar = ({
     'edit.copy': async () => {
       try {
         await navigator.clipboard.writeText(window.location.href);
-        window.alert('Lien copie dans le presse-papiers.');
+        window.alert(t(COPY.copyLinkOk, currentLanguage));
       } catch (error) {
-        window.alert('Impossible de copier le lien.');
+        window.alert(t(COPY.copyLinkFail, currentLanguage));
       }
     },
     'edit.paste': () => dispatchMenuEvent('edit.paste'),
@@ -164,28 +234,28 @@ const XpMenuBar = ({
     'tools.folderOptions': () => dispatchMenuEvent('tools.folderOptions'),
     'tools.sync': () => dispatchMenuEvent('tools.sync'),
     'help.tutorial': () => openModal(
-      'Aide',
-      'Clique sur les icones pour ouvrir les applications. Utilise la barre de menu pour les actions rapides.'
+      t(COPY.helpTitle, currentLanguage),
+      t(COPY.helpBody, currentLanguage)
     ),
     'help.about': () => openModal(
-      'A propos',
-      'Portfolio Windows XP Edition. Menu Aide pour les fonctions rapides.'
+      t(COPY.aboutTitle, currentLanguage),
+      t(COPY.aboutBody, currentLanguage)
     ),
     'help.contact': () => openModal(
-      'Contact',
-      'Ouvre le formulaire de contact via le menu Demarrer ou l application Contact.'
+      t(COPY.contactTitle, currentLanguage),
+      t(COPY.contactBody, currentLanguage)
     ),
     'help.credits': () => openModal(
-      'Credits',
-      'Inspirations: Windows XP. Tools: Vite, React, GitHub Pages.'
+      t(COPY.creditsTitle, currentLanguage),
+      t(COPY.creditsBody, currentLanguage)
     ),
     'help.update': () => openModal(
-      'Mettre a jour',
-      'Aucune mise a jour critique. Changelog: plus de pixels, moins de bugs.'
+      t(COPY.updateTitle, currentLanguage),
+      t(COPY.updateBody, currentLanguage)
     ),
     'help.debug': () => openModal(
-      'Mode debug',
-      'Mode debug active.'
+      t(COPY.debugTitle, currentLanguage),
+      t(COPY.debugBody, currentLanguage)
     ),
   };
 
@@ -208,12 +278,14 @@ const XpMenuBar = ({
   };
 
   const itemNodes = resolvedItems.map((label) => {
-    const menuItems = menuDefinitions[label];
+    const menuKey = MENU_KEY_ALIASES[label] ?? label;
+    const menuItems = menuDefinitions[menuKey] || menuDefinitions[label];
     const hasMenu = Array.isArray(menuItems) && menuItems.length > 0;
-    const isOpen = openMenu === label;
+    const isOpen = openMenu === menuKey;
+    const displayLabel = t(MENU_LABELS[menuKey] ?? label, currentLanguage);
 
     return (
-      <div key={label} className="xp-menu">
+      <div key={menuKey} className="xp-menu">
         <button
           type="button"
           className={`xp-menu-button ${itemClassName || ''}`.trim()}
@@ -221,25 +293,25 @@ const XpMenuBar = ({
             if (!hasMenu) {
               return;
             }
-            setOpenMenu(isOpen ? null : label);
+            setOpenMenu(isOpen ? null : menuKey);
           }}
         >
-          {label}
+          {displayLabel}
         </button>
         {hasMenu && isOpen && (
           <div className="xp-menu-dropdown">
             {menuItems.map((item, index) => {
               if (item.divider) {
-                return <div key={`divider-${label}-${index}`} className="xp-menu-separator" />;
+                return <div key={`divider-${menuKey}-${index}`} className="xp-menu-separator" />;
               }
               return (
                 <button
-                  key={`${label}-${item.label}`}
+                  key={`${menuKey}-${index}-${item.action || item.label}`}
                   type="button"
                   className="xp-menu-item"
                   onClick={() => handleAction(item.action, item)}
                 >
-                  <span>{item.label}</span>
+                  <span>{t(item.label, currentLanguage)}</span>
                   {item.shortcut && <span className="xp-menu-shortcut">{item.shortcut}</span>}
                 </button>
               );
@@ -273,7 +345,7 @@ const XpMenuBar = ({
             </div>
             <div className="xp-menu-modal-footer">
               <button type="button" className="xp-button" onClick={() => setModal(null)}>
-                OK
+                {t(COPY.ok, currentLanguage)}
               </button>
             </div>
           </div>

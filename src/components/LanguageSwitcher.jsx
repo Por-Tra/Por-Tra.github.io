@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
 
+// Liste des langues dispo
 const languages = [
   { code: 'FR', name: 'Français' },
   { code: 'EN', name: 'English' },
   { code: 'ES', name: 'Español' },
-  { code: 'DE', name: 'Deutsch' },
 ];
 
 const LanguageSwitcher = ({ currentLang, onChangeLang }) => {

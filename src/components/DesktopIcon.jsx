@@ -1,11 +1,22 @@
 import { useRef, useCallback, useEffect } from 'react';
+import { getAppLabel } from '../i18n/text';
 
-const DesktopIcon = ({ app, isSelected, isDropTarget, onSelect, onDoubleClick, onDragMove, onDragEnd }) => {
+const DesktopIcon = ({
+  app,
+  currentLanguage = 'FR',
+  isSelected,
+  isDropTarget,
+  onSelect,
+  onDoubleClick,
+  onDragMove,
+  onDragEnd,
+}) => {
   const iconRef = useRef(null);
   const isDragging = useRef(false);
   const hasMoved = useRef(false);
   const dragOffset = useRef({ x: 0, y: 0 });
   const lastPosition = useRef({ x: app.x, y: app.y });
+  const label = getAppLabel(app.id, app.name, currentLanguage);
 
   const handleMouseDown = useCallback((e) => {
     if (e.button !== 0) return;
@@ -79,7 +90,7 @@ const DesktopIcon = ({ app, isSelected, isDropTarget, onSelect, onDoubleClick, o
       <div className="w-12 h-12 flex items-center justify-center mb-1">
         <img 
           src={app.icon} 
-          alt={app.name}
+          alt={label}
           className="w-10 h-10 drop-shadow-[1px_1px_1px_rgba(0,0,0,0.5)]"
           draggable={false}
         />
@@ -94,7 +105,7 @@ const DesktopIcon = ({ app, isSelected, isDropTarget, onSelect, onDoubleClick, o
           textShadow: isSelected ? 'none' : '1px 1px 2px rgba(0,0,0,0.9)',
         }}
       >
-        {app.name}
+        {label}
       </span>
     </div>
   );

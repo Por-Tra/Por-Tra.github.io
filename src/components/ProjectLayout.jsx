@@ -4,10 +4,38 @@
  */
 import { useState } from 'react';
 import XpMenuBar from './XpMenuBar';
+import { t } from '../i18n/text';
 
 // Hook et constantes pour le zoom
 const ZOOM_LEVELS = [50, 75, 100, 125, 150, 175, 200, 225, 250, 275, 300, 350, 400];
 const DEFAULT_ZOOM = 150;
+
+const COPY = {
+  address: { FR: 'Adresse', EN: 'Address', ES: 'Direccion' },
+  ok: { FR: 'OK', EN: 'OK', ES: 'OK' },
+  zoomOut: { FR: 'Zoom arrière', EN: 'Zoom out', ES: 'Alejar' },
+  zoomLevel: { FR: 'Niveau de zoom', EN: 'Zoom level', ES: 'Nivel de zoom' },
+  zoomIn: { FR: 'Zoom avant', EN: 'Zoom in', ES: 'Acercar' },
+  zoomReset: { FR: 'Réinitialiser le zoom', EN: 'Reset zoom', ES: 'Restablecer zoom' },
+  project: { FR: 'Projet', EN: 'Project', ES: 'Proyecto' },
+  features: { FR: 'fonctionnalités', EN: 'features', ES: 'funcionalidades' },
+  projectManagement: { FR: 'Gestion du projet', EN: 'Project management', ES: 'Gestion del proyecto' },
+  details: { FR: 'Details', EN: 'Details', ES: 'Detalles' },
+  technologies: { FR: 'Technologies', EN: 'Technologies', ES: 'Tecnologias' },
+  download: { FR: 'Télécharger (.zip)', EN: 'Download (.zip)', ES: 'Descargar (.zip)' },
+  viewGithub: { FR: 'Voir sur GitHub', EN: 'View on GitHub', ES: 'Ver en GitHub' },
+  date: { FR: 'Date', EN: 'Date', ES: 'Fecha' },
+  team: { FR: 'Équipe', EN: 'Team', ES: 'Equipo' },
+  role: { FR: 'Rôle', EN: 'Role', ES: 'Rol' },
+  description: { FR: 'Description', EN: 'Description', ES: 'Descripcion' },
+  steps: { FR: 'Étapes', EN: 'Steps', ES: 'Pasos' },
+  myRole: { FR: 'Mon rôle', EN: 'My role', ES: 'Mi rol' },
+  featuresBox: { FR: 'Fonctionnalités', EN: 'Features', ES: 'Funciones' },
+  skillsBox: { FR: 'Compétences développées', EN: 'Skills developed', ES: 'Habilidades desarrolladas' },
+  screenshots: { FR: 'Captures d\'écran', EN: 'Screenshots', ES: 'Capturas de pantalla' },
+  clickToZoom: { FR: 'Cliquez pour agrandir', EN: 'Click to enlarge', ES: 'Haz clic para ampliar' },
+  preview: { FR: 'Aperçu', EN: 'Preview', ES: 'Vista previa' },
+};
 
 /**
  * Hook pour gérer le zoom
@@ -53,21 +81,21 @@ export const getZoomStyle = (zoom) => ({
 /**
  * Contrôles de zoom
  */
-export const ZoomControls = ({ zoom, onZoomIn, onZoomOut, onReset }) => (
+export const ZoomControls = ({ zoom, onZoomIn, onZoomOut, onReset, currentLanguage = 'FR' }) => (
   <div className="xp-zoom-controls">
     <button 
       onClick={onZoomOut}
       className="xp-zoom-btn"
-      title="Zoom arrière"
+      title={t(COPY.zoomOut, currentLanguage)}
       disabled={zoom <= ZOOM_LEVELS[0]}
     >
       −
     </button>
-    <span className="xp-zoom-level" title="Niveau de zoom">{zoom}%</span>
+    <span className="xp-zoom-level" title={t(COPY.zoomLevel, currentLanguage)}>{zoom}%</span>
     <button 
       onClick={onZoomIn}
       className="xp-zoom-btn"
-      title="Zoom avant"
+      title={t(COPY.zoomIn, currentLanguage)}
       disabled={zoom >= ZOOM_LEVELS[ZOOM_LEVELS.length - 1]}
     >
       +
@@ -75,7 +103,7 @@ export const ZoomControls = ({ zoom, onZoomIn, onZoomOut, onReset }) => (
     <button 
       onClick={onReset}
       className="xp-zoom-btn xp-zoom-reset"
-      title="Réinitialiser le zoom"
+      title={t(COPY.zoomReset, currentLanguage)}
     >
       ⟲
     </button>
@@ -85,13 +113,14 @@ export const ZoomControls = ({ zoom, onZoomIn, onZoomOut, onReset }) => (
 /**
  * Menu Bar - Barre de menu standard avec zoom intégré
  */
-export const MenuBar = ({ zoom, onZoomIn, onZoomOut, onReset, showZoom = true }) => (
+export const MenuBar = ({ zoom, onZoomIn, onZoomOut, onReset, showZoom = true, currentLanguage = 'FR' }) => (
   <XpMenuBar
     preset="basic"
     className="xp-menubar xp-menubar-with-zoom"
     itemClassName="xp-menubar-item"
     itemsWrapperClassName="xp-menubar-items"
     useWrapper
+    currentLanguage={currentLanguage}
     rightSlot={
       showZoom && zoom ? (
         <ZoomControls
@@ -99,6 +128,7 @@ export const MenuBar = ({ zoom, onZoomIn, onZoomOut, onReset, showZoom = true })
           onZoomIn={onZoomIn}
           onZoomOut={onZoomOut}
           onReset={onReset}
+          currentLanguage={currentLanguage}
         />
       ) : null
     }
@@ -110,14 +140,14 @@ export const MenuBar = ({ zoom, onZoomIn, onZoomOut, onReset, showZoom = true })
  * @param {string} path - Chemin à afficher
  * @param {string} icon - Icône à afficher (optionnel)
  */
-export const AddressBar = ({ path, icon = '/icons/folder.webp' }) => (
+export const AddressBar = ({ path, icon = '/icons/folder.webp', currentLanguage = 'FR' }) => (
   <div className="xp-addressbar">
-    <span className="xp-addressbar-label">Adresse</span>
+    <span className="xp-addressbar-label">{t(COPY.address, currentLanguage)}</span>
     <div className="xp-addressbar-input">
       <img src={icon} alt="" className="w-4 h-4" />
       <span>{path}</span>
     </div>
-    <button className="xp-addressbar-go">OK</button>
+    <button className="xp-addressbar-go">{t(COPY.ok, currentLanguage)}</button>
   </div>
 );
 
@@ -126,10 +156,10 @@ export const AddressBar = ({ path, icon = '/icons/folder.webp' }) => (
  * @param {string} projectTitle - Titre du projet
  * @param {number} featuresCount - Nombre de fonctionnalités
  */
-export const StatusBar = ({ projectTitle, featuresCount }) => (
+export const StatusBar = ({ projectTitle, featuresCount, currentLanguage = 'FR' }) => (
   <div className="xp-statusbar">
-    <span>Projet: {projectTitle}</span>
-    <span>{featuresCount} fonctionnalités</span>
+    <span>{t(COPY.project, currentLanguage)}: {projectTitle}</span>
+    <span>{featuresCount} {t(COPY.features, currentLanguage)}</span>
   </div>
 );
 
@@ -163,39 +193,42 @@ export const ProjectSidebar = ({
   downloadName,
   githubUrl = 'https://github.com/Por-Tra',
   technologies = [],
-  additionalContent
-}) => (
-  <div className="xp-sidebar">
+  additionalContent,
+  currentLanguage = 'FR'
+}) => {
+  const resolveText = (value) => t(value, currentLanguage);
+  return (
+    <div className="xp-sidebar">
     {/* Gestion du projet */}
     {(downloadFile || githubUrl) && (
-      <SidebarBox title="Gestion du projet" icon="/icons/folder.webp">
+      <SidebarBox title={t(COPY.projectManagement, currentLanguage)} icon="/icons/folder.webp">
         {downloadFile && (
           <a href={downloadFile} download={downloadName} className="xp-sidebar-link">
             <img src="/icons/folder.webp" alt="" />
-            Télécharger (.zip)
+            {t(COPY.download, currentLanguage)}
           </a>
         )}
         {githubUrl && (
           <a href={githubUrl} target="_blank" rel="noopener noreferrer" className="xp-sidebar-link">
             <img src="/icons/git.webp" alt="" />
-            Voir sur GitHub
+            {t(COPY.viewGithub, currentLanguage)}
           </a>
         )}
       </SidebarBox>
     )}
 
     {/* Détails */}
-    <SidebarBox title="Détails" icon="/icons/questionMark.webp">
+    <SidebarBox title={t(COPY.details, currentLanguage)} icon="/icons/questionMark.webp">
       <div className="xp-sidebar-text">
-        <p><strong>Date:</strong> {projectData.date}</p>
-        <p><strong>Équipe:</strong> {projectData.team}</p>
-        {projectData.role && <p><strong>Rôle:</strong> {projectData.role}</p>}
+        <p><strong>{t(COPY.date, currentLanguage)}:</strong> {resolveText(projectData.date)}</p>
+        <p><strong>{t(COPY.team, currentLanguage)}:</strong> {resolveText(projectData.team)}</p>
+        {projectData.role && <p><strong>{t(COPY.role, currentLanguage)}:</strong> {resolveText(projectData.role)}</p>}
       </div>
     </SidebarBox>
 
     {/* Technologies */}
     {technologies.length > 0 && (
-      <SidebarBox title="Technologies" icon="/icons/setting.webp">
+      <SidebarBox title={t(COPY.technologies, currentLanguage)} icon="/icons/setting.webp">
         <div className="xp-sidebar-text">
           {technologies.map((tech, i) => (
             <p key={i}>{tech}</p>
@@ -207,7 +240,8 @@ export const ProjectSidebar = ({
     {/* Contenu additionnel */}
     {additionalContent}
   </div>
-);
+  );
+};
 
 /**
  * Page Header - En-tête de page
@@ -229,11 +263,11 @@ export const PageHeader = ({ title, subtitle, icon = '/icons/folder.webp' }) => 
  * Description Box - Boîte de description
  * @param {string} description - Description du projet
  */
-export const DescriptionBox = ({ description }) => (
+export const DescriptionBox = ({ description, currentLanguage = 'FR' }) => (
   <div className="xp-box xp-mb-3">
     <div className="xp-box-header">
       <img src="/icons/questionMark.webp" alt="" />
-      Description
+      {t(COPY.description, currentLanguage)}
     </div>
     <div className="xp-box-content">
       <p className="xp-text-gray" style={{ lineHeight: '1.6' }}>
@@ -247,11 +281,11 @@ export const DescriptionBox = ({ description }) => (
  * Steps Box - Liste des etapes
  * @param {string[]} steps - Liste des etapes
  */
-export const StepsBox = ({ steps }) => (
+export const StepsBox = ({ steps, currentLanguage = 'FR' }) => (
   <div className="xp-box xp-mb-3">
     <div className="xp-box-header xp-box-header-green">
       <img src="/icons/setting.webp" alt="" />
-      Etapes
+      {t(COPY.steps, currentLanguage)}
     </div>
     <div className="xp-box-content">
       <ol className="xp-list">
@@ -270,11 +304,11 @@ export const StepsBox = ({ steps }) => (
  * Role Box - Boîte du rôle
  * @param {string} role - Rôle dans le projet
  */
-export const RoleBox = ({ role }) => (
+export const RoleBox = ({ role, currentLanguage = 'FR' }) => (
   <div className="xp-tipbox xp-mb-3">
     <img src="/icons/setting.webp" alt="" />
     <div className="xp-tipbox-text">
-      <strong>Mon rôle:</strong> {role}
+      <strong>{t(COPY.myRole, currentLanguage)}:</strong> {role}
     </div>
   </div>
 );
@@ -283,11 +317,11 @@ export const RoleBox = ({ role }) => (
  * Features Box - Liste des fonctionnalités
  * @param {string[]} features - Liste des fonctionnalités
  */
-export const FeaturesBox = ({ features }) => (
+export const FeaturesBox = ({ features, currentLanguage = 'FR' }) => (
   <div className="xp-box xp-mb-3">
     <div className="xp-box-header xp-box-header-green">
       <img src="/icons/folder.webp" alt="" />
-      Fonctionnalités
+      {t(COPY.featuresBox, currentLanguage)}
     </div>
     <div className="xp-box-content">
       <ul className="xp-list">
@@ -306,11 +340,11 @@ export const FeaturesBox = ({ features }) => (
  * Skills Box - Compétences développées
  * @param {string[]} skills - Liste des compétences
  */
-export const SkillsBox = ({ skills }) => (
+export const SkillsBox = ({ skills, currentLanguage = 'FR' }) => (
   <div className="xp-box xp-mb-3">
     <div className="xp-box-header xp-box-header-cyan">
       <img src="/icons/setting.webp" alt="" />
-      Compétences développées
+      {t(COPY.skillsBox, currentLanguage)}
     </div>
     <div className="xp-box-content">
       <div className="xp-flex" style={{ flexWrap: 'wrap', gap: '4px' }}>
@@ -328,11 +362,11 @@ export const SkillsBox = ({ skills }) => (
  * @param {function} onImageClick - Callback au clic sur une image (optionnel)
  * @param {string} projectTitle - Titre du projet pour le nom des images
  */
-export const ScreenshotsBox = ({ images, onImageClick, projectTitle = 'Projet' }) => (
+export const ScreenshotsBox = ({ images, onImageClick, projectTitle = 'Projet', currentLanguage = 'FR' }) => (
   <div className="xp-box">
     <div className="xp-box-header xp-box-header-orange">
       <img src="/icons/explorer.webp" alt="" />
-      Captures d'écran
+      {t(COPY.screenshots, currentLanguage)}
     </div>
     <div className="xp-box-content">
       <div className="xp-grid-2" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
@@ -341,7 +375,7 @@ export const ScreenshotsBox = ({ images, onImageClick, projectTitle = 'Projet' }
             key={i} 
             className={`xp-screenshot ${onImageClick ? 'xp-screenshot-clickable' : ''}`}
             onClick={() => onImageClick && onImageClick(img, `${projectTitle} - Screenshot ${i + 1}`)}
-            title={onImageClick ? "Cliquez pour agrandir" : undefined}
+            title={onImageClick ? t(COPY.clickToZoom, currentLanguage) : undefined}
           >
             <img src={img} alt={`Screenshot ${i + 1}`} />
           </div>
@@ -357,11 +391,11 @@ export const ScreenshotsBox = ({ images, onImageClick, projectTitle = 'Projet' }
  * @param {function} onImageClick - Callback au clic sur une image (optionnel)
  * @param {string} projectTitle - Titre du projet pour le nom des images
  */
-export const ScreenshotsSectionsBox = ({ sections, onImageClick, projectTitle = 'Projet' }) => (
+export const ScreenshotsSectionsBox = ({ sections, onImageClick, projectTitle = 'Projet', currentLanguage = 'FR' }) => (
   <div className="xp-box">
     <div className="xp-box-header xp-box-header-orange">
       <img src="/icons/image.webp" alt="" />
-      Captures d'ecran
+      {t(COPY.screenshots, currentLanguage)}
     </div>
     <div className="xp-box-content">
       {sections.map((section, sectionIndex) => (
@@ -381,7 +415,7 @@ export const ScreenshotsSectionsBox = ({ sections, onImageClick, projectTitle = 
                     `${projectTitle} - ${section.title} ${imageIndex + 1}`
                   )
                 }
-                title={onImageClick ? 'Cliquez pour agrandir' : undefined}
+                title={onImageClick ? t(COPY.clickToZoom, currentLanguage) : undefined}
               >
                 <img src={img} alt={`Screenshot ${imageIndex + 1}`} />
               </div>
@@ -413,9 +447,23 @@ export const ProjectLayout = ({
   headerIcon = '/icons/folder.webp',
   sidebar,
   children,
-  onOpenApp
+  onOpenApp,
+  currentLanguage = 'FR'
 }) => {
   const { zoom, zoomIn, zoomOut, resetZoom } = useZoom();
+  const resolveText = (value) => t(value, currentLanguage);
+  const resolvedTitle = resolveText(projectData?.title);
+  const resolvedSubtitle = resolveText(subtitle);
+  const resolvedDescription = resolveText(projectData?.description);
+  const resolvedRole = resolveText(projectData?.role);
+  const resolvedAddressPath = resolveText(addressPath);
+  const resolvedFeatures = (projectData?.features || []).map((item) => resolveText(item));
+  const resolvedSkills = (projectData?.skills || []).map((item) => resolveText(item));
+  const resolvedSteps = (projectData?.steps || []).map((item) => resolveText(item));
+  const resolvedSections = (projectData?.screenshotSections || []).map((section) => ({
+    ...section,
+    title: resolveText(section.title),
+  }));
   
   // Handler pour ouvrir une image dans l'ImageViewer
   const handleImageClick = (imageSrc, imageName) => {
@@ -423,7 +471,7 @@ export const ProjectLayout = ({
       onOpenApp('image-viewer', {
         imageSrc,
         imageName,
-        windowTitle: `Aperçu - ${imageName}`
+        windowTitle: `${t(COPY.preview, currentLanguage)} - ${imageName}`
       });
     }
   };
@@ -435,8 +483,9 @@ export const ProjectLayout = ({
         onZoomIn={zoomIn} 
         onZoomOut={zoomOut} 
         onReset={resetZoom}
+        currentLanguage={currentLanguage}
       />
-      <AddressBar path={addressPath} icon={addressIcon} />
+      <AddressBar path={resolvedAddressPath} icon={addressIcon} currentLanguage={currentLanguage} />
       
       <div 
         className="xp-content xp-content-zoomable"
@@ -451,34 +500,36 @@ export const ProjectLayout = ({
         
         <div className="xp-content-main">
           <PageHeader 
-            title={projectData.title} 
-            subtitle={subtitle} 
+            title={resolvedTitle} 
+            subtitle={resolvedSubtitle} 
             icon={headerIcon} 
           />
           
-          <DescriptionBox description={projectData.description} />
+          <DescriptionBox description={resolvedDescription} currentLanguage={currentLanguage} />
           
-          {projectData.role && <RoleBox role={projectData.role} />}
+          {projectData.role && <RoleBox role={resolvedRole} currentLanguage={currentLanguage} />}
           
-          <FeaturesBox features={projectData.features} />
+          <FeaturesBox features={resolvedFeatures} currentLanguage={currentLanguage} />
           
-          <SkillsBox skills={projectData.skills} />
+          <SkillsBox skills={resolvedSkills} currentLanguage={currentLanguage} />
 
-          {projectData.steps && projectData.steps.length > 0 && (
-            <StepsBox steps={projectData.steps} />
+          {resolvedSteps.length > 0 && (
+            <StepsBox steps={resolvedSteps} currentLanguage={currentLanguage} />
           )}
 
-          {projectData.screenshotSections && projectData.screenshotSections.length > 0 ? (
+          {resolvedSections.length > 0 ? (
             <ScreenshotsSectionsBox
-              sections={projectData.screenshotSections}
+              sections={resolvedSections}
               onImageClick={handleImageClick}
-              projectTitle={projectData.title}
+              projectTitle={resolvedTitle}
+              currentLanguage={currentLanguage}
             />
           ) : (
             <ScreenshotsBox
               images={projectData.images}
               onImageClick={handleImageClick}
-              projectTitle={projectData.title}
+              projectTitle={resolvedTitle}
+              currentLanguage={currentLanguage}
             />
           )}
 
@@ -487,8 +538,9 @@ export const ProjectLayout = ({
       </div>
 
       <StatusBar 
-        projectTitle={projectData.title} 
-        featuresCount={projectData.features.length} 
+        projectTitle={resolvedTitle} 
+        featuresCount={resolvedFeatures.length} 
+        currentLanguage={currentLanguage}
       />
     </div>
   );

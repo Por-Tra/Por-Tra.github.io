@@ -6,6 +6,7 @@
 import { useState } from 'react';
 import { MenuBar, useZoom, getZoomStyle } from '../../components/ProjectLayout';
 import { useSearchHighlight } from '../../hooks/useSearchHighlight.jsx';
+import { t } from '../../i18n/text';
 
 export const config = {
   id: 'projects',
@@ -18,38 +19,93 @@ export const config = {
 const projects = [
   {
     id: 'project-rpg',
-    name: 'RPG 2D',
-    description: 'Jeu vidéo RPG style Pokemon développé en Python avec Pygame. Système de combat au tour par tour, exploration de carte, et gestion d\'inventaire.',
+    name: { FR: 'RPG 2D', EN: '2D RPG' },
+    description: {
+      FR: "Jeu vidéo RPG style Pokemon développé en Python avec Pygame. Système de combat au tour par tour, exploration de carte, et gestion d'inventaire.",
+      EN: "Pokemon-style RPG video game built in Python with Pygame. Turn-based combat, map exploration, and inventory management.",
+      ES: "Videojuego RPG estilo Pokemon desarrollado en Python con Pygame. Combate por turnos, exploración de mapas y gestión de inventario.",
+    },
     date: '2022-2023',
     languages: ['Python', 'Pygame'],
-    status: 'Terminé',
+    status: 'done',
   },
   {
     id: 'project-soutenance',
-    name: 'Projet Soutenance',
-    description: 'Application web permettant la notation des élèves par les professeurs. Interface intuitive avec gestion des notes et génération de bulletins.',
+    name: { FR: 'Projet Soutenance', EN: 'Defense Project', ES: 'Proyecto de Defensa' },
+    description: {
+      FR: 'Application web permettant la notation des élèves par les professeurs. Interface intuitive avec gestion des notes et génération de bulletins.',
+      EN: 'Web application for teachers to grade students. Intuitive UI with grade management and report generation.',
+      ES: 'Aplicación web para que los profesores califiquen a los estudiantes. Interfaz intuitiva con gestión de calificaciones y generación de informes.',
+    },
     date: '2025',
     languages: ['HTML', 'CSS', 'PHP', 'SQL'],
-    status: 'En cours',
+    status: 'inProgress',
   },
   {
     id: 'project-reseau',
-    name: 'Réseau Social Local',
-    description: 'Application de messagerie instantanée fonctionnant en réseau local. Chat en temps réel, partage de fichiers et salons de discussion.',
+    name: { FR: 'Réseau Social Local', EN: 'Local Social Network', ES: 'Red Social Local' },
+    description: {
+      FR: 'Application de messagerie instantanée fonctionnant en réseau local. Chat en temps réel, partage de fichiers et salons de discussion.',
+      EN: 'Local network messaging app with real-time chat, file sharing, and chat rooms.',
+      ES: 'Aplicación de mensajería en red local con chat en tiempo real, intercambio de archivos y salas de chat.',
+    },
     date: '2024',
     languages: ['Python', 'Socket'],
-    status: 'Terminé',
+    status: 'done',
   },
 ];
 
-export const Component = () => {
+const COPY = {
+  toolbarBack: { FR: 'Précédent', EN: 'Back', ES: 'Atras' },
+  toolbarNext: { FR: 'Suivant', EN: 'Next', ES: 'Siguiente' },
+  viewList: { FR: 'Liste', EN: 'List', ES: 'Lista' },
+  viewDetails: { FR: 'Détails', EN: 'Details', ES: 'Detalles' },
+  address: { FR: 'Adresse', EN: 'Address', ES: 'Dirección' },
+  addressPath: { FR: 'C:\\Projets', EN: 'C:\\Projects', ES: 'C:\\Proyectos' },
+  addressOk: { FR: 'OK' },
+  fileMgmt: { FR: 'Gestion des fichiers', EN: 'File management', ES: 'Gestión de archivos' },
+  createFolder: { FR: 'Créer un dossier', EN: 'Create a folder', ES: 'Crear una carpeta' },
+  publishFolder: { FR: 'Publier ce dossier', EN: 'Publish this folder', ES: 'Publicar esta carpeta' },
+  details: { FR: 'Détails', EN: 'Details', ES: 'Detalles' },
+  projectsLabel: { FR: 'Projets', EN: 'Projects', ES: 'Proyectos' },
+  inProgressLabel: { FR: 'En cours', EN: 'In progress', ES: 'En progreso' },
+  doneLabel: { FR: 'Terminé', EN: 'Completed', ES: 'Completado' },
+  pageTitle: { FR: 'Mes Projets', EN: 'My Projects', ES: 'Mis Proyectos' },
+  pageSubtitle: { FR: 'Portfolio de développement', EN: 'Development portfolio', ES: 'Portafolio de desarrollo' },
+  emptySearch: { FR: 'Aucun projet ne correspond à votre recherche', EN: 'No projects match your search', ES: 'No hay proyectos que coincidan con su búsqueda' },
+  emptyAll: { FR: 'Aucun projet disponible', EN: 'No projects available', ES: 'No hay proyectos disponibles' },
+  tableName: { FR: 'Nom', EN: 'Name', ES: 'Nombre' },
+  tableDescription: { FR: 'Description', EN: 'Description', ES: 'Descripción' },
+  tableTech: { FR: 'Technologies', EN: 'Technologies', ES: 'Tecnologías' },
+  tableDate: { FR: 'Date', EN: 'Date', ES: 'Fecha' },
+  tableStatus: { FR: 'Statut', EN: 'Status', ES: 'Estado' },
+  tipLabel: { FR: 'Astuce', EN: 'Tip', ES: 'Consejo' },
+  tipBody: {
+    FR: 'Double-cliquez sur les dossiers de projets sur le bureau pour voir les détails complets avec captures d\'écran et liens GitHub!',
+    EN: 'Double-click the project folders on the desktop to see full details with screenshots and GitHub links!',
+    ES: '¡Haz doble clic en las carpetas de proyectos en el escritorio para ver todos los detalles con capturas de pantalla y enlaces de GitHub!',
+  },
+  statusProjects: { FR: 'projets', EN: 'projects', ES: 'proyectos' },
+  statusInProgress: { FR: 'en cours', EN: 'in progress', ES: 'en progreso' },
+};
+
+const STATUS_LABELS = {
+  done: COPY.doneLabel,
+  inProgress: COPY.inProgressLabel,
+};
+
+export const Component = ({ currentLanguage }) => {
   const { zoom, zoomIn, zoomOut, resetZoom } = useZoom();
   const [viewMode, setViewMode] = useState('list');
   const [selectedProject, setSelectedProject] = useState(null);
   const { query, filterItems, highlightText, isSearching } = useSearchHighlight('projects');
 
   // Filter projects based on search query
-  const filteredProjects = filterItems(projects, (p) => `${p.name} ${p.description}`);
+  const filteredProjects = filterItems(projects, (p) => {
+    const name = t(p.name, currentLanguage);
+    const description = t(p.description, currentLanguage);
+    return `${name} ${description}`;
+  });
 
   return (
     <div className="xp-app">
@@ -59,17 +115,18 @@ export const Component = () => {
         onZoomIn={zoomIn} 
         onZoomOut={zoomOut} 
         onReset={resetZoom}
+        currentLanguage={currentLanguage}
       />
 
       {/* Toolbar */}
       <div className="xp-toolbar">
         <button className="xp-toolbar-btn">
           <img src="/icons/arrow_left.png" alt="" className="w-4 h-4" />
-          Précédent
+          {t(COPY.toolbarBack, currentLanguage)}
         </button>
         <button className="xp-toolbar-btn">
           <img src="/icons/arrow_right.png" alt="" className="w-4 h-4" />
-          Suivant
+          {t(COPY.toolbarNext, currentLanguage)}
         </button>
         <div className="xp-toolbar-separator" />
         <button 
@@ -77,25 +134,25 @@ export const Component = () => {
           onClick={() => setViewMode('list')}
         >
           <img src="/icons/folder.webp" alt="" className="w-4 h-4" />
-          Liste
+          {t(COPY.viewList, currentLanguage)}
         </button>
         <button 
           className={`xp-toolbar-btn ${viewMode === 'details' ? 'bg-[#316ac5] text-white' : ''}`}
           onClick={() => setViewMode('details')}
         >
           <img src="/icons/note.webp" alt="" className="w-4 h-4" />
-          Détails
+          {t(COPY.viewDetails, currentLanguage)}
         </button>
       </div>
 
       {/* Address Bar */}
       <div className="xp-addressbar">
-        <span className="xp-addressbar-label">Adresse</span>
+        <span className="xp-addressbar-label">{t(COPY.address, currentLanguage)}</span>
         <div className="xp-addressbar-input">
           <img src="/icons/folder.webp" alt="" className="w-4 h-4" />
-          <span>C:\Projets</span>
+          <span>{t(COPY.addressPath, currentLanguage)}</span>
         </div>
-        <button className="xp-addressbar-go">OK</button>
+        <button className="xp-addressbar-go">{t(COPY.addressOk, currentLanguage)}</button>
       </div>
 
       {/* Main Content */}
@@ -105,27 +162,27 @@ export const Component = () => {
           <div className="xp-sidebar-box">
             <div className="xp-sidebar-title">
               <img src="/icons/folder.webp" alt="" />
-              Gestion des fichiers
+              {t(COPY.fileMgmt, currentLanguage)}
             </div>
             <div className="xp-sidebar-link">
               <img src="/icons/folder.webp" alt="" />
-              Créer un dossier
+              {t(COPY.createFolder, currentLanguage)}
             </div>
             <div className="xp-sidebar-link">
               <img src="/icons/explorer.webp" alt="" />
-              Publier ce dossier
+              {t(COPY.publishFolder, currentLanguage)}
             </div>
           </div>
 
           <div className="xp-sidebar-box">
             <div className="xp-sidebar-title">
               <img src="/icons/questionMark.webp" alt="" />
-              Détails
+              {t(COPY.details, currentLanguage)}
             </div>
             <div className="xp-sidebar-text">
-              <p><strong>Projets:</strong> {filteredProjects.length}</p>
-              <p><strong>En cours:</strong> {filteredProjects.filter(p => p.status === 'En cours').length}</p>
-              <p><strong>Terminés:</strong> {filteredProjects.filter(p => p.status === 'Terminé').length}</p>
+              <p><strong>{t(COPY.projectsLabel, currentLanguage)}:</strong> {filteredProjects.length}</p>
+              <p><strong>{t(COPY.inProgressLabel, currentLanguage)}:</strong> {filteredProjects.filter(p => p.status === 'inProgress').length}</p>
+              <p><strong>{t(COPY.doneLabel, currentLanguage)}:</strong> {filteredProjects.filter(p => p.status === 'done').length}</p>
             </div>
           </div>
         </div>
@@ -136,8 +193,8 @@ export const Component = () => {
           <div className="xp-page-header">
             <img src="/icons/folder.webp" alt="" className="xp-page-header-icon" />
             <div>
-              <h1 className="xp-page-title">Mes Projets</h1>
-              <p className="xp-page-subtitle">Portfolio de développement</p>
+              <h1 className="xp-page-title">{t(COPY.pageTitle, currentLanguage)}</h1>
+              <p className="xp-page-subtitle">{t(COPY.pageSubtitle, currentLanguage)}</p>
             </div>
           </div>
 
@@ -157,13 +214,13 @@ export const Component = () => {
                     <img src="/icons/folder.webp" alt="" className="w-8 h-8" />
                     <div className="xp-flex-1">
                       <div className="xp-flex xp-gap-2 xp-items-center">
-                        <span className="xp-text-bold">{highlightText(project.name)}</span>
-                        <span className={`xp-tag ${project.status === 'En cours' ? 'xp-tag-yellow' : 'xp-tag-green'}`}>
-                          {project.status}
+                        <span className="xp-text-bold">{highlightText(t(project.name, currentLanguage))}</span>
+                        <span className={`xp-tag ${project.status === 'inProgress' ? 'xp-tag-yellow' : 'xp-tag-green'}`}>
+                          {t(STATUS_LABELS[project.status], currentLanguage)}
                         </span>
                       </div>
                       <p className={`xp-text-sm ${selectedProject === project.id ? 'text-white' : 'xp-text-gray'}`}>
-                        {highlightText(project.description)}
+                        {highlightText(t(project.description, currentLanguage))}
                       </p>
                     </div>
                     <div className="text-right">
@@ -180,7 +237,7 @@ export const Component = () => {
                 ))
               ) : (
                 <div className="xp-text-gray" style={{ padding: '16px', textAlign: 'center' }}>
-                  {isSearching ? 'Aucun projet ne correspond à votre recherche' : 'Aucun projet disponible'}
+                  {isSearching ? t(COPY.emptySearch, currentLanguage) : t(COPY.emptyAll, currentLanguage)}
                 </div>
               )}
             </div>
@@ -193,11 +250,11 @@ export const Component = () => {
                 <table className="xp-table">
                   <thead>
                     <tr>
-                      <th>Nom</th>
-                      <th>Description</th>
-                      <th>Technologies</th>
-                      <th>Date</th>
-                      <th>Statut</th>
+                      <th>{t(COPY.tableName, currentLanguage)}</th>
+                      <th>{t(COPY.tableDescription, currentLanguage)}</th>
+                      <th>{t(COPY.tableTech, currentLanguage)}</th>
+                      <th>{t(COPY.tableDate, currentLanguage)}</th>
+                      <th>{t(COPY.tableStatus, currentLanguage)}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -210,11 +267,11 @@ export const Component = () => {
                         <td>
                           <div className="xp-flex xp-gap-2 xp-items-center">
                             <img src="/icons/folder.webp" alt="" className="w-4 h-4" />
-                            <span className="xp-text-bold">{highlightText(project.name)}</span>
+                            <span className="xp-text-bold">{highlightText(t(project.name, currentLanguage))}</span>
                           </div>
                         </td>
                         <td className="xp-text-gray" style={{ maxWidth: '200px' }}>
-                          {highlightText(project.description.substring(0, 50))}...
+                          {highlightText(t(project.description, currentLanguage).substring(0, 50))}...
                         </td>
                         <td>
                           {project.languages.map((lang) => (
@@ -223,8 +280,8 @@ export const Component = () => {
                         </td>
                         <td>{project.date}</td>
                         <td>
-                          <span className={`xp-tag ${project.status === 'En cours' ? 'xp-tag-yellow' : 'xp-tag-green'}`}>
-                            {project.status}
+                          <span className={`xp-tag ${project.status === 'inProgress' ? 'xp-tag-yellow' : 'xp-tag-green'}`}>
+                            {t(STATUS_LABELS[project.status], currentLanguage)}
                           </span>
                         </td>
                       </tr>
@@ -233,7 +290,7 @@ export const Component = () => {
                 </table>
               ) : (
                 <div className="xp-text-gray" style={{ padding: '16px', textAlign: 'center' }}>
-                  {isSearching ? 'Aucun projet ne correspond à votre recherche' : 'Aucun projet disponible'}
+                  {isSearching ? t(COPY.emptySearch, currentLanguage) : t(COPY.emptyAll, currentLanguage)}
                 </div>
               )}
             </div>
@@ -243,8 +300,7 @@ export const Component = () => {
           <div className="xp-tipbox xp-mt-3">
             <img src="/icons/questionMark.webp" alt="" />
             <div className="xp-tipbox-text">
-              <strong>Astuce:</strong> Double-cliquez sur les dossiers de projets sur le bureau pour voir 
-              les détails complets avec captures d'écran et liens GitHub!
+              <strong>{t(COPY.tipLabel, currentLanguage)}:</strong> {t(COPY.tipBody, currentLanguage)}
             </div>
           </div>
         </div>
@@ -252,8 +308,8 @@ export const Component = () => {
 
       {/* Status Bar */}
       <div className="xp-statusbar">
-        <span>{filteredProjects.length} projets</span>
-        <span>{filteredProjects.filter(p => p.status === 'En cours').length} en cours</span>
+        <span>{filteredProjects.length} {t(COPY.statusProjects, currentLanguage)}</span>
+        <span>{filteredProjects.filter(p => p.status === 'inProgress').length} {t(COPY.statusInProgress, currentLanguage)}</span>
       </div>
     </div>
   );

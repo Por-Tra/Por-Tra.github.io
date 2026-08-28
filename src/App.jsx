@@ -3,8 +3,39 @@ import Desktop from './components/Desktop'
 import xpLogo from './assets/BOOT-LOGO.webp'
 import profilePic from './assets/PP.webp'
 import offButton from '../public/icons/off.webp'
+import { t } from './i18n/text'
 
 const BOOT_SESSION_KEY = 'xp-boot-shown-session-v1'
+const DESKTOP_PREF_KEY = 'xp-desktop-preferences-v1'
+
+const COPY = {
+  loginHint: {
+    FR: 'Pour commencer, cliquez sur votre profil',
+    EN: 'To get started, click your profile',
+    ES: 'Para comenzar, haz clic en tu perfil',
+  },
+  statusOnline: {
+    FR: 'Connecté',
+    EN: 'Signed in',
+    ES: 'Conectado',
+  },
+  shutdownAlt: {
+    FR: 'Arrêter',
+    EN: 'Shut down',
+    ES: 'Apagar',
+  },
+};
+
+const readStoredLanguage = () => {
+  try {
+    const raw = globalThis.localStorage?.getItem(DESKTOP_PREF_KEY);
+    if (!raw) return 'FR';
+    const parsed = JSON.parse(raw);
+    return typeof parsed?.currentLanguage === 'string' ? parsed.currentLanguage : 'FR';
+  } catch (error) {
+    return 'FR';
+  }
+};
 
 const BootScreen = () => (
   <div className="xp-boot-screen">
@@ -16,7 +47,7 @@ const BootScreen = () => (
   </div>
 )
 
-const LoginScreen = ({ onContinue }) => (
+const LoginScreen = ({ onContinue, currentLanguage }) => (
   <div className="xp-login-screen">
     <div className="xp-login-topbar" />
 
@@ -24,7 +55,7 @@ const LoginScreen = ({ onContinue }) => (
       <div className="xp-login-panel">
         <div className="xp-login-left">
           <img src={xpLogo} alt="Microsoft Windows XP" className="xp-login-logo" />
-          <p className="xp-login-copy">Pour commencer, cliquez sur votre profil</p>
+          <p className="xp-login-copy">{t(COPY.loginHint, currentLanguage)}</p>
         </div>
 
         <div className="xp-login-divider" />
@@ -36,7 +67,7 @@ const LoginScreen = ({ onContinue }) => (
             </div>
             <div>
               <div className="xp-login-name">Lucas</div>
-              <div className="xp-login-status">Connecté</div>
+              <div className="xp-login-status">{t(COPY.statusOnline, currentLanguage)}</div>
             </div>
           </button>
         </div>
@@ -45,13 +76,14 @@ const LoginScreen = ({ onContinue }) => (
 
     <div className="xp-login-bottombar">
       <button className="xp-login-shutdown" onClick={onContinue}>
-        <img src={offButton} alt="Shut down" className='LoginOffBtn'/>
+        <img src={offButton} alt={t(COPY.shutdownAlt, currentLanguage)} className='LoginOffBtn'/>
       </button>
     </div>
   </div>
 )
 
 function App() {
+  const [currentLanguage] = useState(() => readStoredLanguage())
   const [stage, setStage] = useState(() => {
     try {
       if (globalThis.sessionStorage?.getItem(BOOT_SESSION_KEY) === '1') {
@@ -81,7 +113,7 @@ function App() {
   }, [stage])
 
   if (stage === 'boot') return <BootScreen />
-  if (stage === 'login') return <LoginScreen onContinue={() => setStage('desktop')} />
+  if (stage === 'login') return <LoginScreen onContinue={() => setStage('desktop')} currentLanguage={currentLanguage} />
   return <Desktop />
 }
 

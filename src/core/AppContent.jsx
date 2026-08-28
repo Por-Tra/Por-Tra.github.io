@@ -1,14 +1,28 @@
 import { memo, Suspense, lazy, useMemo } from 'react';
 import appRegistry from './AppRegistry';
+import { t, getWindowTitle } from '../i18n/text';
+
+const COPY = {
+  loading: { FR: 'Chargement...', EN: 'Loading...', ES: 'Cargando...' },
+  application: { FR: 'Application', EN: 'Application', ES: 'Aplicacion' },
+  unavailable: { FR: 'Contenu non disponible', EN: 'Content unavailable', ES: 'Contenido no disponible' },
+  externalTitle: { FR: 'Lien externe', EN: 'External link', ES: 'Enlace externo' },
+  externalBody: {
+    FR: 'Ce site ne peut pas s\'afficher dans une fenetre integree.',
+    EN: 'This site cannot be displayed inside an embedded window.',
+    ES: 'Este sitio no puede mostrarse en una ventana incrustada.',
+  },
+  externalOpen: { FR: 'Ouvrir dans un nouvel onglet', EN: 'Open in a new tab', ES: 'Abrir en una pestana nueva' },
+};
 
 /**
  * Composant de chargement par défaut
  */
-const LoadingFallback = () => (
+const LoadingFallback = ({ currentLanguage }) => (
   <div className="h-full flex items-center justify-center bg-[#ece9d8]">
     <div className="text-center text-gray-600">
       <div className="animate-pulse text-2xl mb-2"></div>
-      <p className="text-sm">Chargement...</p>
+      <p className="text-sm">{t(COPY.loading, currentLanguage)}</p>
     </div>
   </div>
 );
@@ -16,11 +30,11 @@ const LoadingFallback = () => (
 /**
  * Contenu par défaut quand aucun composant n'est défini
  */
-const DefaultContent = memo(({ title }) => (
+const DefaultContent = memo(({ title, currentLanguage }) => (
   <div className="h-full flex items-center justify-center bg-[#ece9d8] p-4">
     <div className="text-center text-gray-500">
-      <p className="font-medium">{title || 'Application'}</p>
-      <p className="text-sm mt-1">Contenu non disponible</p>
+      <p className="font-medium">{title || t(COPY.application, currentLanguage)}</p>
+      <p className="text-sm mt-1">{t(COPY.unavailable, currentLanguage)}</p>
     </div>
   </div>
 ));
@@ -50,11 +64,11 @@ const getExternalHost = (url) => {
   }
 };
 
-const ExternalLinkContent = memo(({ url, title }) => (
+const ExternalLinkContent = memo(({ url, title, currentLanguage }) => (
   <div className="h-full flex items-center justify-center bg-[#ece9d8] p-6">
     <div className="max-w-md text-center text-gray-700">
-      <p className="font-medium">{title || 'Lien externe'}</p>
-      <p className="text-sm mt-2">Ce site ne peut pas s'afficher dans une fenetre integree.</p>
+      <p className="font-medium">{title || t(COPY.externalTitle, currentLanguage)}</p>
+      <p className="text-sm mt-2">{t(COPY.externalBody, currentLanguage)}</p>
       <p className="text-xs mt-1 text-gray-500">{getExternalHost(url)}</p>
       <div className="mt-4">
         <a
@@ -63,7 +77,7 @@ const ExternalLinkContent = memo(({ url, title }) => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          Ouvrir dans un nouvel onglet
+          {t(COPY.externalOpen, currentLanguage)}
         </a>
       </div>
     </div>
@@ -95,18 +109,19 @@ const AppContent = memo(({
 }) => {
   const app = useMemo(() => appRegistry.get(window.appId), [window.appId]);
   const shouldOpenExternal = Boolean(window.openExternal || app?.openExternal);
+  const windowTitle = getWindowTitle(window, currentLanguage);
   
   // Cas 1 : URL externe → iframe
   if (window.url) {
     if (shouldOpenExternal) {
-      return <ExternalLinkContent url={window.url} title={window.title} />;
+      return <ExternalLinkContent url={window.url} title={windowTitle} currentLanguage={currentLanguage} />;
     }
-    return <IframeContent url={window.url} title={window.title} />;
+    return <IframeContent url={window.url} title={windowTitle} />;
   }
 
   // Cas 2 : Pas d'app trouvée
   if (!app) {
-    return <DefaultContent title={window.title} />;
+    return <DefaultContent title={windowTitle} currentLanguage={currentLanguage} />;
   }
 
   // Cas 3 : App avec composant
@@ -121,7 +136,7 @@ const AppContent = memo(({
     
     return (
       <div className="h-full overflow-auto" style={contentStyle}>
-        <Suspense fallback={<LoadingFallback />}>
+        <Suspense fallback={<LoadingFallback currentLanguage={currentLanguage} />}>
           <Component 
             appId={window.appId} 
             windowId={window.id} 
@@ -140,7 +155,7 @@ const AppContent = memo(({
   }
 
   // Cas 4 : Fallback
-  return <DefaultContent title={window.title} />;
+  return <DefaultContent title={windowTitle} currentLanguage={currentLanguage} />;
 });
 
 AppContent.displayName = 'AppContent';

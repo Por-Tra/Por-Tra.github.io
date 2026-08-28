@@ -87,11 +87,6 @@ export const EASTER_EGGS = {
   'lsb': 'Je sais que vous cherchez "lsb_release -a" pour les infos système, mais je ne suis pas une distribution Linux malheureuse.',
   'whoami?': 'Pas de point d\'interrogation, c\'est whoami. ¬_¬',
   'date.now()': 'Date actuelle : ' + new Date().toLocaleString() + '\n Tu aurais pu regarder en bas de l\'écran aussi...',
-  'caca' :  'Très mature tout ça ...',
-  'pipi' : 'Toujours aussi mature ...',
-  'prout' : 'Bon, on va arrêter là hein ...',
-  
-
 };
 
 export const getSkillsDisplay = () => {

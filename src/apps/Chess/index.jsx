@@ -19,6 +19,17 @@ const PIECES = {
   'bK': '♚', 'bQ': '♛', 'bR': '♜', 'bB': '♝', 'bN': '♞', 'bP': '♟',
 };
 
+const COPY = {
+  checkmate_white: { FR: 'Échec et mat - Blanc gagne!', EN: 'Checkmate - White wins!', ES: 'Jaque y mate - ¡Gana el blanco!' },
+  checkmate_black: { FR: 'Échec et mat - Noir gagne!', EN: 'Checkmate - Black wins!', ES: 'Jaque y mate - ¡Gana el negro!' },
+  draw: { FR: 'Match nul!', EN: 'Draw!', ES: '¡Empate!' },
+  stalemate: { FR: 'Pat!', EN: 'Stalemate!', ES: '¡Ahogado!' },
+  check_white: { FR: 'Blanc en échec!', EN: 'White in check!', ES: '¡Blanco en jaque!' },
+  check_black: { FR: 'Noir en échec!', EN: 'Black in check!', ES: '¡Negro en jaque!' },
+  turn_white: { FR: 'Tour des Blancs', EN: "White's turn", ES: "Turno del blanco" },
+  turn_black: { FR: 'Tour des Noirs', EN: "Black's turn", ES: "Turno del negro" },
+};
+
 export const Component = () => {
   const [game, setGame] = useState(new Chess());
   const [selectedSquare, setSelectedSquare] = useState(null);
@@ -30,15 +41,15 @@ export const Component = () => {
 
   const updateGameStatus = useCallback((chess) => {
     if (chess.isCheckmate()) {
-      setGameStatus(chess.turn() === 'w' ? 'Échec et mat - Noir gagne!' : 'Échec et mat - Blanc gagne!');
+      setGameStatus(chess.turn() === 'w' ? COPY.checkmate_black : COPY.checkmate_white);
     } else if (chess.isDraw()) {
-      setGameStatus('Match nul!');
+      setGameStatus(COPY.draw);
     } else if (chess.isStalemate()) {
-      setGameStatus('Pat!');
+      setGameStatus(COPY.stalemate);
     } else if (chess.isCheck()) {
-      setGameStatus(chess.turn() === 'w' ? 'Blanc en échec!' : 'Noir en échec!');
+      setGameStatus(chess.turn() === 'w' ? COPY.check_white : COPY.check_black);
     } else {
-      setGameStatus(chess.turn() === 'w' ? 'Tour des Blancs' : 'Tour des Noirs');
+      setGameStatus(chess.turn() === 'w' ? COPY.turn_white : COPY.turn_black);
     }
   }, []);
 

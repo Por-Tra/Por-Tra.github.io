@@ -1,5 +1,33 @@
 import { useRef, useCallback, useEffect, useState } from 'react';
 import AppContent from '../core/AppContent';
+import { t, getWindowTitle } from '../i18n/text';
+
+const COPY = {
+  minimize: { FR: 'Réduire',
+     EN: 'Minimize',
+      ES: 'Minimizar' },
+  maximize: { FR: 'Agrandir',
+     EN: 'Maximize',
+      ES: 'Maximizar' },
+  restore: { FR: 'Restaurer',
+     EN: 'Restore',
+      ES: 'Restaurar' },
+  close: { FR: 'Fermer',
+     EN: 'Close',
+      ES: 'Cerrar' },
+  search: { FR: 'Rechercher:',
+     EN: 'Search:',
+      ES: 'Buscar:' },
+  filter: { FR: 'Filtrer...',
+     EN: 'Filter...',
+      ES: 'Filtrar...' },
+  clear: { FR: 'Effacer',
+     EN: 'Clear',
+      ES: 'Borrar' },
+  closeAction: { FR: 'Fermer',
+     EN: 'Close',
+      ES: 'Cerrar' },
+};
 
 const Window = ({
   window,
@@ -15,7 +43,7 @@ const Window = ({
   wallpaperUrl,
   utcOffsetMinutes,
   onSetUtcOffset,
-  currentLanguage,
+  currentLanguage = 'FR',
   onSetLanguage,
   onSearchChange,
   onSearchClose,
@@ -159,28 +187,28 @@ const Window = ({
         <div className="flex items-center gap-2 min-w-0 flex-1">
           <img src={window.icon} alt="" className="w-4 h-4 flex-shrink-0" />
           <span className="text-white text-sm font-medium truncate">
-            {window.title}
+            {getWindowTitle(window, currentLanguage)}
           </span>
         </div>
         <div className="window-controls flex gap-1">
           <button
             onClick={onMinimize}
             className="xp-minimize-btn w-5 h-5 flex items-center justify-center text-white text-xs font-bold"
-            title="Réduire"
+            title={t(COPY.minimize, currentLanguage)}
           >
             <span className="mb-1">_</span>
           </button>
           <button
             onClick={onMaximize}
             className="xp-maximize-btn w-5 h-5 flex items-center justify-center text-white text-xs font-bold"
-            title={window.maximized ? "Restaurer" : "Agrandir"}
+            title={t(window.maximized ? COPY.restore : COPY.maximize, currentLanguage)}
           >
             <span className="text-[10px]">{window.maximized ? '❐' : '□'}</span>
           </button>
           <button
             onClick={onClose}
             className="xp-close-btn w-5 h-5 flex items-center justify-center text-white text-xs font-bold"
-            title="Fermer"
+            title={t(COPY.close, currentLanguage)}
           >
             ✕
           </button>
@@ -191,26 +219,26 @@ const Window = ({
       <div className="bg-[#ece9d8] h-[calc(100%-28px)] overflow-hidden relative">
         {window.searchOpen && (
           <div className="xp-menu-search">
-            <span>Rechercher:</span>
+            <span>{t(COPY.search, currentLanguage)}</span>
             <input
               type="text"
               value={window.searchQuery || ''}
               onChange={(event) => onSearchChange?.(window.id, event.target.value)}
-              placeholder="Filtrer..."
+              placeholder={t(COPY.filter, currentLanguage)}
             />
             <button
               type="button"
               className="xp-button px-2 py-0.5 text-xs"
               onClick={() => onSearchChange?.(window.id, '')}
             >
-              Effacer
+              {t(COPY.clear, currentLanguage)}
             </button>
             <button
               type="button"
               className="xp-button px-2 py-0.5 text-xs"
               onClick={() => onSearchClose?.(window.id)}
             >
-              Fermer
+              {t(COPY.closeAction, currentLanguage)}
             </button>
           </div>
         )}

@@ -1,6 +1,35 @@
 import { useState, useEffect } from 'react';
 import StartMenu from './StartMenu';
 import LanguageSwitcher from './LanguageSwitcher';
+import { t, getLocale, getWindowTitle } from '../i18n/text';
+
+const COPY = {
+  startButton: {
+    FR: 'démarrer',
+    EN: 'start',
+    ES: 'inicio',
+  },
+  confirmShutdown: {
+    FR: 'Voulez-vous vraiment quitter ?',
+    EN: 'Do you really want to quit?',
+    ES: 'Seguro que quieres salir?',
+  },
+  confirmRestart: {
+    FR: 'Voulez-vous vraiment redémarrer ?',
+    EN: 'Do you really want to restart?',
+    ES: 'Seguro que quieres reiniciar?',
+  },
+  shutdownTitle: {
+    FR: 'Windows est en cours d\'arrêt...',
+    EN: 'Windows is shutting down...',
+    ES: 'Windows se esta apagando...',
+  },
+  shutdownNote: {
+    FR: 'Vous pouvez fermer cette fenêtre en toute sécurité.',
+    EN: 'You can safely close this window now.',
+    ES: 'Puedes cerrar esta ventana con seguridad.',
+  },
+};
 
 const Taskbar = ({
   windows,
@@ -10,7 +39,7 @@ const Taskbar = ({
   apps,
   onOpenApp,
   utcOffsetMinutes,
-  currentLanguage,
+  currentLanguage = 'FR',
   onSetLanguage,
 }) => {
   const [time, setTime] = useState(new Date());
@@ -24,7 +53,7 @@ const Taskbar = ({
   }, []);
 
   const formatTime = (date) => {
-    return date.toLocaleTimeString('fr-FR', {
+    return date.toLocaleTimeString(getLocale(currentLanguage), {
       hour: '2-digit',
       minute: '2-digit',
     });
@@ -36,20 +65,20 @@ const Taskbar = ({
   };
 
   const handleShutdown = () => {
-    if (confirm('Voulez-vous vraiment quitter ?')) {
+    if (confirm(t(COPY.confirmShutdown, currentLanguage))) {
       window.close();
       // Fallback si window.close() ne fonctionne pas
       document.body.innerHTML = `
         <div style="display: flex; align-items: center; justify-content: center; height: 100vh; background: #000; color: #fff; font-family: 'Tahoma', sans-serif; flex-direction: column;">
-          <h1 style="font-size: 24px; margin-bottom: 20px;">Windows est en cours d'arrêt...</h1>
-          <p style="color: #aaa;">Vous pouvez fermer cette fenêtre en toute sécurité.</p>
+          <h1 style="font-size: 24px; margin-bottom: 20px;">${t(COPY.shutdownTitle, currentLanguage)}</h1>
+          <p style="color: #aaa;">${t(COPY.shutdownNote, currentLanguage)}</p>
         </div>
       `;
     }
   };
 
   const handleRestart = () => {
-    if (confirm('Voulez-vous vraiment redémarrer ?')) {
+    if (confirm(t(COPY.confirmRestart, currentLanguage))) {
       window.location.reload();
     }
   };
@@ -64,6 +93,7 @@ const Taskbar = ({
         apps={apps}
         onShutdown={handleShutdown}
         onRestart={handleRestart}
+        currentLanguage={currentLanguage}
       />
 
       {/* Start Button */}
@@ -72,7 +102,7 @@ const Taskbar = ({
         className={`xp-start-btn h-full flex items-center gap-1 overflow-hidden ${startMenuOpen ? 'xp-start-btn-active' : ''}`}
       >
         <img src="/icons/win_logo_task_bar.webp" alt="Start" className="w-5 h-5" />
-        <span className="text-sm">démarrer</span>
+        <span className="text-sm">{t(COPY.startButton, currentLanguage)}</span>
       </button>
 
       {/* Quick Launch Separator */}
@@ -91,7 +121,9 @@ const Taskbar = ({
             }`}
           >
             <img src={window.icon} alt="" className="w-4 h-4 flex-shrink-0" />
-            <span className="text-white text-[11px] truncate">{window.title}</span>
+            <span className="text-white text-[11px] truncate">
+              {getWindowTitle(window, currentLanguage)}
+            </span>
           </button>
         ))}
       </div>
