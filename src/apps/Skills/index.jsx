@@ -32,12 +32,12 @@ const skills = [
 ];
 
 const AcadmicSkills = [
-  { name: { FR: 'Développer des applications informatiques simples', EN: 'Build simple software applications' }, checked: true },
-  { name: { FR: 'Appréhender et construire des algorithmes', EN: 'Understand and build algorithms' }, checked: true },
-  { name: { FR: 'Installer et configurer un poste de travail', EN: 'Install and configure a workstation' }, checked: true },
-  { name: { FR: 'Concevoir et mettre en place une base de données à partir d’un cahier des charges client', EN: 'Design and implement a database from client requirements' }, checked: true },
-  { name: { FR: 'Identifier les besoins métiers des clients et des utilisateurs', EN: 'Identify business needs of clients and users' }, checked: true },
-  { name: { FR: 'Identifier ses aptitudes pour travailler dans une équipe', EN: 'Identify your strengths for teamwork' }, checked: true }
+  { name: { FR: 'Développer des applications informatiques simples', EN: 'Build simple software applications', ES: 'Desarrollar aplicaciones informáticas sencillas' }, checked: true },
+  { name: { FR: 'Appréhender et construire des algorithmes', EN: 'Understand and build algorithms', ES: 'Comprender y construir algoritmos' }, checked: true },
+  { name: { FR: 'Installer et configurer un poste de travail', EN: 'Install and configure a workstation', ES: 'Instalar y configurar un puesto de trabajo' }, checked: true },
+  { name: { FR: 'Concevoir et mettre en place une base de données à partir d’un cahier des charges client', EN: 'Design and implement a database from client requirements', ES: 'Diseñar e implementar una base de datos a partir de un pliego de condiciones del cliente' }, checked: true },
+  { name: { FR: 'Identifier les besoins métiers des clients et des utilisateurs', EN: 'Identify business needs of clients and users', ES: 'Identificar las necesidades de negocio de los clientes y usuarios' }, checked: true },
+  { name: { FR: 'Identifier ses aptitudes pour travailler dans une équipe', EN: 'Identify your strengths for teamwork', ES: 'Identificar sus aptitudes para trabajar en equipo' }, checked: true }
 ];
 
 

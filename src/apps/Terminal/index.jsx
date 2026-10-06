@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
-import { SKILLS, PROJECTS, MAN_PAGES, EASTER_EGGS, getSkillsDisplay, getProjectDetails } from './terminalData';
+import { PROJECTS, MAN_PAGES, getEasterEgg, getHelpText, getSkillsDisplay, getProjectDetails } from './terminalData';
+import { t, getLocale } from '../../i18n/text';
 
 export const config = {
   id: 'terminal',
@@ -13,41 +14,61 @@ export const config = {
 
 const PROMPT = 'C:/Users/lucas>';
 
-const HELP_TEXT = `┌──────────────────────────────────────────────────┐
-│ LISTA DES COMMANDES                            │
-├──────────────────────┬──────────────────────────┤
-│ BASIQUES             │                          │
-│ help                 │ Affiche cette aide       │
-│ clear                │ Efface l'écran           │
-│ history              │ Historique des commandes │
-├──────────────────────┼──────────────────────────┤
-│ INFORMATIONS         │                          │
-│ whoami               │ Infos sur Lucas          │
-│ about                │ À propos                 │
-│ date                 │ Date et heure            │
-│ pic                  │ Portrait ASCII art       │
-├──────────────────────┼──────────────────────────┤
-│ COMPÉTENCES & PROJETS│                          │
-│ skills               │ Affiche les skills       │
-│ projects             │ Liste les projets        │
-│ open <projet>        │ Ouvre un projet          │
-│ man <commande>       │ Détails d'une commande   │
-├──────────────────────┼──────────────────────────┤
-│ PERSONNALISATION     │                          │
-│ theme <name>         │ Thème (classic/dark...)  │
-└──────────────────────┴──────────────────────────┘
-
-Astuce: Tab pour autocomplétion, ↑/↓ pour historique`;
+const COPY = {
+  welcome: {
+    FR: 'Bienvenue sur le terminal de mon portfolio !',
+    EN: 'Welcome to my portfolio terminal!',
+    ES: '¡Bienvenido al terminal de mi portfolio!',
+  },
+  noHistory: { FR: 'Aucun historique', EN: 'No history', ES: 'Sin historial' },
+  whoamiLevel: { FR: 'étudiant++', EN: 'student++', ES: 'estudiante++' },
+  about: {
+    FR: `Je suis Lucas, étudiant en BUT Informatique Graphique au Puy-en-Velay.
+Je m'attaque à des défis de développement variés et je me concentre sur la
+concrétisation d'idées, que ce soit pour résoudre des problèmes concrets ou
+explorer des concepts ambitieux comme recréer un système d'exploitation entier
+dans un navigateur.`,
+    EN: `I'm Lucas, a Graphic Computing student in Le Puy-en-Velay.
+I tackle a wide range of development challenges and focus on turning ideas
+into reality, whether solving real problems or exploring ambitious concepts
+like rebuilding an entire operating system in a browser.`,
+    ES: `Soy Lucas, estudiante de Informática Gráfica en Le Puy-en-Velay.
+Me enfrento a desafíos de desarrollo variados y me concentro en convertir
+ideas en realidad, ya sea resolviendo problemas concretos o explorando
+conceptos ambiciosos como recrear un sistema operativo completo en un
+navegador.`,
+  },
+  currentDate: { FR: 'Date actuelle : ', EN: 'Current date: ', ES: 'Fecha actual: ' },
+  projects: { FR: 'Projets :', EN: 'Projects:', ES: 'Proyectos:' },
+  projectsHint: {
+    FR: 'Utilisez "man <projet>" pour plus de détails',
+    EN: 'Use "man <project>" for more details',
+    ES: 'Usa "man <proyecto>" para más detalles',
+  },
+  opening: { FR: 'Ouverture de', EN: 'Opening', ES: 'Abriendo' },
+  opened: { FR: 'ouvert !', EN: 'opened!', ES: '¡abierto!' },
+  projectNotFound: { FR: 'Projet non trouvé', EN: 'Project not found', ES: 'Proyecto no encontrado' },
+  availableProjects: { FR: 'Projets disponibles', EN: 'Available projects', ES: 'Proyectos disponibles' },
+  noManual: { FR: 'Pas de manuel trouvé pour', EN: 'No manual entry for', ES: 'No se encontró manual para' },
+  themeChanged: { FR: 'Thème changé en', EN: 'Theme changed to', ES: 'Tema cambiado a' },
+  availableThemes: {
+    FR: 'Thèmes disponibles : classic (défaut), dark, green, amber',
+    EN: 'Available themes: classic (default), dark, green, amber',
+    ES: 'Temas disponibles: classic (por defecto), dark, green, amber',
+  },
+  unknownCommand: { FR: 'Commande inconnue', EN: 'Unknown command', ES: 'Comando desconocido' },
+  typeHelp: { FR: "Tapez 'help' pour l'aide.", EN: "Type 'help' for help.", ES: "Escribe 'help' para ver la ayuda." },
+};
 
 const getAllCommands = () => [
   'help', 'clear', 'history', 'whoami', 'about', 'date', 'pic', 
   'skills', 'projects', 'open', 'man', 'theme', 'sudo', 'coffee'
 ];
 
-export const Component = ({ onOpenApp }) => {
+export const Component = ({ onOpenApp, currentLanguage }) => {
   const [entries, setEntries] = useState(() => [
     { type: 'system', text: '~/ type \'help\' for commands.' },
-    { type: 'system', text: 'Bienvenue sur le terminal de mon portfolio !' },
+    { type: 'system', text: COPY.welcome },
     { type: 'blank', text: '' },
   ]);
   const [inputValue, setInputValue] = useState('');
@@ -136,7 +157,7 @@ export const Component = ({ onOpenApp }) => {
 
     // Commandes
     if (cmd === 'help') {
-      output = HELP_TEXT;
+      output = getHelpText(currentLanguage);
     } else if (cmd === 'clear') {
       setEntries([{ type: 'blank', text: '' }]);
       setInputValue('');
@@ -144,28 +165,24 @@ export const Component = ({ onOpenApp }) => {
     } else if (cmd === 'history') {
       output = history.length > 0 
         ? history.slice(0, 20).map((h, i) => `${i + 1}  ${h}`).join('\n')
-        : 'Aucun historique';
+        : t(COPY.noHistory, currentLanguage);
     } else if (cmd === 'whoami') {
       output = `lucas
 but-informatique-graphique
-level: étudiant++
+level: ${t(COPY.whoamiLevel, currentLanguage)}
 status: curious && passionate`;
     } else if (cmd === 'about') {
-      output = `Je suis Lucas, étudiant en BUT Informatique Graphique au Puy-en-Velay. 
-Je m'attaque à des défis de développement variés et je me concentre sur la 
-concrétisation d'idées, que ce soit pour résoudre des problèmes concrets ou 
-explorer des concepts ambitieux comme recréer un système d'exploitation entier 
-dans un navigateur.`;
+      output = t(COPY.about, currentLanguage);
     } else if (cmd === 'date') {
-      output = `Date actuelle : ${new Date().toLocaleString()}`;
+      output = `${t(COPY.currentDate, currentLanguage)}${new Date().toLocaleString(getLocale(currentLanguage))}`;
     } else if (cmd === 'pic') {
       output = '▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▓▓▓▓▓\n▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▓▓▓▓▓▓\n▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒░░░░░░░░░░▒▒▒▓▓▓▓▓▓▓▓▒▒▓▓▒▒▓▓▓▓▓\n▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒░░░░░░░░░░░░░░░░▒▒▒▒▓▓▓▓▓▒▒▓▒▓▓▓\n▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒░▒▒▒▒▒░░░░░░░░░░░░░░░░▒▒▒▒▒▒▒▓▓▓▒▓▓▓▓▒▒\n▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░░░▒▒░░░░░░░░░░░░░░░░░░░░▒▒▓▓▓▒▒▒▓▒▓▒░░▒\n▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▒▒▓\n▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░░░░░░░░░░░░░▒▒▒░░░░░░░░░░░░░░░░░░▒▒▒▒▒\n▓▓▓▓▓▓▓▓▓▓▓▒░░░░░░░░░░░░░░░░░░░▒▒▒░░░░░░░░░░░░░░░▒▒▒▒▒▒▒\n▓▓▓▓▓▓▓▓▓▓▓▒░▒▒▒▒▒▓▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▒▒░░░▒▒\n▓▓▓▓▓▓▓▓▓▓▓▒▓▒▒▒▓▒▒▒▒▒▒░▒░░░░░░░░░░░░░░░░░░░░░░░░░▒▒░░▒▒\n▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▓▓▒░▒▒▒▒▒▒▓▒░░░░░▒▒░░░░░░░░░░░░░░░░░░░░░▒\n▓▓▓▓▓▓▓▓▓▓▓▓▒▓▓▓▒░▒▒▒▒▓▒▒▓▒▒░░░░░▒░░░░░░░░░░░░░░░░░░░░░▒\n▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░▒▒▒▒▒▓▓▒▒▒▒▒▒░░▒░░░░░░░░░░░░░░░░░░░░░░░\n▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▓▓▒▒▒▒▒▒▒▒░░░▒░░░░░░░░░░░░░░░░░░░░\n▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓█▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒░░░░░░░░░░░░░░░░░░░░░░\n▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▓█▓▒▒▒▓▓▓▒▓▓▓▒▒▒▒░░▒░░░░░░░░░░▒░▒▒░░░░░\n▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▓▓▒▒░▒▒▒▒▒▓▒▒░░░░░░░░░░░▒▒▒▒▒▒░░░░░░\n██▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▓▒▒░░░░░░░░░░░▒▒▒▒▒▒▒▒░░░░░░\n███████▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒░░░▒░░░░░░░░░▒▒▒▒▒▒▒▒░░░░░░\n███████▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░░▒▓▒░░░░░░░░▒▒▒▒▒▒▒▒▒▒░░░░░\n▓▓███▓▓▓▓█▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░▒▒░░░░░░░░▒░▒▒▒▒░░░░░░\n▓▓▓▓██▓▓▓██▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒░░░░░░░░░░▒▒▒░░░░░░░\n▓▓▓▓██▒▓██▓██████▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░░░░░░░░░░▒▒▒░░░░░░░\n▓▓▓▓▓█▓▓▓▓▒▓███████▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░░░░░░░▒▒░░░░░░░░\n▓▓▓▓▓█▓▒▓▓▓▓▓▓▓▒▓▓▓█▓▓▓▓▓▓▓▓▓▓▓▓▓▒░░░░░░░░░░░░░░░░░░░░░░\n▓▓▓▓▓██▒▒▓▓▓▓▓▓█▓▒▒▓██▓▓▓▓▓▓▓▓▓▒░░░░░▒░░░░░░░░░░░░░░░░░░\n▓▓▓▓▓██▓▓█▓█▓██▓▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓░░░▒░▒░░░░░░░░░░░░░░░░░░░\n▓▓▓▓▓██▓▒▒▒▒▒▒▒▓▓▓██▓▓██▓▓▓▓▓▓░░░▒▒▒▒░░░░░░░░░░░░░░░░░░░\n▓▓▓▓▓█████▓░░░░░▒▓▓▓▓▓▓███▓▓▓▓░░▒▒▒▒░░░░░░░░░░░░░░░░░░░░\n▓▓█▓▓▓▓██████▒░░░░▒▒▒▒▒██████▒░▒▒▒▒░░░░░░░░░░░░░░░░░░░░░\n███████████████▒░░░▒▒▒▒▓████▓░░▒▒▒░░░░░░░░░░░░░░░░░░░░░░\n███████████████▓░░▒▒▓▒▒▓███▓░░░▒▒▒░░░░░░░░░░░░░░░░░░░░░░\n████████████████▒▒▒▒▒▒▒▓▓██░░░░░▒░░░░░░░░░░░░░░░░░░▒▓░░░\n████████████████▓▒▒▒▒▒▒▒▒▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n \n\n\n\n\n Made with Img2txt on github https://github.com/Corentino74/Img2txt'
     } else if (cmd === 'skills') {
-      output = getSkillsDisplay();
+      output = getSkillsDisplay(currentLanguage);
     } else if (cmd === 'projects') {
-      output = 'Projets:\n\n' + PROJECTS.map(p => 
-        `  • ${p.name}: ${p.description}`
-      ).join('\n') + '\n\nUtilisez "man <projet>" pour plus de détails';
+      output = `${t(COPY.projects, currentLanguage)}\n\n` + PROJECTS.map(p =>
+        `  • ${t(p.name, currentLanguage)}: ${t(p.description, currentLanguage)}`
+      ).join('\n') + `\n\n${t(COPY.projectsHint, currentLanguage)}`;
     } else if (cmd === 'open' && args.length > 0) {
       const projectId = args[0];
       const project = PROJECTS.find(p => p.id === projectId);
@@ -173,36 +190,37 @@ dans un navigateur.`;
         if (onOpenApp) {
           onOpenApp(project.appId);
         }
-        output = `Ouverture de ${project.name}...\n✓ ${project.name} ouvert!`;
+        const projectName = t(project.name, currentLanguage);
+        output = `${t(COPY.opening, currentLanguage)} ${projectName}...\n✓ ${projectName} ${t(COPY.opened, currentLanguage)}`;
       } else {
-        output = `Projet non trouvé: ${projectId}. Projets disponibles: ${PROJECTS.map(p => p.id).join(', ')}`;
+        output = `${t(COPY.projectNotFound, currentLanguage)}: ${projectId}. ${t(COPY.availableProjects, currentLanguage)}: ${PROJECTS.map(p => p.id).join(', ')}`;
       }
     } else if (cmd === 'man' && args.length > 0) {
       const topic = args[0];
-      const projectDetails = getProjectDetails(topic);
+      const projectDetails = getProjectDetails(topic, currentLanguage);
       if (projectDetails) {
         output = projectDetails;
       } else if (MAN_PAGES[topic]) {
-        output = `MAN: ${topic}\n\n${MAN_PAGES[topic]}`;
+        output = `MAN: ${topic}\n\n${t(MAN_PAGES[topic], currentLanguage)}`;
       } else {
-        output = `Pas de manuel trouvé pour: ${topic}`;
+        output = `${t(COPY.noManual, currentLanguage)}: ${topic}`;
       }
     } else if (cmd === 'theme' && args.length > 0) {
       const themeName = args[0];
       if (['classic', 'dark', 'green', 'amber'].includes(themeName)) {
         setTheme(themeName);
-        output = `✓ Thème changé en "${themeName}"`;
+        output = `✓ ${t(COPY.themeChanged, currentLanguage)} "${themeName}"`;
       } else {
-        output = 'Thèmes disponibles: classic (défaut), dark, green, amber';
+        output = t(COPY.availableThemes, currentLanguage);
       }
     } else if (cmd === 'sudo') {
       output = 'Permission denied. Nice try';
     } else if (cmd === 'coffee') {
       output = 'Compiling motivation...\n✓ Motivation compiled successfully!';
-    } else if (EASTER_EGGS[trimmed]) {
-      output = EASTER_EGGS[trimmed];
+    } else if (getEasterEgg(trimmed, currentLanguage)) {
+      output = getEasterEgg(trimmed, currentLanguage);
     } else {
-      output = `Commande inconnue: ${cmd}. Type 'help' pour l'aide.`;
+      output = `${t(COPY.unknownCommand, currentLanguage)}: ${cmd}. ${t(COPY.typeHelp, currentLanguage)}`;
     }
 
     setEntries((prev) => [
@@ -272,7 +290,7 @@ dans un navigateur.`;
               className={`xp-terminal-line xp-terminal-${entry.type}`}
               style={{ color: currentTheme.fg, whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}
             >
-              {entry.text || '\u00A0'}
+              {t(entry.text, currentLanguage) || '\u00A0'}
             </div>
           ))}
 

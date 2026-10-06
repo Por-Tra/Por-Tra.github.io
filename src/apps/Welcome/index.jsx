@@ -37,7 +37,7 @@ const COPY = {
     EN: "This portfolio is a Windows XP simulation built with React and TailwindCSS. Navigate just like on a real operating system! It was heavily inspired by the site ",
     ES: "Este portfolio es una simulación de Windows XP creada con React y TailwindCSS. Navega como lo harías en un sistema operativo real! Fue fuertemente inspirado por el sitio ",
   },
-  ecoTitle: { FR: "Et l'éco-conception dans tout ça ?", EN: "What about eco-design?" },
+  ecoTitle: { FR: "Et l'éco-conception dans tout ça ?", EN: "What about eco-design?", ES: "¿Y el ecodiseño en todo esto?" },
   ecoBody: {
     FR: "Ce portfolio a été conçu avec une approche d'éco-conception numérique. J'ai optimisé les images pour réduire leur poids, utilisé des polices système pour éviter les chargements externes, et minimisé le code pour améliorer les performances. L'objectif est de créer une expérience utilisateur fluide tout en réduisant l'empreinte carbone du site.",
     EN: "This portfolio was built with a digital eco-design approach. I optimized images to reduce weight, used system fonts to avoid external loads, and minimized code to improve performance. The goal is a smooth experience with a smaller carbon footprint.",
@@ -51,7 +51,8 @@ const COPY = {
   ecoItem4Strong: { FR: "16.8 L de consommation d'eau bleue", EN: "16.8 L of blue water consumption", ES: "16.8 L de consumo de agua azul" },
   ecoItem5Prefix: { FR: "Pour 1000 visites c'est aussi", EN: "For 1,000 visits that's also", ES: "Para 1,000 visitas eso también es" },
   ecoItem5Strong: { FR: "1.12 kgCO2e d'émission de gaz à effet de serre", EN: "1.12 kgCO2e of greenhouse gas emissions", ES: "1.12 kgCO2e de emisiones de gases de efecto invernadero" },
-  ecoQuote: { FR: "D'après ecoindex : \"Le top. On se rapproche dangereusement de la perfection.\"", EN: "According to ecoindex: \"Top. We're getting dangerously close to perfection.\"" },
+  ecoImageAlt: { FR: 'Résultat EcoIndex', EN: 'EcoIndex result', ES: 'Resultado de EcoIndex' },
+  ecoQuote: { FR: "D'après ecoindex : \"Le top. On se rapproche dangereusement de la perfection.\"", EN: "According to ecoindex: \"Top. We're getting dangerously close to perfection.\"", ES: "Según ecoindex: \"Lo mejor. Nos acercamos peligrosamente a la perfección.\"" },
   statusLeft: { FR: "Portfolio de Lucas Contreras Hodapp", EN: "Portfolio of Lucas Contreras Hodapp", ES: "Portfolio de Lucas Contreras Hodapp" },
   statusRight: { FR: "Windows XP Edition", EN: "Windows XP Edition", ES: "Edición Windows XP" },
 };
@@ -345,17 +346,17 @@ export const Component = ({ onOpenApp, currentLanguage }) => {
               <div className="xp-eco-gallery">
                 <img
                   src="/ecoindex/1.webp"
-                  alt="Résultat EcoIndex 1"
+                  alt={`${t(COPY.ecoImageAlt, currentLanguage)} 1`}
                   className="xp-eco-image"
                 />
                 <img
                   src="/ecoindex/2.webp"
-                  alt="Résultat EcoIndex 2"
+                  alt={`${t(COPY.ecoImageAlt, currentLanguage)} 2`}
                   className="xp-eco-image"
                 />
                 <img
                   src="/ecoindex/3.webp"
-                  alt="Résultat EcoIndex 3"
+                  alt={`${t(COPY.ecoImageAlt, currentLanguage)} 3`}
                   className="xp-eco-image"
                 />
               </div>

@@ -19,7 +19,7 @@ export const config = {
 const projects = [
   {
     id: 'project-rpg',
-    name: { FR: 'RPG 2D', EN: '2D RPG' },
+    name: { FR: 'RPG 2D', EN: '2D RPG', ES: 'RPG 2D' },
     description: {
       FR: "Jeu vidéo RPG style Pokemon développé en Python avec Pygame. Système de combat au tour par tour, exploration de carte, et gestion d'inventaire.",
       EN: "Pokemon-style RPG video game built in Python with Pygame. Turn-based combat, map exploration, and inventory management.",
@@ -121,11 +121,11 @@ export const Component = ({ currentLanguage }) => {
       {/* Toolbar */}
       <div className="xp-toolbar">
         <button className="xp-toolbar-btn">
-          <img src="/icons/arrow_left.png" alt="" className="w-4 h-4" />
+          <img src="/icons/back.webp" alt="" className="w-4 h-4" />
           {t(COPY.toolbarBack, currentLanguage)}
         </button>
         <button className="xp-toolbar-btn">
-          <img src="/icons/arrow_right.png" alt="" className="w-4 h-4" />
+          <img src="/icons/back.webp" style="transform: scaleX(-1);" alt="" className="w-4 h-4" />
           {t(COPY.toolbarNext, currentLanguage)}
         </button>
         <div className="xp-toolbar-separator" />

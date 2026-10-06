@@ -7,6 +7,7 @@
 
 import appRegistry from './AppRegistry';
 import recycleBin from './recycleBin';
+import { getAppLabel } from '../i18n/text';
 
 class FileSystem {
   constructor() {
@@ -47,7 +48,7 @@ class FileSystem {
                           type: 'app',
                           icon: '/icons/folder.webp',
                           appId: 'project-rpg',
-                          description: 'Jeu RPG 2D développé en Python avec Pygame',
+                          description: { FR: 'Jeu RPG 2D développé en Python avec Pygame', EN: '2D RPG game built in Python with Pygame', ES: 'Juego RPG 2D desarrollado en Python con Pygame' },
                           downloadFile: '/assets/RPG2D.zip',
                           downloadName: 'RPG2D.zip'
                         },
@@ -56,7 +57,7 @@ class FileSystem {
                           type: 'app',
                           icon: '/icons/folder.webp',
                           appId: 'project-reseau',
-                          description: 'Application de messagerie en réseau local',
+                          description: { FR: 'Application de messagerie en réseau local', EN: 'Local network messaging application', ES: 'Aplicación de mensajería en red local' },
                           downloadFile: '/assets/ChatReseau.zip',
                           downloadName: 'ChatReseau.zip'
                         },
@@ -65,7 +66,7 @@ class FileSystem {
                           type: 'app',
                           icon: '/icons/folder.webp',
                           appId: 'Port-AI-project',
-                          description: 'LLM from scratch développé en Python avec une architecture de transformer',
+                          description: { FR: 'LLM from scratch développé en Python avec une architecture de transformer', EN: 'LLM built from scratch in Python with a transformer architecture', ES: 'LLM desarrollado desde cero en Python con una arquitectura transformer' },
                         }
                     }
                   },
@@ -80,7 +81,7 @@ class FileSystem {
                         type: 'app',
                         icon: '/icons/folder.webp',
                         appId: 'project-soutenance',
-                        description: 'Application web de gestion développée en PHP',
+                        description: { FR: 'Application web de gestion développée en PHP', EN: 'Management web application built in PHP', ES: 'Aplicación web de gestión desarrollada en PHP' },
                         downloadFile: '/assets/Soutenance.zip',
                         downloadName: 'Soutenance.zip'
                       },
@@ -89,14 +90,14 @@ class FileSystem {
                         type: 'app',
                         icon: '/icons/folder.webp',
                         appId: 'vapeur-project',
-                        description: 'Application de gestion de bibliothèque de jeux développée en JavaScript',
+                        description: { FR: 'Application de gestion de bibliothèque de jeux développée en JavaScript', EN: 'Game library management application built in JavaScript', ES: 'Aplicación de gestión de biblioteca de juegos desarrollada en JavaScript' },
                       },
                       'Forge des héros (Symfony + React)':
                       {
                         type: 'app',
                         icon: '/icons/folder.webp',
                         appId: 'FDH-project',
-                        description: 'Application de création et gestion de personnages de jeu de rôle, développée en Symfony et React',
+                        description: { FR: 'Application de création et gestion de personnages de jeu de rôle, développée en Symfony et React', EN: 'Role-playing character creation and management application, built with Symfony and React', ES: 'Aplicación de creación y gestión de personajes de rol, desarrollada con Symfony y React' },
                       }
                     }
 
@@ -114,14 +115,14 @@ class FileSystem {
                           type: 'app',
                           icon: '/icons/folder.webp',
                           appId: 'mycoria-project',
-                          description: 'Jeu vidéo développé sur Unreal Engine avec blueprints',
+                          description: { FR: 'Jeu vidéo développé sur Unreal Engine avec blueprints', EN: 'Video game built in Unreal Engine with Blueprints', ES: 'Videojuego desarrollado en Unreal Engine con Blueprints' },
                         },
                         'LIBET (Unity)':
                         {
                           type: 'app',
                           icon: '/icons/folder.webp',
                           appId: 'LIBET-project',
-                          description: 'Jeu vidéo développé sur Unity avec C#'
+                          description: { FR: 'Jeu vidéo développé sur Unity avec C#', EN: 'Video game built in Unity with C#', ES: 'Videojuego desarrollado en Unity con C#' }
                         }
                     }
                   }
@@ -483,14 +484,14 @@ class FileSystem {
                 type: 'link',
                 icon: '/icons/github.svg',
                 url: 'https://github.com/Por-Tra',
-                description: 'Mon profil GitHub'
+                description: { FR: 'Mon profil GitHub', EN: 'My GitHub profile', ES: 'Mi perfil de GitHub' }
               },
               'LinkedIn': 
               {
                 type: 'link',
                 icon: '/icons/link.webp',
                 url: 'https://www.linkedin.com/in/lucas-contreras-hodapp/',
-                description: 'Mon profil LinkedIn'
+                description: { FR: 'Mon profil LinkedIn', EN: 'My LinkedIn profile', ES: 'Mi perfil de LinkedIn' }
               }
             }
           },
@@ -586,7 +587,10 @@ class FileSystem {
         type: 'app',
         icon: app.icon,
         appId: app.id,
-        description: `Application: ${app.name}`
+        labelFromApp: true, // Nom traduit via APP_LABELS dans l'explorateur
+        description: Object.fromEntries(
+          ['FR', 'EN', 'ES'].map((lang) => [lang, `Application: ${getAppLabel(app.id, app.name, lang)}`])
+        )
       };
     });
     

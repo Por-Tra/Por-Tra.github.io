@@ -32,6 +32,19 @@ export const APP_LABELS = {
   'recycle-bin': { FR: 'Corbeille', EN: 'Recycle Bin', ES: 'Papelera' },
   terminal: { FR: 'Terminal', EN: 'Terminal', ES: 'Terminal' },
   chess: { FR: 'Echecs', EN: 'Chess', ES: 'Ajedrez' },
+  trash: { FR: 'Corbeille', EN: 'Recycle Bin', ES: 'Papelera' },
+  blank: { FR: 'Application', EN: 'Application', ES: 'Aplicación' },
+  google: { FR: 'Explorer', EN: 'Explorer', ES: 'Explorer' },
+  'image-viewer': { FR: 'Aperçu des images', EN: 'Image Preview', ES: 'Vista previa de imágenes' },
+  'web-reminder': { FR: 'Exécutable introuvable', EN: 'Executable not found', ES: 'Ejecutable no encontrado' },
+  'project-rpg': { FR: 'RPG 2D', EN: '2D RPG', ES: 'RPG 2D' },
+  'project-soutenance': { FR: 'Application web de notation', EN: 'Grading web application', ES: 'Aplicación web de calificaciones' },
+  'project-reseau': { FR: 'Réseau Social Local', EN: 'Local Social Network', ES: 'Red Social Local' },
+  'mycoria-project': { FR: 'Mycoria', EN: 'Mycoria', ES: 'Mycoria' },
+  'vapeur-project': { FR: 'Vapeur', EN: 'Vapeur', ES: 'Vapeur' },
+  'LIBET-project': { FR: 'LIBET', EN: 'LIBET', ES: 'LIBET' },
+  'FDH-project': { FR: 'Forge des héros', EN: 'Forge des héros', ES: 'Forge des héros' },
+  'Port-AI-project': { FR: 'PORTR-AI', EN: 'PORTR-AI', ES: 'PORTR-AI' },
 };
 
 export const getAppLabel = (appId, fallback, lang) => {

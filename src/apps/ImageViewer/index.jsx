@@ -6,6 +6,7 @@
  * Visionneuse d'images style Windows XP
  */
 import { useState } from 'react';
+import { t } from '../../i18n/text';
 
 export const config = {
   id: 'image-viewer',
@@ -17,7 +18,17 @@ export const config = {
   showInStartMenu: false,
 };
 
-export const Component = ({ imageSrc, imageName }) => {
+const COPY = {
+  zoomIn: { FR: 'Zoom avant', EN: 'Zoom in', ES: 'Acercar' },
+  zoomOut: { FR: 'Zoom arrière', EN: 'Zoom out', ES: 'Alejar' },
+  rotateLeft: { FR: 'Rotation gauche', EN: 'Rotate left', ES: 'Girar a la izquierda' },
+  rotateRight: { FR: 'Rotation droite', EN: 'Rotate right', ES: 'Girar a la derecha' },
+  reset: { FR: 'Réinitialiser', EN: 'Reset', ES: 'Restablecer' },
+  image: { FR: 'Image', EN: 'Image', ES: 'Imagen' },
+  rotation: { FR: 'Rotation', EN: 'Rotation', ES: 'Rotación' },
+};
+
+export const Component = ({ imageSrc, imageName, currentLanguage }) => {
   const [zoom, setZoom] = useState(100);
   const [rotation, setRotation] = useState(0);
 
@@ -32,7 +43,7 @@ export const Component = ({ imageSrc, imageName }) => {
 
   // Image par défaut si non spécifiée
   const src = imageSrc || '/images/wallpapers/bliss.jpg';
-  const name = imageName || 'Image';
+  const name = imageName || t(COPY.image, currentLanguage);
 
   return (
     <div className="h-full bg-[#1a1a2e] flex flex-col">
@@ -41,14 +52,14 @@ export const Component = ({ imageSrc, imageName }) => {
         <button 
           onClick={handleZoomIn}
           className="px-3 py-1 text-xs text-white bg-[#4a4a6a] hover:bg-[#5a5a7a] rounded border border-[#6a6a8a]"
-          title="Zoom avant"
+          title={t(COPY.zoomIn, currentLanguage)}
         >
           +
         </button>
         <button 
           onClick={handleZoomOut}
           className="px-3 py-1 text-xs text-white bg-[#4a4a6a] hover:bg-[#5a5a7a] rounded border border-[#6a6a8a]"
-          title="Zoom arrière"
+          title={t(COPY.zoomOut, currentLanguage)}
         >
           -
         </button>
@@ -56,14 +67,14 @@ export const Component = ({ imageSrc, imageName }) => {
         <button 
           onClick={handleRotateLeft}
           className="px-3 py-1 text-xs text-white bg-[#4a4a6a] hover:bg-[#5a5a7a] rounded border border-[#6a6a8a]"
-          title="Rotation gauche"
+          title={t(COPY.rotateLeft, currentLanguage)}
         >
           ↺
         </button>
         <button 
           onClick={handleRotateRight}
           className="px-3 py-1 text-xs text-white bg-[#4a4a6a] hover:bg-[#5a5a7a] rounded border border-[#6a6a8a]"
-          title="Rotation droite"
+          title={t(COPY.rotateRight, currentLanguage)}
         >
           ↻
         </button>
@@ -71,9 +82,9 @@ export const Component = ({ imageSrc, imageName }) => {
         <button 
           onClick={handleReset}
           className="px-3 py-1 text-xs text-white bg-[#4a4a6a] hover:bg-[#5a5a7a] rounded border border-[#6a6a8a]"
-          title="Réinitialiser"
+          title={t(COPY.reset, currentLanguage)}
         >
-          ⟲ Reset
+          ⟲ {t(COPY.reset, currentLanguage)}
         </button>
         <div className="flex-1"></div>
         <span className="text-xs text-gray-400">{zoom}%</span>
@@ -102,7 +113,7 @@ export const Component = ({ imageSrc, imageName }) => {
       {/* Status Bar */}
       <div className="bg-[#2a2a4a] border-t border-[#4a4a6a] px-3 py-1 text-[10px] text-gray-400 flex justify-between">
         <span>{name}</span>
-        <span>Zoom: {zoom}% | Rotation: {rotation}°</span>
+        <span>Zoom: {zoom}% | {t(COPY.rotation, currentLanguage)}: {rotation}°</span>
       </div>
     </div>
   );

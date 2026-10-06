@@ -5,6 +5,7 @@
  */
 import { useState, useCallback, useEffect } from 'react';
 import { Chess } from 'chess.js';
+import { t } from '../../i18n/text';
 
 export const config = {
   id: 'chess',
@@ -28,13 +29,28 @@ const COPY = {
   check_black: { FR: 'Noir en échec!', EN: 'Black in check!', ES: '¡Negro en jaque!' },
   turn_white: { FR: 'Tour des Blancs', EN: "White's turn", ES: "Turno del blanco" },
   turn_black: { FR: 'Tour des Noirs', EN: "Black's turn", ES: "Turno del negro" },
+  menuGame: { FR: 'Partie', EN: 'Game', ES: 'Partida' },
+  menuOptions: { FR: 'Options', EN: 'Options', ES: 'Opciones' },
+  status: { FR: 'Statut', EN: 'Status', ES: 'Estado' },
+  thinking: { FR: 'IA réfléchit...', EN: 'AI is thinking...', ES: 'La IA está pensando...' },
+  difficulty: { FR: 'Difficulté', EN: 'Difficulty', ES: 'Dificultad' },
+  easy: { FR: 'Facile', EN: 'Easy', ES: 'Fácil' },
+  medium: { FR: 'Moyen', EN: 'Medium', ES: 'Medio' },
+  hard: { FR: 'Difficile', EN: 'Hard', ES: 'Difícil' },
+  actions: { FR: 'Actions', EN: 'Actions', ES: 'Acciones' },
+  newGame: { FR: 'Nouvelle partie', EN: 'New game', ES: 'Nueva partida' },
+  history: { FR: 'Historique', EN: 'History', ES: 'Historial' },
+  playingWhite: { FR: 'Vous jouez les Blancs', EN: 'You play White', ES: 'Juegas con las blancas' },
+  moves: { FR: 'coups', EN: 'moves', ES: 'jugadas' },
 };
 
-export const Component = () => {
+const GAME_OVER_STATUSES = [COPY.checkmate_white, COPY.checkmate_black, COPY.draw, COPY.stalemate];
+
+export const Component = ({ currentLanguage }) => {
   const [game, setGame] = useState(new Chess());
   const [selectedSquare, setSelectedSquare] = useState(null);
   const [possibleMoves, setPossibleMoves] = useState([]);
-  const [gameStatus, setGameStatus] = useState('playing');
+  const [gameStatus, setGameStatus] = useState(COPY.turn_white);
   const [moveHistory, setMoveHistory] = useState([]);
   const [thinking, setThinking] = useState(false);
   const [difficulty, setDifficulty] = useState(2);
@@ -240,8 +256,8 @@ export const Component = () => {
     <div className="h-full bg-white flex flex-col">
       {/* Toolbar */}
       <div className="bg-gradient-to-b from-[#ece9d8] to-[#d4d0c8] border-b border-[#808080] px-2 py-1 flex gap-4 text-xs">
-        <span className="text-gray-600 hover:underline cursor-pointer">Partie</span>
-        <span className="text-gray-600 hover:underline cursor-pointer">Options</span>
+        <span className="text-gray-600 hover:underline cursor-pointer">{t(COPY.menuGame, currentLanguage)}</span>
+        <span className="text-gray-600 hover:underline cursor-pointer">{t(COPY.menuOptions, currentLanguage)}</span>
         <span className="text-gray-600 hover:underline cursor-pointer">?</span>
       </div>
 
@@ -249,35 +265,35 @@ export const Component = () => {
         {/* Left Panel */}
         <div className="w-40 bg-gradient-to-b from-[#6b88c4] to-[#4d6eb5] p-2 flex-shrink-0">
           <div className="bg-white/90 rounded-lg p-2 mb-2">
-            <h3 className="text-[11px] font-bold text-[#215dc6] mb-2">Statut</h3>
-            <p className={`text-[10px] ${gameStatus.includes('mat') || gameStatus.includes('nul') ? 'text-red-600 font-bold' : 'text-gray-700'}`}>
-              {gameStatus}
+            <h3 className="text-[11px] font-bold text-[#215dc6] mb-2">{t(COPY.status, currentLanguage)}</h3>
+            <p className={`text-[10px] ${GAME_OVER_STATUSES.includes(gameStatus) ? 'text-red-600 font-bold' : 'text-gray-700'}`}>
+              {t(gameStatus, currentLanguage)}
             </p>
             {thinking && (
-              <p className="text-[10px] text-orange-600 mt-1 animate-pulse">IA réfléchit...</p>
+              <p className="text-[10px] text-orange-600 mt-1 animate-pulse">{t(COPY.thinking, currentLanguage)}</p>
             )}
           </div>
 
           <div className="bg-white/90 rounded-lg p-2 mb-2">
-            <h3 className="text-[11px] font-bold text-[#215dc6] mb-2">Difficulté</h3>
+            <h3 className="text-[11px] font-bold text-[#215dc6] mb-2">{t(COPY.difficulty, currentLanguage)}</h3>
             <select 
               value={difficulty} 
               onChange={(e) => setDifficulty(Number(e.target.value))}
               className="w-full text-[10px] border border-[#808080] rounded px-1 py-0.5"
             >
-              <option value={1}>Facile</option>
-              <option value={2}>Moyen</option>
-              <option value={3}>Difficile</option>
+              <option value={1}>{t(COPY.easy, currentLanguage)}</option>
+              <option value={2}>{t(COPY.medium, currentLanguage)}</option>
+              <option value={3}>{t(COPY.hard, currentLanguage)}</option>
             </select>
           </div>
 
           <div className="bg-white/90 rounded-lg p-2">
-            <h3 className="text-[11px] font-bold text-[#215dc6] mb-2">Actions</h3>
+            <h3 className="text-[11px] font-bold text-[#215dc6] mb-2">{t(COPY.actions, currentLanguage)}</h3>
             <button 
               onClick={resetGame}
               className="w-full xp-button text-[10px] py-1 mb-1"
             >
-              Nouvelle partie
+              {t(COPY.newGame, currentLanguage)}
             </button>
           </div>
         </div>
@@ -303,7 +319,7 @@ export const Component = () => {
         {/* Right Panel */}
         <div className="w-32 bg-[#ece9d8] border-l border-[#808080] p-2 flex-shrink-0">
           <h3 className="text-[11px] font-bold text-[#003399] mb-2 border-b border-[#808080] pb-1">
-            Historique
+            {t(COPY.history, currentLanguage)}
           </h3>
           <div className="h-48 overflow-y-auto text-[10px] space-y-0.5">
             {moveHistory.map((move, i) => (
@@ -317,8 +333,8 @@ export const Component = () => {
 
       {/* Status Bar */}
       <div className="bg-[#ece9d8] border-t border-[#808080] px-2 py-1 text-[10px] text-gray-600 flex justify-between">
-        <span>Vous jouez les Blancs</span>
-        <span>{moveHistory.length} coups</span>
+        <span>{t(COPY.playingWhite, currentLanguage)}</span>
+        <span>{moveHistory.length} {t(COPY.moves, currentLanguage)}</span>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import XpMenuBar from '../../../components/XpMenuBar';
 import recycleBin from '../../../core/recycleBin';
+import { t } from '../../../i18n/text';
 
 export const config = {
   id: 'trash',
@@ -11,7 +12,17 @@ export const config = {
   showInStartMenu: false,
 };
 
-export const Component = () => {
+const COPY = {
+  title: { FR: 'Corbeille', EN: 'Recycle Bin', ES: 'Papelera' },
+  confirmEmpty: { FR: 'Vider la corbeille ?', EN: 'Empty the Recycle Bin?', ES: '¿Vaciar la papelera?' },
+  empty: { FR: 'Vider la corbeille', EN: 'Empty Recycle Bin', ES: 'Vaciar la papelera' },
+  isEmpty: { FR: 'La corbeille est vide.', EN: 'The Recycle Bin is empty.', ES: 'La papelera está vacía.' },
+  restore: { FR: 'Restaurer', EN: 'Restore', ES: 'Restaurar' },
+  ready: { FR: 'Prêt', EN: 'Ready', ES: 'Listo' },
+  items: { FR: 'élément(s)', EN: 'item(s)', ES: 'elemento(s)' },
+};
+
+export const Component = ({ currentLanguage }) => {
   const [items, setItems] = useState(() => recycleBin.getItems());
 
   useEffect(() => {
@@ -29,7 +40,7 @@ export const Component = () => {
 
   const handleEmpty = () => {
     if (items.length === 0) return;
-    if (!confirm('Vider la corbeille ?')) return;
+    if (!confirm(t(COPY.confirmEmpty, currentLanguage))) return;
     recycleBin.clear();
   };
 
@@ -38,22 +49,23 @@ export const Component = () => {
       <XpMenuBar
         className="bg-gradient-to-b from-[#ece9d8] to-[#d4d0c8] border-b border-[#808080] px-2 py-1 flex gap-4 text-xs"
         itemClassName="text-gray-600 hover:underline cursor-pointer"
+        currentLanguage={currentLanguage}
       />
 
       <div className="bg-[#ece9d8] border-b border-[#808080] px-2 py-1 flex items-center justify-between text-xs">
-        <span>Corbeille</span>
+        <span>{t(COPY.title, currentLanguage)}</span>
         <button
           onClick={handleEmpty}
           disabled={items.length === 0}
           className="xp-button px-2 py-0.5 text-[11px] disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          Vider la corbeille
+          {t(COPY.empty, currentLanguage)}
         </button>
       </div>
 
       <div className="flex-1 overflow-auto p-2">
         {items.length === 0 ? (
-          <div className="text-sm text-gray-500">La corbeille est vide.</div>
+          <div className="text-sm text-gray-500">{t(COPY.isEmpty, currentLanguage)}</div>
         ) : (
           <div className="flex flex-col gap-1">
             {items.map(item => (
@@ -69,7 +81,7 @@ export const Component = () => {
                   onClick={() => handleRestore(item.id)}
                   className="xp-button px-2 py-0.5 text-[11px]"
                 >
-                  Restaurer
+                  {t(COPY.restore, currentLanguage)}
                 </button>
               </div>
             ))}
@@ -78,8 +90,8 @@ export const Component = () => {
       </div>
 
       <div className="bg-[#ece9d8] border-t border-[#808080] px-2 py-1 text-[10px] text-gray-600 flex justify-between">
-        <span>Pret</span>
-        <span>{items.length} element(s)</span>
+        <span>{t(COPY.ready, currentLanguage)}</span>
+        <span>{items.length} {t(COPY.items, currentLanguage)}</span>
       </div>
     </div>
   );

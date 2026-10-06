@@ -8,7 +8,7 @@ import { useState, useCallback, useMemo, memo } from 'react';
 import fileSystem from '../../core/FileSystem';
 import XpMenuBar from '../../components/XpMenuBar';
 import { useSearchHighlight } from '../../hooks/useSearchHighlight.jsx';
-import { t } from '../../i18n/text';
+import { t, getAppLabel } from '../../i18n/text';
 
 export const config = {
   id: 'explorer',
@@ -65,6 +65,19 @@ const NAME_LABELS = {
   'Projets': { FR: 'Projets', EN: 'Projects', ES: 'Proyectos' },
   'Réseau': { FR: 'Réseau', EN: 'Network', ES: 'Red' },
   'Captures': { FR: 'Captures', EN: 'Screenshots', ES: 'Capturas de pantalla' },
+  'Disque local (C:)': { FR: 'Disque local (C:)', EN: 'Local Disk (C:)', ES: 'Disco local (C:)' },
+  'Wallpapers': { FR: "Fonds d'écran", EN: 'Wallpapers', ES: 'Fondos de pantalla' },
+  'Réseau Social Local (RSL)': { FR: 'Réseau Social Local (RSL)', EN: 'Local Social Network (RSL)', ES: 'Red Social Local (RSL)' },
+  'Réseau Social Local': { FR: 'Réseau Social Local', EN: 'Local Social Network', ES: 'Red Social Local' },
+  'PORTR-AI (LLM from scratch en Python)': { FR: 'PORTR-AI (LLM from scratch en Python)', EN: 'PORTR-AI (LLM from scratch in Python)', ES: 'PORTR-AI (LLM desde cero en Python)' },
+  'Application Web (PHP)': { FR: 'Application Web (PHP)', EN: 'Web Application (PHP)', ES: 'Aplicación Web (PHP)' },
+  'Application Web de notation': { FR: 'Application Web de notation', EN: 'Grading Web Application', ES: 'Aplicación Web de calificaciones' },
+  'Vapeur (javasript)': { FR: 'Vapeur (JavaScript)', EN: 'Vapeur (JavaScript)', ES: 'Vapeur (JavaScript)' },
+  'Video Games - make with Unreal Engine and Unity': {
+    FR: 'Jeux vidéo - Unreal Engine et Unity',
+    EN: 'Video Games - made with Unreal Engine and Unity',
+    ES: 'Videojuegos - Unreal Engine y Unity',
+  },
 };
 
 // Composant pour un élément dans l'explorateur
@@ -145,7 +158,11 @@ export const Component = ({ onOpenApp, initialPath, currentLanguage = 'FR' }) =>
   }, [initialPath]);
 
   const getDisplayName = useCallback(
-    (name) => t(NAME_LABELS[name] ?? name, currentLanguage),
+    (name, item) => {
+      if (NAME_LABELS[name]) return t(NAME_LABELS[name], currentLanguage);
+      if (item?.labelFromApp) return getAppLabel(item.appId, name, currentLanguage);
+      return name;
+    },
     [currentLanguage]
   );
 
@@ -188,7 +205,7 @@ export const Component = ({ onOpenApp, initialPath, currentLanguage = 'FR' }) =>
 
   // Filter items based on search query
   const filteredItems = useMemo(() => {
-    return filterItems(sortedItems, ([name]) => getDisplayName(name));
+    return filterItems(sortedItems, ([name, item]) => getDisplayName(name, item));
   }, [sortedItems, query, getDisplayName]);
 
   // Navigation
@@ -412,12 +429,12 @@ export const Component = ({ onOpenApp, initialPath, currentLanguage = 'FR' }) =>
             <div className="bg-white/90 p-2">
               <h3 className="text-[11px] font-bold text-[#215dc6] mb-2">{t(COPY.detailsTitle, currentLanguage)}</h3>
               <div className="text-[10px] text-gray-700 space-y-1">
-                <p className="truncate"><strong>{t(COPY.name, currentLanguage)}:</strong> {getDisplayName(selectedItem.name)}</p>
+                <p className="truncate"><strong>{t(COPY.name, currentLanguage)}:</strong> {getDisplayName(selectedItem.name, selectedItem.item)}</p>
                 <p><strong>{t(COPY.type, currentLanguage)}:</strong> {getTypeLabel(selectedItem.item.type)}</p>
                 {selectedItem.item.size && <p><strong>{t(COPY.size, currentLanguage)}:</strong> {selectedItem.item.size}</p>}
                 {selectedItem.item.modified && <p><strong>{t(COPY.modified, currentLanguage)}:</strong> {selectedItem.item.modified}</p>}
                 {selectedItem.item.description && (
-                  <p className="text-[9px] text-gray-500 mt-1">{selectedItem.item.description}</p>
+                  <p className="text-[9px] text-gray-500 mt-1">{t(selectedItem.item.description, currentLanguage)}</p>
                 )}
               </div>
             </div>
@@ -438,7 +455,7 @@ export const Component = ({ onOpenApp, initialPath, currentLanguage = 'FR' }) =>
                   <FileItem
                     key={name}
                     name={name}
-                    label={getDisplayName(name)}
+                    label={getDisplayName(name, item)}
                     item={item}
                     isSelected={selectedItem?.name === name}
                     viewMode={viewMode}
@@ -462,7 +479,7 @@ export const Component = ({ onOpenApp, initialPath, currentLanguage = 'FR' }) =>
                   <FileItem
                     key={name}
                     name={name}
-                    label={getDisplayName(name)}
+                    label={getDisplayName(name, item)}
                     item={item}
                     isSelected={selectedItem?.name === name}
                     viewMode={viewMode}
@@ -496,7 +513,7 @@ export const Component = ({ onOpenApp, initialPath, currentLanguage = 'FR' }) =>
                     <DetailsRow
                       key={name}
                       name={name}
-                      label={getDisplayName(name)}
+                      label={getDisplayName(name, item)}
                       item={item}
                       typeLabel={getTypeLabel(item.type)}
                       isSelected={selectedItem?.name === name}
@@ -529,7 +546,7 @@ export const Component = ({ onOpenApp, initialPath, currentLanguage = 'FR' }) =>
       <div className="bg-[#ece9d8] border-t border-[#808080] px-2 py-1 text-[10px] text-gray-600 flex justify-between">
         <span>
           {filteredItems.length} {t(COPY.items, currentLanguage)}
-          {selectedItem ? ` • "${getDisplayName(selectedItem.name)}" ${t(COPY.selected, currentLanguage)}` : ''}
+          {selectedItem ? ` • "${getDisplayName(selectedItem.name, selectedItem.item)}" ${t(COPY.selected, currentLanguage)}` : ''}
         </span>
         <span>{pathString}</span>
       </div>
