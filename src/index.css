@@ -1309,3 +1309,205 @@ select:focus {
   white-space: normal;
   line-height: 1.15;
 }
+
+/* ==========================================================
+   CLIPPY
+   ========================================================== */
+/* Au niveau du bureau (sous les fenêtres), passe au premier plan quand sa bulle est ouverte */
+.xp-clippy {
+  position: absolute;
+  z-index: 50;
+  cursor: grab;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.xp-clippy.is-elevated {
+  z-index: 950;
+}
+
+.xp-clippy:active {
+  cursor: grabbing;
+}
+
+.xp-clippy-sprite {
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+
+/* Bulle jaune des infobulles XP, ancrée au-dessus de Clippy */
+.xp-clippy-balloon {
+  position: absolute;
+  right: 10px;
+  bottom: calc(100% + 18px);
+  padding: 8px 10px 10px;
+  background: #ffffe1;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 8px;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+  cursor: default;
+  animation: xp-clippy-fade-in 0.25s linear;
+}
+
+.xp-clippy-balloon.is-left {
+  right: auto;
+  left: 10px;
+}
+
+/* Pointe de la bulle orientée vers Clippy */
+.xp-clippy-balloon::before,
+.xp-clippy-balloon::after {
+  content: "";
+  position: absolute;
+  right: 40px;
+  border-style: solid;
+}
+
+.xp-clippy-balloon::before {
+  bottom: -18px;
+  border-width: 18px 0 0 18px;
+  border-color: #000 transparent transparent transparent;
+}
+
+.xp-clippy-balloon::after {
+  bottom: -16px;
+  right: 41px;
+  border-width: 16px 0 0 16px;
+  border-color: #ffffe1 transparent transparent transparent;
+}
+
+.xp-clippy-balloon.is-left::before {
+  right: auto;
+  left: 40px;
+  border-width: 18px 18px 0 0;
+}
+
+.xp-clippy-balloon.is-left::after {
+  right: auto;
+  left: 41px;
+  border-width: 16px 16px 0 0;
+}
+
+.xp-clippy-balloon-close {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 14px;
+  height: 14px;
+  padding: 0;
+  border: 1px solid #aca899;
+  border-radius: 2px;
+  background: #ffffe1;
+}
+
+.xp-clippy-balloon-close::before,
+.xp-clippy-balloon-close::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  width: 2px;
+  height: 10px;
+  background: #000;
+}
+
+.xp-clippy-balloon-close::before { transform: rotate(45deg); }
+.xp-clippy-balloon-close::after { transform: rotate(-45deg); }
+
+.xp-clippy-balloon-close:hover {
+  border-color: #000;
+}
+
+.xp-clippy-balloon-text {
+  margin: 0 14px 8px 0;
+  line-height: 1.3;
+}
+
+.xp-clippy-options {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Choix avec puce bleue, comme dans l'assistant Office */
+.xp-clippy-option {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 2px 0;
+  border: none;
+  background: transparent;
+  color: #000;
+  text-align: left;
+}
+
+.xp-clippy-option:hover {
+  color: #0033cc;
+  text-decoration: underline;
+}
+
+.xp-clippy-bullet {
+  width: 11px;
+  height: 11px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff 0%, #7fb6ff 30%, #1c5fd8 70%, #0b3b9c 100%);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+}
+
+.xp-clippy-form {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.xp-clippy-form input {
+  flex: 1;
+  min-width: 0;
+  height: 23px;
+  padding: 0 4px;
+}
+
+@keyframes xp-clippy-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Sur petit écran, Clippy prendrait trop de place */
+@media (max-width: 600px) {
+  .xp-clippy {
+    display: none;
+  }
+}
+
+/* Clippy en haut de l'écran : la bulle s'ouvre en dessous, pointe vers le haut */
+.xp-clippy-balloon.is-below {
+  bottom: auto;
+  top: calc(100% + 18px);
+}
+
+.xp-clippy-balloon.is-below::before {
+  bottom: auto;
+  top: -18px;
+  border-width: 0 0 18px 18px;
+  border-color: transparent transparent #000 transparent;
+}
+
+.xp-clippy-balloon.is-below::after {
+  bottom: auto;
+  top: -16px;
+  border-width: 0 0 16px 16px;
+  border-color: transparent transparent #ffffe1 transparent;
+}
+
+.xp-clippy-balloon.is-below.is-left::before {
+  border-width: 0 18px 18px 0;
+}
+
+.xp-clippy-balloon.is-below.is-left::after {
+  border-width: 0 16px 16px 0;
+}

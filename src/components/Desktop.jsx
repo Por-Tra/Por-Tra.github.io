@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect, useRef } from 'react';
 import DesktopIcon from './DesktopIcon';
 import Window from './Window';
 import Taskbar from './Taskbar';
+import Clippy from './Clippy';
 // Import du registry et initialisation des apps
 import appRegistry from '../apps';
 import recycleBin from '../core/recycleBin';
@@ -9,6 +10,7 @@ import { t, getAppLabel } from '../i18n/text';
 
 const STORAGE_KEY = 'xp-desktop-preferences-v1';
 const WELCOME_SESSION_KEY = 'xp-welcome-opened-session-v1';
+const CLIPPY_HIDDEN_KEY = 'xp-clippy-hidden';
 
 // Grid configuration for icon snapping
 const GRID_SIZE = 80;
@@ -22,6 +24,7 @@ const DESKTOP_MENU_LABELS = {
   align: { FR: 'Aligner les icônes', EN: 'Align icons', ES: 'Alinear iconos' },
   selectAll: { FR: 'Tout sélectionner', EN: 'Select all', ES: 'Seleccionar todo' },
   properties: { FR: 'Propriétés', EN: 'Properties', ES: 'Propiedades' },
+  showClippy: { FR: 'Afficher Clippy', EN: 'Show Clippy', ES: 'Mostrar a Clippy' },
 };
 
 const readStoredPreferences = () => {
@@ -50,6 +53,13 @@ const Desktop = () => {
   const lassoHasMoved = useRef(false);
   const lassoJustFinished = useRef(false);
   const [dragGhost, setDragGhost] = useState(null);
+  const [isClippyHidden, setIsClippyHidden] = useState(() => {
+    try {
+      return globalThis.localStorage?.getItem(CLIPPY_HIDDEN_KEY) === '1';
+    } catch {
+      return false;
+    }
+  });
   const [wallpaperUrl, setWallpaperUrl] = useState(() => {
     const stored = readStoredPreferences();
     return typeof stored?.wallpaperUrl === 'string' ? stored.wallpaperUrl : '/wallpaper.webp';
@@ -620,6 +630,17 @@ const Desktop = () => {
       return;
     }
 
+    if (action === 'show-clippy') {
+      setIsClippyHidden(false);
+      try {
+        globalThis.localStorage?.removeItem(CLIPPY_HIDDEN_KEY);
+      } catch {
+        // no-op
+      }
+      setContextMenu(null);
+      return;
+    }
+
     if (action === 'properties') {
       const controlPanel = appRegistry.get('control-panel');
       if (controlPanel) {
@@ -628,6 +649,15 @@ const Desktop = () => {
       setContextMenu(null);
     }
   }, [alignIconsToGrid, icons, openApp]);
+
+  const handleHideClippy = useCallback(() => {
+    setIsClippyHidden(true);
+    try {
+      globalThis.localStorage?.setItem(CLIPPY_HIDDEN_KEY, '1');
+    } catch {
+      // no-op
+    }
+  }, []);
 
   const handleDesktopContextMenu = useCallback((e) => {
     if (e.target !== e.currentTarget) return;
@@ -889,7 +919,27 @@ const Desktop = () => {
             >
               {t(DESKTOP_MENU_LABELS.properties, currentLanguage)}
             </button>
+            {isClippyHidden && (
+              <>
+                <div className="xp-desktop-context-separator"></div>
+                <button
+                  className="xp-desktop-context-item"
+                  onClick={() => handleContextAction('show-clippy')}
+                >
+                  {t(DESKTOP_MENU_LABELS.showClippy, currentLanguage)}
+                </button>
+              </>
+            )}
           </div>
+        )}
+
+        {/* Clippy (sous les fenêtres) */}
+        {!isClippyHidden && (
+          <Clippy
+            currentLanguage={currentLanguage}
+            onOpenApp={openAppById}
+            onHide={handleHideClippy}
+          />
         )}
 
         {/* Windows */}

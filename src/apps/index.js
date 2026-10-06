@@ -63,7 +63,7 @@ import appRegistry from '../core/AppRegistry';
 import * as Welcome from './Welcome';
 import * as About from './About';
 import * as Parcours from './Parcours';
-import * as Projects from './Projects';
+import * as Projects from './Projects/index.jsx';
 import * as Skills from './Skills';
 import * as Contact from './Contact';
 
