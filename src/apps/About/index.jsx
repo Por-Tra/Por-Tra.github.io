@@ -71,7 +71,7 @@ export const Component = ({ currentLanguage }) => {
           {t(COPY.toolbarBack, currentLanguage)}
         </button>
         <button className="xp-toolbar-btn">
-          <img src="/icons/back.webp" style="transform: scaleX(-1);" alt="" className="w-4 h-4" />
+          <img src="/icons/back.webp" style={{ transform: 'scaleX(-1)' }} alt="" className="w-4 h-4" />
           {t(COPY.toolbarNext, currentLanguage)}
         </button>
         <div className="xp-toolbar-separator" />

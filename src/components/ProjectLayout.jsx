@@ -8,7 +8,7 @@ import { t } from '../i18n/text';
 
 // Hook et constantes pour le zoom
 const ZOOM_LEVELS = [50, 75, 100, 125, 150, 175, 200, 225, 250, 275, 300, 350, 400];
-const DEFAULT_ZOOM = 150;
+const DEFAULT_ZOOM = 100;
 
 const COPY = {
   address: { FR: 'Adresse', EN: 'Address', ES: 'Direccion' },

@@ -31,13 +31,13 @@ const LanguageSwitcher = ({ currentLang, onChangeLang }) => {
     <div ref={menuRef} className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="text-white text-[11px] font-medium px-2 py-1 hover:bg-white/10 rounded flex items-center gap-1"
+        className="xp-lang-btn"
       >
         <span>{currentLang}</span>
       </button>
 
       {isOpen && (
-        <div className="absolute bottom-full mb-1 right-0 bg-white border border-[#808080] shadow-lg rounded min-w-[120px]">
+        <div className="xp-desktop-context-menu xp-lang-menu">
           {languages.map((lang) => (
             <button
               key={lang.code}
@@ -45,11 +45,11 @@ const LanguageSwitcher = ({ currentLang, onChangeLang }) => {
                 onChangeLang(lang.code);
                 setIsOpen(false);
               }}
-              className={`w-full text-left px-3 py-1.5 text-xs hover:bg-[#316ac5] hover:text-white flex items-center gap-2 ${
-                currentLang === lang.code ? 'bg-[#ece9d8]' : ''
+              className={`xp-desktop-context-item gap-2 ${
+                currentLang === lang.code ? 'xp-desktop-context-item--bold' : ''
               }`}
             >
-              <span className="font-bold w-6">{lang.code}</span>
+              <span className="w-6">{lang.code}</span>
               <span>{lang.name}</span>
             </button>
           ))}

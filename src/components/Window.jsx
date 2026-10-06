@@ -103,7 +103,7 @@ const Window = ({
 
   useEffect(() => {
     const maxWidth = globalThis.innerWidth;
-    const maxHeight = globalThis.innerHeight - 48;
+    const maxHeight = globalThis.innerHeight - 30;
 
     const handleMouseMove = (e) => {
       if (isDragging.current && !window.maximized) {
@@ -157,7 +157,7 @@ const Window = ({
         left: 0,
         top: 0,
         width: '100%',
-        height: 'calc(100vh - 48px)',
+        height: 'calc(100vh - 30px)',
         zIndex: window.zIndex,
       }
     : {
@@ -171,52 +171,49 @@ const Window = ({
   return (
     <div
       ref={windowRef}
-      className={`absolute overflow-hidden ${
-        window.maximized ? '' : 'xp-window'
-      } ${isActive ? '' : 'xp-window-inactive'}`}
+      className={`absolute xp-window ${window.maximized ? 'xp-window-maximized' : ''} ${
+        isActive ? '' : 'xp-window-inactive'
+      }`}
       style={windowStyle}
       onMouseDown={onFocus}
     >
       {/* Title Bar */}
       <div
-        className={`${isActive ? 'xp-titlebar' : 'xp-titlebar-inactive'} px-2 py-1 flex items-center justify-between cursor-move`}
+        className={`${isActive ? 'xp-titlebar' : 'xp-titlebar-inactive'} cursor-move`}
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
         onDoubleClick={onMaximize}
       >
-        <div className="flex items-center gap-2 min-w-0 flex-1">
-          <img src={window.icon} alt="" className="w-4 h-4 flex-shrink-0" />
-          <span className="text-white text-sm font-medium truncate">
+        <div className="flex items-center gap-[5px] min-w-0 flex-1">
+          <img src={window.icon} alt="" className="xp-titlebar-icon" draggable={false} />
+          <span className="xp-titlebar-text">
             {getWindowTitle(window, currentLanguage)}
           </span>
         </div>
-        <div className="window-controls flex gap-1">
+        <div className="window-controls">
           <button
             onClick={onMinimize}
-            className="xp-minimize-btn w-5 h-5 flex items-center justify-center text-white text-xs font-bold"
+            className="xp-control-btn xp-minimize-btn"
             title={t(COPY.minimize, currentLanguage)}
-          >
-            <span className="mb-1">_</span>
-          </button>
+            aria-label={t(COPY.minimize, currentLanguage)}
+          />
           <button
             onClick={onMaximize}
-            className="xp-maximize-btn w-5 h-5 flex items-center justify-center text-white text-xs font-bold"
+            className={`xp-control-btn ${window.maximized ? 'xp-restore-btn' : 'xp-maximize-btn'}`}
             title={t(window.maximized ? COPY.restore : COPY.maximize, currentLanguage)}
-          >
-            <span className="text-[10px]">{window.maximized ? '❐' : '□'}</span>
-          </button>
+            aria-label={t(window.maximized ? COPY.restore : COPY.maximize, currentLanguage)}
+          />
           <button
             onClick={onClose}
-            className="xp-close-btn w-5 h-5 flex items-center justify-center text-white text-xs font-bold"
+            className="xp-control-btn xp-close-btn"
             title={t(COPY.close, currentLanguage)}
-          >
-            ✕
-          </button>
+            aria-label={t(COPY.close, currentLanguage)}
+          />
         </div>
       </div>
 
       {/* Window Content */}
-      <div className="bg-[#ece9d8] h-[calc(100%-28px)] overflow-hidden relative">
+      <div className="xp-window-body">
         {window.searchOpen && (
           <div className="xp-menu-search">
             <span>{t(COPY.search, currentLanguage)}</span>

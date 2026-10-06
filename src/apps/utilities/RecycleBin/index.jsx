@@ -47,12 +47,10 @@ export const Component = ({ currentLanguage }) => {
   return (
     <div className="h-full bg-white flex flex-col">
       <XpMenuBar
-        className="bg-gradient-to-b from-[#ece9d8] to-[#d4d0c8] border-b border-[#808080] px-2 py-1 flex gap-4 text-xs"
-        itemClassName="text-gray-600 hover:underline cursor-pointer"
         currentLanguage={currentLanguage}
       />
 
-      <div className="bg-[#ece9d8] border-b border-[#808080] px-2 py-1 flex items-center justify-between text-xs">
+      <div className="xp-toolbar justify-between">
         <span>{t(COPY.title, currentLanguage)}</span>
         <button
           onClick={handleEmpty}
@@ -89,7 +87,7 @@ export const Component = ({ currentLanguage }) => {
         )}
       </div>
 
-      <div className="bg-[#ece9d8] border-t border-[#808080] px-2 py-1 text-[10px] text-gray-600 flex justify-between">
+      <div className="xp-statusbar">
         <span>{t(COPY.ready, currentLanguage)}</span>
         <span>{items.length} {t(COPY.items, currentLanguage)}</span>
       </div>

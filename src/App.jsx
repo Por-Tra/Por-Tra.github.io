@@ -7,22 +7,28 @@ import { t } from './i18n/text'
 
 const BOOT_SESSION_KEY = 'xp-boot-shown-session-v1'
 const DESKTOP_PREF_KEY = 'xp-desktop-preferences-v1'
+const LOGGED_OFF_KEY = 'xp-logged-off'
 
 const COPY = {
   loginHint: {
-    FR: 'Pour commencer, cliquez sur votre profil',
-    EN: 'To get started, click your profile',
-    ES: 'Para comenzar, haz clic en tu perfil',
+    FR: "Pour commencer, cliquez sur votre nom d'utilisateur",
+    EN: 'To begin, click your user name',
+    ES: 'Para comenzar, haga clic en su nombre de usuario',
+  },
+  turnOff: {
+    FR: "Arrêter l'ordinateur",
+    EN: 'Turn off computer',
+    ES: 'Apagar equipo',
+  },
+  accountsHint: {
+    FR: "Une fois la session ouverte, vous pouvez ajouter ou modifier des comptes. Ouvrez le Panneau de configuration, puis cliquez sur Comptes d'utilisateurs.",
+    EN: 'After you log on, you can add or change accounts. Just go to Control Panel and click User Accounts.',
+    ES: 'Una vez iniciada la sesión, puede agregar o cambiar cuentas. Vaya al Panel de control y haga clic en Cuentas de usuario.',
   },
   statusOnline: {
     FR: 'Connecté',
     EN: 'Signed in',
     ES: 'Conectado',
-  },
-  shutdownAlt: {
-    FR: 'Arrêter',
-    EN: 'Shut down',
-    ES: 'Apagar',
   },
 };
 
@@ -43,6 +49,7 @@ const BootScreen = () => (
       <img src={xpLogo} alt="Microsoft Windows XP" />
     </div>
     <div className="xp-boot-progress" />
+    <span className="xp-boot-copyright">Copyright © Lucas Contreras Hodapp</span>
     <span className="xp-boot-brand">Portfolio<sup>®</sup></span>
   </div>
 )
@@ -76,8 +83,10 @@ const LoginScreen = ({ onContinue, currentLanguage }) => (
 
     <div className="xp-login-bottombar">
       <button className="xp-login-shutdown" onClick={onContinue}>
-        <img src={offButton} alt={t(COPY.shutdownAlt, currentLanguage)} className='LoginOffBtn'/>
+        <img src={offButton} alt="" className='LoginOffBtn'/>
+        <span>{t(COPY.turnOff, currentLanguage)}</span>
       </button>
+      <p className="xp-login-hint">{t(COPY.accountsHint, currentLanguage)}</p>
     </div>
   </div>
 )
@@ -86,6 +95,10 @@ function App() {
   const [currentLanguage] = useState(() => readStoredLanguage())
   const [stage, setStage] = useState(() => {
     try {
+      if (globalThis.sessionStorage?.getItem(LOGGED_OFF_KEY) === '1') {
+        globalThis.sessionStorage.removeItem(LOGGED_OFF_KEY)
+        return 'login'
+      }
       if (globalThis.sessionStorage?.getItem(BOOT_SESSION_KEY) === '1') {
         return 'desktop'
       }

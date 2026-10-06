@@ -127,15 +127,15 @@ export const Component = ({ currentLanguage }) => {
 
             <div className="xp-sidebar-content">
               <a href="#academiques" className="xp-sidebar-link">
-                <img src="/icons/education.png" alt="" className="w-3 h-3" />
+                <img src="/icons/note.webp" alt="" className="w-3 h-3" />
                 {t(COPY.academic, currentLanguage)}
               </a>
               <a href="#languages" className="xp-sidebar-link">
-                <img src="/icons/code.png" alt="" className="w-3 h-3" />
+                <img src="/icons/terminal.webp" alt="" className="w-3 h-3" />
                 {t(COPY.languages, currentLanguage)}
               </a>
               <a href="#web" className="xp-sidebar-link">
-                <img src="/icons/web.png" alt="" className="w-3 h-3" />
+                <img src="/icons/explorer.webp" alt="" className="w-3 h-3" />
                 {t(COPY.web, currentLanguage)}
               </a>
               <a href="#tools" className="xp-sidebar-link">
@@ -147,7 +147,7 @@ export const Component = ({ currentLanguage }) => {
 
           <div className="xp-sidebar-box">
             <div className="xp-sidebar-header">
-              <img src="/icons/info.png" alt="" className="w-4 h-4" />
+              <img src="/icons/questionMark.webp" alt="" className="w-4 h-4" />
               {t(COPY.stats, currentLanguage)}
             </div>
             <div className="xp-sidebar-content">
@@ -172,7 +172,7 @@ export const Component = ({ currentLanguage }) => {
           {/* Academic Skills Section */}
           <div id="academiques" className="xp-box">
             <div className="xp-box-header">
-              <img src="/icons/education.png" alt="" className="w-4 h-4" />
+              <img src="/icons/note.webp" alt="" className="w-4 h-4" />
               {t(COPY.academicTitle, currentLanguage)}
             </div>
             <div className="xp-box-content">
@@ -199,7 +199,7 @@ export const Component = ({ currentLanguage }) => {
           {['languages', 'web', 'tools'].map((category) => (
             <div key={category} id={category} className="xp-box">
               <div className="xp-box-header">
-                <img src={category === 'languages' ? '/icons/code.png' : category === 'web' ? '/icons/web.png' : '/icons/setting.webp'} alt="" className="w-4 h-4" />
+                <img src={category === 'languages' ? '/icons/terminal.webp' : category === 'web' ? '/icons/explorer.webp' : '/icons/setting.webp'} alt="" className="w-4 h-4" />
                 {t(CATEGORY_LABELS[category], currentLanguage)}
               </div>
               <div className="xp-box-content">

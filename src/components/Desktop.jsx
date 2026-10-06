@@ -19,9 +19,9 @@ const TRASH_APP_ID = 'trash';
 
 const DESKTOP_MENU_LABELS = {
   refresh: { FR: 'Actualiser', EN: 'Refresh', ES: 'Actualizar' },
-  align: { FR: 'Aligner les icones', EN: 'Align icons', ES: 'Alinear iconos' },
-  selectAll: { FR: 'Tout selectionner', EN: 'Select all', ES: 'Seleccionar todo' },
-  properties: { FR: 'Proprietes', EN: 'Properties', ES: 'Propiedades' },
+  align: { FR: 'Aligner les icônes', EN: 'Align icons', ES: 'Alinear iconos' },
+  selectAll: { FR: 'Tout sélectionner', EN: 'Select all', ES: 'Seleccionar todo' },
+  properties: { FR: 'Propriétés', EN: 'Properties', ES: 'Propiedades' },
 };
 
 const readStoredPreferences = () => {
@@ -168,7 +168,7 @@ const Desktop = () => {
 
       // Adjust windows to fit in viewport
       const maxWidth = window.innerWidth;
-      const maxHeight = window.innerHeight - 48; // taskbar height
+      const maxHeight = window.innerHeight - 30; // taskbar height
       
       setWindows(prev => prev.map(w => {
         if (w.maximized) return w;
@@ -842,26 +842,16 @@ const Desktop = () => {
 
         {dragGhost && dragGhostApp && (
           <div
-            className="absolute flex flex-col items-center p-1 w-[75px] pointer-events-none opacity-50"
+            className="absolute xp-desktop-icon pointer-events-none opacity-50"
             style={{
               left: dragGhost.x,
               top: dragGhost.y,
             }}
           >
-            <div className="w-12 h-12 flex items-center justify-center mb-1">
-              <img
-                src={dragGhostApp.icon}
-                alt=""
-                className="w-10 h-10 drop-shadow-[1px_1px_1px_rgba(0,0,0,0.5)]"
-                draggable={false}
-              />
+            <div className="xp-desktop-icon-image">
+              <img src={dragGhostApp.icon} alt="" draggable={false} />
             </div>
-            <span
-              className="text-[11px] text-center leading-tight break-words w-full px-1 text-white"
-              style={{
-                textShadow: '1px 1px 2px rgba(0,0,0,0.9)',
-              }}
-            >
+            <span className="xp-desktop-icon-label">
               {getAppLabel(dragGhostApp.id, dragGhostApp.name, currentLanguage)}
             </span>
           </div>

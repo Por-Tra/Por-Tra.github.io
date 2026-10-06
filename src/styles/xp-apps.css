@@ -18,12 +18,14 @@
    MENU BAR - File, Edit, View, Help
    ============================================ */
 .xp-menubar {
-  background: linear-gradient(to bottom, #ece9d8 0%, #d4d0c8 100%);
-  border-bottom: 1px solid #808080;
-  padding: 2px 4px;
+  background: #ece9d8;
+  border-bottom: 1px solid #d8d2bd;
+  box-shadow: 0 1px #fff;
+  padding: 1px 2px;
   display: flex;
-  gap: 16px;
-  font-size: 11px;
+  gap: 0;
+  position: relative;
+  z-index: 3;
 }
 
 .xp-menubar button {
@@ -39,7 +41,7 @@
 .xp-menubar-item {
   color: #000;
   cursor: pointer;
-  padding: 2px 6px 2px 8px;
+  padding: 1px 7px;
 }
 
 .xp-menubar-item:hover {
@@ -52,7 +54,11 @@
 }
 
 .xp-menu-button {
-  padding: 2px 6px 2px 8px;
+  padding: 1px 7px;
+}
+
+.xp-menubar .xp-menu-button {
+  padding: 1px 7px;
 }
 
 .xp-menubar .xp-menu-button:hover,
@@ -64,13 +70,13 @@
 
 .xp-menu-dropdown {
   position: absolute;
-  top: calc(100% + 2px);
+  top: 100%;
   left: 0;
   min-width: 180px;
-  background: #f6f5ee;
-  border: 1px solid #6b6b6b;
-  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.25);
-  padding: 4px 0;
+  background: #fff;
+  border: 1px solid #aca899;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.35);
+  padding: 2px;
   z-index: 20;
 }
 
@@ -79,10 +85,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  padding: 4px 12px;
-  font-size: 11px;
+  gap: 16px;
+  padding: 2px 16px 2px 22px;
+  min-height: 20px;
   color: #000;
+  text-align: left;
 }
 
 .xp-menu-item:hover,
@@ -94,13 +101,12 @@
 
 .xp-menu-separator {
   height: 1px;
-  background: #b5b5b5;
-  margin: 4px 6px;
+  background: #aca899;
+  margin: 3px 1px;
 }
 
 .xp-menu-shortcut {
-  font-size: 10px;
-  opacity: 0.7;
+  opacity: 1;
 }
 
 .xp-menu-modal {
@@ -117,30 +123,46 @@
 
 .xp-menu-modal-card {
   position: relative;
-  width: min(360px, 90vw);
+  width: min(380px, 90vw);
   margin: 12vh auto 0;
   background: #ece9d8;
-  border: 1px solid #6b6b6b;
-  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.25);
+  padding: 0 3px 3px;
+  border-radius: 8px 8px 0 0;
+  box-shadow:
+    inset -1px -1px #00138c,
+    inset 1px 1px #0831d9,
+    inset -2px -2px #001ea0,
+    inset 2px 2px #166aee,
+    inset -3px -3px #003bda,
+    inset 3px 3px #0855dd,
+    2px 2px 6px rgba(0, 0, 0, 0.35);
 }
 
 .xp-menu-modal-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: linear-gradient(to bottom, #3a6ea5 0%, #2b5a8a 100%);
+  height: 30px;
+  margin: 0 -3px;
+  padding: 0 5px 0 8px;
+  border-radius: 8px 8px 0 0;
+  background: linear-gradient(180deg, #0997ff 0%, #0053ee 8%, #0050ee 40%, #0066ff 88%, #0066ff 93%, #005bff 95%, #003dd7 96%, #003dd7 100%);
   color: #fff;
-  padding: 6px 8px;
-  font-size: 12px;
+  font-weight: bold;
+  text-shadow: 1px 1px #0f1089;
 }
 
 .xp-menu-modal-header button {
   appearance: none;
-  border: none;
-  background: transparent;
-  color: inherit;
+  width: 21px;
+  height: 21px;
+  border: 1px solid #fff;
+  border-radius: 3px;
+  background: radial-gradient(circle at 90% 90%, #cc4600 0%, #dc6527 55%, #cd7546 70%, #ffccb2 90%, #fff 100%);
+  color: #fff;
+  font-weight: bold;
+  line-height: 1;
   cursor: pointer;
-  font-size: 12px;
 }
 
 .xp-menu-modal-body {
@@ -159,10 +181,9 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 8px;
-  border-bottom: 1px solid #808080;
+  padding: 4px 8px;
+  border-bottom: 1px solid #d8d2bd;
   background: #ece9d8;
-  font-size: 11px;
 }
 
 .xp-menu-search input {
@@ -176,38 +197,47 @@
    TOOLBAR - Icon buttons below menu
    ============================================ */
 .xp-toolbar {
-  background: linear-gradient(to bottom, #ece9d8 0%, #d4d0c8 100%);
-  border-bottom: 1px solid #808080;
-  padding: 4px 8px;
+  background: linear-gradient(180deg, #f7f6ef 0%, #efeedc 30%, #edebd9 100%);
+  border-bottom: 1px solid #d8d2bd;
+  box-shadow: 0 1px #fff;
+  padding: 2px 4px;
   display: flex;
-  gap: 4px;
+  gap: 1px;
   align-items: center;
+  position: relative;
+  z-index: 2;
 }
 
 .xp-toolbar-btn {
   background: transparent;
   border: 1px solid transparent;
-  padding: 2px 4px;
+  border-radius: 3px;
+  min-height: 34px;
+  padding: 1px 6px 1px 3px;
   display: flex;
   align-items: center;
   gap: 4px;
-  font-size: 11px;
+  color: #000;
   cursor: pointer;
 }
 
 .xp-toolbar-btn:hover {
-  background: linear-gradient(to bottom, #fff 0%, #ece9d8 100%);
-  border: 1px solid #808080;
+  background: linear-gradient(180deg, #fff 0%, #fbfbf9 40%, #e8e6dc 100%);
+  border: 1px solid #cecece;
+  box-shadow: inset 0 -1px 1px rgba(0, 0, 0, 0.1);
 }
 
 .xp-toolbar-btn:active {
-  background: linear-gradient(to bottom, #d4d0c8 0%, #ece9d8 100%);
+  background: #e3e3db;
+  border-color: #b8b6aa;
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.25);
 }
 
 .xp-toolbar-separator {
   width: 1px;
-  height: 20px;
-  background: #808080;
+  height: 30px;
+  background: #c5c2b2;
+  box-shadow: 1px 0 #fff;
   margin: 0 4px;
 }
 
@@ -216,56 +246,67 @@
    ============================================ */
 .xp-addressbar {
   background: #ece9d8;
-  border-bottom: 1px solid #808080;
-  padding: 2px 8px;
+  border-bottom: 1px solid #d8d2bd;
+  padding: 2px 4px 2px 6px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 .xp-addressbar-label {
-  font-size: 11px;
-  color: #000;
+  color: #7f7c73;
 }
 
 .xp-addressbar-input {
   flex: 1;
+  min-width: 0;
+  height: 22px;
   background: #fff;
   border: 1px solid #7f9db9;
-  padding: 2px 4px;
-  font-size: 11px;
+  padding: 0 4px;
   display: flex;
   align-items: center;
   gap: 4px;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .xp-addressbar-go {
-  background: linear-gradient(to bottom, #fff 0%, #ece9d8 100%);
-  border: 1px solid #808080;
-  padding: 2px 8px;
-  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 22px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  padding: 0 5px 0 3px;
+  color: #000;
   cursor: pointer;
 }
 
 .xp-addressbar-go:hover {
-  background: linear-gradient(to bottom, #e8e4d8 0%, #d4ccc0 100%);
+  background: linear-gradient(180deg, #fff 0%, #fbfbf9 40%, #e8e6dc 100%);
+  border-color: #cecece;
 }
 
 /* ============================================
    SIDEBAR - Left blue panel
    ============================================ */
 .xp-sidebar {
-  width: 180px;
-  background: linear-gradient(to bottom, #6b88c4 0%, #4d6eb5 100%);
-  padding: 8px;
+  width: 200px;
+  background: linear-gradient(180deg, #7aa1e6 0%, #6375d6 100%);
+  padding: 12px 12px 12px 12px;
   flex-shrink: 0;
   overflow-y: auto;
 }
 
 .xp-sidebar-box {
-  background: rgba(255, 255, 255, 0.9);
-  margin-bottom: 8px;
-  padding: 8px;
+  background: #d6dff7;
+  border: 1px solid #fff;
+  border-top: none;
+  border-radius: 3px 3px 0 0;
+  margin-bottom: 12px;
+  padding: 0 0 8px;
 }
 
 .xp-sidebar-box:last-child {
@@ -273,10 +314,13 @@
 }
 
 .xp-sidebar-title {
-  font-size: 11px;
   font-weight: bold;
   color: #215dc6;
-  margin-bottom: 8px;
+  margin: 0 -1px 8px;
+  padding: 3px 11px;
+  min-height: 25px;
+  border-radius: 5px 5px 0 0;
+  background: linear-gradient(90deg, #fff 0%, #c6d3f7 100%);
   display: flex;
   align-items: center;
   gap: 4px;
@@ -290,14 +334,14 @@
 .xp-sidebar-link {
   display: flex;
   align-items: center;
-  gap: 4px;
-  font-size: 10px;
+  gap: 6px;
   color: #215dc6;
   cursor: pointer;
-  padding: 2px 0;
+  padding: 2px 10px;
 }
 
 .xp-sidebar-link:hover {
+  color: #428eff;
   text-decoration: underline;
 }
 
@@ -307,9 +351,9 @@
 }
 
 .xp-sidebar-text {
-  font-size: 10px;
-  color: #333;
-  line-height: 1.4;
+  color: #000;
+  line-height: 1.35;
+  padding: 0 10px;
 }
 
 /* ============================================
@@ -584,8 +628,7 @@
 }
 
 .xp-grid-item:hover {
-  background: #316ac5;
-  color: #fff;
+  background: #e8f0ff;
 }
 
 .xp-grid-item img {
@@ -633,15 +676,20 @@
    PROGRESS BAR
    ============================================ */
 .xp-progress {
-  background: #d4d0c8;
-  border: 1px solid #808080;
-  height: 16px;
+  background: #fff;
+  border: 1px solid #686868;
+  border-radius: 3px;
+  height: 14px;
+  padding: 1px;
   overflow: hidden;
 }
 
 .xp-progress-bar {
   height: 100%;
-  background: linear-gradient(to bottom, #00aa00 0%, #006600 100%);
+  border-radius: 1px;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 8px, #fff 8px 10px),
+    linear-gradient(180deg, #acedad 0%, #7be47d 14%, #4cda50 28%, #2ed330 42%, #42d845 57%, #76e275 71%, #8fe791 85%, #fff 100%);
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -649,9 +697,7 @@
 }
 
 .xp-progress-text {
-  font-size: 9px;
-  color: #fff;
-  font-weight: bold;
+  color: #000;
 }
 
 /* ============================================
@@ -659,10 +705,10 @@
    ============================================ */
 .xp-statusbar {
   background: #ece9d8;
-  border-top: 1px solid #808080;
-  padding: 2px 8px;
-  font-size: 10px;
-  color: #666;
+  border-top: 1px solid #d8d2bd;
+  box-shadow: inset 0 1px #fff;
+  padding: 2px 6px;
+  color: #000;
   display: flex;
   justify-content: space-between;
 }
@@ -678,16 +724,17 @@
 
 .xp-table th {
   text-align: left;
-  padding: 6px 8px;
-  background: linear-gradient(to bottom, #f5f5f5 0%, #e8e8e8 100%);
-  border-bottom: 1px solid #808080;
+  padding: 3px 6px;
+  background: linear-gradient(180deg, #fff 0%, #f5f4ea 60%, #ebeadb 100%);
+  border-right: 1px solid #c7c5b2;
+  border-bottom: 3px solid #d6d2c2;
   font-weight: normal;
-  color: #333;
+  color: #000;
 }
 
 .xp-table td {
-  padding: 6px 8px;
-  border-bottom: 1px solid #e0e0e0;
+  padding: 3px 6px;
+  border-bottom: 1px solid #f1efe2;
 }
 
 .xp-table tr:nth-child(even) {
@@ -704,47 +751,51 @@
 .xp-input {
   background: #fff;
   border: 1px solid #7f9db9;
-  padding: 4px 6px;
-  font-size: 11px;
+  padding: 2px 4px;
   font-family: inherit;
 }
 
 .xp-input:focus {
   outline: none;
-  border-color: #0058e6;
 }
 
 .xp-textarea {
   background: #fff;
   border: 1px solid #7f9db9;
-  padding: 4px 6px;
-  font-size: 11px;
+  padding: 2px 4px;
   font-family: inherit;
   resize: none;
 }
 
 .xp-textarea:focus {
   outline: none;
-  border-color: #0058e6;
 }
 
 .xp-btn {
-  background: linear-gradient(to bottom, #fff 0%, #ece9d8 50%, #d8d0c4 100%);
+  background: linear-gradient(180deg, #fff 0%, #ecebe5 86%, #d8d0c4 100%);
   border: 1px solid #003c74;
-  padding: 4px 12px;
-  font-size: 11px;
+  border-radius: 3px;
+  min-height: 23px;
+  padding: 0 12px;
+  color: #000;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 4px;
 }
 
 .xp-btn:hover {
-  background: linear-gradient(to bottom, #fff 0%, #e8e4d8 50%, #d4ccc0 100%);
+  box-shadow:
+    inset -1px 1px #fff0cf,
+    inset 1px 2px #fdd889,
+    inset -2px 2px #fbc761,
+    inset 2px -2px #e5a01a;
 }
 
 .xp-btn:active {
-  background: linear-gradient(to bottom, #d4ccc0 0%, #ece9d8 100%);
+  background: linear-gradient(180deg, #cdcac3 0%, #e3e3db 8%, #e5e5de 94%, #f2f2f1 100%);
+  box-shadow: none;
 }
 
 .xp-btn img {
@@ -901,12 +952,13 @@
    SIDEBAR ADDITIONAL STYLES
    ============================================ */
 .xp-sidebar-header {
-  font-size: 11px;
   font-weight: bold;
   color: #215dc6;
-  padding-bottom: 6px;
-  border-bottom: 1px solid #ccc;
-  margin-bottom: 6px;
+  margin: 0 -1px 8px;
+  padding: 3px 11px;
+  min-height: 25px;
+  border-radius: 5px 5px 0 0;
+  background: linear-gradient(90deg, #fff 0%, #c6d3f7 100%);
   display: flex;
   align-items: center;
   gap: 4px;
@@ -921,17 +973,16 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
+  padding: 0 10px;
 }
 
 .xp-sidebar-info {
-  font-size: 10px;
-  color: #333;
+  color: #000;
   margin: 0;
 }
 
 .xp-sidebar-info-small {
-  font-size: 9px;
-  color: #666;
+  color: #000;
   margin: 0 0 4px 0;
 }
 
@@ -1157,8 +1208,8 @@ img.xp-screenshot {
 }
 
 .xp-zoom-toolbar {
-  background: linear-gradient(to bottom, #ece9d8 0%, #d4d0c8 100%);
-  border-bottom: 1px solid #808080;
+  background: #ece9d8;
+  border-bottom: 1px solid #d8d2bd;
   padding: 2px 8px;
   display: flex;
   justify-content: flex-end;
@@ -1169,28 +1220,29 @@ img.xp-screenshot {
   display: flex;
   align-items: center;
   gap: 2px;
-  background: #fff;
-  border: 1px solid #7f9db9;
-  padding: 1px 4px;
-  border-radius: 2px;
+  padding: 0 2px;
 }
 
 .xp-zoom-btn {
-  width: 20px;
-  height: 18px;
-  background: linear-gradient(to bottom, #fff 0%, #ece9d8 100%);
-  border: 1px solid #808080;
+  width: 21px;
+  height: 21px;
+  background: linear-gradient(180deg, #fff 0%, #ecebe5 86%, #d8d0c4 100%);
+  border: 1px solid #003c74;
+  border-radius: 3px;
   cursor: pointer;
-  font-size: 12px;
-  font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #333;
+  color: #000;
+  padding: 0;
 }
 
 .xp-zoom-btn:hover:not(:disabled) {
-  background: linear-gradient(to bottom, #e8e4d8 0%, #d4ccc0 100%);
+  box-shadow:
+    inset -1px 1px #fff0cf,
+    inset 1px 2px #fdd889,
+    inset -2px 2px #fbc761,
+    inset 2px -2px #e5a01a;
 }
 
 .xp-zoom-btn:disabled {
@@ -1204,10 +1256,9 @@ img.xp-screenshot {
 }
 
 .xp-zoom-level {
-  font-size: 10px;
-  min-width: 36px;
+  min-width: 40px;
   text-align: center;
-  color: #333;
+  color: #000;
   padding: 0 4px;
 }
 
@@ -1219,7 +1270,7 @@ img.xp-screenshot {
 
 .xp-menubar-items {
   display: flex;
-  gap: 16px;
+  gap: 0;
 }
 
 /* Responsive zoom - Le contenu s'adapte */
@@ -1431,4 +1482,127 @@ img.xp-screenshot {
 .xp-upload-hint {
   font-size: 10px;
   color: #666;
+}
+
+/* Flèche verte du bouton « Aller » de la barre d'adresse */
+.xp-addressbar-go::before {
+  content: "";
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='19' height='19'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%238de38d'/%3E%3Cstop offset='.5' stop-color='%2336a836'/%3E%3Cstop offset='1' stop-color='%231d7d1d'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='.5' y='.5' width='18' height='18' rx='3' fill='url(%23g)' stroke='%23fff'/%3E%3Cpath d='M4 8h6V5l5 4.5-5 4.5v-3H4z' fill='%23fff'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+/* ============================================
+   EXPLORATEUR - compléments Luna
+   ============================================ */
+.xp-toolbar-icon-lg {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.xp-toolbar-btn.is-pressed {
+  background: #e3e3db;
+  border-color: #b8b6aa;
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.xp-toolbar-btn:disabled {
+  color: #aca899;
+  cursor: default;
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.xp-toolbar-btn:disabled img {
+  filter: grayscale(1);
+  opacity: 0.5;
+}
+
+/* Logo Windows à droite de la barre de menus de l'Explorateur */
+.xp-menubar-explorer {
+  padding-right: 42px;
+}
+
+.xp-menubar-explorer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 38px;
+  background: #fff url("/icons/windows-xp.webp") center / 20px 20px no-repeat;
+  border-left: 1px solid #d8d2bd;
+}
+
+/* Vue « Icônes » : seule l'étiquette est surlignée, l'icône est teintée en bleu */
+.xp-file-icon {
+  width: 82px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.xp-file-icon-image {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 3px;
+}
+
+.xp-file-icon-image img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.xp-file-icon.is-selected .xp-file-icon-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #316ac5;
+  opacity: 0.5;
+  -webkit-mask: var(--icon-src) center / contain no-repeat;
+  mask: var(--icon-src) center / contain no-repeat;
+}
+
+.xp-file-icon-label {
+  max-width: 82px;
+  padding: 0 2px;
+  text-align: center;
+  line-height: 13px;
+  overflow-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.xp-file-icon.is-selected .xp-file-icon-label {
+  background: #316ac5;
+  color: #fff;
+}
+
+/* Vue « Liste » */
+.xp-file-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 2px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.xp-file-row img {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.xp-file-row.is-selected span {
+  background: #316ac5;
+  color: #fff;
 }

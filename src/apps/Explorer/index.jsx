@@ -89,12 +89,13 @@ const FileItem = memo(({ name, label, item, isSelected, viewMode, onSelect, onDo
       <div
         onClick={() => onSelect(name, item)}
         onDoubleClick={() => onDoubleClick(name, item)}
-        className={`flex flex-col items-center w-20 p-2 rounded cursor-pointer select-none ${
-          isSelected ? 'bg-[#316ac5] text-white' : 'hover:bg-[#e8f4fc]'
-        }`}
+        className={`xp-file-icon ${isSelected ? 'is-selected' : ''}`}
+        style={{ '--icon-src': `url("${icon}")` }}
       >
-        <img src={icon} alt="" className="w-10 h-10 mb-1" draggable={false} />
-        <span className={`text-[11px] text-center break-all line-clamp-2 ${isSelected ? 'text-white' : ''}`}>
+        <div className="xp-file-icon-image">
+          <img src={icon} alt="" draggable={false} />
+        </div>
+        <span className="xp-file-icon-label">
           {highlightText ? highlightText(label) : label}
         </span>
       </div>
@@ -106,9 +107,7 @@ const FileItem = memo(({ name, label, item, isSelected, viewMode, onSelect, onDo
       <div
         onClick={() => onSelect(name, item)}
         onDoubleClick={() => onDoubleClick(name, item)}
-        className={`flex items-center gap-2 px-2 py-1 rounded cursor-pointer select-none ${
-          isSelected ? 'bg-[#316ac5] text-white' : 'hover:bg-[#e8f4fc]'
-        }`}
+        className={`xp-file-row ${isSelected ? 'is-selected' : ''}`}
       >
         <img src={icon} alt="" className="w-5 h-5" draggable={false} />
         <span className="text-xs truncate">{highlightText ? highlightText(label) : label}</span>
@@ -122,18 +121,14 @@ const FileItem = memo(({ name, label, item, isSelected, viewMode, onSelect, onDo
 FileItem.displayName = 'FileItem';
 
 // Composant pour la vue détaillée
-const DetailsRow = memo(({ name, label, item, typeLabel, isSelected, index, onSelect, onDoubleClick, highlightText }) => {
+const DetailsRow = memo(({ name, label, item, typeLabel, isSelected, onSelect, onDoubleClick, highlightText }) => {
   const icon = fileSystem.getIcon(item, name);
   
   return (
     <tr
       onClick={() => onSelect(name, item)}
       onDoubleClick={() => onDoubleClick(name, item)}
-      className={`cursor-pointer select-none ${
-        isSelected 
-          ? 'bg-[#316ac5] text-white' 
-          : index % 2 === 0 ? 'bg-white hover:bg-[#e8f4fc]' : 'bg-[#f5f5f5] hover:bg-[#e8f4fc]'
-      }`}
+      className={`cursor-pointer select-none ${isSelected ? 'bg-[#316ac5] text-white' : ''}`}
     >
       <td className="p-1 flex items-center gap-2">
         <img src={icon} alt="" className="w-4 h-4" draggable={false} />
@@ -297,144 +292,132 @@ export const Component = ({ onOpenApp, initialPath, currentLanguage = 'FR' }) =>
       {/* Menu Bar */}
       <XpMenuBar
         preset="explorer"
-        className="bg-gradient-to-b from-[#ece9d8] to-[#d4d0c8] border-b border-[#808080] px-2 py-1 flex gap-4 text-xs"
-        itemClassName="text-gray-600 hover:underline cursor-pointer"
+        className="xp-menubar xp-menubar-explorer"
         currentLanguage={currentLanguage}
       />
 
       {/* Toolbar */}
-      <div className="bg-[#ece9d8] border-b border-[#808080] px-2 py-1 flex items-center gap-1">
-        <button 
+      <div className="xp-toolbar">
+        <button
           onClick={goBack}
           disabled={historyIndex <= 0}
-          className="xp-button px-2 py-0.5 text-xs flex items-center gap-1 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="xp-toolbar-btn"
           title={t(COPY.back, currentLanguage)}
         >
-          <img src="/icons/back.webp" alt="" className="w-3 h-3" />
+          <img src="/icons/back.webp" alt="" className="xp-toolbar-icon-lg" />
           {t(COPY.back, currentLanguage)}
         </button>
-        <button 
+        <button
           onClick={goForward}
           disabled={historyIndex >= history.length - 1}
-          className="xp-button px-2 py-0.5 text-xs flex items-center gap-1 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="xp-toolbar-btn"
           title={t(COPY.forward, currentLanguage)}
         >
-          {t(COPY.forward, currentLanguage)} <img src="/icons/back.webp" alt="" className="w-3 h-3" style={{ transform: 'scaleX(-1)' }} />
+          <img src="/icons/back.webp" alt="" className="xp-toolbar-icon-lg" style={{ transform: 'scaleX(-1)' }} />
         </button>
-        {/* <button 
+        <button
           onClick={goUp}
           disabled={currentPath.length <= 1}
-          className="xp-button px-2 py-0.5 text-xs flex items-center gap-1 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="xp-toolbar-btn"
           title={t(COPY.up, currentLanguage)}
         >
-          <img src="/icons/back.webp" alt="" className="w-3 h-3" style={{ transform: 'rotate(90deg)' }} />
-        </button> */}
-        <div className="w-px h-5 bg-[#808080] mx-1"></div>
-        <button 
+          <img src="/icons/folder.webp" alt="" className="xp-toolbar-icon-lg" />
+        </button>
+        <div className="xp-toolbar-separator"></div>
+        <button
           onClick={() => setViewMode('icons')}
-          className={`xp-button px-2 py-0.5 text-xs ${viewMode === 'icons' ? 'bg-[#c0c0c0]' : ''}`}
+          className={`xp-toolbar-btn ${viewMode === 'icons' ? 'is-pressed' : ''}`}
           title={t(COPY.icons, currentLanguage)}
         >
-          ☐
+          {t(COPY.icons, currentLanguage)}
         </button>
-        <button 
+        <button
           onClick={() => setViewMode('list')}
-          className={`xp-button px-2 py-0.5 text-xs ${viewMode === 'list' ? 'bg-[#c0c0c0]' : ''}`}
+          className={`xp-toolbar-btn ${viewMode === 'list' ? 'is-pressed' : ''}`}
           title={t(COPY.list, currentLanguage)}
         >
-          ≡
+          {t(COPY.list, currentLanguage)}
         </button>
-        <button 
+        <button
           onClick={() => setViewMode('details')}
-          className={`xp-button px-2 py-0.5 text-xs ${viewMode === 'details' ? 'bg-[#c0c0c0]' : ''}`}
+          className={`xp-toolbar-btn ${viewMode === 'details' ? 'is-pressed' : ''}`}
           title={t(COPY.details, currentLanguage)}
         >
-          ⊞
+          {t(COPY.details, currentLanguage)}
         </button>
       </div>
 
       {/* Address Bar */}
-      <div className="bg-[#ece9d8] border-b border-[#808080] px-2 py-1 flex items-center gap-2">
-        <span className="text-xs text-gray-600 shrink-0">{t(COPY.address, currentLanguage)}</span>
-        <div className="flex-1 bg-white border border-[#7f9db9] px-2 py-0.5 text-xs flex items-center gap-1 min-w-0">
+      <div className="xp-addressbar">
+        <span className="xp-addressbar-label">{t(COPY.address, currentLanguage)}</span>
+        <div className="xp-addressbar-input">
           <img src={currentFolder?.icon || '/icons/folder.webp'} alt="" className="w-4 h-4 shrink-0" />
           <span className="truncate">{pathString}</span>
         </div>
+        <button className="xp-addressbar-go" type="button">OK</button>
       </div>
 
       {/* Main Content */}
       <div className="flex-1 flex overflow-hidden">
-        {/* Left Sidebar */}
-        <div className="w-44 bg-gradient-to-b from-[#6b88c4] to-[#4d6eb5] p-2 overflow-y-auto flex-shrink-0">
-          {/* Tâches système */}
-          <div className="bg-white/90 p-2 mb-2">
-            <h3 className="text-[11px] font-bold text-[#215dc6] mb-2">{t(COPY.systemTasks, currentLanguage)}</h3>
-            <div className="space-y-1 text-[10px]">
-              {selectedItem?.item?.downloadFile && (
-                <div 
-                  onClick={() => handleDoubleClick(selectedItem.name, selectedItem.item)}
-                  className="flex items-center gap-1 text-[#215dc6] hover:underline cursor-pointer"
-                >
-                  <span></span> {t(COPY.download, currentLanguage)}
-                </div>
-              )}
-              {selectedItem?.item?.type === 'app' && (
-                <div 
-                  onClick={() => handleDoubleClick(selectedItem.name, selectedItem.item)}
-                  className="flex items-center gap-1 text-[#215dc6] hover:underline cursor-pointer"
-                >
-                  <span></span> {t(COPY.open, currentLanguage)}
-                </div>
-              )}
-            </div>
+        {/* Volet des tâches */}
+        <div className="xp-sidebar">
+          {/* Tâches système (seulement si une action est possible sur la sélection) */}
+          {(selectedItem?.item?.downloadFile || selectedItem?.item?.type === 'app') && (
+          <div className="xp-sidebar-box">
+            <div className="xp-sidebar-title">{t(COPY.systemTasks, currentLanguage)}</div>
+            {selectedItem?.item?.downloadFile && (
+              <div
+                onClick={() => handleDoubleClick(selectedItem.name, selectedItem.item)}
+                className="xp-sidebar-link"
+              >
+                <img src="/icons/folder.webp" alt="" />
+                {t(COPY.download, currentLanguage)}
+              </div>
+            )}
+            {selectedItem?.item?.type === 'app' && (
+              <div
+                onClick={() => handleDoubleClick(selectedItem.name, selectedItem.item)}
+                className="xp-sidebar-link"
+              >
+                <img src={selectedItem.item.icon || '/icons/folder.webp'} alt="" />
+                {t(COPY.open, currentLanguage)}
+              </div>
+            )}
           </div>
+          )}
 
-          {/* Raccourcis */}
-          <div className="bg-white/90 p-2 mb-2">
-            <h3 className="text-[11px] font-bold text-[#215dc6] mb-2">{t(COPY.otherLocations, currentLanguage)}</h3>
-            <div className="space-y-1 text-[10px]">
-              <div 
-                onClick={() => navigateTo(['Poste de travail', 'Bureau'])}
-                className="flex items-center gap-1 text-[#215dc6] hover:underline cursor-pointer"
-              >
-                <img src="/icons/folder.webp" alt="" className="w-3 h-3" />
-                {t(COPY.desktop, currentLanguage)}
-              </div>
-              <div 
-                onClick={() => navigateTo(['Poste de travail', 'Documents'])}
-                className="flex items-center gap-1 text-[#215dc6] hover:underline cursor-pointer"
-              >
-                <img src="/icons/folder.webp" alt="" className="w-3 h-3" />
-                {t(COPY.myDocuments, currentLanguage)}
-              </div>
-              <div 
-                onClick={() => navigateTo(['Poste de travail'])}
-                className="flex items-center gap-1 text-[#215dc6] hover:underline cursor-pointer"
-              >
-                <img src="/icons/folder.webp" alt="" className="w-3 h-3" />
-                {t(COPY.myComputer, currentLanguage)}
-              </div>
-              <div 
-                onClick={() => navigateTo(['Poste de travail', 'Réseau'])}
-                className="flex items-center gap-1 text-[#215dc6] hover:underline cursor-pointer"
-              >
-                <img src="/icons/explorer.webp" alt="" className="w-3 h-3" />
-                {t(COPY.networkFavorites, currentLanguage)}
-              </div>
+          {/* Autres emplacements */}
+          <div className="xp-sidebar-box">
+            <div className="xp-sidebar-title">{t(COPY.otherLocations, currentLanguage)}</div>
+            <div onClick={() => navigateTo(['Poste de travail', 'Bureau'])} className="xp-sidebar-link">
+              <img src="/icons/folder.webp" alt="" />
+              {t(COPY.desktop, currentLanguage)}
+            </div>
+            <div onClick={() => navigateTo(['Poste de travail', 'Documents'])} className="xp-sidebar-link">
+              <img src="/icons/note.webp" alt="" />
+              {t(COPY.myDocuments, currentLanguage)}
+            </div>
+            <div onClick={() => navigateTo(['Poste de travail'])} className="xp-sidebar-link">
+              <img src="/icons/PC.webp" alt="" />
+              {t(COPY.myComputer, currentLanguage)}
+            </div>
+            <div onClick={() => navigateTo(['Poste de travail', 'Réseau'])} className="xp-sidebar-link">
+              <img src="/icons/explorer.webp" alt="" />
+              {t(COPY.networkFavorites, currentLanguage)}
             </div>
           </div>
 
           {/* Détails de l'élément sélectionné */}
           {selectedItem && (
-            <div className="bg-white/90 p-2">
-              <h3 className="text-[11px] font-bold text-[#215dc6] mb-2">{t(COPY.detailsTitle, currentLanguage)}</h3>
-              <div className="text-[10px] text-gray-700 space-y-1">
-                <p className="truncate"><strong>{t(COPY.name, currentLanguage)}:</strong> {getDisplayName(selectedItem.name, selectedItem.item)}</p>
-                <p><strong>{t(COPY.type, currentLanguage)}:</strong> {getTypeLabel(selectedItem.item.type)}</p>
-                {selectedItem.item.size && <p><strong>{t(COPY.size, currentLanguage)}:</strong> {selectedItem.item.size}</p>}
-                {selectedItem.item.modified && <p><strong>{t(COPY.modified, currentLanguage)}:</strong> {selectedItem.item.modified}</p>}
+            <div className="xp-sidebar-box">
+              <div className="xp-sidebar-title">{t(COPY.detailsTitle, currentLanguage)}</div>
+              <div className="xp-sidebar-text">
+                <p className="truncate font-bold">{getDisplayName(selectedItem.name, selectedItem.item)}</p>
+                <p>{getTypeLabel(selectedItem.item.type)}</p>
+                {selectedItem.item.size && <p>{t(COPY.size, currentLanguage)}: {selectedItem.item.size}</p>}
+                {selectedItem.item.modified && <p>{t(COPY.modified, currentLanguage)}: {selectedItem.item.modified}</p>}
                 {selectedItem.item.description && (
-                  <p className="text-[9px] text-gray-500 mt-1">{t(selectedItem.item.description, currentLanguage)}</p>
+                  <p className="mt-1">{t(selectedItem.item.description, currentLanguage)}</p>
                 )}
               </div>
             </div>
@@ -449,7 +432,7 @@ export const Component = ({ onOpenApp, initialPath, currentLanguage = 'FR' }) =>
           }}
         >
           {viewMode === 'icons' && (
-            <div className="flex flex-wrap gap-2 p-3 content-start">
+            <div className="flex flex-wrap gap-x-2 gap-y-3 p-3 content-start">
               {filteredItems.length > 0 ? (
                 filteredItems.map(([name, item]) => (
                   <FileItem
@@ -498,18 +481,18 @@ export const Component = ({ onOpenApp, initialPath, currentLanguage = 'FR' }) =>
           )}
 
           {viewMode === 'details' && (
-            <table className="w-full text-xs">
-              <thead className="bg-[#ece9d8] border-b border-[#808080] sticky top-0">
+            <table className="xp-table">
+              <thead className="sticky top-0">
                 <tr>
-                  <th className="text-left p-1 font-medium">{t(COPY.name, currentLanguage)}</th>
-                  <th className="text-left p-1 font-medium w-20">{t(COPY.size, currentLanguage)}</th>
-                  <th className="text-left p-1 font-medium w-32">{t(COPY.type, currentLanguage)}</th>
-                  <th className="text-left p-1 font-medium w-24">{t(COPY.modifiedOn, currentLanguage)}</th>
+                  <th>{t(COPY.name, currentLanguage)}</th>
+                  <th className="w-20">{t(COPY.size, currentLanguage)}</th>
+                  <th className="w-32">{t(COPY.type, currentLanguage)}</th>
+                  <th className="w-24">{t(COPY.modifiedOn, currentLanguage)}</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredItems.length > 0 ? (
-                  filteredItems.map(([name, item], index) => (
+                  filteredItems.map(([name, item]) => (
                     <DetailsRow
                       key={name}
                       name={name}
@@ -517,7 +500,6 @@ export const Component = ({ onOpenApp, initialPath, currentLanguage = 'FR' }) =>
                       item={item}
                       typeLabel={getTypeLabel(item.type)}
                       isSelected={selectedItem?.name === name}
-                      index={index}
                       onSelect={handleSelect}
                       onDoubleClick={handleDoubleClick}
                       highlightText={highlightText}
@@ -543,7 +525,7 @@ export const Component = ({ onOpenApp, initialPath, currentLanguage = 'FR' }) =>
       </div>
 
       {/* Status Bar */}
-      <div className="bg-[#ece9d8] border-t border-[#808080] px-2 py-1 text-[10px] text-gray-600 flex justify-between">
+      <div className="xp-statusbar">
         <span>
           {filteredItems.length} {t(COPY.items, currentLanguage)}
           {selectedItem ? ` • "${getDisplayName(selectedItem.name, selectedItem.item)}" ${t(COPY.selected, currentLanguage)}` : ''}

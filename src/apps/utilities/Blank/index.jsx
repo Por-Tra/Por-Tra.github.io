@@ -27,8 +27,6 @@ export const Component = ({ currentLanguage }) => {
     <div className="h-full bg-white flex flex-col">
       {/* XP Explorer Toolbar */}
       <XpMenuBar
-        className="bg-gradient-to-b from-[#ece9d8] to-[#d4d0c8] border-b border-[#808080] px-2 py-1 flex gap-4 text-xs"
-        itemClassName="text-gray-600 hover:underline cursor-pointer"
         currentLanguage={currentLanguage}
       />
 
@@ -46,7 +44,7 @@ export const Component = ({ currentLanguage }) => {
       </div>
 
       {/* Status Bar */}
-      <div className="bg-[#ece9d8] border-t border-[#808080] px-2 py-1 text-[10px] text-gray-600 flex justify-between">
+      <div className="xp-statusbar">
         <span>{t(COPY.ready, currentLanguage)}</span>
         <span>0 {t(COPY.items, currentLanguage)}</span>
       </div>

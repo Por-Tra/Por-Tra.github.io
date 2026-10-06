@@ -150,7 +150,7 @@ export const Component = ({ currentLanguage }) => {
 
           <div className="xp-sidebar-box">
             <div className="xp-sidebar-header">
-              <img src="/icons/info.png" alt="" className="w-4 h-4" />
+              <img src="/icons/questionMark.webp" alt="" className="w-4 h-4" />
               {t(COPY.information, currentLanguage)}
             </div>
             <div className="xp-sidebar-content">
@@ -251,7 +251,7 @@ export const Component = ({ currentLanguage }) => {
           {/* Contact Info */}
           <div className="xp-box">
             <div className="xp-box-header">
-              <img src="/icons/user.png" alt="" className="w-4 h-4" />
+              <img src="/icons/message.ico" alt="" className="w-4 h-4" />
               {t(COPY.contactDetails, currentLanguage)}
             </div>
             <div className="xp-box-content">

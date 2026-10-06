@@ -14,10 +14,10 @@ const COPY = {
     EN: 'Do you really want to quit?',
     ES: 'Seguro que quieres salir?',
   },
-  confirmRestart: {
-    FR: 'Voulez-vous vraiment redémarrer ?',
-    EN: 'Do you really want to restart?',
-    ES: 'Seguro que quieres reiniciar?',
+  confirmLogOff: {
+    FR: 'Voulez-vous vraiment fermer la session ?',
+    EN: 'Are you sure you want to log off?',
+    ES: '¿Seguro que quieres cerrar la sesión?',
   },
   shutdownTitle: {
     FR: 'Windows est en cours d\'arrêt...',
@@ -77,14 +77,20 @@ const Taskbar = ({
     }
   };
 
-  const handleRestart = () => {
-    if (confirm(t(COPY.confirmRestart, currentLanguage))) {
+  // Fermer la session : on revient à l'écran d'accueil sans repasser par le démarrage
+  const handleLogOff = () => {
+    if (confirm(t(COPY.confirmLogOff, currentLanguage))) {
+      try {
+        sessionStorage.setItem('xp-logged-off', '1');
+      } catch (error) {
+        // no-op
+      }
       window.location.reload();
     }
   };
 
   return (
-    <div className="xp-taskbar absolute bottom-0 left-0 right-0 h-[35px] flex items-center">
+    <div className="xp-taskbar absolute bottom-0 left-0 right-0 flex items-center">
       {/* Start Menu */}
       <StartMenu 
         isOpen={startMenuOpen}
@@ -92,36 +98,33 @@ const Taskbar = ({
         onOpenApp={onOpenApp}
         apps={apps}
         onShutdown={handleShutdown}
-        onRestart={handleRestart}
+        onLogOff={handleLogOff}
         currentLanguage={currentLanguage}
       />
 
       {/* Start Button */}
       <button 
         onClick={() => setStartMenuOpen(!startMenuOpen)}
-        className={`xp-start-btn h-full flex items-center gap-1 overflow-hidden ${startMenuOpen ? 'xp-start-btn-active' : ''}`}
+        className={`xp-start-btn ${startMenuOpen ? 'xp-start-btn-active' : ''}`}
       >
-        <img src="/icons/win_logo_task_bar.webp" alt="Start" className="w-5 h-5" />
-        <span className="text-sm">{t(COPY.startButton, currentLanguage)}</span>
+        <img src="/icons/win_logo_task_bar.webp" alt="" />
+        <span className="xp-start-label">{t(COPY.startButton, currentLanguage)}</span>
       </button>
 
-      {/* Quick Launch Separator */}
-      <div className="w-px h-6 bg-[#0d4ca3] mx-1" />
-
       {/* Taskbar Buttons */}
-      <div className="flex-1 flex items-center gap-1 px-1 overflow-hidden">
+      <div className="xp-taskbar-buttons">
         {windows.map(window => (
           <button
             key={window.id}
             onClick={() => onWindowClick(window.id)}
-            className={`xp-taskbar-btn h-[22px] px-2 flex items-center gap-1 min-w-[100px] max-w-[160px] ${
+            className={`xp-taskbar-btn ${
               activeWindow === window.id && !window.minimized
                 ? 'xp-taskbar-btn-active'
                 : ''
             }`}
           >
-            <img src={window.icon} alt="" className="w-4 h-4 flex-shrink-0" />
-            <span className="text-white text-[11px] truncate">
+            <img src={window.icon} alt="" />
+            <span>
               {getWindowTitle(window, currentLanguage)}
             </span>
           </button>
@@ -129,10 +132,10 @@ const Taskbar = ({
       </div>
 
       {/* System Tray */}
-      <div className="xp-systray h-full flex items-center gap-2 px-2">
-        <img src="/icons/signal.webp" alt="" className="w-4 h-4 opacity-80" />
+      <div className="xp-systray">
+        <img src="/icons/signal.webp" alt="" />
         <LanguageSwitcher currentLang={currentLanguage} onChangeLang={onSetLanguage} />
-        <span className="text-white text-[11px]">
+        <span className="xp-systray-clock">
           {formatTime(getAdjustedTime(time, utcOffsetMinutes ?? -time.getTimezoneOffset()))}
         </span>
       </div>

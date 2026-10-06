@@ -11,7 +11,7 @@ export const config = {
   id: 'chess',
   name: 'Échecs',
   icon: '/icons/chess.webp',
-  defaultWidth: 550,
+  defaultWidth: 620,
   defaultHeight: 480,
 };
 
@@ -255,31 +255,31 @@ export const Component = ({ currentLanguage }) => {
   return (
     <div className="h-full bg-white flex flex-col">
       {/* Toolbar */}
-      <div className="bg-gradient-to-b from-[#ece9d8] to-[#d4d0c8] border-b border-[#808080] px-2 py-1 flex gap-4 text-xs">
-        <span className="text-gray-600 hover:underline cursor-pointer">{t(COPY.menuGame, currentLanguage)}</span>
-        <span className="text-gray-600 hover:underline cursor-pointer">{t(COPY.menuOptions, currentLanguage)}</span>
-        <span className="text-gray-600 hover:underline cursor-pointer">?</span>
+      <div className="xp-menubar">
+        <span className="xp-menubar-item">{t(COPY.menuGame, currentLanguage)}</span>
+        <span className="xp-menubar-item">{t(COPY.menuOptions, currentLanguage)}</span>
+        <span className="xp-menubar-item">?</span>
       </div>
 
       <div className="flex-1 flex overflow-hidden">
         {/* Left Panel */}
-        <div className="w-40 bg-gradient-to-b from-[#6b88c4] to-[#4d6eb5] p-2 flex-shrink-0">
-          <div className="bg-white/90 rounded-lg p-2 mb-2">
-            <h3 className="text-[11px] font-bold text-[#215dc6] mb-2">{t(COPY.status, currentLanguage)}</h3>
-            <p className={`text-[10px] ${GAME_OVER_STATUSES.includes(gameStatus) ? 'text-red-600 font-bold' : 'text-gray-700'}`}>
+        <div className="xp-sidebar" style={{ width: 170 }}>
+          <div className="xp-sidebar-box">
+            <h3 className="xp-sidebar-title">{t(COPY.status, currentLanguage)}</h3>
+            <p className={`xp-sidebar-text ${GAME_OVER_STATUSES.includes(gameStatus) ? 'text-red-600 font-bold' : ''}`}>
               {t(gameStatus, currentLanguage)}
             </p>
             {thinking && (
-              <p className="text-[10px] text-orange-600 mt-1 animate-pulse">{t(COPY.thinking, currentLanguage)}</p>
+              <p className="xp-sidebar-text text-orange-600 mt-1 animate-pulse">{t(COPY.thinking, currentLanguage)}</p>
             )}
           </div>
 
-          <div className="bg-white/90 rounded-lg p-2 mb-2">
-            <h3 className="text-[11px] font-bold text-[#215dc6] mb-2">{t(COPY.difficulty, currentLanguage)}</h3>
+          <div className="xp-sidebar-box">
+            <h3 className="xp-sidebar-title">{t(COPY.difficulty, currentLanguage)}</h3>
             <select 
               value={difficulty} 
               onChange={(e) => setDifficulty(Number(e.target.value))}
-              className="w-full text-[10px] border border-[#808080] rounded px-1 py-0.5"
+              className="mx-[10px] w-[calc(100%-20px)] h-[21px]"
             >
               <option value={1}>{t(COPY.easy, currentLanguage)}</option>
               <option value={2}>{t(COPY.medium, currentLanguage)}</option>
@@ -287,11 +287,11 @@ export const Component = ({ currentLanguage }) => {
             </select>
           </div>
 
-          <div className="bg-white/90 rounded-lg p-2">
-            <h3 className="text-[11px] font-bold text-[#215dc6] mb-2">{t(COPY.actions, currentLanguage)}</h3>
+          <div className="xp-sidebar-box">
+            <h3 className="xp-sidebar-title">{t(COPY.actions, currentLanguage)}</h3>
             <button 
               onClick={resetGame}
-              className="w-full xp-button text-[10px] py-1 mb-1"
+              className="xp-button mx-[10px] w-[calc(100%-20px)]"
             >
               {t(COPY.newGame, currentLanguage)}
             </button>
@@ -317,13 +317,13 @@ export const Component = ({ currentLanguage }) => {
         </div>
 
         {/* Right Panel */}
-        <div className="w-32 bg-[#ece9d8] border-l border-[#808080] p-2 flex-shrink-0">
-          <h3 className="text-[11px] font-bold text-[#003399] mb-2 border-b border-[#808080] pb-1">
+        <div className="w-32 bg-[#ece9d8] border-l border-[#d8d2bd] p-2 flex-shrink-0">
+          <h3 className="font-bold text-[#003399] mb-2 border-b border-[#d8d2bd] pb-1">
             {t(COPY.history, currentLanguage)}
           </h3>
-          <div className="h-48 overflow-y-auto text-[10px] space-y-0.5">
+          <div className="h-48 overflow-y-auto bg-white border border-[#7f9db9]">
             {moveHistory.map((move, i) => (
-              <div key={i} className={`px-1 ${i % 2 === 0 ? 'bg-white' : 'bg-[#f5f5f5]'}`}>
+              <div key={i} className="px-1">
                 {Math.floor(i / 2) + 1}.{i % 2 === 0 ? '' : '..'} {move}
               </div>
             ))}
@@ -332,7 +332,7 @@ export const Component = ({ currentLanguage }) => {
       </div>
 
       {/* Status Bar */}
-      <div className="bg-[#ece9d8] border-t border-[#808080] px-2 py-1 text-[10px] text-gray-600 flex justify-between">
+      <div className="xp-statusbar">
         <span>{t(COPY.playingWhite, currentLanguage)}</span>
         <span>{moveHistory.length} {t(COPY.moves, currentLanguage)}</span>
       </div>

@@ -79,34 +79,19 @@ const DesktopIcon = ({
         e.preventDefault();
         e.stopPropagation();
       }}
-      className={`absolute flex flex-col items-center p-1 w-[75px] cursor-pointer ${
-        isSelected ? 'xp-icon-selected' : 'xp-icon'
-      } ${isDropTarget ? 'xp-icon-drop-target' : ''}`}
+      className={`absolute xp-desktop-icon cursor-pointer ${isSelected ? 'is-selected' : ''} ${
+        isDropTarget ? 'xp-icon-drop-target' : ''
+      }`}
       style={{
         left: app.x,
         top: app.y,
+        '--icon-src': `url("${app.icon}")`,
       }}
     >
-      <div className="w-12 h-12 flex items-center justify-center mb-1">
-        <img 
-          src={app.icon} 
-          alt={label}
-          className="w-10 h-10 drop-shadow-[1px_1px_1px_rgba(0,0,0,0.5)]"
-          draggable={false}
-        />
+      <div className="xp-desktop-icon-image">
+        <img src={app.icon} alt="" draggable={false} />
       </div>
-      <span 
-        className={`text-[11px] text-center leading-tight break-words w-full px-1 ${
-          isSelected 
-            ? 'bg-[#316ac5] text-white' 
-            : 'text-white drop-shadow-[1px_1px_1px_rgba(0,0,0,0.8)]'
-        }`}
-        style={{
-          textShadow: isSelected ? 'none' : '1px 1px 2px rgba(0,0,0,0.9)',
-        }}
-      >
-        {label}
-      </span>
+      <span className="xp-desktop-icon-label">{label}</span>
     </div>
   );
 };

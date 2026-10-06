@@ -12,13 +12,18 @@ export const config = {
   showInStartMenu: true,
 };
 
-const PROMPT = 'C:/Users/lucas>';
+const PROMPT = 'C:\\Documents and Settings\\Lucas>';
 
 const COPY = {
   welcome: {
     FR: 'Bienvenue sur le terminal de mon portfolio !',
     EN: 'Welcome to my portfolio terminal!',
     ES: '¡Bienvenido al terminal de mi portfolio!',
+  },
+  helpHint: {
+    FR: "Tapez 'help' pour afficher la liste des commandes.",
+    EN: "Type 'help' to list the available commands.",
+    ES: "Escribe 'help' para ver la lista de comandos.",
   },
   noHistory: { FR: 'Aucun historique', EN: 'No history', ES: 'Sin historial' },
   whoamiLevel: { FR: 'étudiant++', EN: 'student++', ES: 'estudiante++' },
@@ -67,8 +72,11 @@ const getAllCommands = () => [
 
 export const Component = ({ onOpenApp, currentLanguage }) => {
   const [entries, setEntries] = useState(() => [
-    { type: 'system', text: '~/ type \'help\' for commands.' },
+    { type: 'system', text: 'Microsoft Windows XP [version 5.1.2600]' },
+    { type: 'system', text: '(C) Copyright 1985-2001 Microsoft Corp.' },
+    { type: 'blank', text: '' },
     { type: 'system', text: COPY.welcome },
+    { type: 'system', text: COPY.helpHint },
     { type: 'blank', text: '' },
   ]);
   const [inputValue, setInputValue] = useState('');
@@ -252,7 +260,7 @@ status: curious && passionate`;
   };
 
   const themeStyle = {
-    classic: { bg: '#000000', fg: '#ffffff', border: '#ffffff' },
+    classic: { bg: '#000000', fg: '#c0c0c0', border: '#000000' },
     dark: { bg: '#777777', fg: 'rgb(0, 0, 0)', border: 'rgb(0, 0, 0)' },
     green: { bg: '#001100', fg: '#00ff00', border: '#00ff00' },
     amber: { bg: '#1a0f00', fg: '#ffaa00', border: '#ffaa00' }

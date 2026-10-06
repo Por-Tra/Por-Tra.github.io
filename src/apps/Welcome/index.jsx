@@ -123,7 +123,7 @@ export const Component = ({ onOpenApp, currentLanguage }) => {
 
           <div className="xp-sidebar-box">
             <div className="xp-sidebar-header">
-              <img src="/icons/web.png" alt="" className="w-4 h-4" />
+              <img src="/icons/explorer.webp" alt="" className="w-4 h-4" />
               {t(COPY.externalLinks, currentLanguage)}
             </div>
             <div className="xp-sidebar-content">
@@ -336,7 +336,7 @@ export const Component = ({ onOpenApp, currentLanguage }) => {
               </ul>
 
               <div className="xp-tipbox xp-eco-quote">
-                <img src="/icons/info.png" alt="info" className="w-4 h-4" />
+                <img src="/icons/questionMark.webp" alt="info" className="w-4 h-4" />
                 <p className="xp-tipbox-text">
                   {t(COPY.ecoQuote, currentLanguage)}
                 </p>

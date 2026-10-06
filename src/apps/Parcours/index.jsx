@@ -106,7 +106,7 @@ export const Component = ({ currentLanguage }) => {
           {t(COPY.toolbarBack, currentLanguage)}
         </button>
         <button className="xp-toolbar-btn">
-          <img src="/icons/back.webp" style="transform: scaleX(-1);" alt="" className="w-4 h-4" />
+          <img src="/icons/back.webp" style={{ transform: 'scaleX(-1)' }} alt="" className="w-4 h-4" />
           {t(COPY.toolbarNext, currentLanguage)}
         </button>
         <div className="xp-toolbar-separator" />
@@ -148,7 +148,7 @@ export const Component = ({ currentLanguage }) => {
               {t(COPY.navDiplomas, currentLanguage)}
             </div>
             <div className="xp-sidebar-link">
-              <img src="/icons/file.png" alt="" />
+              <img src="/icons/note.webp" alt="" />
               {t(COPY.navCerts, currentLanguage)}
             </div>
           </div>

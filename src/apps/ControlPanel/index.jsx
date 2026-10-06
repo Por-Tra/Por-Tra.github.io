@@ -24,39 +24,39 @@ const COPY = {
     windowsUpdate: { FR: 'Windows Update', EN: 'Windows Update', ES: 'Windows Update' },
     helpSupport: { FR: 'Aide et support', EN: 'Help and Support', ES: 'Ayuda y soporte' },
     otherOptions: { FR: 'Autres options du Panneau de configuration', EN: 'Other Control Panel options', ES: 'Otras opciones del Panel de control' },
-    chooseCategory: { FR: 'Choisissez une categorie', EN: 'Choose a category', ES: 'Elige una categoría' },
+    chooseCategory: { FR: 'Choisissez une catégorie', EN: 'Choose a category', ES: 'Elige una categoría' },
     personalizeTitle: { FR: 'Personnaliser', EN: 'Personalize', ES: 'Personalizar' },
-    personalizeDesc: { FR: "Changer l'apparence du bureau et du fond d'ecran.", EN: 'Change the desktop look and wallpaper.', ES: 'Cambia la apariencia del escritorio y el fondo de pantalla.' },
-    personalizeHeaderDesc: { FR: "Changer le fond d'ecran du bureau.", EN: 'Change the desktop wallpaper.', ES: 'Cambia el fondo de pantalla del escritorio.' },
-    datetimeTitle: { FR: "Reglage de la date et de l'heure", EN: 'Date and time settings', ES: 'Configuración de fecha y hora' },
-    datetimeDesc: { FR: "Modifier l'horloge et la date du systeme.", EN: 'Adjust the system clock and date.', ES: 'Ajusta el reloj y la fecha del sistema.' },
+    personalizeDesc: { FR: "Changer l'apparence du bureau et du fond d'écran.", EN: 'Change the desktop look and wallpaper.', ES: 'Cambia la apariencia del escritorio y el fondo de pantalla.' },
+    personalizeHeaderDesc: { FR: "Changer le fond d'écran du bureau.", EN: 'Change the desktop wallpaper.', ES: 'Cambia el fondo de pantalla del escritorio.' },
+    datetimeTitle: { FR: "Réglage de la date et de l'heure", EN: 'Date and time settings', ES: 'Configuración de fecha y hora' },
+    datetimeDesc: { FR: "Modifier l'horloge et la date du système.", EN: 'Adjust the system clock and date.', ES: 'Ajusta el reloj y la fecha del sistema.' },
     datetimeHeaderDesc: { FR: "Modifier la date et l'heure de l'ordinateur.", EN: "Change the computer's date and time.", ES: 'Cambia la fecha y la hora del ordenador.' },
-    powerTitle: { FR: 'Menu systeme', EN: 'Power menu', ES: 'Menú de energía' },
-    powerDesc: { FR: 'Eteindre ou redemarrer la session.', EN: 'Shut down or restart the session.', ES: 'Apagar o reiniciar la sesión.' },
+    powerTitle: { FR: 'Menu système', EN: 'Power menu', ES: 'Menú de energía' },
+    powerDesc: { FR: 'Éteindre ou redémarrer la session.', EN: 'Shut down or restart the session.', ES: 'Apagar o reiniciar la sesión.' },
     languageTitle: { FR: 'Choix de la langue', EN: 'Language selection', ES: 'Selección de idioma' },
-    languageDesc: { FR: "Selectionner la langue de l'interface.", EN: 'Select the interface language.', ES: 'Selecciona el idioma de la interfaz.' },
-    toolbarPrev: { FR: 'Precedent', EN: 'Back', ES: 'Anterior' },
+    languageDesc: { FR: "Sélectionner la langue de l'interface.", EN: 'Select the interface language.', ES: 'Selecciona el idioma de la interfaz.' },
+    toolbarPrev: { FR: 'Précédent', EN: 'Back', ES: 'Anterior' },
     toolbarNext: { FR: 'Suivant', EN: 'Next', ES: 'Siguiente' },
     toolbarSearch: { FR: 'Rechercher', EN: 'Search', ES: 'Buscar' },
     toolbarFolders: { FR: 'Dossiers', EN: 'Folders', ES: 'Carpetas' },
     address: { FR: 'Adresse', EN: 'Address', ES: 'Dirección' },
     addressValue: { FR: 'Panneau de configuration', EN: 'Control Panel', ES: 'Panel de control' },
-    chooseWallpaper: { FR: "Choisir un fond d'ecran", EN: 'Choose a wallpaper', ES: 'Elige un fondo de pantalla' },
+    chooseWallpaper: { FR: "Choisir un fond d'écran", EN: 'Choose a wallpaper', ES: 'Elige un fondo de pantalla' },
     importImage: { FR: 'Importer une image', EN: 'Import an image', ES: 'Importar una imagen' },
     browse: { FR: 'Parcourir...', EN: 'Browse...', ES: 'Explorar...' },
-    uploadHint: { FR: 'Formats supportes : JPG, PNG, SVG', EN: 'Supported formats: JPG, PNG, SVG', ES: 'Formatos soportados: JPG, PNG, SVG' },
+    uploadHint: { FR: 'Formats pris en charge : JPG, PNG, SVG', EN: 'Supported formats: JPG, PNG, SVG', ES: 'Formatos soportados: JPG, PNG, SVG' },
     currentTime: { FR: 'Heure actuelle', EN: 'Current time', ES: 'Hora actual' },
     dateLabel: { FR: 'Date', EN: 'Date', ES: 'Fecha' },
     timeLabel: { FR: 'Heure', EN: 'Time', ES: 'Hora' },
     apply: { FR: 'Appliquer', EN: 'Apply', ES: 'Aplicar' },
     selection: { FR: 'Selection', EN: 'Selection', ES: 'Selección' },
-    shutdown: { FR: 'Eteindre', EN: 'Shut down', ES: 'Apagar' },
-    restart: { FR: 'Redemarrer', EN: 'Restart', ES: 'Reiniciar' },
+    shutdown: { FR: 'Éteindre', EN: 'Shut down', ES: 'Apagar' },
+    restart: { FR: 'Redémarrer', EN: 'Restart', ES: 'Reiniciar' },
     languageNote: { FR: 'Le changement de langue est visuel uniquement.', EN: 'Language change is visual only.', ES: 'El cambio de idioma es solo visual.' },
     confirmShutdown: { FR: 'Voulez-vous vraiment eteindre la session ?', EN: 'Do you really want to shut down the session?', ES: '¿Realmente quieres apagar la sesión?' },
-    confirmRestart: { FR: 'Voulez-vous vraiment redemarrer ?', EN: 'Do you really want to restart?', ES: '¿Realmente quieres reiniciar?' },
+    confirmRestart: { FR: 'Voulez-vous vraiment redémarrer ?', EN: 'Do you really want to restart?', ES: '¿Realmente quieres reiniciar?' },
     ok: { FR: 'OK', EN: 'OK', ES: 'Aceptar' },
-    wallpaperDefault: { FR: 'Defaut', EN: 'Default', ES: 'Predeterminado' },
+    wallpaperDefault: { FR: 'Par défaut', EN: 'Default', ES: 'Predeterminado' },
 };
 
 const CONFIG_SECTIONS = [
@@ -82,7 +82,7 @@ const CONFIG_SECTIONS = [
         id: 'language',
         title: COPY.languageTitle,
         description: COPY.languageDesc,
-        icon: '/icons/user.svg',
+        icon: '/icons/location.ico',
     },
 ];
 
@@ -234,40 +234,63 @@ export const Component = ({
     return (
         <div className="xp-app cp-root">
             <XpMenuBar
-                className="cp-menubar"
-                itemClassName=""
-                items={['Fichier', 'Edition', 'Affichage', 'Favoris', 'Outils', 'Aide']}
+                preset="explorer"
+                className="xp-menubar xp-menubar-explorer"
+                currentLanguage={selectedLanguage}
             />
 
-            <div className="cp-toolbar">
-                <div className="cp-toolbar-group">
-                    <button type="button" className="cp-tool-btn">{tr(COPY.toolbarPrev)}</button>
-                    <button type="button" className="cp-tool-btn">{tr(COPY.toolbarNext)}</button>
-                </div>
-                <div className="cp-toolbar-group">
-                    <button type="button" className="cp-tool-btn">{tr(COPY.toolbarSearch)}</button>
-                    <button type="button" className="cp-tool-btn">{tr(COPY.toolbarFolders)}</button>
-                </div>
+            <div className="xp-toolbar">
+                <button type="button" className="xp-toolbar-btn" disabled>
+                    <img src="/icons/back.webp" alt="" className="xp-toolbar-icon-lg" />
+                    {tr(COPY.toolbarPrev)}
+                </button>
+                <button type="button" className="xp-toolbar-btn" disabled>
+                    <img src="/icons/back.webp" alt="" className="xp-toolbar-icon-lg" style={{ transform: 'scaleX(-1)' }} />
+                </button>
+                <div className="xp-toolbar-separator"></div>
+                <button type="button" className="xp-toolbar-btn">
+                    <img src="/icons/explorer.webp" alt="" className="xp-toolbar-icon-lg" />
+                    {tr(COPY.toolbarSearch)}
+                </button>
+                <button type="button" className="xp-toolbar-btn">
+                    <img src="/icons/folder.webp" alt="" className="xp-toolbar-icon-lg" />
+                    {tr(COPY.toolbarFolders)}
+                </button>
             </div>
 
-            <div className="cp-addressbar">
-                <span className="cp-address-label">{tr(COPY.address)}</span>
-                <div className="cp-address-input">
+            <div className="xp-addressbar">
+                <span className="xp-addressbar-label">{tr(COPY.address)}</span>
+                <div className="xp-addressbar-input">
+                    <img src="/icons/setting.webp" alt="" className="w-4 h-4 shrink-0" />
                     {tr(COPY.addressValue)}
                 </div>
-                <button type="button" className="cp-address-go">{tr(COPY.ok)}</button>
+                <button type="button" className="xp-addressbar-go">{tr(COPY.ok)}</button>
             </div>
 
             <div className="cp-body">
-                <aside className="cp-left">
-                    <div className="cp-left-header">{tr(COPY.menuTitle)}</div>
-                    <button type="button" className="cp-left-link">{tr(COPY.switchClassic)}</button>
+                <aside className="xp-sidebar">
+                    <div className="xp-sidebar-box">
+                        <div className="xp-sidebar-title">{tr(COPY.menuTitle)}</div>
+                        <div className="xp-sidebar-link">
+                            <img src="/icons/setting.webp" alt="" />
+                            {tr(COPY.switchClassic)}
+                        </div>
+                    </div>
 
-                    <div className="cp-left-box">
-                        <div className="cp-left-title">{tr(COPY.seeAlso)}</div>
-                        <div className="cp-left-item">{tr(COPY.windowsUpdate)}</div>
-                        <div className="cp-left-item">{tr(COPY.helpSupport)}</div>
-                        <div className="cp-left-item">{tr(COPY.otherOptions)}</div>
+                    <div className="xp-sidebar-box">
+                        <div className="xp-sidebar-title">{tr(COPY.seeAlso)}</div>
+                        <div className="xp-sidebar-link">
+                            <img src="/icons/explorer.webp" alt="" />
+                            {tr(COPY.windowsUpdate)}
+                        </div>
+                        <div className="xp-sidebar-link">
+                            <img src="/icons/questionMark.webp" alt="" />
+                            {tr(COPY.helpSupport)}
+                        </div>
+                        <div className="xp-sidebar-link">
+                            <img src="/icons/setting.webp" alt="" />
+                            {tr(COPY.otherOptions)}
+                        </div>
                     </div>
                 </aside>
 
@@ -426,7 +449,7 @@ export const Component = ({
                     {activeSection === 'language' && (
                         <div className="cp-panel">
                             <div className="cp-panel-header">
-                                <img src="/icons/user.svg" alt="" />
+                                <img src="/icons/location.ico" alt="" />
                                 <div>
                                     <h2>{tr(COPY.languageTitle)}</h2>
                                     <p>{tr(COPY.languageDesc)}</p>

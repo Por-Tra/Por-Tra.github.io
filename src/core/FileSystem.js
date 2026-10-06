@@ -15,7 +15,7 @@ class FileSystem {
     {
       'Poste de travail': {
         type: 'computer',
-        icon: '/icons/computer.svg',
+        icon: '/icons/PC.webp',
         children: {
           'Bureau': 
           {
@@ -132,7 +132,7 @@ class FileSystem {
               'CV_Lucas.pdf': 
               {
                 type: 'file',
-                icon: '/icons/document.svg',
+                icon: '/icons/note.webp',
                 size: '156 Ko',
                 modified: '2025-11-01',
                 downloadFile: '/assets/CV_Lucas.pdf',
@@ -551,7 +551,7 @@ class FileSystem {
                     {
                       'notepad.exe': {
                         type: 'file',
-                        icon: '/icons/notepad.svg',
+                        icon: '/icons/note.webp',
                         size: '180 Ko',
                         modified: '2001-10-25',
                         appId: 'web-reminder'
@@ -655,7 +655,7 @@ class FileSystem {
     
     if (item.type === 'drive') return '/icons/explorer.webp';
     if (item.type === 'folder') return '/icons/folder.webp';
-    if (item.type === 'computer') return '/icons/computer.svg';
+    if (item.type === 'computer') return '/icons/PC.webp';
     if (item.type === 'app') return '/icons/setting.webp';
     if (item.type === 'image') return '/icons/folder.webp';
     if (item.type === 'link') return '/icons/link.webp';
@@ -668,8 +668,8 @@ class FileSystem {
       'html': '/icons/explorer.webp',
       'css': '/icons/explorer.webp',
       'js': '/icons/explorer.webp',
-      'txt': '/icons/notepad.svg',
-      'pdf': '/icons/document.svg',
+      'txt': '/icons/note.webp',
+      'pdf': '/icons/note.webp',
       'jpg': '/icons/folder.webp',
       'jpeg': '/icons/folder.webp',
       'png': '/icons/folder.webp',
