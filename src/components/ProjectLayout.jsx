@@ -35,6 +35,11 @@ const COPY = {
   screenshots: { FR: 'Captures d\'écran', EN: 'Screenshots', ES: 'Capturas de pantalla' },
   clickToZoom: { FR: 'Cliquez pour agrandir', EN: 'Click to enlarge', ES: 'Haz clic para ampliar' },
   preview: { FR: 'Aperçu', EN: 'Preview', ES: 'Vista previa' },
+  viewerName: {
+    FR: 'Aperçu des images et des télécopies Windows',
+    EN: 'Windows Picture and Fax Viewer',
+    ES: 'Visor de imágenes y fax de Windows',
+  },
 };
 
 /**
@@ -466,12 +471,26 @@ export const ProjectLayout = ({
   }));
   
   // Handler pour ouvrir une image dans l'ImageViewer
+  // Toutes les captures de la page, dans l'ordre d'affichage, pour naviguer avec précédent/suivant
+  const galleryImages = resolvedSections.length > 0
+    ? resolvedSections.flatMap((section) => section.images.map((src, imageIndex) => ({
+        src,
+        name: `${resolvedTitle} - ${section.title} ${imageIndex + 1}`,
+      })))
+    : (projectData?.images || []).map((src, imageIndex) => ({
+        src,
+        name: `${resolvedTitle} - Screenshot ${imageIndex + 1}`,
+      }));
+
   const handleImageClick = (imageSrc, imageName) => {
     if (onOpenApp) {
+      const startIndex = Math.max(0, galleryImages.findIndex((image) => image.name === imageName));
       onOpenApp('image-viewer', {
+        images: galleryImages,
+        startIndex,
         imageSrc,
         imageName,
-        windowTitle: `${t(COPY.preview, currentLanguage)} - ${imageName}`
+        windowTitle: `${imageName} - ${t(COPY.viewerName, currentLanguage)}`
       });
     }
   };

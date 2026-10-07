@@ -1606,3 +1606,168 @@ img.xp-screenshot {
   background: #316ac5;
   color: #fff;
 }
+
+/* ============================================
+   APERÇU DES IMAGES ET DES TÉLÉCOPIES WINDOWS
+   ============================================ */
+.xp-iv {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #eff2fb;
+  outline: none;
+}
+
+.xp-iv-stage {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
+.xp-iv-stage.can-pan {
+  cursor: grab;
+}
+
+.xp-iv-stage.can-pan:active {
+  cursor: grabbing;
+}
+
+/* Centre l'image tant qu'elle est plus petite que la zone, défile sinon */
+.xp-iv-canvas {
+  min-width: 100%;
+  min-height: 100%;
+  width: max-content;
+  height: max-content;
+  padding: 24px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.xp-iv-frame {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.xp-iv-frame img {
+  position: absolute;
+  max-width: none;
+  border: 1px solid #66676b;
+  box-sizing: content-box;
+  margin: -1px;
+  transition: transform 0.15s ease-out;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.xp-iv-error {
+  color: #555;
+}
+
+/* Barre d'outils centrée sous l'image */
+.xp-iv-toolbar {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1px;
+  padding: 4px 6px 6px;
+  background: #eff2fb;
+}
+
+.xp-iv-btn {
+  width: 26px;
+  height: 26px;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  background: transparent;
+}
+
+.xp-iv-btn svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.xp-iv-btn:not(:disabled):hover {
+  border-color: #b2b9c8;
+  background: linear-gradient(180deg, #fff 0%, #f3f5fb 50%, #e3e8f4 100%);
+}
+
+.xp-iv-btn:not(:disabled):active,
+.xp-iv-btn.is-active {
+  border-color: #9aa5ba;
+  background: #dfe5f2;
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.xp-iv-btn:disabled {
+  cursor: default;
+}
+
+.xp-iv-btn:disabled svg {
+  filter: grayscale(1);
+  opacity: 0.45;
+}
+
+.xp-iv-separator {
+  width: 1px;
+  height: 20px;
+  margin: 0 4px;
+  background: #dedde2;
+  box-shadow: 1px 0 #fff;
+}
+
+/* Diaporama plein écran */
+.xp-iv-slideshow {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+}
+
+.xp-iv-slideshow.hide-cursor {
+  cursor: none;
+}
+
+.xp-iv-slideshow > img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.xp-iv-slideshow-controls {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 2px;
+  padding: 3px;
+  background: #eff2fb;
+  border: 1px solid #7f9db9;
+  border-radius: 3px;
+  transition: opacity 0.3s;
+}
+
+.xp-iv-slideshow-controls.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.xp-iv-slideshow-close {
+  display: flex;
+  border-radius: 3px;
+  background: radial-gradient(circle at 90% 90%, #cc4600 0%, #dc6527 55%, #cd7546 70%, #ffccb2 90%, #fff 100%);
+}

@@ -54,6 +54,11 @@ const COPY = {
   typeImage: { FR: 'Fichier image', EN: 'Image file', ES: 'Archivo de imagen' },
   typeLink: { FR: 'Raccourci Internet', EN: 'Internet shortcut', ES: 'Acceso directo de Internet' },
   preview: { FR: 'Aperçu', EN: 'Preview', ES: 'Vista previa' },
+  viewerName: {
+    FR: 'Aperçu des images et des télécopies Windows',
+    EN: 'Windows Picture and Fax Viewer',
+    ES: 'Visor de imágenes y fax de Windows',
+  },
 };
 
 const NAME_LABELS = {
@@ -194,7 +199,8 @@ export const Component = ({ onOpenApp, initialPath, currentLanguage = 'FR' }) =>
       const bNavigable = fileSystem.isNavigable(b[1]);
       if (aNavigable && !bNavigable) return -1;
       if (!aNavigable && bNavigable) return 1;
-      return a[0].localeCompare(b[0]);
+      // Tri « naturel » comme dans XP : capture2 avant capture10
+      return a[0].localeCompare(b[0], undefined, { numeric: true, sensitivity: 'base' });
     });
   }, [currentFolder]);
 
@@ -251,10 +257,16 @@ export const Component = ({ onOpenApp, initialPath, currentLanguage = 'FR' }) =>
 
     // Ouverture d'une image
     if (item.type === 'image' && item.imageSrc && onOpenApp) {
-      onOpenApp('image-viewer', { 
-        imageSrc: item.imageSrc, 
+      // Les autres images du dossier sont transmises pour précédent/suivant et le diaporama
+      const folderImages = sortedItems
+        .filter(([, entry]) => entry.type === 'image' && entry.imageSrc)
+        .map(([entryName, entry]) => ({ src: entry.imageSrc, name: entryName }));
+      onOpenApp('image-viewer', {
+        images: folderImages,
+        startIndex: Math.max(0, folderImages.findIndex((image) => image.name === name)),
+        imageSrc: item.imageSrc,
         imageName: name,
-        windowTitle: `${t(COPY.preview, currentLanguage)} - ${name}`
+        windowTitle: `${name} - ${t(COPY.viewerName, currentLanguage)}`
       });
       return;
     }
@@ -278,7 +290,7 @@ export const Component = ({ onOpenApp, initialPath, currentLanguage = 'FR' }) =>
 
     // Fichier sans action spéciale
     alert(`${t(COPY.fileLabel, currentLanguage)}: ${name}\n${t(COPY.type, currentLanguage)}: ${getTypeLabel(item.type)}\n${t(COPY.size, currentLanguage)}: ${item.size || 'N/A'}`);
-  }, [currentPath, navigateTo, onOpenApp]);
+  }, [currentPath, navigateTo, onOpenApp, sortedItems, currentLanguage]);
 
   const handleSelect = useCallback((name, item) => {
     setSelectedItem({ name, item });

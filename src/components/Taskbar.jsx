@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import StartMenu from './StartMenu';
 import LanguageSwitcher from './LanguageSwitcher';
 import { t, getLocale, getWindowTitle } from '../i18n/text';
+import { showError } from '../core/errorDialog';
 
 const COPY = {
   startButton: {
@@ -23,6 +24,21 @@ const COPY = {
     FR: 'Windows est en cours d\'arrêt...',
     EN: 'Windows is shutting down...',
     ES: 'Windows se esta apagando...',
+  },
+  networkError: {
+    FR: "Cliquez ok pour réparer.",
+    EN: 'Click OK to repair.',
+    ES: 'Haz clic en Aceptar para reparar.',
+  },
+  networkTitle: {
+    FR: 'Connexion réseau',
+    EN: 'Network Connection',
+    ES: 'Conexión de red',
+  },
+  networkTooltip: {
+    FR: 'Connexion réseau',
+    EN: 'Network connection',
+    ES: 'Conexión de red',
   },
   shutdownNote: {
     FR: 'Vous pouvez fermer cette fenêtre en toute sécurité.',
@@ -133,7 +149,15 @@ const Taskbar = ({
 
       {/* System Tray */}
       <div className="xp-systray">
-        <img src="/icons/signal.webp" alt="" />
+        <button
+          type="button"
+          className="xp-systray-icon"
+          title={t(COPY.networkTooltip, currentLanguage)}
+          onClick={() => showError(COPY.networkError, { title: COPY.networkTitle })}
+        >
+          <img src="/icons/signal.webp" alt={t(COPY.networkTooltip, currentLanguage)} />
+        </button>
+        <img src="/icons/network.webp" alt=""/>
         <LanguageSwitcher currentLang={currentLanguage} onChangeLang={onSetLanguage} />
         <span className="xp-systray-clock">
           {formatTime(getAdjustedTime(time, utcOffsetMinutes ?? -time.getTimezoneOffset()))}

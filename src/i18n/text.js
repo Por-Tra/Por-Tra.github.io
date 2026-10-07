@@ -35,7 +35,7 @@ export const APP_LABELS = {
   trash: { FR: 'Corbeille', EN: 'Recycle Bin', ES: 'Papelera' },
   blank: { FR: 'Application', EN: 'Application', ES: 'Aplicación' },
   google: { FR: 'Explorer', EN: 'Explorer', ES: 'Explorer' },
-  'image-viewer': { FR: 'Aperçu des images', EN: 'Image Preview', ES: 'Vista previa de imágenes' },
+  'image-viewer': { FR: 'Aperçu des images et des télécopies Windows', EN: 'Windows Picture and Fax Viewer', ES: 'Visor de imágenes y fax de Windows' },
   'web-reminder': { FR: 'Exécutable introuvable', EN: 'Executable not found', ES: 'Ejecutable no encontrado' },
   'project-rpg': { FR: 'RPG 2D', EN: '2D RPG', ES: 'RPG 2D' },
   'project-soutenance': { FR: 'Application web de notation', EN: 'Grading web application', ES: 'Aplicación web de calificaciones' },

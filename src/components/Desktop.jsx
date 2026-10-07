@@ -3,6 +3,7 @@ import DesktopIcon from './DesktopIcon';
 import Window from './Window';
 import Taskbar from './Taskbar';
 import Clippy from './Clippy';
+import ErrorDialogHost from './ErrorDialogHost';
 // Import du registry et initialisation des apps
 import appRegistry from '../apps';
 import recycleBin from '../core/recycleBin';
@@ -835,6 +836,20 @@ const Desktop = () => {
     return () => window.removeEventListener('xp-menu-action', handleMenuAction);
   }, [activeWindow, closeWindow, maximizeWindow]);
 
+  // Une app peut changer le titre de sa propre fenêtre (ex. : nom de l'image affichée)
+  useEffect(() => {
+    const handleWindowTitle = (event) => {
+      const { windowId, title } = event.detail || {};
+      if (!windowId || typeof title !== 'string') return;
+      setWindows(prev => prev.map(w => (
+        w.id === windowId && w.title !== title ? { ...w, title, titleKey: null } : w
+      )));
+    };
+
+    window.addEventListener('xp-window-title', handleWindowTitle);
+    return () => window.removeEventListener('xp-window-title', handleWindowTitle);
+  }, []);
+
   return (
     <div 
       className="xp-desktop w-full h-screen relative overflow-hidden no-select"
@@ -965,6 +980,9 @@ const Desktop = () => {
             onSetLanguage={handleSetLanguage}
           />
         ))}
+
+        {/* Boîtes d'erreur (showError) */}
+        <ErrorDialogHost currentLanguage={currentLanguage} />
 
         {/* Taskbar */}
         <Taskbar

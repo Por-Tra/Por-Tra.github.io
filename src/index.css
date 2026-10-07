@@ -1511,3 +1511,108 @@ select:focus {
 .xp-clippy-balloon.is-below.is-left::after {
   border-width: 0 16px 16px 0;
 }
+
+/* ==========================================================
+   BOÎTES D'ERREUR (showError)
+   ========================================================== */
+/* Au-dessus des fenêtres et de la barre des tâches, sous le menu Démarrer */
+.xp-error-dialog {
+  position: fixed;
+  z-index: 980;
+}
+
+.xp-error-dialog .xp-titlebar,
+.xp-error-dialog .xp-titlebar-inactive {
+  cursor: default;
+}
+
+.xp-error-dialog-body {
+  padding: 14px 12px 12px;
+}
+
+.xp-error-dialog-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.xp-error-dialog-message {
+  margin: 0;
+  padding-top: 8px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.xp-error-dialog-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.xp-error-dialog-actions .xp-button {
+  min-width: 75px;
+  padding: 0 12px;
+}
+
+/* Icône « erreur » XP : disque rouge en relief, liseré blanc et croix blanche */
+.xp-error-icon {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ff9a8a 0%, #f0453a 35%, #c8120c 75%, #8f0a06 100%);
+  box-shadow:
+    inset 0 0 0 2px #fff,
+    0 0 0 1px #9b1b14,
+    2px 2px 3px rgba(0, 0, 0, 0.35);
+}
+
+.xp-error-icon::before,
+.xp-error-icon::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 7px;
+  width: 4px;
+  height: 18px;
+  border-radius: 1px;
+  background: #fff;
+}
+
+.xp-error-icon::before { transform: rotate(45deg); }
+.xp-error-icon::after { transform: rotate(-45deg); }
+
+/* Icônes cliquables de la zone de notification */
+.xp-systray-icon {
+  display: flex;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+/* Variante « information » : disque bleu avec un « i » blanc */
+.xp-error-icon--info {
+  background: radial-gradient(circle at 35% 30%, #bfe0ff 0%, #3a86f0 40%, #1653c4 75%, #0b3a96 100%);
+  box-shadow:
+    inset 0 0 0 2px #fff,
+    0 0 0 1px #0b3a96,
+    2px 2px 3px rgba(0, 0, 0, 0.35);
+}
+
+.xp-error-icon--info::before {
+  left: 14px;
+  top: 6px;
+  width: 4px;
+  height: 4px;
+  border-radius: 1px;
+  transform: none;
+}
+
+.xp-error-icon--info::after {
+  left: 14px;
+  top: 12px;
+  width: 4px;
+  height: 13px;
+  transform: none;
+}
