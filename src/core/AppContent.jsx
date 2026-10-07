@@ -4,15 +4,15 @@ import { t, getWindowTitle } from '../i18n/text';
 
 const COPY = {
   loading: { FR: 'Chargement...', EN: 'Loading...', ES: 'Cargando...' },
-  application: { FR: 'Application', EN: 'Application', ES: 'Aplicacion' },
+  application: { FR: 'Application', EN: 'Application', ES: 'Aplicación' },
   unavailable: { FR: 'Contenu non disponible', EN: 'Content unavailable', ES: 'Contenido no disponible' },
   externalTitle: { FR: 'Lien externe', EN: 'External link', ES: 'Enlace externo' },
   externalBody: {
-    FR: 'Ce site ne peut pas s\'afficher dans une fenetre integree.',
+    FR: 'Ce site ne peut pas s\'afficher dans une fenêtre intégrée.',
     EN: 'This site cannot be displayed inside an embedded window.',
     ES: 'Este sitio no puede mostrarse en una ventana incrustada.',
   },
-  externalOpen: { FR: 'Ouvrir dans un nouvel onglet', EN: 'Open in a new tab', ES: 'Abrir en una pestana nueva' },
+  externalOpen: { FR: 'Ouvrir dans un nouvel onglet', EN: 'Open in a new tab', ES: 'Abrir en una pestaña nueva' },
 };
 
 /**

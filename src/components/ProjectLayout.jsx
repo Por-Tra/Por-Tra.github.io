@@ -189,7 +189,8 @@ export const SidebarBox = ({ title, icon = '/icons/questionMark.webp', children 
  * @param {object} projectData - Données du projet
  * @param {string} downloadFile - Fichier à télécharger (optionnel)
  * @param {string} downloadName - Nom du fichier téléchargé (optionnel)
- * @param {string} githubUrl - URL GitHub (optionnel)
+ * @param {string} githubUrl - URL GitHub (optionnel, null pour le masquer)
+ * @param {{url: string, label: string|object, icon?: string}[]} links - Liens supplémentaires (optionnel)
  * @param {React.ReactNode} additionalContent - Contenu additionnel (optionnel)
  */
 export const ProjectSidebar = ({ 
@@ -197,6 +198,7 @@ export const ProjectSidebar = ({
   downloadFile, 
   downloadName,
   githubUrl = 'https://github.com/Por-Tra',
+  links = [],
   technologies = [],
   additionalContent,
   currentLanguage = 'FR'
@@ -205,7 +207,7 @@ export const ProjectSidebar = ({
   return (
     <div className="xp-sidebar">
     {/* Gestion du projet */}
-    {(downloadFile || githubUrl) && (
+    {(downloadFile || githubUrl || links.length > 0) && (
       <SidebarBox title={t(COPY.projectManagement, currentLanguage)} icon="/icons/folder.webp">
         {downloadFile && (
           <a href={downloadFile} download={downloadName} className="xp-sidebar-link">
@@ -219,6 +221,13 @@ export const ProjectSidebar = ({
             {t(COPY.viewGithub, currentLanguage)}
           </a>
         )}
+        {/* Liens supplémentaires : { url, label (texte ou { FR, EN, ES }), icon } */}
+        {links.map((link) => (
+          <a key={link.url} href={link.url} target="_blank" rel="noopener noreferrer" className="xp-sidebar-link">
+            <img src={link.icon || '/icons/explorer.webp'} alt="" />
+            {resolveText(link.label)}
+          </a>
+        ))}
       </SidebarBox>
     )}
 

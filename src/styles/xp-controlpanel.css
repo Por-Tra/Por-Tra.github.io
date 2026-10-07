@@ -21,7 +21,7 @@
 
 .cp-right-title {
   font-family: var(--xp-title-font) !important;
-  font-size: 20px !important;
+  font-size: calc(20px * var(--xp-scale)) !important;
   font-weight: bold;
   color: #2c4a9c;
   margin-bottom: 14px;
@@ -274,4 +274,91 @@
   .cp-body .xp-sidebar {
     width: 100%;
   }
+}
+
+/* Groupes d'options (cadre XP blanc arrondi, titre bleu) */
+.cp-fieldset {
+  margin: 0 0 10px;
+  padding: 6px 10px 8px;
+  background: #fff;
+  border: 1px solid #d0d0bf;
+  border-radius: 4px;
+}
+
+.cp-fieldset legend {
+  padding: 0 4px;
+  color: #0046d5;
+}
+
+.cp-check {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 0;
+  color: #000;
+  cursor: var(--cursor-link);
+}
+
+.cp-check input {
+  margin: 0;
+  flex-shrink: 0;
+  accent-color: #21a121;
+}
+
+.cp-check-hint {
+  margin: 0 0 0 19px;
+  color: #4d4d4d;
+}
+
+.cp-radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 14px;
+  margin-bottom: 4px;
+}
+
+.cp-a11y-preview {
+  margin: 0;
+  padding: 6px 8px;
+  border: 1px solid #7f9db9;
+  background: #fff;
+}
+
+/* Réglages de Clippy : choix de la taille + aperçu */
+.cp-clippy-size {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.cp-clippy-preview {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-width: 140px;
+  min-height: 100px;
+  padding: 6px;
+  border: 1px solid #7f9db9;
+  background: #eff2fb;
+}
+
+.cp-clippy-preview > div {
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+}
+
+.cp-action-row .cp-action-btn:disabled {
+  color: #aca899;
+  border-color: #c9c7ba;
+  background: #f5f4ea;
+  box-shadow: none;
+  cursor: default;
+}
+
+.cp-action-row {
+  flex-wrap: wrap;
 }

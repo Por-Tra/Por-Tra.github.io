@@ -15,7 +15,7 @@ export const config = {
   defaultHeight: 520,
 };
 
-const projectData = {
+export const projectData = {
   title: "PORTR-AI",
   description: {
     FR: "Projet personnel de développement d'un LLM from scratch, nommé PORTR-AI, utilisant une architecture de transformer. Le LLM est basé sur la même architecture que GPT-2.",

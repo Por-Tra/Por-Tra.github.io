@@ -20,7 +20,7 @@ export const config = {
   defaultHeight: 520,
 };
 
-const projectData = {
+export const projectData = {
   title: "Vapeur",
   description: {
     FR: "Projet universitaire de deuxième année consistant à créer une petite application web ayant pour but d'être connectée à un serveur via Express.js et une base de données avec Prisma. L'application web est une copie détournée de la fameuse application Steam.",

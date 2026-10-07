@@ -9,6 +9,7 @@ import fileSystem from '../../core/FileSystem';
 import XpMenuBar from '../../components/XpMenuBar';
 import { useSearchHighlight } from '../../hooks/useSearchHighlight.jsx';
 import { t, getAppLabel } from '../../i18n/text';
+import { resolveUrl } from '../InternetExplorer/router';
 
 export const config = {
   id: 'explorer',
@@ -75,6 +76,7 @@ const NAME_LABELS = {
   'Réseau Social Local (RSL)': { FR: 'Réseau Social Local (RSL)', EN: 'Local Social Network (RSL)', ES: 'Red Social Local (RSL)' },
   'Réseau Social Local': { FR: 'Réseau Social Local', EN: 'Local Social Network', ES: 'Red Social Local' },
   'PORTR-AI (LLM from scratch en Python)': { FR: 'PORTR-AI (LLM from scratch en Python)', EN: 'PORTR-AI (LLM from scratch in Python)', ES: 'PORTR-AI (LLM desde cero en Python)' },
+  'Polenofs (stage OPGC - CNRS)': { FR: 'Polenofs (stage OPGC - CNRS)', EN: 'Polenofs (OPGC - CNRS internship)', ES: 'Polenofs (prácticas OPGC - CNRS)' },
   'Application Web (PHP)': { FR: 'Application Web (PHP)', EN: 'Web Application (PHP)', ES: 'Aplicación Web (PHP)' },
   'Application Web de notation': { FR: 'Application Web de notation', EN: 'Grading Web Application', ES: 'Aplicación Web de calificaciones' },
   'Vapeur (javasript)': { FR: 'Vapeur (JavaScript)', EN: 'Vapeur (JavaScript)', ES: 'Vapeur (JavaScript)' },
@@ -272,8 +274,10 @@ export const Component = ({ onOpenApp, initialPath, currentLanguage = 'FR' }) =>
     }
 
     // Ouverture d'un lien externe
+    // Raccourci Internet : navigateur intégré, sauf pour les sites qui refusent d'être intégrés
     if (item.type === 'link' && item.url) {
-      window.open(item.url, '_blank');
+      if (onOpenApp && resolveUrl(item.url).kind !== 'blocked') onOpenApp('internet-explorer', { initialUrl: item.url });
+      else window.open(item.url, '_blank', 'noopener');
       return;
     }
 

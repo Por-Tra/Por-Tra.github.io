@@ -74,6 +74,7 @@ import * as ImageViewer from './ImageViewer';
 import * as ControlPanel from './ControlPanel';
 import * as RecycleBin from './utilities/RecycleBin';
 import * as Terminal from './Terminal';
+import * as InternetExplorer from './InternetExplorer';
 import * as WebReminder from './WebReminder';
 
 // Projets détaillés
@@ -85,6 +86,7 @@ import * as ProjectVapeur from './Projects/ProjectVapeur';
 import * as ProjectLIBET from './Projects/LIBET';
 import * as ProjectFDH from './Projects/Forge-des-heros';
 import * as ProjectPortrAI from './Projects/Portr-AI';
+import * as ProjectPolenofs from './Projects/Polenofs';
 
 // =========================================
 // ENREGISTREMENT DES APPLICATIONS
@@ -101,14 +103,15 @@ const apps = [
   { ...Contact.config, component: Contact.Component, desktopOrder: 5 },
   
   // ===== LIENS EXTERNES =====
+  // Navigateur intégré (Internet Explorer) pour GitHub et Google ; LinkedIn refuse d'être intégré
   {
     id: 'github',
     name: 'GitHub',
     icon: '/icons/git.webp',
-    url: 'https://github.com/Por-Tra',
-    openExternal: true,
-    defaultWidth: 900,
-    defaultHeight: 600,
+    component: InternetExplorer.Component,
+    extraProps: { initialUrl: 'https://github.com/Por-Tra' },
+    defaultWidth: 960,
+    defaultHeight: 640,
     desktopOrder: 6,
   },
   {
@@ -123,13 +126,13 @@ const apps = [
   },
   { ...Terminal.config, component: Terminal.Component, desktopOrder: 8 },
   {
-    id : 'google',
-    name: 'Explorer',
+    id: 'google',
+    name: 'Internet Explorer',
     icon: '/icons/explorer.webp',
-    url: 'https://www.google.com',
-    openExternal: true,
-    defaultWidth: 900,
-    defaultHeight: 600,
+    component: InternetExplorer.Component,
+    extraProps: { initialUrl: 'https://www.google.com/' },
+    defaultWidth: 960,
+    defaultHeight: 640,
     desktopOrder: 9,
   },
   
@@ -144,7 +147,7 @@ const apps = [
   },
   {
     id: 'projects-folder-shortcut',
-    name: 'Projets',
+    name: 'Tout mes projets',
     icon: '/icons/folder.webp',
     component: Explorer.Component,
     extraProps: {
@@ -163,10 +166,12 @@ const apps = [
   { ...ProjectLIBET.config, component: ProjectLIBET.Component, showOnDesktop: false },
   { ...ProjectFDH.config, component: ProjectFDH.Component, showOnDesktop: false },
   { ...ProjectPortrAI.config, component: ProjectPortrAI.Component, showOnDesktop: false },
+  { ...ProjectPolenofs.config, component: ProjectPolenofs.Component, showOnDesktop: false },
   
   // ===== APPS UTILITAIRES (pas sur le bureau) =====
   { ...ImageViewer.config, component: ImageViewer.Component },
   { ...WebReminder.config, component: WebReminder.Component },
+  { ...InternetExplorer.config, component: InternetExplorer.Component },
   
 
 ];

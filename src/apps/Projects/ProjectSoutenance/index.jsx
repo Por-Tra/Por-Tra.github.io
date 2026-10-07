@@ -21,7 +21,7 @@ export const config = {
   defaultHeight: 550,
 };
 
-const projectData = {
+export const projectData = {
   title: { FR: "Application web de notation", EN: "Grading web application", ES: "Aplicación web de calificaciones" },
   description: {
     FR: "Il s'agit d'un projet universitaire dont le but était de fabriquer une application web pour noter les élèves.",

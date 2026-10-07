@@ -1,316 +1,237 @@
 /**
- * Application: Projects
- * 
- * Liste des projets - Style Windows XP
+ * Application: Projects (« Mes Projets »)
+ *
+ * Inspirée de « Ajout/Suppression de programmes » de Windows XP : catégories dans la colonne de gauche,
+ * liste des projets, et l'élément sélectionné se déplie avec un résumé et un bouton pour l'ouvrir.
+ *
+ * Les informations (nom, icône, description, date, technologies) viennent directement de chaque
+ * projet (config + projectData) : rien n'est recopié ici, le détail complet reste dans le projet.
  */
-import { useState } from 'react';
-import { MenuBar, useZoom, getZoomStyle } from '../../components/ProjectLayout';
+import { useMemo, useState } from 'react';
 import { useSearchHighlight } from '../../hooks/useSearchHighlight.jsx';
-import { t } from '../../i18n/text';
+import { t, getAppLabel } from '../../i18n/text';
+import * as Polenofs from './Polenofs';
+import * as PortrAI from './Portr-AI';
+import * as ProjectReseau from './ProjectReseau';
+import * as ForgeDesHeros from './Forge-des-heros';
+import * as ProjectVapeur from './ProjectVapeur';
+import * as ProjectSoutenance from './ProjectSoutenance';
 
 export const config = {
   id: 'projects',
   name: 'Mes Projets',
   icon: '/icons/folder.webp',
-  defaultWidth: 750,
-  defaultHeight: 550,
+  defaultWidth: 780,
+  defaultHeight: 560,
 };
 
-const projects = [
+/**
+ * Projets affichés, par catégorie (du plus récent au plus ancien).
+ * Pour ajouter un projet : exporter `projectData` depuis son fichier, puis l'ajouter ici.
+ */
+const CATEGORIES = [
   {
-    id: 'project-rpg',
-    name: { FR: 'RPG 2D', EN: '2D RPG', ES: 'RPG 2D' },
-    description: {
-      FR: "Jeu vidéo RPG style Pokemon développé en Python avec Pygame. Système de combat au tour par tour, exploration de carte, et gestion d'inventaire.",
-      EN: "Pokemon-style RPG video game built in Python with Pygame. Turn-based combat, map exploration, and inventory management.",
-      ES: "Videojuego RPG estilo Pokemon desarrollado en Python con Pygame. Combate por turnos, exploración de mapas y gestión de inventario.",
-    },
-    date: '2022-2023',
-    languages: ['Python', 'Pygame'],
-    status: 'done',
+    id: 'ai',
+    label: { FR: 'IA & Machine Learning', EN: 'AI & Machine Learning', ES: 'IA y Machine Learning' },
+    projects: [Polenofs, PortrAI],
   },
   {
-    id: 'project-soutenance',
-    name: { FR: 'Projet Soutenance', EN: 'Defense Project', ES: 'Proyecto de Defensa' },
-    description: {
-      FR: 'Application web permettant la notation des élèves par les professeurs. Interface intuitive avec gestion des notes et génération de bulletins.',
-      EN: 'Web application for teachers to grade students. Intuitive UI with grade management and report generation.',
-      ES: 'Aplicación web para que los profesores califiquen a los estudiantes. Interfaz intuitiva con gestión de calificaciones y generación de informes.',
-    },
-    date: '2025',
-    languages: ['HTML', 'CSS', 'PHP', 'SQL'],
-    status: 'inProgress',
-  },
-  {
-    id: 'project-reseau',
-    name: { FR: 'Réseau Social Local', EN: 'Local Social Network', ES: 'Red Social Local' },
-    description: {
-      FR: 'Application de messagerie instantanée fonctionnant en réseau local. Chat en temps réel, partage de fichiers et salons de discussion.',
-      EN: 'Local network messaging app with real-time chat, file sharing, and chat rooms.',
-      ES: 'Aplicación de mensajería en red local con chat en tiempo real, intercambio de archivos y salas de chat.',
-    },
-    date: '2024',
-    languages: ['Python', 'Socket'],
-    status: 'done',
+    id: 'software',
+    label: { FR: 'Développement logiciel', EN: 'Software development', ES: 'Desarrollo de software' },
+    projects: [ForgeDesHeros, ProjectVapeur, ProjectSoutenance, ProjectReseau],
   },
 ];
 
+const SUMMARY_MAX_LENGTH = 230;
+
 const COPY = {
-  toolbarBack: { FR: 'Précédent', EN: 'Back', ES: 'Atras' },
-  toolbarNext: { FR: 'Suivant', EN: 'Next', ES: 'Siguiente' },
-  viewList: { FR: 'Liste', EN: 'List', ES: 'Lista' },
-  viewDetails: { FR: 'Détails', EN: 'Details', ES: 'Detalles' },
-  address: { FR: 'Adresse', EN: 'Address', ES: 'Dirección' },
-  addressPath: { FR: 'C:\\Projets', EN: 'C:\\Projects', ES: 'C:\\Proyectos' },
-  addressOk: { FR: 'OK' },
-  fileMgmt: { FR: 'Gestion des fichiers', EN: 'File management', ES: 'Gestión de archivos' },
-  createFolder: { FR: 'Créer un dossier', EN: 'Create a folder', ES: 'Crear una carpeta' },
-  publishFolder: { FR: 'Publier ce dossier', EN: 'Publish this folder', ES: 'Publicar esta carpeta' },
-  details: { FR: 'Détails', EN: 'Details', ES: 'Detalles' },
-  projectsLabel: { FR: 'Projets', EN: 'Projects', ES: 'Proyectos' },
-  inProgressLabel: { FR: 'En cours', EN: 'In progress', ES: 'En progreso' },
-  doneLabel: { FR: 'Terminé', EN: 'Completed', ES: 'Completado' },
-  pageTitle: { FR: 'Mes Projets', EN: 'My Projects', ES: 'Mis Proyectos' },
-  pageSubtitle: { FR: 'Portfolio de développement', EN: 'Development portfolio', ES: 'Portafolio de desarrollo' },
-  emptySearch: { FR: 'Aucun projet ne correspond à votre recherche', EN: 'No projects match your search', ES: 'No hay proyectos que coincidan con su búsqueda' },
-  emptyAll: { FR: 'Aucun projet disponible', EN: 'No projects available', ES: 'No hay proyectos disponibles' },
-  tableName: { FR: 'Nom', EN: 'Name', ES: 'Nombre' },
-  tableDescription: { FR: 'Description', EN: 'Description', ES: 'Descripción' },
-  tableTech: { FR: 'Technologies', EN: 'Technologies', ES: 'Tecnologías' },
-  tableDate: { FR: 'Date', EN: 'Date', ES: 'Fecha' },
-  tableStatus: { FR: 'Statut', EN: 'Status', ES: 'Estado' },
-  tipLabel: { FR: 'Astuce', EN: 'Tip', ES: 'Consejo' },
-  tipBody: {
-    FR: 'Double-cliquez sur les dossiers de projets sur le bureau pour voir les détails complets avec captures d\'écran et liens GitHub!',
-    EN: 'Double-click the project folders on the desktop to see full details with screenshots and GitHub links!',
-    ES: '¡Haz doble clic en las carpetas de proyectos en el escritorio para ver todos los detalles con capturas de pantalla y enlaces de GitHub!',
+  all: { FR: 'Tous les projets', EN: 'All projects', ES: 'Todos los proyectos' },
+  heading: { FR: 'Projets actuellement installés :', EN: 'Currently installed projects:', ES: 'Proyectos instalados actualmente:' },
+  sortBy: { FR: 'Trier par :', EN: 'Sort by:', ES: 'Ordenar por:' },
+  sortRecent: { FR: 'Plus récent', EN: 'Most recent', ES: 'Más reciente' },
+  sortName: { FR: 'Nom', EN: 'Name', ES: 'Nombre' },
+  date: { FR: 'Date', EN: 'Date', ES: 'Fecha' },
+  technologies: { FR: 'Technologies :', EN: 'Technologies:', ES: 'Tecnologías:' },
+  team: { FR: 'Équipe :', EN: 'Team:', ES: 'Equipo:' },
+  details: {
+    FR: 'Cliquez sur « Ouvrir » pour voir le projet en détail.',
+    EN: 'Click "Open" to see the full project.',
+    ES: 'Haz clic en «Abrir» para ver el proyecto completo.',
   },
-  statusProjects: { FR: 'projets', EN: 'projects', ES: 'proyectos' },
-  statusInProgress: { FR: 'en cours', EN: 'in progress', ES: 'en progreso' },
+  open: { FR: 'Ouvrir', EN: 'Open', ES: 'Abrir' },
+  empty: { FR: 'Aucun projet ne correspond à votre recherche.', EN: 'No project matches your search.', ES: 'Ningún proyecto coincide con tu búsqueda.' },
+  count: { FR: 'projet(s)', EN: 'project(s)', ES: 'proyecto(s)' },
 };
 
-const STATUS_LABELS = {
-  done: COPY.doneLabel,
-  inProgress: COPY.inProgressLabel,
+// Première(s) phrase(s) de la description du projet, pour un aperçu court
+const getSummary = (description) => {
+  if (!description || description.length <= SUMMARY_MAX_LENGTH) return description;
+  const cut = description.slice(0, SUMMARY_MAX_LENGTH);
+  const sentenceEnd = cut.lastIndexOf('. ');
+  return sentenceEnd > 80 ? cut.slice(0, sentenceEnd + 1) : `${cut.slice(0, cut.lastIndexOf(' '))}…`;
 };
 
-export const Component = ({ currentLanguage }) => {
-  const { zoom, zoomIn, zoomOut, resetZoom } = useZoom();
-  const [viewMode, setViewMode] = useState('list');
-  const [selectedProject, setSelectedProject] = useState(null);
-  const { query, filterItems, highlightText, isSearching } = useSearchHighlight('projects');
+/* Icônes de la colonne de gauche, dans le style Luna */
+const AiIcon = () => (
+  <svg viewBox="0 0 32 32" aria-hidden="true">
+    <rect x="7" y="7" width="18" height="18" rx="3" fill="#3a6fc4" stroke="#163a8a" />
+    <rect x="11" y="11" width="10" height="10" rx="1.5" fill="#bfe0ff" />
+    <path d="M13 3v4M19 3v4M13 25v4M19 25v4M3 13h4M3 19h4M25 13h4M25 19h4" stroke="#8a96a8" strokeWidth="2" />
+    <circle cx="16" cy="16" r="2.5" fill="#3a6fc4" />
+  </svg>
+);
 
-  // Filter projects based on search query
-  const filteredProjects = filterItems(projects, (p) => {
-    const name = t(p.name, currentLanguage);
-    const description = t(p.description, currentLanguage);
-    return `${name} ${description}`;
-  });
+const SoftwareIcon = () => (
+  <svg viewBox="0 0 32 32" aria-hidden="true">
+    <rect x="3" y="5" width="26" height="22" rx="2" fill="#fff" stroke="#3a6fc4" strokeWidth="1.5" />
+    <rect x="3" y="5" width="26" height="5" rx="2" fill="#3a6fc4" />
+    <path d="M12 14l-4 4 4 4M20 14l4 4-4 4M17.5 13l-3 10" fill="none" stroke="#1b4fae" strokeWidth="1.8" />
+  </svg>
+);
+
+const AllIcon = () => (
+  <svg viewBox="0 0 32 32" aria-hidden="true">
+    <path d="M3 9a2 2 0 0 1 2-2h7l3 3h12a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="#f6d36b" stroke="#b48a1c" />
+    <path d="M3 13h26v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="#fbe39a" stroke="#b48a1c" />
+  </svg>
+);
+
+const CATEGORY_ICONS = { all: AllIcon, ai: AiIcon, software: SoftwareIcon };
+
+export const Component = ({ currentLanguage, onOpenApp, windowId }) => {
+  const [categoryId, setCategoryId] = useState('all');
+  const [sortBy, setSortBy] = useState('recent');
+  const [selectedId, setSelectedId] = useState(null);
+  const { filterItems, highlightText } = useSearchHighlight(windowId);
+
+  // Projets de la catégorie choisie, lus depuis leur propre fichier
+  const projects = useMemo(() => {
+    const categories = categoryId === 'all' ? CATEGORIES : CATEGORIES.filter((c) => c.id === categoryId);
+    const list = categories.flatMap((category) =>
+      category.projects.map((module, order) => ({
+        id: module.config.id,
+        name: getAppLabel(module.config.id, module.config.name, currentLanguage),
+        icon: module.config.icon,
+        data: module.projectData,
+        category,
+        order,
+      }))
+    );
+    if (sortBy === 'name') {
+      return [...list].sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: 'base' }));
+    }
+    return list;
+  }, [categoryId, sortBy, currentLanguage]);
+
+  const visibleProjects = filterItems(projects, (project) => project.name);
+
+  const sidebarButtons = [
+    { id: 'all', label: COPY.all },
+    ...CATEGORIES.map((category) => ({ id: category.id, label: category.label })),
+  ];
 
   return (
-    <div className="xp-app">
-      {/* Menu Bar avec Zoom */}
-      <MenuBar 
-        zoom={zoom} 
-        onZoomIn={zoomIn} 
-        onZoomOut={zoomOut} 
-        onReset={resetZoom}
-        currentLanguage={currentLanguage}
-      />
+    <div className="xp-app xp-arp">
+      {/* Colonne de gauche : catégories, comme « Modifier ou supprimer des programmes » */}
+      <nav className="xp-arp-sidebar" aria-label={t(COPY.heading, currentLanguage)}>
+        {sidebarButtons.map((button) => {
+          const Icon = CATEGORY_ICONS[button.id];
+          return (
+            <button
+              key={button.id}
+              type="button"
+              className={`xp-arp-category ${categoryId === button.id ? 'is-active' : ''}`}
+              aria-pressed={categoryId === button.id}
+              onClick={() => {
+                setCategoryId(button.id);
+                setSelectedId(null);
+              }}
+            >
+              <Icon />
+              <span>{t(button.label, currentLanguage)}</span>
+            </button>
+          );
+        })}
+      </nav>
 
-      {/* Toolbar */}
-      <div className="xp-toolbar">
-        <button className="xp-toolbar-btn">
-          <img src="/icons/back.webp" alt="" className="w-4 h-4" />
-          {t(COPY.toolbarBack, currentLanguage)}
-        </button>
-        <button className="xp-toolbar-btn">
-          <img src="/icons/back.webp" style={{ transform: 'scaleX(-1)' }} alt="" className="w-4 h-4" />
-          {t(COPY.toolbarNext, currentLanguage)}
-        </button>
-        <div className="xp-toolbar-separator" />
-        <button 
-          className={`xp-toolbar-btn ${viewMode === 'list' ? 'bg-[#316ac5] text-white' : ''}`}
-          onClick={() => setViewMode('list')}
-        >
-          <img src="/icons/folder.webp" alt="" className="w-4 h-4" />
-          {t(COPY.viewList, currentLanguage)}
-        </button>
-        <button 
-          className={`xp-toolbar-btn ${viewMode === 'details' ? 'bg-[#316ac5] text-white' : ''}`}
-          onClick={() => setViewMode('details')}
-        >
-          <img src="/icons/note.webp" alt="" className="w-4 h-4" />
-          {t(COPY.viewDetails, currentLanguage)}
-        </button>
-      </div>
+      <section className="xp-arp-main">
+        <header className="xp-arp-header">
+          <span className="xp-arp-heading">{t(COPY.heading, currentLanguage)}</span>
+          <label className="xp-arp-sort">
+            {t(COPY.sortBy, currentLanguage)}
+            <select value={sortBy} onChange={(event) => setSortBy(event.target.value)}>
+              <option value="recent">{t(COPY.sortRecent, currentLanguage)}</option>
+              <option value="name">{t(COPY.sortName, currentLanguage)}</option>
+            </select>
+          </label>
+        </header>
 
-      {/* Address Bar */}
-      <div className="xp-addressbar">
-        <span className="xp-addressbar-label">{t(COPY.address, currentLanguage)}</span>
-        <div className="xp-addressbar-input">
-          <img src="/icons/folder.webp" alt="" className="w-4 h-4" />
-          <span>{t(COPY.addressPath, currentLanguage)}</span>
-        </div>
-        <button className="xp-addressbar-go">{t(COPY.addressOk, currentLanguage)}</button>
-      </div>
+        <div className="xp-arp-list" role="listbox" aria-label={t(COPY.heading, currentLanguage)}>
+          {visibleProjects.length === 0 && <p className="xp-arp-empty">{t(COPY.empty, currentLanguage)}</p>}
 
-      {/* Main Content */}
-      <div className="xp-content xp-content-zoomable" style={getZoomStyle(zoom)}>
-        {/* Sidebar */}
-        <div className="xp-sidebar">
-          <div className="xp-sidebar-box">
-            <div className="xp-sidebar-title">
-              <img src="/icons/folder.webp" alt="" />
-              {t(COPY.fileMgmt, currentLanguage)}
-            </div>
-            <div className="xp-sidebar-link">
-              <img src="/icons/folder.webp" alt="" />
-              {t(COPY.createFolder, currentLanguage)}
-            </div>
-            <div className="xp-sidebar-link">
-              <img src="/icons/explorer.webp" alt="" />
-              {t(COPY.publishFolder, currentLanguage)}
-            </div>
-          </div>
-
-          <div className="xp-sidebar-box">
-            <div className="xp-sidebar-title">
-              <img src="/icons/questionMark.webp" alt="" />
-              {t(COPY.details, currentLanguage)}
-            </div>
-            <div className="xp-sidebar-text">
-              <p><strong>{t(COPY.projectsLabel, currentLanguage)}:</strong> {filteredProjects.length}</p>
-              <p><strong>{t(COPY.inProgressLabel, currentLanguage)}:</strong> {filteredProjects.filter(p => p.status === 'inProgress').length}</p>
-              <p><strong>{t(COPY.doneLabel, currentLanguage)}:</strong> {filteredProjects.filter(p => p.status === 'done').length}</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Main Content Area */}
-        <div className="xp-content-main">
-          {/* Page Header */}
-          <div className="xp-page-header">
-            <img src="/icons/folder.webp" alt="" className="xp-page-header-icon" />
-            <div>
-              <h1 className="xp-page-title">{t(COPY.pageTitle, currentLanguage)}</h1>
-              <p className="xp-page-subtitle">{t(COPY.pageSubtitle, currentLanguage)}</p>
-            </div>
-          </div>
-
-          {/* List View */}
-          {viewMode === 'list' && (
-            <div className="xp-box">
-              {filteredProjects.length > 0 ? (
-                filteredProjects.map((project, index) => (
-                  <div
-                    key={project.id}
-                    onClick={() => setSelectedProject(selectedProject === project.id ? null : project.id)}
-                    className={`xp-flex xp-gap-2 xp-items-center xp-p-2 cursor-pointer
-                               ${index !== filteredProjects.length - 1 ? 'border-b border-[#e0e0e0]' : ''}
-                               ${selectedProject === project.id ? 'bg-[#316ac5] text-white' : 'hover:bg-[#e8f0ff]'}`}
-                    style={{ padding: '8px' }}
-                  >
-                    <img src="/icons/folder.webp" alt="" className="w-8 h-8" />
-                    <div className="xp-flex-1">
-                      <div className="xp-flex xp-gap-2 xp-items-center">
-                        <span className="xp-text-bold">{highlightText(t(project.name, currentLanguage))}</span>
-                        <span className={`xp-tag ${project.status === 'inProgress' ? 'xp-tag-yellow' : 'xp-tag-green'}`}>
-                          {t(STATUS_LABELS[project.status], currentLanguage)}
-                        </span>
-                      </div>
-                      <p className={`xp-text-sm ${selectedProject === project.id ? 'text-white' : 'xp-text-gray'}`}>
-                        {highlightText(t(project.description, currentLanguage))}
-                      </p>
-                    </div>
-                    <div className="text-right">
-                      <p className={`xp-text-sm ${selectedProject === project.id ? 'text-white' : 'xp-text-gray'}`}>
-                        {project.date}
-                      </p>
-                      <div className="xp-flex xp-gap-1" style={{ justifyContent: 'flex-end', marginTop: '4px' }}>
-                        {project.languages.map((lang) => (
-                          <span key={lang} className="xp-tag xp-tag-blue">{lang}</span>
-                        ))}
-                      </div>
-                    </div>
+          {visibleProjects.map((project, index) => {
+            const isSelected = project.id === selectedId;
+            const showGroup = categoryId === 'all' && sortBy === 'recent'
+              && (index === 0 || visibleProjects[index - 1].category.id !== project.category.id);
+            return (
+              <div key={project.id}>
+                {showGroup && <div className="xp-arp-group">{t(project.category.label, currentLanguage)}</div>}
+                <div
+                  className={`xp-arp-item ${isSelected ? 'is-selected' : ''}`}
+                  role="option"
+                  aria-selected={isSelected}
+                  tabIndex={0}
+                  onClick={() => setSelectedId(project.id)}
+                  onDoubleClick={() => onOpenApp?.(project.id)}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter') onOpenApp?.(project.id);
+                  }}
+                >
+                  <div className="xp-arp-row">
+                    <img className="xp-arp-icon" src={project.icon} alt="" />
+                    <span className="xp-arp-name">{highlightText(project.name)}</span>
+                    <span className="xp-arp-date">
+                      <span className="xp-arp-label">{t(COPY.date, currentLanguage)}</span>
+                      {t(project.data.date, currentLanguage)}
+                    </span>
                   </div>
-                ))
-              ) : (
-                <div className="xp-text-gray" style={{ padding: '16px', textAlign: 'center' }}>
-                  {isSearching ? t(COPY.emptySearch, currentLanguage) : t(COPY.emptyAll, currentLanguage)}
-                </div>
-              )}
-            </div>
-          )}
 
-          {/* Details View */}
-          {viewMode === 'details' && (
-            <div className="xp-box">
-              {filteredProjects.length > 0 ? (
-                <table className="xp-table">
-                  <thead>
-                    <tr>
-                      <th>{t(COPY.tableName, currentLanguage)}</th>
-                      <th>{t(COPY.tableDescription, currentLanguage)}</th>
-                      <th>{t(COPY.tableTech, currentLanguage)}</th>
-                      <th>{t(COPY.tableDate, currentLanguage)}</th>
-                      <th>{t(COPY.tableStatus, currentLanguage)}</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {filteredProjects.map((project) => (
-                      <tr 
-                        key={project.id}
-                        onClick={() => setSelectedProject(selectedProject === project.id ? null : project.id)}
-                        className="cursor-pointer"
-                      >
-                        <td>
-                          <div className="xp-flex xp-gap-2 xp-items-center">
-                            <img src="/icons/folder.webp" alt="" className="w-4 h-4" />
-                            <span className="xp-text-bold">{highlightText(t(project.name, currentLanguage))}</span>
-                          </div>
-                        </td>
-                        <td className="xp-text-gray" style={{ maxWidth: '200px' }}>
-                          {highlightText(t(project.description, currentLanguage).substring(0, 50))}...
-                        </td>
-                        <td>
-                          {project.languages.map((lang) => (
-                            <span key={lang} className="xp-tag xp-tag-blue">{lang}</span>
-                          ))}
-                        </td>
-                        <td>{project.date}</td>
-                        <td>
-                          <span className={`xp-tag ${project.status === 'inProgress' ? 'xp-tag-yellow' : 'xp-tag-green'}`}>
-                            {t(STATUS_LABELS[project.status], currentLanguage)}
-                          </span>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              ) : (
-                <div className="xp-text-gray" style={{ padding: '16px', textAlign: 'center' }}>
-                  {isSearching ? t(COPY.emptySearch, currentLanguage) : t(COPY.emptyAll, currentLanguage)}
+                  {isSelected && (
+                    <div className="xp-arp-details">
+                      <p className="xp-arp-summary">{getSummary(t(project.data.description, currentLanguage))}</p>
+                      <p>
+                        <span className="xp-arp-label">{t(COPY.technologies, currentLanguage)}</span>
+                        {project.data.languages.join(', ')}
+                      </p>
+                      <p>
+                        <span className="xp-arp-label">{t(COPY.team, currentLanguage)}</span>
+                        {t(project.data.team, currentLanguage)}
+                      </p>
+                      <div className="xp-arp-actions">
+                        <span className="xp-arp-hint">{t(COPY.details, currentLanguage)}</span>
+                        <button
+                          type="button"
+                          className="xp-button xp-arp-open"
+                          onClick={(event) => {
+                            event.stopPropagation();
+                            onOpenApp?.(project.id);
+                          }}
+                        >
+                          {t(COPY.open, currentLanguage)}
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
-          )}
-
-          {/* Tip Box */}
-          <div className="xp-tipbox xp-mt-3">
-            <img src="/icons/questionMark.webp" alt="" />
-            <div className="xp-tipbox-text">
-              <strong>{t(COPY.tipLabel, currentLanguage)}:</strong> {t(COPY.tipBody, currentLanguage)}
-            </div>
-          </div>
+              </div>
+            );
+          })}
         </div>
-      </div>
 
-      {/* Status Bar */}
-      <div className="xp-statusbar">
-        <span>{filteredProjects.length} {t(COPY.statusProjects, currentLanguage)}</span>
-        <span>{filteredProjects.filter(p => p.status === 'inProgress').length} {t(COPY.statusInProgress, currentLanguage)}</span>
-      </div>
+        <footer className="xp-arp-footer">
+          {visibleProjects.length} {t(COPY.count, currentLanguage)}
+        </footer>
+      </section>
     </div>
   );
 };

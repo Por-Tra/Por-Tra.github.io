@@ -1771,3 +1771,415 @@ img.xp-screenshot {
   border-radius: 3px;
   background: radial-gradient(circle at 90% 90%, #cc4600 0%, #dc6527 55%, #cd7546 70%, #ffccb2 90%, #fff 100%);
 }
+
+/* ============================================
+   MON PARCOURS - dossier façon Explorateur XP
+   ============================================ */
+.xp-cv {
+  padding: 10px 16px 16px;
+}
+
+.xp-cv-hint {
+  margin: 0 0 4px;
+  color: #7f7c73;
+}
+
+/* En-tête de groupe XP : texte gras + soulignement bleu dégradé */
+.xp-cv-group {
+  margin: 14px 0 8px;
+  padding-bottom: 3px;
+  font-weight: bold;
+  color: #000;
+  border-bottom: 2px solid transparent;
+  border-image: linear-gradient(90deg, #70bfff 0%, rgba(112, 191, 255, 0) 100%) 1;
+  scroll-margin-top: 8px;
+}
+
+/* Tuile : grande icône + contenu ; sélection bleue comme dans l'Explorateur */
+.xp-cv-item {
+  display: flex;
+  gap: 12px;
+  padding: 10px;
+  margin-bottom: 8px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  cursor: default;
+}
+
+.xp-cv-item:hover {
+  border-color: #c1d2ee;
+  background: #f5f8fe;
+}
+
+.xp-cv-item.is-selected {
+  border-color: #316ac5;
+  background: #e5edfb;
+}
+
+.xp-cv-icon {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.xp-cv-icon svg {
+  width: 48px;
+  height: 48px;
+}
+
+.xp-cv-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.xp-cv-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+  color: #003399;
+}
+
+.xp-cv-item.is-selected .xp-cv-title > span:first-child {
+  background: #316ac5;
+  color: #fff;
+  padding: 0 3px;
+}
+
+.xp-cv-logo {
+  display: block;
+  height: 30px;
+  width: auto;
+  margin: 6px 0 2px;
+}
+
+.xp-cv-org {
+  font-weight: bold;
+  color: #000;
+}
+
+.xp-cv-contract {
+  font-weight: normal;
+  color: #4d4d4d;
+}
+
+.xp-cv-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin-top: 2px;
+  color: #4d4d4d;
+}
+
+.xp-cv-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.xp-cv-meta-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.xp-cv-description {
+  margin: 8px 0;
+  line-height: 1.45;
+}
+
+/* Points clés : encadré bleu clair façon volet de tâches */
+.xp-cv-points {
+  padding: 6px 10px 8px;
+  background: #f3f6fd;
+  border: 1px solid #c1d2ee;
+  border-radius: 3px;
+}
+
+.xp-cv-points-title {
+  margin-bottom: 4px;
+  font-weight: bold;
+  color: #215dc6;
+}
+
+.xp-cv-points ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.xp-cv-points li {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  padding: 1px 0;
+}
+
+/* Puce carrée bleue des listes XP */
+.xp-cv-bullet {
+  width: 5px;
+  height: 5px;
+  flex-shrink: 0;
+  background: #3a6fc4;
+  transform: translateY(-2px);
+}
+
+.xp-cv-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 16px;
+  margin-top: 8px;
+}
+
+/* Liens d'action bleus avec icône (comme les tâches de l'Explorateur) */
+.xp-cv-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 1px 0;
+  border: none;
+  background: transparent;
+  color: #215dc6;
+}
+
+.xp-cv-action:hover {
+  color: #428eff;
+  text-decoration: underline;
+}
+
+.xp-cv-action img {
+  width: 16px;
+  height: 16px;
+}
+
+.xp-cv-toolbar-icon {
+  display: flex;
+  width: 24px;
+  height: 24px;
+}
+
+.xp-cv-toolbar-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* ============================================
+   MES PROJETS - façon « Ajout/Suppression de programmes »
+   ============================================ */
+.xp-arp {
+  flex-direction: row;
+  background: #ece9d8;
+}
+
+/* Colonne de gauche : gros boutons de catégorie */
+.xp-arp-sidebar {
+  width: 112px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 0 8px 6px;
+  background: linear-gradient(180deg, #7aa1e6 0%, #6375d6 100%);
+  overflow-y: auto;
+}
+
+.xp-arp-category {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 6px;
+  border: 1px solid transparent;
+  border-right: none;
+  border-radius: 3px 0 0 3px;
+  background: transparent;
+  color: #fff;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.xp-arp-category svg {
+  width: 32px;
+  height: 32px;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.3));
+}
+
+.xp-arp-category:hover {
+  border-color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Bouton actif : même couleur que le panneau de droite, il « s'y raccroche » */
+.xp-arp-category.is-active {
+  background: #ece9d8;
+  border-color: #fff;
+  color: #000;
+}
+
+.xp-arp-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 10px 6px;
+}
+
+.xp-arp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.xp-arp-heading {
+  font-weight: bold;
+}
+
+.xp-arp-sort {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.xp-arp-sort select {
+  height: 21px;
+  padding: 0 4px;
+}
+
+/* Liste blanche « en creux » */
+.xp-arp-list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid #7f9db9;
+  padding: 2px;
+}
+
+.xp-arp-group {
+  margin: 8px 6px 4px;
+  padding-bottom: 2px;
+  font-weight: bold;
+  color: #0b3a96;
+  border-bottom: 2px solid transparent;
+  border-image: linear-gradient(90deg, #70bfff 0%, rgba(112, 191, 255, 0) 100%) 1;
+}
+
+.xp-arp-item {
+  padding: 3px 6px;
+  border: 1px solid transparent;
+  outline: none;
+  cursor: default;
+}
+
+.xp-arp-item:hover:not(.is-selected) {
+  background: #f1f5fd;
+}
+
+.xp-arp-item:focus-visible {
+  border: 1px dotted #000;
+}
+
+/* Élément sélectionné : couleur de sélection XP, détails dépliés */
+.xp-arp-item.is-selected {
+  background: #316ac5;
+  color: #fff;
+}
+
+.xp-arp-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.xp-arp-icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.xp-arp-name {
+  flex: 1;
+  min-width: 0;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.xp-arp-date {
+  flex-shrink: 0;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.xp-arp-label {
+  margin-right: 6px;
+  color: #7f7c73;
+}
+
+.xp-arp-item.is-selected .xp-arp-label {
+  color: #d6e3f8;
+}
+
+.xp-arp-details {
+  margin: 4px 0 2px 40px;
+}
+
+.xp-arp-details p {
+  margin: 0 0 3px;
+  line-height: 1.4;
+}
+
+.xp-arp-summary {
+  margin-bottom: 6px !important;
+}
+
+.xp-arp-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.xp-arp-hint {
+  color: #d6e3f8;
+}
+
+.xp-arp-open {
+  min-width: 90px;
+  padding: 0 12px;
+  color: #000;
+}
+
+.xp-arp-empty {
+  padding: 12px;
+  color: #7f7c73;
+}
+
+.xp-arp-footer {
+  padding-top: 4px;
+  color: #4d4d4d;
+}
+
+@media (max-width: 600px) {
+  .xp-arp {
+    flex-direction: column;
+  }
+
+  .xp-arp-sidebar {
+    width: auto;
+    flex-direction: row;
+    padding: 6px 6px 0;
+  }
+
+  .xp-arp-category {
+    flex: 1;
+    border-right: 1px solid transparent;
+    border-bottom: none;
+    border-radius: 3px 3px 0 0;
+  }
+}

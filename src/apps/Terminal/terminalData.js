@@ -26,6 +26,23 @@ export const SKILLS = [
 
 export const PROJECTS = [
   {
+    id: 'polenofs',
+    appId: 'polenofs',
+    name: { FR: 'Polenofs (stage OPGC - CNRS)', EN: 'Polenofs (OPGC - CNRS internship)', ES: 'Polenofs (prácticas OPGC - CNRS)' },
+    description: {
+      FR: 'Détection de spores fongiques par deep learning',
+      EN: 'Deep learning fungal spore detection',
+      ES: 'Detección de esporas fúngicas con deep learning',
+    },
+    tech: ['Python', 'Machine Learning'],
+    github: 'https://sourcesup.renater.fr/projects/polenofs',
+    learned: {
+      FR: 'Deep learning, traitement de données scientifiques, travail avec une équipe de recherche',
+      EN: 'Deep learning, scientific data processing, working with a research team',
+      ES: 'Deep learning, procesamiento de datos científicos, trabajo con un equipo de investigación',
+    }
+  },
+  {
     id: 'rpg',
     appId: 'project-rpg',
     name: 'RPG 2D - The Elder Scrolls',
@@ -115,9 +132,9 @@ export const MAN_PAGES = {
     ES: 'Muestra un resumen sobre Lucas.\nEstudiante de Informática Gráfica apasionado por los desafíos de desarrollo variados.',
   },
   'projects': {
-    FR: 'Liste tous les projets réalisés.\n\nUtilisez "man <nom-projet>" pour plus de détails:\nman rpg, man soutenance, man reseau, man mycoria, man vapeur',
-    EN: 'Lists all completed projects.\n\nUse "man <project-name>" for more details:\nman rpg, man soutenance, man reseau, man mycoria, man vapeur',
-    ES: 'Lista todos los proyectos realizados.\n\nUsa "man <nombre-proyecto>" para más detalles:\nman rpg, man soutenance, man reseau, man mycoria, man vapeur',
+    FR: 'Liste tous les projets réalisés.\n\nUtilisez "man <nom-projet>" pour plus de détails:\nman polenofs, man rpg, man soutenance, man reseau, man mycoria, man vapeur',
+    EN: 'Lists all completed projects.\n\nUse "man <project-name>" for more details:\nman polenofs, man rpg, man soutenance, man reseau, man mycoria, man vapeur',
+    ES: 'Lista todos los proyectos realizados.\n\nUsa "man <nombre-proyecto>" para más detalles:\nman polenofs, man rpg, man soutenance, man reseau, man mycoria, man vapeur',
   },
   'date': {
     FR: 'Affiche la date et l\'heure actuelle.',

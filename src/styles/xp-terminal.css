@@ -9,7 +9,7 @@
 .xp-terminal,
 .xp-terminal * {
   font-family: "Lucida Console", "Consolas", "Courier New", monospace !important;
-  font-size: 13px !important;
+  font-size: calc(13px * var(--xp-scale)) !important;
 }
 
 .xp-terminal-screen {

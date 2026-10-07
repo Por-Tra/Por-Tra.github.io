@@ -15,7 +15,7 @@ export const config = {
   defaultHeight: 520,
 };
 
-const projectData = {
+export const projectData = {
   title: "Forge de Héros",
   description: {
     FR: "Projet universitaire de deuxième année consistant à créer une application fullstack de création et gestion de personnages de jeu de rôle, inspirée de l'univers de Donjons & Dragons. Le projet se compose d'une application Symfony (fullstack + API REST) et d'une application React consommant cette API.",

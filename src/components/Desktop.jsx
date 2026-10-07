@@ -4,6 +4,7 @@ import Window from './Window';
 import Taskbar from './Taskbar';
 import Clippy from './Clippy';
 import ErrorDialogHost from './ErrorDialogHost';
+import { useClippySettings, readClippySettings, saveClippySettings } from '../core/clippySettings';
 // Import du registry et initialisation des apps
 import appRegistry from '../apps';
 import recycleBin from '../core/recycleBin';
@@ -11,13 +12,21 @@ import { t, getAppLabel } from '../i18n/text';
 
 const STORAGE_KEY = 'xp-desktop-preferences-v1';
 const WELCOME_SESSION_KEY = 'xp-welcome-opened-session-v1';
-const CLIPPY_HIDDEN_KEY = 'xp-clippy-hidden';
 
 // Grid configuration for icon snapping
-const GRID_SIZE = 80;
-const ICON_WIDTH = 70;
-const ICON_HEIGHT = 80;
 const GRID_PADDING = 10;
+
+// La grille des icônes suit l'échelle d'affichage (« Grandes polices » des options d'accessibilité),
+// et s'élargit avec la police dyslexie, plus large que la police par défaut
+const DYSLEXIA_GRID_FACTOR = 1.4;
+const getDisplayScale = () => {
+  const root = document.documentElement;
+  const scale = parseFloat(getComputedStyle(root).getPropertyValue('--xp-scale')) || 1;
+  return root.classList.contains('a11y-dyslexia') ? scale * DYSLEXIA_GRID_FACTOR : scale;
+};
+const gridSize = () => Math.round(80 * getDisplayScale());
+const iconWidth = () => Math.round(70 * getDisplayScale());
+const iconHeight = () => Math.round(80 * getDisplayScale());
 const TRASH_APP_ID = 'trash';
 
 const DESKTOP_MENU_LABELS = {
@@ -54,13 +63,8 @@ const Desktop = () => {
   const lassoHasMoved = useRef(false);
   const lassoJustFinished = useRef(false);
   const [dragGhost, setDragGhost] = useState(null);
-  const [isClippyHidden, setIsClippyHidden] = useState(() => {
-    try {
-      return globalThis.localStorage?.getItem(CLIPPY_HIDDEN_KEY) === '1';
-    } catch {
-      return false;
-    }
-  });
+  const [clippySettings] = useClippySettings();
+  const isClippyHidden = !clippySettings.visible;
   const [wallpaperUrl, setWallpaperUrl] = useState(() => {
     const stored = readStoredPreferences();
     return typeof stored?.wallpaperUrl === 'string' ? stored.wallpaperUrl : '/wallpaper.webp';
@@ -76,7 +80,7 @@ const Desktop = () => {
   });
 
   const clampPosition = useCallback((x, y) => {
-    const maxX = Math.max(0, window.innerWidth - ICON_WIDTH);
+    const maxX = Math.max(0, window.innerWidth - iconWidth());
     const maxY = Math.max(0, window.innerHeight - 120);
     return {
       x: Math.max(0, Math.min(maxX, x)),
@@ -86,8 +90,8 @@ const Desktop = () => {
   
   // Snap position to grid
   const snapToGrid = (x, y) => {
-    const snappedX = Math.round(x / GRID_SIZE) * GRID_SIZE + GRID_PADDING;
-    const snappedY = Math.round(y / GRID_SIZE) * GRID_SIZE + GRID_PADDING;
+    const snappedX = Math.round(x / gridSize()) * gridSize() + GRID_PADDING;
+    const snappedY = Math.round(y / gridSize()) * gridSize() + GRID_PADDING;
     return { x: snappedX, y: snappedY };
   };
 
@@ -95,8 +99,8 @@ const Desktop = () => {
   const isPositionOccupied = (x, y, excludeId, icons) => {
     return icons.some(icon => 
       icon.id !== excludeId && 
-      Math.abs(icon.x - x) < ICON_WIDTH && 
-      Math.abs(icon.y - y) < ICON_HEIGHT
+      Math.abs(icon.x - x) < iconWidth() && 
+      Math.abs(icon.y - y) < iconHeight()
     );
   };
 
@@ -112,8 +116,8 @@ const Desktop = () => {
       for (let dx = -radius; dx <= radius; dx++) {
         for (let dy = -radius; dy <= radius; dy++) {
           if (Math.abs(dx) === radius || Math.abs(dy) === radius) {
-            const testX = snapped.x + dx * GRID_SIZE;
-            const testY = snapped.y + dy * GRID_SIZE;
+            const testX = snapped.x + dx * gridSize();
+            const testY = snapped.y + dy * gridSize();
             if (testX >= GRID_PADDING && testY >= GRID_PADDING && 
                 !isPositionOccupied(testX, testY, excludeId, icons)) {
               return { x: testX, y: testY };
@@ -129,7 +133,7 @@ const Desktop = () => {
   const getIconsPerColumn = () => {
     // Subtract taskbar height (~48px) and some padding
     const availableHeight = window.innerHeight - 60;
-    return Math.max(1, Math.floor(availableHeight / GRID_SIZE));
+    return Math.max(1, Math.floor(availableHeight / gridSize()));
   };
 
   // Initialize icons with grid positions using the registry
@@ -155,8 +159,8 @@ const Desktop = () => {
       const row = index % iconsPerColumn;
       return {
         ...app,
-        x: GRID_PADDING + column * GRID_SIZE,
-        y: GRID_PADDING + row * GRID_SIZE,
+        x: GRID_PADDING + column * gridSize(),
+        y: GRID_PADDING + row * gridSize(),
       };
     });
   });
@@ -172,8 +176,8 @@ const Desktop = () => {
         const row = index % iconsPerColumn;
         return {
           ...icon,
-          x: GRID_PADDING + column * GRID_SIZE,
-          y: GRID_PADDING + row * GRID_SIZE,
+          x: GRID_PADDING + column * gridSize(),
+          y: GRID_PADDING + row * gridSize(),
         };
       }));
 
@@ -468,12 +472,12 @@ const Desktop = () => {
     const bounds = {
       left: trashIcon.x,
       top: trashIcon.y,
-      right: trashIcon.x + ICON_WIDTH,
-      bottom: trashIcon.y + ICON_HEIGHT,
+      right: trashIcon.x + iconWidth(),
+      bottom: trashIcon.y + iconHeight(),
     };
 
-    const right = x + ICON_WIDTH;
-    const bottom = y + ICON_HEIGHT;
+    const right = x + iconWidth();
+    const bottom = y + iconHeight();
 
     return right > bounds.left && x < bounds.right && bottom > bounds.top && y < bounds.bottom;
   }, [icons]);
@@ -606,11 +610,25 @@ const Desktop = () => {
       const row = index % iconsPerColumn;
       return {
         ...icon,
-        x: GRID_PADDING + column * GRID_SIZE,
-        y: GRID_PADDING + row * GRID_SIZE,
+        x: GRID_PADDING + column * gridSize(),
+        y: GRID_PADDING + row * gridSize(),
       };
     }));
   }, []);
+
+  // Changement de taille des polices : on réaligne les icônes sur la nouvelle grille
+  const lastDisplayScale = useRef(null);
+  useEffect(() => {
+    lastDisplayScale.current = getDisplayScale();
+    const handleAccessibilityChange = () => {
+      const scale = getDisplayScale();
+      if (scale === lastDisplayScale.current) return;
+      lastDisplayScale.current = scale;
+      alignIconsToGrid();
+    };
+    window.addEventListener('xp-accessibility-change', handleAccessibilityChange);
+    return () => window.removeEventListener('xp-accessibility-change', handleAccessibilityChange);
+  }, [alignIconsToGrid]);
 
   const handleContextAction = useCallback((action) => {
     if (action === 'refresh') {
@@ -632,12 +650,7 @@ const Desktop = () => {
     }
 
     if (action === 'show-clippy') {
-      setIsClippyHidden(false);
-      try {
-        globalThis.localStorage?.removeItem(CLIPPY_HIDDEN_KEY);
-      } catch {
-        // no-op
-      }
+      saveClippySettings({ ...readClippySettings(), visible: true });
       setContextMenu(null);
       return;
     }
@@ -652,12 +665,7 @@ const Desktop = () => {
   }, [alignIconsToGrid, icons, openApp]);
 
   const handleHideClippy = useCallback(() => {
-    setIsClippyHidden(true);
-    try {
-      globalThis.localStorage?.setItem(CLIPPY_HIDDEN_KEY, '1');
-    } catch {
-      // no-op
-    }
+    saveClippySettings({ ...readClippySettings(), visible: false });
   }, []);
 
   const handleDesktopContextMenu = useCallback((e) => {
@@ -716,8 +724,8 @@ const Desktop = () => {
           const iconRect = {
             left: icon.x,
             top: icon.y,
-            right: icon.x + ICON_WIDTH,
-            bottom: icon.y + ICON_HEIGHT,
+            right: icon.x + iconWidth(),
+            bottom: icon.y + iconHeight(),
           };
           const rectRight = left + width;
           const rectBottom = top + height;

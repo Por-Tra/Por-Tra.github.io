@@ -34,7 +34,8 @@ export const APP_LABELS = {
   chess: { FR: 'Echecs', EN: 'Chess', ES: 'Ajedrez' },
   trash: { FR: 'Corbeille', EN: 'Recycle Bin', ES: 'Papelera' },
   blank: { FR: 'Application', EN: 'Application', ES: 'Aplicación' },
-  google: { FR: 'Explorer', EN: 'Explorer', ES: 'Explorer' },
+  google: { FR: 'Internet Explorer', EN: 'Internet Explorer', ES: 'Internet Explorer' },
+  'internet-explorer': { FR: 'Internet Explorer', EN: 'Internet Explorer', ES: 'Internet Explorer' },
   'image-viewer': { FR: 'Aperçu des images et des télécopies Windows', EN: 'Windows Picture and Fax Viewer', ES: 'Visor de imágenes y fax de Windows' },
   'web-reminder': { FR: 'Exécutable introuvable', EN: 'Executable not found', ES: 'Ejecutable no encontrado' },
   'project-rpg': { FR: 'RPG 2D', EN: '2D RPG', ES: 'RPG 2D' },
@@ -45,6 +46,7 @@ export const APP_LABELS = {
   'LIBET-project': { FR: 'LIBET', EN: 'LIBET', ES: 'LIBET' },
   'FDH-project': { FR: 'Forge des héros', EN: 'Forge des héros', ES: 'Forge des héros' },
   'Port-AI-project': { FR: 'PORTR-AI', EN: 'PORTR-AI', ES: 'PORTR-AI' },
+  polenofs: { FR: 'Polenofs', EN: 'Polenofs', ES: 'Polenofs' },
 };
 
 export const getAppLabel = (appId, fallback, lang) => {

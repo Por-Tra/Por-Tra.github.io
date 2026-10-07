@@ -21,7 +21,7 @@ export const config = {
   defaultHeight: 520,
 };
 
-const projectData = {
+export const projectData = {
   title: { FR: "Réseau Social Local", EN: "Local Social Network", ES: "Red Social Local" },
   description: {
     FR: "C'est un projet qui a pour but de permettre un échange de messages depuis 2 machines distinctes et avec la possibilité d'héberger le serveur très facilement.",

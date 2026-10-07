@@ -3,6 +3,7 @@
 @import "./styles/xp-controlpanel.css";
 @import "./styles/xp-terminal.css";
 @import "./styles/xp-scrollbars.css";
+@import "./styles/xp-ie.css";
 
 @font-face {
   font-family: "fs Tahoma 16px";
@@ -24,8 +25,8 @@
 *,
 *::before,
 *::after {
-  font-family: "fs Tahoma 16px", "Tahoma", "Segoe UI", sans-serif;
-  font-size: 17px !important;
+  font-family: var(--xp-font);
+  font-size: var(--xp-font-size) !important;
 }
 
 body {
@@ -304,7 +305,7 @@ body.busy,
 
 .xp-login-name {
   font-family: var(--xp-title-font) !important;
-  font-size: 20px !important;
+  font-size: calc(20px * var(--xp-scale)) !important;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.35);
 }
 
@@ -470,7 +471,7 @@ body.busy,
 
 .xp-titlebar-text {
   font-family: var(--xp-title-font) !important;
-  font-size: 13px !important;
+  font-size: calc(13px * var(--xp-scale)) !important;
   font-weight: bold;
   color: #fff;
   letter-spacing: 0;
@@ -901,7 +902,7 @@ select:focus {
 
 .xp-start-menu-user-name {
   font-family: var(--xp-title-font) !important;
-  font-size: 14px !important;
+  font-size: calc(14px * var(--xp-scale)) !important;
   font-weight: bold;
   color: #fff;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
@@ -1086,7 +1087,7 @@ select:focus {
    ICÔNES DU BUREAU
    ========================================================== */
 .xp-desktop-icon {
-  width: 76px;
+  width: calc(76px * var(--xp-scale) * var(--xp-desktop-factor, 1));
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1095,14 +1096,14 @@ select:focus {
 
 .xp-desktop-icon-image {
   position: relative;
-  width: 32px;
-  height: 32px;
+  width: calc(32px * var(--xp-scale));
+  height: calc(32px * var(--xp-scale));
   margin-bottom: 4px;
 }
 
 .xp-desktop-icon-image img {
-  width: 32px;
-  height: 32px;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 
@@ -1118,7 +1119,7 @@ select:focus {
 }
 
 .xp-desktop-icon-label {
-  max-width: 76px;
+  max-width: calc(76px * var(--xp-scale) * var(--xp-desktop-factor, 1));
   padding: 0 2px;
   color: #fff;
   text-align: center;
@@ -1615,4 +1616,122 @@ select:focus {
   width: 4px;
   height: 13px;
   transform: none;
+}
+
+/* ==========================================================
+   ACCESSIBILITÉ (classes posées sur <html> par core/accessibility.js)
+   ========================================================== */
+/* OpenDyslexic - SIL Open Font License 1.1 (voir public/fonts/opendyslexic/OFL.txt).
+   Le fichier n'est téléchargé que si l'option est activée. */
+@font-face {
+  font-family: "OpenDyslexic";
+  src: url("/fonts/opendyslexic/opendyslexic-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OpenDyslexic";
+  src: url("/fonts/opendyslexic/opendyslexic-latin-700-normal.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Valeurs par défaut : police bitmap Tahoma, rendu XP « Normal » */
+:root {
+  --xp-scale: 1;
+  --xp-font: "fs Tahoma 16px", "Tahoma", "Segoe UI", sans-serif;
+  --xp-font-size: 17px;
+}
+
+/* « Grandes polices » et « Polices très grandes » de XP : on passe sur Tahoma vectoriel,
+   plus net que la police bitmap une fois agrandie */
+:root.a11y-text-large {
+  --xp-scale: 1.25;
+  --xp-font: "Tahoma", "Verdana", "Segoe UI", sans-serif;
+  --xp-font-size: 14px;
+}
+
+:root.a11y-text-xlarge {
+  --xp-scale: 1.5;
+  --xp-font: "Tahoma", "Verdana", "Segoe UI", sans-serif;
+  --xp-font-size: 17px;
+}
+
+/* Police adaptée à la dyslexie + espacement des lettres, des mots et des lignes */
+:root.a11y-dyslexia {
+  --xp-font: "OpenDyslexic", "Verdana", sans-serif;
+  --xp-title-font: "OpenDyslexic", "Verdana", sans-serif;
+  --xp-font-size: calc(12px * var(--xp-scale));
+  --xp-desktop-factor: 1.4; /* même valeur que DYSLEXIA_GRID_FACTOR dans Desktop.jsx */
+}
+
+:root.a11y-dyslexia body {
+  letter-spacing: 0.02em;
+}
+
+:root.a11y-dyslexia p,
+:root.a11y-dyslexia li {
+  line-height: 1.6 !important;
+}
+
+/* Le terminal garde sa police à chasse fixe, indispensable aux tableaux ASCII */
+:root.a11y-dyslexia .xp-terminal,
+:root.a11y-dyslexia .xp-terminal * {
+  letter-spacing: 0;
+  word-spacing: 0;
+}
+
+/* Grandes polices : libellés du bureau limités à 2 lignes pour ne pas chevaucher l'icône suivante */
+:root.a11y-text-large .xp-desktop-icon-label,
+:root.a11y-text-xlarge .xp-desktop-icon-label,
+:root.a11y-dyslexia .xp-desktop-icon-label {
+  line-height: 1.15;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Contraste renforcé */
+:root.a11y-contrast {
+  filter: contrast(1.35) saturate(1.1);
+}
+
+:root.a11y-contrast .text-gray-400,
+:root.a11y-contrast .text-gray-500,
+:root.a11y-contrast .text-gray-600 {
+  color: #000 !important;
+}
+
+/* Animations réduites */
+:root.a11y-reduce-motion *,
+:root.a11y-reduce-motion *::before,
+:root.a11y-reduce-motion *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Pointeur agrandi (flèche noire à contour blanc, 48 px) */
+:root.a11y-large-cursor {
+  --cursor-default: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'%3E%3Cpath d='M3 1.5v19l5-4.6 3.4 7.6 3.3-1.5-3.3-7.4H18z' fill='%23000' stroke='%23fff' stroke-width='1.2' stroke-linejoin='round'/%3E%3C/svg%3E") 6 3, auto;
+  --cursor-link: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'%3E%3Cpath d='M3 1.5v19l5-4.6 3.4 7.6 3.3-1.5-3.3-7.4H18z' fill='%23000' stroke='%23fff' stroke-width='1.2' stroke-linejoin='round'/%3E%3C/svg%3E") 6 3, pointer;
+  --cursor-move: var(--cursor-default);
+}
+
+/* Focus clavier très visible */
+:root.a11y-focus *:focus-visible {
+  outline: 3px solid #ff9900 !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Libellés du bureau en mode dyslexie : jamais de mot coupé en deux */
+:root.a11y-dyslexia .xp-desktop-icon-label {
+  letter-spacing: 0;
+  overflow-wrap: normal;
 }

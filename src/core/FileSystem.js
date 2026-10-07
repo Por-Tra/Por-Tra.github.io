@@ -64,9 +64,16 @@ class FileSystem {
                         'PORTR-AI (LLM from scratch en Python)':
                         {
                           type: 'app',
-                          icon: '/icons/folder.webp',
+                          icon: '/icons/P-AI-logo.webp',
                           appId: 'Port-AI-project',
                           description: { FR: 'LLM from scratch développé en Python avec une architecture de transformer', EN: 'LLM built from scratch in Python with a transformer architecture', ES: 'LLM desarrollado desde cero en Python con una arquitectura transformer' },
+                        },
+                        'Polenofs (stage OPGC - CNRS)':
+                        {
+                          type: 'app',
+                          icon: '/icons/OPGC-icon.webp',
+                          appId: 'polenofs',
+                          description: { FR: 'Détection de spores fongiques par deep learning, réalisée en stage à l’OPGC (contrat CNRS)', EN: 'Deep learning fungal spore detection, built during an internship at OPGC (CNRS contract)', ES: 'Detección de esporas fúngicas con deep learning, realizada en prácticas en el OPGC (contrato CNRS)' },
                         }
                     }
                   },

@@ -8,9 +8,16 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import agentData from './clippyAgent.json';
 import { t } from '../i18n/text';
+import { isReducedMotion } from '../core/accessibility';
+import {
+  useClippySettings, CLIPPY_SIZES, CLIPPY_RESET_POSITION_EVENT, CLIPPY_PLAY_EVENT,
+} from '../core/clippySettings';
 
 const SPRITE_URL = '/clippy/clippy__spritemap.png';
 const [FRAME_WIDTH, FRAME_HEIGHT] = agentData.framesize;
+// Dimensions de clippy__spritemap.png, pour redimensionner le sprite
+const SPRITE_WIDTH = 3348;
+const SPRITE_HEIGHT = 3162;
 const { animations } = agentData;
 
 const TASKBAR_HEIGHT = 30;
@@ -102,22 +109,23 @@ const MENU_OPTIONS = [
 
 const randomFrom = (pool) => pool[Math.floor(Math.random() * pool.length)];
 
-const prefersReducedMotion = () =>
-  globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
-
-const getDefaultPosition = () => ({
-  x: globalThis.innerWidth - FRAME_WIDTH - SCREEN_MARGIN,
-  y: globalThis.innerHeight - TASKBAR_HEIGHT - FRAME_HEIGHT - SCREEN_MARGIN,
+// La position mémorise le coin bas-droit de Clippy : changer sa taille le laisse ancré au même endroit
+const getDefaultAnchor = () => ({
+  x: globalThis.innerWidth - SCREEN_MARGIN,
+  y: globalThis.innerHeight - TASKBAR_HEIGHT - SCREEN_MARGIN,
 });
 
-const clampPosition = ({ x, y }) => ({
-  x: Math.min(Math.max(0, x), globalThis.innerWidth - FRAME_WIDTH),
-  y: Math.min(Math.max(0, y), globalThis.innerHeight - TASKBAR_HEIGHT - FRAME_HEIGHT),
+const clampAnchor = ({ x, y }, scale) => ({
+  x: Math.min(Math.max(FRAME_WIDTH * scale, x), globalThis.innerWidth),
+  y: Math.min(Math.max(FRAME_HEIGHT * scale, y), globalThis.innerHeight - TASKBAR_HEIGHT),
 });
 
 const Clippy = ({ currentLanguage = 'FR', onOpenApp, onHide }) => {
+  const [settings] = useClippySettings();
+  const scale = CLIPPY_SIZES[settings.size] ?? 1;
   const [isVisible, setIsVisible] = useState(false);
-  const [position, setPosition] = useState(getDefaultPosition);
+  const [anchor, setAnchor] = useState(getDefaultAnchor);
+  const [, setViewportVersion] = useState(0);
   const [frame, setFrame] = useState([0, 0]);
   const [balloon, setBalloon] = useState(null); // null | 'menu' | 'ask'
   const [question, setQuestion] = useState('');
@@ -133,6 +141,11 @@ const Clippy = ({ currentLanguage = 'FR', onOpenApp, onHide }) => {
   const onAnimationEnd = useRef(null);
 
   const scheduleIdleRef = useRef(() => {});
+  const settingsRef = useRef(settings);
+
+  useEffect(() => {
+    settingsRef.current = settings;
+  }, [settings]);
 
   // Joue une animation image par image avec le minutage et les embranchements d'origine
   const playAnimation = useCallback((name, onEnd = null) => {
@@ -195,7 +208,7 @@ const Clippy = ({ currentLanguage = 'FR', onOpenApp, onHide }) => {
   useEffect(() => {
     scheduleIdleRef.current = () => {
       clearTimeout(idleTimer.current);
-      if (prefersReducedMotion()) return;
+      if (isReducedMotion() || !settingsRef.current.idleAnimations) return;
       const delay = IDLE_DELAY_MIN + Math.random() * (IDLE_DELAY_MAX - IDLE_DELAY_MIN);
       idleTimer.current = setTimeout(() => playAnimation(randomFrom(IDLE_ANIMATIONS)), delay);
     };
@@ -206,6 +219,7 @@ const Clippy = ({ currentLanguage = 'FR', onOpenApp, onHide }) => {
     const appearTimer = setTimeout(() => {
       setIsVisible(true);
       playAnimation('Show', () => playAnimation('Greeting'));
+      if (settingsRef.current.openOnArrival) setBalloon('menu');
     }, APPEAR_DELAY);
 
     return () => {
@@ -216,12 +230,24 @@ const Clippy = ({ currentLanguage = 'FR', onOpenApp, onHide }) => {
     };
   }, [playAnimation]);
 
-  // Reste à l'écran quand la fenêtre du navigateur est redimensionnée
+  // Reste à l'écran quand la fenêtre du navigateur est redimensionnée (la position est bornée au rendu)
   useEffect(() => {
-    const handleResize = () => setPosition((prev) => clampPosition(prev));
+    const handleResize = () => setViewportVersion((version) => version + 1);
     globalThis.addEventListener('resize', handleResize);
     return () => globalThis.removeEventListener('resize', handleResize);
   }, []);
+
+  // Actions du Panneau de configuration : replacer Clippy, jouer une animation
+  useEffect(() => {
+    const handleReset = () => setAnchor(getDefaultAnchor());
+    const handlePlay = (event) => playAnimation(event.detail?.name);
+    globalThis.addEventListener(CLIPPY_RESET_POSITION_EVENT, handleReset);
+    globalThis.addEventListener(CLIPPY_PLAY_EVENT, handlePlay);
+    return () => {
+      globalThis.removeEventListener(CLIPPY_RESET_POSITION_EVENT, handleReset);
+      globalThis.removeEventListener(CLIPPY_PLAY_EVENT, handlePlay);
+    };
+  }, [playAnimation]);
 
   // Un clic ailleurs referme la bulle
   useEffect(() => {
@@ -238,15 +264,16 @@ const Clippy = ({ currentLanguage = 'FR', onOpenApp, onHide }) => {
     if (event.button !== 0) return;
     const startX = event.clientX;
     const startY = event.clientY;
-    const offsetX = startX - position.x;
-    const offsetY = startY - position.y;
+    const startAnchor = clampAnchor(anchor, scale);
+    const offsetX = startX - startAnchor.x;
+    const offsetY = startY - startAnchor.y;
     wasDragged.current = false;
 
     const handleMove = (moveEvent) => {
       const distance = Math.abs(moveEvent.clientX - startX) + Math.abs(moveEvent.clientY - startY);
       if (!wasDragged.current && distance < DRAG_THRESHOLD) return;
       wasDragged.current = true;
-      setPosition(clampPosition({ x: moveEvent.clientX - offsetX, y: moveEvent.clientY - offsetY }));
+      setAnchor(clampAnchor({ x: moveEvent.clientX - offsetX, y: moveEvent.clientY - offsetY }, scale));
     };
 
     const handleUp = () => {
@@ -324,7 +351,11 @@ const Clippy = ({ currentLanguage = 'FR', onOpenApp, onHide }) => {
   };
 
   // La bulle s'ouvre du côté où il y a de la place
-  const alignBalloonLeft = position.x + FRAME_WIDTH < BALLOON_WIDTH;
+  const width = FRAME_WIDTH * scale;
+  const height = FRAME_HEIGHT * scale;
+  const { x: right, y: bottom } = clampAnchor(anchor, scale);
+  const position = { x: right - width, y: bottom - height };
+  const alignBalloonLeft = right < BALLOON_WIDTH;
   const openBalloonBelow = position.y < BALLOON_SPACE;
 
   return (
@@ -394,10 +425,11 @@ const Clippy = ({ currentLanguage = 'FR', onOpenApp, onHide }) => {
       <div
         className="xp-clippy-sprite"
         style={{
-          width: FRAME_WIDTH,
-          height: FRAME_HEIGHT,
+          width,
+          height,
           backgroundImage: frame ? `url("${SPRITE_URL}")` : 'none',
-          backgroundPosition: frame ? `-${frame[0]}px -${frame[1]}px` : undefined,
+          backgroundSize: `${SPRITE_WIDTH * scale}px ${SPRITE_HEIGHT * scale}px`,
+          backgroundPosition: frame ? `-${frame[0] * scale}px -${frame[1] * scale}px` : undefined,
         }}
       />
     </div>
