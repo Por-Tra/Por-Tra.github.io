@@ -318,6 +318,27 @@
   margin-bottom: 4px;
 }
 
+.cp-font-scale {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 4px 10px;
+  margin: 8px 0 6px;
+}
+
+.cp-font-scale input {
+  width: 100%;
+  grid-column: 1 / -1;
+  accent-color: #316ac5;
+}
+
+.cp-font-scale output {
+  min-width: 42px;
+  text-align: right;
+  color: #0033cc;
+  font-weight: bold;
+}
+
 .cp-a11y-preview {
   margin: 0;
   padding: 6px 8px;

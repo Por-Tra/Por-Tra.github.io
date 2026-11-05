@@ -10,10 +10,14 @@ const STORAGE_KEY = 'xp-accessibility-v1';
 const CHANGE_EVENT = 'xp-accessibility-change';
 
 export const TEXT_SIZES = ['normal', 'large', 'xlarge'];
+export const FONT_SCALE_MIN = 80;
+export const FONT_SCALE_MAX = 150;
+export const FONT_SCALE_STEP = 5;
 
 export const DEFAULT_ACCESSIBILITY = {
   dyslexiaFont: false,   // Police OpenDyslexic + espacement du texte
   textSize: 'normal',    // normal | large | xlarge (« Grandes polices » de XP)
+  fontScale: 135,        // Taille fine de toutes les polices, en pourcentage
   highContrast: false,   // Contraste renforcé
   reduceMotion: false,   // Animations réduites (Clippy, transitions, démarrage)
   largeCursor: false,    // Pointeur de souris agrandi
@@ -34,6 +38,10 @@ export const readAccessibility = () => {
     if (!parsed || typeof parsed !== 'object') return { ...DEFAULT_ACCESSIBILITY };
     const settings = { ...DEFAULT_ACCESSIBILITY, ...parsed };
     if (!TEXT_SIZES.includes(settings.textSize)) settings.textSize = 'normal';
+    const parsedFontScale = Number(settings.fontScale);
+    settings.fontScale = Number.isFinite(parsedFontScale)
+      ? Math.min(FONT_SCALE_MAX, Math.max(FONT_SCALE_MIN, parsedFontScale))
+      : DEFAULT_ACCESSIBILITY.fontScale;
     return settings;
   } catch {
     return { ...DEFAULT_ACCESSIBILITY };
@@ -47,6 +55,10 @@ export const applyAccessibility = (settings) => {
   });
   root.classList.toggle('a11y-text-large', settings.textSize === 'large');
   root.classList.toggle('a11y-text-xlarge', settings.textSize === 'xlarge');
+  const fontScale = Number.isFinite(Number(settings.fontScale))
+    ? Number(settings.fontScale)
+    : DEFAULT_ACCESSIBILITY.fontScale;
+  root.style.setProperty('--xp-font-scale', `${fontScale / 100}`);
 };
 
 export const saveAccessibility = (settings) => {

@@ -6,7 +6,9 @@
 import { useEffect, useMemo, useState } from 'react';
 import XpMenuBar from '../../components/XpMenuBar';
 import { t, getLocale } from '../../i18n/text';
-import { useAccessibility, TEXT_SIZES } from '../../core/accessibility';
+import {
+    useAccessibility, TEXT_SIZES, FONT_SCALE_MIN, FONT_SCALE_MAX, FONT_SCALE_STEP,
+} from '../../core/accessibility';
 import {
     useClippySettings, CLIPPY_SIZES, resetClippyPosition, playClippyAnimation,
 } from '../../core/clippySettings';
@@ -83,6 +85,7 @@ const COPY = {
     a11yTextNormal: { FR: 'Normale', EN: 'Normal', ES: 'Normal' },
     a11yTextLarge: { FR: 'Grandes polices', EN: 'Large Fonts', ES: 'Fuentes grandes' },
     a11yTextXLarge: { FR: 'Polices très grandes', EN: 'Extra Large Fonts', ES: 'Fuentes muy grandes' },
+    a11yFontScale: { FR: 'Taille de toutes les polices :', EN: 'Size of all fonts:', ES: 'Tamaño de todas las fuentes:' },
     a11yContrast: { FR: 'Renforcer le contraste', EN: 'Increase contrast', ES: 'Aumentar el contraste' },
     a11yMouseKeyboard: { FR: 'Souris et clavier', EN: 'Mouse and keyboard', ES: 'Ratón y teclado' },
     a11yCursor: { FR: 'Utiliser un pointeur de souris agrandi', EN: 'Use a large mouse pointer', ES: 'Usar un puntero del ratón grande' },
@@ -629,6 +632,19 @@ export const Component = ({
                                         </label>
                                     ))}
                                 </div>
+                                <label className="cp-font-scale" htmlFor="a11y-font-scale">
+                                    <span>{tr(COPY.a11yFontScale)}</span>
+                                    <output htmlFor="a11y-font-scale">{a11y.fontScale}%</output>
+                                    <input
+                                        id="a11y-font-scale"
+                                        type="range"
+                                        min={FONT_SCALE_MIN}
+                                        max={FONT_SCALE_MAX}
+                                        step={FONT_SCALE_STEP}
+                                        value={a11y.fontScale}
+                                        onChange={(e) => updateA11y('fontScale', Number(e.target.value))}
+                                    />
+                                </label>
                                 <label className="cp-check">
                                     <input
                                         type="checkbox"

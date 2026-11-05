@@ -1641,23 +1641,24 @@ select:focus {
 
 /* Valeurs par défaut : police bitmap Tahoma, rendu XP « Normal » */
 :root {
-  --xp-scale: 1;
+  --xp-font-scale: 1;
+  --xp-scale: calc(1 * var(--xp-font-scale));
   --xp-font: "fs Tahoma 16px", "Tahoma", "Segoe UI", sans-serif;
-  --xp-font-size: 17px;
+  --xp-font-size: calc(17px * var(--xp-font-scale));
 }
 
 /* « Grandes polices » et « Polices très grandes » de XP : on passe sur Tahoma vectoriel,
    plus net que la police bitmap une fois agrandie */
 :root.a11y-text-large {
-  --xp-scale: 1.25;
+  --xp-scale: calc(1.25 * var(--xp-font-scale));
   --xp-font: "Tahoma", "Verdana", "Segoe UI", sans-serif;
-  --xp-font-size: 14px;
+  --xp-font-size: calc(14px * var(--xp-font-scale));
 }
 
 :root.a11y-text-xlarge {
-  --xp-scale: 1.5;
+  --xp-scale: calc(1.5 * var(--xp-font-scale));
   --xp-font: "Tahoma", "Verdana", "Segoe UI", sans-serif;
-  --xp-font-size: 17px;
+  --xp-font-size: calc(17px * var(--xp-font-scale));
 }
 
 /* Police adaptée à la dyslexie + espacement des lettres, des mots et des lignes */
