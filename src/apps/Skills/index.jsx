@@ -37,18 +37,23 @@ const AcadmicSkills = [
   { name: { FR: 'Installer et configurer un poste de travail', EN: 'Install and configure a workstation', ES: 'Instalar y configurar un puesto de trabajo' }, checked: true },
   { name: { FR: 'Concevoir et mettre en place une base de données à partir d’un cahier des charges client', EN: 'Design and implement a database from client requirements', ES: 'Diseñar e implementar una base de datos a partir de un pliego de condiciones del cliente' }, checked: true },
   { name: { FR: 'Identifier les besoins métiers des clients et des utilisateurs', EN: 'Identify business needs of clients and users', ES: 'Identificar las necesidades de negocio de los clientes y usuarios' }, checked: true },
-  { name: { FR: 'Identifier ses aptitudes pour travailler dans une équipe', EN: 'Identify your strengths for teamwork', ES: 'Identificar sus aptitudes para trabajar en equipo' }, checked: true }
+  { name: { FR: 'Identifier ses aptitudes pour travailler dans une équipe', EN: 'Identify your strengths for teamwork', ES: 'Identificar sus aptitudes para trabajar en equipo' }, checked: true },
+  { name: { FR: "Partir des exigences et aller jusqu'à une application complète" , EN: 'From requirements to a complete application', ES: 'Desde los requisitos hasta una aplicación completa' }, checked: true },
+  { name: { FR: "Sélectionner les algorithmes adéquats pour répondre à un problème donné", EN: 'Select appropriate algorithms to solve a given problem', ES: 'Seleccionar los algoritmos adecuados para resolver un problema dado' }, checked: true },
+  { name: { FR: "Déployer des services dans une architecture réseau", EN: 'Deploy services in a network architecture', ES: 'Desplegar servicios en una arquitectura de red' }, checked: true },
+  { name: { FR: "Optimiser une base de données, interagir avec une application et mettre en oeuvre la sécurité", EN: 'Optimize a database, interact with an application and implement security', ES: 'Optimizar una base de datos, interactuar con una aplicación y implementar seguridad' }, checked: true },
+  { name: { FR: "Appliquer une démarche de suivi de projet en fonction des besoins métiers des clients et des utilisateurs", EN: 'Apply a project management approach based on the business needs of clients and users', ES: 'Aplicar un enfoque de gestión de proyectos basado en las necesidades empresariales de los clientes y usuarios' }, checked: true },
+  { name: { FR: "Situer son rôle et ses missions au sein d'une équipe informatique", EN: 'Situate your role and responsibilities within an IT team', ES: 'Situar su papel y responsabilidades dentro de un equipo informático' }, checked: true },
 ];
 
 
 const learningSkills = [
-  { FR: 'Cmake' },
-  { FR: 'Unity' },
-  { FR: 'Kotlin' },
   { FR: 'Relation de base de données NoSQL', EN: 'NoSQL database relationships', ES: 'Relaciones de base de datos NoSQL' },
   { FR: 'Docker' },
   { FR: 'virtualisation', EN: 'virtualization', ES: 'virtualización' },
-  { EN: 'deep learning' }
+  { EN: 'deep learning' },
+  { FR: "OpenGL"},
+  
 ];
 
 const COPY = {
@@ -209,13 +214,16 @@ export const Component = ({ currentLanguage }) => {
                     .map((skill) => (
                       <div key={skill.name} className="flex items-center gap-2">
                         <span className="w-24 text-xs font-medium">{skill.name}</span>
-                        <div className="flex-1 bg-[#d4d0c8] border border-[#808080] h-4 overflow-hidden">
-                          <div
-                            className="h-full bg-gradient-to-b from-[#00aa00] to-[#006600] flex items-center justify-end pr-1"
-                            style={{ width: `${skill.level}%` }}
-                          >
-                            <span className="text-[9px] text-white font-bold">{skill.level}%</span>
-                          </div>
+                        <div className="flex items-center gap-1" title={`${skill.name}: ${Math.round(skill.level / 20)}/5`}>
+                          {Array.from({ length: 5 }, (_, index) => (
+                            <img
+                              key={index}
+                              src="/icons/live%20for%20xp.png"
+                              alt={index < Math.round(skill.level / 20) ? 'Étoile active' : 'Étoile inactive'}
+                              className="w-4 h-4 object-contain"
+                              style={{ opacity: index < Math.round(skill.level / 20) ? 1 : 0.25 }}
+                            />
+                          ))}
                         </div>
                       </div>
                     ))}
