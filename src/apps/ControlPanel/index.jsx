@@ -555,7 +555,7 @@ export const Component = ({
                                         {tr(COPY.shutdown)}
                                     </button>
                                     <button type="button" className="cp-power-btn" onClick={handleRestart}>
-                                        <img src="/icons/restart.webp" alt="" />
+                                        <img src="/icons/reboot.webp" alt="" />
                                         {tr(COPY.restart)}
                                     </button>
                                 </div>

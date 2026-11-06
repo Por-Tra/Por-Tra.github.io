@@ -166,7 +166,7 @@ const StartMenu = ({
       {/* Pied : Fermer la session / Arrêter l'ordinateur */}
       <div className="xp-start-menu-footer">
         <button onClick={onLogOff} className="xp-start-menu-footer-btn">
-          <img src="/icons/restart.webp" alt="" className="xp-start-menu-footer-icon" />
+          <img src="/icons/reboot.webp" alt="" className="xp-start-menu-footer-icon" />
           <span>{t(COPY.logOff, currentLanguage)}</span>
         </button>
         <button onClick={onShutdown} className="xp-start-menu-footer-btn">
