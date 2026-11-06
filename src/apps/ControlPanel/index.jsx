@@ -7,7 +7,7 @@ import { useEffect, useMemo, useState } from 'react';
 import XpMenuBar from '../../components/XpMenuBar';
 import { t, getLocale } from '../../i18n/text';
 import {
-    useAccessibility, TEXT_SIZES, FONT_SCALE_MIN, FONT_SCALE_MAX, FONT_SCALE_STEP,
+    useAccessibility, FONT_FAMILIES, FONT_SCALE_MIN, FONT_SCALE_MAX, FONT_SCALE_STEP,
 } from '../../core/accessibility';
 import {
     useClippySettings, CLIPPY_SIZES, resetClippyPosition, playClippyAnimation,
@@ -31,6 +31,7 @@ const COPY = {
     helpSupport: { FR: 'Aide et support', EN: 'Help and Support', ES: 'Ayuda y soporte' },
     otherOptions: { FR: 'Autres options du Panneau de configuration', EN: 'Other Control Panel options', ES: 'Otras opciones del Panel de control' },
     chooseCategory: { FR: 'Choisissez une catégorie', EN: 'Choose a category', ES: 'Elige una categoría' },
+    backToCategories: { FR: 'Retour aux catégories', EN: 'Back to categories', ES: 'Volver a las categorías' },
     personalizeTitle: { FR: 'Personnaliser', EN: 'Personalize', ES: 'Personalizar' },
     personalizeDesc: { FR: "Changer l'apparence du bureau et du fond d'écran.", EN: 'Change the desktop look and wallpaper.', ES: 'Cambia la apariencia del escritorio y el fondo de pantalla.' },
     personalizeHeaderDesc: { FR: "Changer le fond d'écran du bureau.", EN: 'Change the desktop wallpaper.', ES: 'Cambia el fondo de pantalla del escritorio.' },
@@ -70,22 +71,12 @@ const COPY = {
         ES: 'Adapta la pantalla, la lectura y el ratón a tus necesidades.',
     },
     a11yReading: { FR: 'Lecture', EN: 'Reading', ES: 'Lectura' },
-    a11yDyslexia: {
-        FR: 'Utiliser une police adaptée à la dyslexie (OpenDyslexic)',
-        EN: 'Use a dyslexia-friendly font (OpenDyslexic)',
-        ES: 'Usar una fuente adaptada a la dislexia (OpenDyslexic)',
-    },
-    a11yDyslexiaHint: {
-        FR: 'Lettres plus distinctes et texte plus espacé.',
-        EN: 'More distinct letters and more widely spaced text.',
-        ES: 'Letras más distinguibles y texto más espaciado.',
-    },
+    a11yFontFamily: { FR: 'Police', EN: 'Font', ES: 'Fuente' },
+    a11yFontSite: { FR: 'Police du site', EN: 'Site font', ES: 'Fuente del sitio' },
+    a11yFontSystem: { FR: 'Police système', EN: 'System font', ES: 'Fuente del sistema' },
+    a11yFontDyslexia: { FR: 'Police adaptée à la dyslexie', EN: 'Dyslexia-friendly font', ES: 'Fuente adaptada a la dislexia' },
     a11yDisplay: { FR: 'Affichage', EN: 'Display', ES: 'Pantalla' },
-    a11yTextSize: { FR: 'Taille de la police :', EN: 'Font size:', ES: 'Tamaño de fuente:' },
-    a11yTextNormal: { FR: 'Normale', EN: 'Normal', ES: 'Normal' },
-    a11yTextLarge: { FR: 'Grandes polices', EN: 'Large Fonts', ES: 'Fuentes grandes' },
-    a11yTextXLarge: { FR: 'Polices très grandes', EN: 'Extra Large Fonts', ES: 'Fuentes muy grandes' },
-    a11yFontScale: { FR: 'Taille de toutes les polices :', EN: 'Size of all fonts:', ES: 'Tamaño de todas las fuentes:' },
+    a11yFontScale: { FR: 'Taille de la police sélectionnée :', EN: 'Selected font size:', ES: 'Tamaño de la fuente seleccionada:' },
     a11yContrast: { FR: 'Renforcer le contraste', EN: 'Increase contrast', ES: 'Aumentar el contraste' },
     a11yMouseKeyboard: { FR: 'Souris et clavier', EN: 'Mouse and keyboard', ES: 'Ratón y teclado' },
     a11yCursor: { FR: 'Utiliser un pointeur de souris agrandi', EN: 'Use a large mouse pointer', ES: 'Usar un puntero del ratón grande' },
@@ -154,10 +145,10 @@ const CLIPPY_SIZE_LABELS = {
     xlarge: COPY.clippySizeXLarge,
 };
 
-const TEXT_SIZE_LABELS = {
-    normal: COPY.a11yTextNormal,
-    large: COPY.a11yTextLarge,
-    xlarge: COPY.a11yTextXLarge,
+const FONT_FAMILY_LABELS = {
+    site: COPY.a11yFontSite,
+    system: COPY.a11yFontSystem,
+    dyslexia: COPY.a11yFontDyslexia,
 };
 
 const CONFIG_SECTIONS = [
@@ -261,7 +252,7 @@ export const Component = ({
         currentLanguage,
         onSetLanguage,
 }) => {
-  const [activeSection, setActiveSection] = useState(CONFIG_SECTIONS[0]?.id);
+    const [activeSection, setActiveSection] = useState(null);
     const [selectedLanguage, setSelectedLanguage] = useState(currentLanguage || 'FR');
     const [dateValue, setDateValue] = useState(() => {
         const now = new Date();
@@ -409,28 +400,39 @@ export const Component = ({
                     </div>
                 </aside>
 
-                <main className="cp-right">
-                    <div className="cp-right-title">{tr(COPY.chooseCategory)}</div>
-                    <div className="cp-categories">
-                        {CONFIG_SECTIONS.map(section => (
-                            <button
-                                key={section.id}
-                                type="button"
-                                className={
-                                    section.id === activeSection
-                                        ? 'cp-category cp-category-active'
-                                        : 'cp-category'
-                                }
-                                onClick={() => setActiveSection(section.id)}
-                            >
-                                <img src={section.icon} alt="" className="cp-category-icon" />
-                                <div>
-                                    <div className="cp-category-title">{tr(section.title)}</div>
-                                    <div className="cp-category-desc">{tr(section.description)}</div>
-                                </div>
-                            </button>
-                        ))}
-                    </div>
+                <main className={`cp-right ${activeSection ? 'cp-right-detail' : 'cp-right-categories'}`}>
+                    {!activeSection && (
+                        <>
+                            <div className="cp-right-title">{tr(COPY.chooseCategory)}</div>
+                            <div className="cp-categories">
+                                {CONFIG_SECTIONS.map(section => (
+                                    <button
+                                        key={section.id}
+                                        type="button"
+                                        className="cp-category"
+                                        onClick={() => setActiveSection(section.id)}
+                                    >
+                                        <img src={section.icon} alt="" className="cp-category-icon" />
+                                        <div>
+                                            <div className="cp-category-title">{tr(section.title)}</div>
+                                            <div className="cp-category-desc">{tr(section.description)}</div>
+                                        </div>
+                                    </button>
+                                ))}
+                            </div>
+                        </>
+                    )}
+
+                    {activeSection && (
+                        <button
+                            type="button"
+                            className="cp-back-link"
+                            onClick={() => setActiveSection(null)}
+                        >
+                            <span aria-hidden="true">&lt;</span>
+                            {tr(COPY.backToCategories)}
+                        </button>
+                    )}
 
                     {activeSection === 'personalize' && (
                         <div className="cp-panel">
@@ -604,31 +606,18 @@ export const Component = ({
                             </div>
 
                             <fieldset className="cp-fieldset">
-                                <legend>{tr(COPY.a11yReading)}</legend>
-                                <label className="cp-check">
-                                    <input
-                                        type="checkbox"
-                                        checked={a11y.dyslexiaFont}
-                                        onChange={(e) => updateA11y('dyslexiaFont', e.target.checked)}
-                                    />
-                                    <span>{tr(COPY.a11yDyslexia)}</span>
-                                </label>
-                                <p className="cp-check-hint">{tr(COPY.a11yDyslexiaHint)}</p>
-                            </fieldset>
-
-                            <fieldset className="cp-fieldset">
                                 <legend>{tr(COPY.a11yDisplay)}</legend>
-                                <div className="cp-radio-group" role="radiogroup" aria-label={tr(COPY.a11yTextSize)}>
-                                    <span>{tr(COPY.a11yTextSize)}</span>
-                                    {TEXT_SIZES.map(size => (
-                                        <label key={size} className="cp-check">
+                                <div className="cp-radio-group" role="radiogroup" aria-label={tr(COPY.a11yFontFamily)}>
+                                    <span>{tr(COPY.a11yFontFamily)}</span>
+                                    {FONT_FAMILIES.map(fontFamily => (
+                                        <label key={fontFamily} className="cp-check">
                                             <input
                                                 type="radio"
-                                                name="a11y-text-size"
-                                                checked={a11y.textSize === size}
-                                                onChange={() => updateA11y('textSize', size)}
+                                                name="a11y-font-family"
+                                                checked={a11y.fontFamily === fontFamily}
+                                                onChange={() => updateA11y('fontFamily', fontFamily)}
                                             />
-                                            <span>{tr(TEXT_SIZE_LABELS[size])}</span>
+                                            <span>{tr(FONT_FAMILY_LABELS[fontFamily])}</span>
                                         </label>
                                     ))}
                                 </div>

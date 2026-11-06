@@ -1121,9 +1121,11 @@ select:focus {
 .xp-desktop-icon-label {
   max-width: calc(76px * var(--xp-scale) * var(--xp-desktop-factor, 1));
   padding: 0 2px;
+  font-family: var(--xp-font) !important;
+  font-size: var(--xp-font-size) !important;
   color: #fff;
   text-align: center;
-  line-height: 13px;
+  line-height: calc(13px * var(--xp-scale));
   text-shadow: 1px 1px 1px #000, 0 0 1px #000;
   overflow-wrap: break-word;
 }
@@ -1639,26 +1641,19 @@ select:focus {
   font-display: swap;
 }
 
-/* Valeurs par défaut : police bitmap Tahoma, rendu XP « Normal » */
+/* Police du site : bitmap Tahoma, rendu XP classique */
 :root {
   --xp-font-scale: 1;
-  --xp-scale: calc(1 * var(--xp-font-scale));
+  --xp-scale: var(--xp-font-scale);
   --xp-font: "fs Tahoma 16px", "Tahoma", "Segoe UI", sans-serif;
-  --xp-font-size: calc(17px * var(--xp-font-scale));
+  --xp-title-font: "Tahoma", "Verdana", "Segoe UI", sans-serif;
+  --xp-font-size: calc(17px * var(--xp-scale));
 }
 
-/* « Grandes polices » et « Polices très grandes » de XP : on passe sur Tahoma vectoriel,
-   plus net que la police bitmap une fois agrandie */
-:root.a11y-text-large {
-  --xp-scale: calc(1.25 * var(--xp-font-scale));
+/* Police système : Tahoma vectoriel, proche des réglages Windows XP */
+:root.a11y-font-system {
   --xp-font: "Tahoma", "Verdana", "Segoe UI", sans-serif;
-  --xp-font-size: calc(14px * var(--xp-font-scale));
-}
-
-:root.a11y-text-xlarge {
-  --xp-scale: calc(1.5 * var(--xp-font-scale));
-  --xp-font: "Tahoma", "Verdana", "Segoe UI", sans-serif;
-  --xp-font-size: calc(17px * var(--xp-font-scale));
+  --xp-title-font: "Tahoma", "Verdana", "Segoe UI", sans-serif;
 }
 
 /* Police adaptée à la dyslexie + espacement des lettres, des mots et des lignes */
@@ -1685,9 +1680,7 @@ select:focus {
   word-spacing: 0;
 }
 
-/* Grandes polices : libellés du bureau limités à 2 lignes pour ne pas chevaucher l'icône suivante */
-:root.a11y-text-large .xp-desktop-icon-label,
-:root.a11y-text-xlarge .xp-desktop-icon-label,
+/* Les libellés du bureau restent limités à 2 lignes pour ne pas se chevaucher */
 :root.a11y-dyslexia .xp-desktop-icon-label {
   line-height: 1.15;
   display: -webkit-box;

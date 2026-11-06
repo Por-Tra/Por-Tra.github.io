@@ -23,7 +23,7 @@ export const DEFAULT_CLIPPY_SETTINGS = {
   visible: true,          // Affiché sur le bureau
   size: 'normal',         // small | normal | large | xlarge
   idleAnimations: true,   // Petites animations quand on ne fait rien
-  openOnArrival: false,   // Ouvre sa bulle d'aide dès son arrivée
+  openOnArrival: true,    // Ouvre sa bulle d'aide dès son arrivée
 };
 
 export const readClippySettings = () => {
