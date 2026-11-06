@@ -49,6 +49,7 @@ const COPY = {
   projects: { FR: 'Voir ses projets', EN: 'See his projects', ES: 'Ver sus proyectos' },
   about: { FR: 'En savoir plus sur Lucas', EN: 'Learn more about Lucas', ES: 'Saber más sobre Lucas' },
   contact: { FR: 'Le contacter', EN: 'Get in touch', ES: 'Contactarle' },
+  settings: { FR: 'Accéder aux paramètres', EN: 'Access settings', ES: 'Acceder a la configuración' },
   ask: { FR: 'Poser une question', EN: 'Ask a question', ES: 'Hacer una pregunta' },
   hide: { FR: 'Masquer Clippy', EN: 'Hide Clippy', ES: 'Ocultar a Clippy' },
   askPrompt: {
@@ -60,6 +61,7 @@ const COPY = {
   search: { FR: 'Rechercher', EN: 'Search', ES: 'Buscar' },
   back: { FR: 'Options', EN: 'Options', ES: 'Opciones' },
   close: { FR: 'Fermer', EN: 'Close', ES: 'Cerrar' },
+
 };
 
 const RESPONSES = {
@@ -105,6 +107,7 @@ const MENU_OPTIONS = [
   { key: 'contact', label: COPY.contact, appId: 'contact', animation: 'SendMail' },
   { key: 'ask', label: COPY.ask },
   { key: 'hide', label: COPY.hide },
+  { key: 'settings', label: COPY.settings, appId: 'control-panel', animation: 'GetTechy' },
 ];
 
 const randomFrom = (pool) => pool[Math.floor(Math.random() * pool.length)];
