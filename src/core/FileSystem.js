@@ -477,6 +477,30 @@ class FileSystem {
                     modified: '2026-02-12'
                   }
                 }
+              },
+              "Photos":
+              {
+                type: 'folder',
+                icon: '/icons/folder.webp',
+                children: {
+                  "me.webp":
+                  {
+                    type: 'image',
+                    icon: '/photos/PP.webp',
+                    imageSrc: '/photos/PP.webp',
+                    size: "430Ko",
+                    modified: '2026-11-08'
+                  },
+                  "original.webp":
+                  {
+                    type: 'image',
+                    icon: '/photos/original.webp',
+                    imageSrc: '/photos/original.webp',
+                    size: "1.17Mo",
+                    modified: '2026-11-08'
+                  }
+
+                }
               }
             }
           },
