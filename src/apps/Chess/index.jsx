@@ -5,12 +5,13 @@
  */
 import { useState, useCallback, useEffect } from 'react';
 import { Chess } from 'chess.js';
+import { t } from '../../i18n/text';
 
 export const config = {
   id: 'chess',
   name: 'Échecs',
   icon: '/icons/chess.webp',
-  defaultWidth: 550,
+  defaultWidth: 620,
   defaultHeight: 480,
 };
 
@@ -19,26 +20,52 @@ const PIECES = {
   'bK': '♚', 'bQ': '♛', 'bR': '♜', 'bB': '♝', 'bN': '♞', 'bP': '♟',
 };
 
-export const Component = () => {
+const COPY = {
+  checkmate_white: { FR: 'Échec et mat - Blanc gagne!', EN: 'Checkmate - White wins!', ES: 'Jaque y mate - ¡Gana el blanco!' },
+  checkmate_black: { FR: 'Échec et mat - Noir gagne!', EN: 'Checkmate - Black wins!', ES: 'Jaque y mate - ¡Gana el negro!' },
+  draw: { FR: 'Match nul!', EN: 'Draw!', ES: '¡Empate!' },
+  stalemate: { FR: 'Pat!', EN: 'Stalemate!', ES: '¡Ahogado!' },
+  check_white: { FR: 'Blanc en échec!', EN: 'White in check!', ES: '¡Blanco en jaque!' },
+  check_black: { FR: 'Noir en échec!', EN: 'Black in check!', ES: '¡Negro en jaque!' },
+  turn_white: { FR: 'Tour des Blancs', EN: "White's turn", ES: "Turno del blanco" },
+  turn_black: { FR: 'Tour des Noirs', EN: "Black's turn", ES: "Turno del negro" },
+  menuGame: { FR: 'Partie', EN: 'Game', ES: 'Partida' },
+  menuOptions: { FR: 'Options', EN: 'Options', ES: 'Opciones' },
+  status: { FR: 'Statut', EN: 'Status', ES: 'Estado' },
+  thinking: { FR: 'IA réfléchit...', EN: 'AI is thinking...', ES: 'La IA está pensando...' },
+  difficulty: { FR: 'Difficulté', EN: 'Difficulty', ES: 'Dificultad' },
+  easy: { FR: 'Facile', EN: 'Easy', ES: 'Fácil' },
+  medium: { FR: 'Moyen', EN: 'Medium', ES: 'Medio' },
+  hard: { FR: 'Difficile', EN: 'Hard', ES: 'Difícil' },
+  actions: { FR: 'Actions', EN: 'Actions', ES: 'Acciones' },
+  newGame: { FR: 'Nouvelle partie', EN: 'New game', ES: 'Nueva partida' },
+  history: { FR: 'Historique', EN: 'History', ES: 'Historial' },
+  playingWhite: { FR: 'Vous jouez les Blancs', EN: 'You play White', ES: 'Juegas con las blancas' },
+  moves: { FR: 'coups', EN: 'moves', ES: 'jugadas' },
+};
+
+const GAME_OVER_STATUSES = [COPY.checkmate_white, COPY.checkmate_black, COPY.draw, COPY.stalemate];
+
+export const Component = ({ currentLanguage }) => {
   const [game, setGame] = useState(new Chess());
   const [selectedSquare, setSelectedSquare] = useState(null);
   const [possibleMoves, setPossibleMoves] = useState([]);
-  const [gameStatus, setGameStatus] = useState('playing');
+  const [gameStatus, setGameStatus] = useState(COPY.turn_white);
   const [moveHistory, setMoveHistory] = useState([]);
   const [thinking, setThinking] = useState(false);
   const [difficulty, setDifficulty] = useState(2);
 
   const updateGameStatus = useCallback((chess) => {
     if (chess.isCheckmate()) {
-      setGameStatus(chess.turn() === 'w' ? 'Échec et mat - Noir gagne!' : 'Échec et mat - Blanc gagne!');
+      setGameStatus(chess.turn() === 'w' ? COPY.checkmate_black : COPY.checkmate_white);
     } else if (chess.isDraw()) {
-      setGameStatus('Match nul!');
+      setGameStatus(COPY.draw);
     } else if (chess.isStalemate()) {
-      setGameStatus('Pat!');
+      setGameStatus(COPY.stalemate);
     } else if (chess.isCheck()) {
-      setGameStatus(chess.turn() === 'w' ? 'Blanc en échec!' : 'Noir en échec!');
+      setGameStatus(chess.turn() === 'w' ? COPY.check_white : COPY.check_black);
     } else {
-      setGameStatus(chess.turn() === 'w' ? 'Tour des Blancs' : 'Tour des Noirs');
+      setGameStatus(chess.turn() === 'w' ? COPY.turn_white : COPY.turn_black);
     }
   }, []);
 
@@ -228,45 +255,45 @@ export const Component = () => {
   return (
     <div className="h-full bg-white flex flex-col">
       {/* Toolbar */}
-      <div className="bg-gradient-to-b from-[#ece9d8] to-[#d4d0c8] border-b border-[#808080] px-2 py-1 flex gap-4 text-xs">
-        <span className="text-gray-600 hover:underline cursor-pointer">Partie</span>
-        <span className="text-gray-600 hover:underline cursor-pointer">Options</span>
-        <span className="text-gray-600 hover:underline cursor-pointer">?</span>
+      <div className="xp-menubar">
+        <span className="xp-menubar-item">{t(COPY.menuGame, currentLanguage)}</span>
+        <span className="xp-menubar-item">{t(COPY.menuOptions, currentLanguage)}</span>
+        <span className="xp-menubar-item">?</span>
       </div>
 
       <div className="flex-1 flex overflow-hidden">
         {/* Left Panel */}
-        <div className="w-40 bg-gradient-to-b from-[#6b88c4] to-[#4d6eb5] p-2 flex-shrink-0">
-          <div className="bg-white/90 rounded-lg p-2 mb-2">
-            <h3 className="text-[11px] font-bold text-[#215dc6] mb-2">Statut</h3>
-            <p className={`text-[10px] ${gameStatus.includes('mat') || gameStatus.includes('nul') ? 'text-red-600 font-bold' : 'text-gray-700'}`}>
-              {gameStatus}
+        <div className="xp-sidebar" style={{ width: 170 }}>
+          <div className="xp-sidebar-box">
+            <h3 className="xp-sidebar-title">{t(COPY.status, currentLanguage)}</h3>
+            <p className={`xp-sidebar-text ${GAME_OVER_STATUSES.includes(gameStatus) ? 'text-red-600 font-bold' : ''}`}>
+              {t(gameStatus, currentLanguage)}
             </p>
             {thinking && (
-              <p className="text-[10px] text-orange-600 mt-1 animate-pulse">IA réfléchit...</p>
+              <p className="xp-sidebar-text text-orange-600 mt-1 animate-pulse">{t(COPY.thinking, currentLanguage)}</p>
             )}
           </div>
 
-          <div className="bg-white/90 rounded-lg p-2 mb-2">
-            <h3 className="text-[11px] font-bold text-[#215dc6] mb-2">Difficulté</h3>
+          <div className="xp-sidebar-box">
+            <h3 className="xp-sidebar-title">{t(COPY.difficulty, currentLanguage)}</h3>
             <select 
               value={difficulty} 
               onChange={(e) => setDifficulty(Number(e.target.value))}
-              className="w-full text-[10px] border border-[#808080] rounded px-1 py-0.5"
+              className="mx-[10px] w-[calc(100%-20px)] h-[21px]"
             >
-              <option value={1}>Facile</option>
-              <option value={2}>Moyen</option>
-              <option value={3}>Difficile</option>
+              <option value={1}>{t(COPY.easy, currentLanguage)}</option>
+              <option value={2}>{t(COPY.medium, currentLanguage)}</option>
+              <option value={3}>{t(COPY.hard, currentLanguage)}</option>
             </select>
           </div>
 
-          <div className="bg-white/90 rounded-lg p-2">
-            <h3 className="text-[11px] font-bold text-[#215dc6] mb-2">Actions</h3>
+          <div className="xp-sidebar-box">
+            <h3 className="xp-sidebar-title">{t(COPY.actions, currentLanguage)}</h3>
             <button 
               onClick={resetGame}
-              className="w-full xp-button text-[10px] py-1 mb-1"
+              className="xp-button mx-[10px] w-[calc(100%-20px)]"
             >
-              Nouvelle partie
+              {t(COPY.newGame, currentLanguage)}
             </button>
           </div>
         </div>
@@ -290,13 +317,13 @@ export const Component = () => {
         </div>
 
         {/* Right Panel */}
-        <div className="w-32 bg-[#ece9d8] border-l border-[#808080] p-2 flex-shrink-0">
-          <h3 className="text-[11px] font-bold text-[#003399] mb-2 border-b border-[#808080] pb-1">
-            Historique
+        <div className="w-32 bg-[#ece9d8] border-l border-[#d8d2bd] p-2 flex-shrink-0">
+          <h3 className="font-bold text-[#003399] mb-2 border-b border-[#d8d2bd] pb-1">
+            {t(COPY.history, currentLanguage)}
           </h3>
-          <div className="h-48 overflow-y-auto text-[10px] space-y-0.5">
+          <div className="h-48 overflow-y-auto bg-white border border-[#7f9db9]">
             {moveHistory.map((move, i) => (
-              <div key={i} className={`px-1 ${i % 2 === 0 ? 'bg-white' : 'bg-[#f5f5f5]'}`}>
+              <div key={i} className="px-1">
                 {Math.floor(i / 2) + 1}.{i % 2 === 0 ? '' : '..'} {move}
               </div>
             ))}
@@ -305,9 +332,9 @@ export const Component = () => {
       </div>
 
       {/* Status Bar */}
-      <div className="bg-[#ece9d8] border-t border-[#808080] px-2 py-1 text-[10px] text-gray-600 flex justify-between">
-        <span>Vous jouez les Blancs</span>
-        <span>{moveHistory.length} coups</span>
+      <div className="xp-statusbar">
+        <span>{t(COPY.playingWhite, currentLanguage)}</span>
+        <span>{moveHistory.length} {t(COPY.moves, currentLanguage)}</span>
       </div>
     </div>
   );

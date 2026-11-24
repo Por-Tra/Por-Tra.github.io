@@ -4,6 +4,7 @@
  * Affichage des compétences techniques - Style Windows XP
  */
 import { MenuBar, useZoom, getZoomStyle } from '../../components/ProjectLayout';
+import { t } from '../../i18n/text';
 
 export const config = {
   id: 'skills',
@@ -14,36 +15,76 @@ export const config = {
 };
 
 const skills = [
-  { name: 'JavaScript', level: 60, category: 'Langages' },
-  { name: 'Python', level: 80, category: 'Langages' },
-  { name: 'C++', level: 70, category: 'Langages' },
-  {name: 'C#', level: 80, category: 'Langages'},
-  {name: 'C', level: 50, category: 'Langages'},
-  { name: 'PHP', level: 70, category: 'Langages' },
-  { name: 'SQL', level: 75, category: 'Langages' },
-  { name: 'HTML', level: 85, category: 'Web' },
-  {name: 'CSS', level: 10, category: 'Web'},
-  { name: 'React', level: 40, category: 'Web' },
-  { name: 'VS Code', level: 90, category: 'Outils' },
-  { name: 'Visual Studio', level: 90, category: 'Outils' },
-  { name: 'Git', level: 90, category: 'Outils' },
-  { name: 'Qt', level: 60, category: 'Outils' }
+  { name: 'JavaScript', level: 60, category: 'languages' },
+  { name: 'Python', level: 80, category: 'languages' },
+  { name: 'C++', level: 70, category: 'languages' },
+  { name: 'C#', level: 80, category: 'languages' },
+  { name: 'C', level: 50, category: 'languages' },
+  { name: 'PHP', level: 70, category: 'languages' },
+  { name: 'SQL', level: 75, category: 'languages' },
+  { name: 'HTML', level: 85, category: 'web' },
+  { name: 'CSS', level: 10, category: 'web' },
+  { name: 'React', level: 40, category: 'web' },
+  { name: 'VS Code', level: 90, category: 'tools' },
+  { name: 'Visual Studio', level: 90, category: 'tools' },
+  { name: 'Git', level: 90, category: 'tools' },
+  { name: 'Qt', level: 60, category: 'tools' }
 ];
 
 const AcadmicSkills = [
-  {name : "Développer des applications informatiques simples", checked: true},
-  {name :" Appréhender et construire des algorithmes", checked: true},
-  {name :" Installer et configurer un poste de travail", checked: true},
-  {name : "Concevoir et mettre en place une base de données à partir d’un cahier des charges client", checked: true},
-  {name : "Identifier les besoins métiers des clients et des utilisateurs", checked: true},
-  {name : "Identifier ses aptitudes pour travailler dans une équipe", checked: true}
+  { name: { FR: 'Développer des applications informatiques simples', EN: 'Build simple software applications', ES: 'Desarrollar aplicaciones informáticas sencillas' }, checked: true },
+  { name: { FR: 'Appréhender et construire des algorithmes', EN: 'Understand and build algorithms', ES: 'Comprender y construir algoritmos' }, checked: true },
+  { name: { FR: 'Installer et configurer un poste de travail', EN: 'Install and configure a workstation', ES: 'Instalar y configurar un puesto de trabajo' }, checked: true },
+  { name: { FR: 'Concevoir et mettre en place une base de données à partir d’un cahier des charges client', EN: 'Design and implement a database from client requirements', ES: 'Diseñar e implementar una base de datos a partir de un pliego de condiciones del cliente' }, checked: true },
+  { name: { FR: 'Identifier les besoins métiers des clients et des utilisateurs', EN: 'Identify business needs of clients and users', ES: 'Identificar las necesidades de negocio de los clientes y usuarios' }, checked: true },
+  { name: { FR: 'Identifier ses aptitudes pour travailler dans une équipe', EN: 'Identify your strengths for teamwork', ES: 'Identificar sus aptitudes para trabajar en equipo' }, checked: true },
+  { name: { FR: "Partir des exigences et aller jusqu'à une application complète" , EN: 'From requirements to a complete application', ES: 'Desde los requisitos hasta una aplicación completa' }, checked: true },
+  { name: { FR: "Sélectionner les algorithmes adéquats pour répondre à un problème donné", EN: 'Select appropriate algorithms to solve a given problem', ES: 'Seleccionar los algoritmos adecuados para resolver un problema dado' }, checked: true },
+  { name: { FR: "Déployer des services dans une architecture réseau", EN: 'Deploy services in a network architecture', ES: 'Desplegar servicios en una arquitectura de red' }, checked: true },
+  { name: { FR: "Optimiser une base de données, interagir avec une application et mettre en oeuvre la sécurité", EN: 'Optimize a database, interact with an application and implement security', ES: 'Optimizar una base de datos, interactuar con una aplicación y implementar seguridad' }, checked: true },
+  { name: { FR: "Appliquer une démarche de suivi de projet en fonction des besoins métiers des clients et des utilisateurs", EN: 'Apply a project management approach based on the business needs of clients and users', ES: 'Aplicar un enfoque de gestión de proyectos basado en las necesidades empresariales de los clientes y usuarios' }, checked: true },
+  { name: { FR: "Situer son rôle et ses missions au sein d'une équipe informatique", EN: 'Situate your role and responsibilities within an IT team', ES: 'Situar su papel y responsabilidades dentro de un equipo informático' }, checked: true },
 ];
 
 
-const learningSkills = ['Cmake', 'Unity', 'Kotlin', 'Relation de base de données NoSQL',
-   'Docker', 'virtualisation', 'deep learning'];
+const learningSkills = [
+  { FR: 'Relation de base de données NoSQL', EN: 'NoSQL database relationships', ES: 'Relaciones de base de datos NoSQL' },
+  { FR: 'Docker' },
+  { FR: 'virtualisation', EN: 'virtualization', ES: 'virtualización' },
+  { EN: 'deep learning' },
+  { FR: "OpenGL"},
+  
+];
 
-export const Component = () => {
+const COPY = {
+  toolbarBack: { FR: 'Précédent', EN: 'Back', ES: 'Atras' },
+  toolbarFolders: { FR: 'Dossiers', EN: 'Folders', ES: 'Carpetas' },
+  address: { FR: 'Adresse', EN: 'Address', ES: 'Dirección' },
+  addressPath: { FR: 'C:\\Utilisateurs\\Lucas\\Compétences', EN: 'C:\\Users\\Lucas\\Skills', ES: 'C:\\Usuarios\\Lucas\\Habilidades' },
+  categories: { FR: 'Catégories', EN: 'Categories', ES: 'Categorías' },
+  academic: { FR: 'Académiques', EN: 'Academic', ES: 'Académicas' },
+  languages: { FR: 'Langages', EN: 'Languages', ES: 'Idiomas' },
+  web: { FR: 'Web', EN: 'Web', ES: 'Web' },
+  tools: { FR: 'Outils', EN: 'Tools', ES: 'Herramientas' },
+  stats: { FR: 'Statistiques', EN: 'Statistics', ES: 'Estadísticas' },
+  total: { FR: 'Total' },
+  training: { FR: 'Formation', EN: 'Program', ES: 'Formación' },
+  location: { FR: 'Lieu', EN: 'Location', ES: 'Ubicación' },
+  headerTitle: { FR: 'Mes Compétences', EN: 'My Skills', ES: 'Mis Habilidades' },
+  headerSubtitle: { FR: 'Langages de programmation et outils maîtrisés', EN: 'Programming languages and tools', ES: 'Lenguajes de programación y herramientas' },
+  academicTitle: { FR: 'Compétences Académiques', EN: 'Academic Skills', ES: 'Habilidades Académicas' },
+  learningTitle: { FR: 'En cours d\'apprentissage', EN: 'Currently learning', ES: 'Actualmente aprendiendo' },
+  statusSkills: { FR: 'compétences', EN: 'skills', ES: 'habilidades' },
+  statusFooter: { FR: 'BUT Informatique - Le Puy-en-Velay', EN: 'Graphic Computing - Le Puy-en-Velay', ES: 'Computación Gráfica - Le Puy-en-Velay' },
+};
+
+const CATEGORY_LABELS = {
+  languages: COPY.languages,
+  web: COPY.web,
+  tools: COPY.tools,
+};
+
+export const Component = ({ currentLanguage }) => {
   const { zoom, zoomIn, zoomOut, resetZoom } = useZoom();
 
   return (
@@ -54,27 +95,28 @@ export const Component = () => {
         onZoomIn={zoomIn} 
         onZoomOut={zoomOut} 
         onReset={resetZoom}
+        currentLanguage={currentLanguage}
       />
 
       {/* Toolbar */}
       <div className="xp-toolbar">
         <button className="xp-toolbar-btn">
           <img src="/icons/back.webp" alt="" className="w-4 h-4" />
-          Précédent
+          {t(COPY.toolbarBack, currentLanguage)}
         </button>
         <div className="xp-toolbar-separator"></div>
         <button className="xp-toolbar-btn">
           <img src="/icons/folder.webp" alt="" className="w-4 h-4" />
-          Dossiers
+          {t(COPY.toolbarFolders, currentLanguage)}
         </button>
       </div>
 
       {/* Address Bar */}
       <div className="xp-addressbar">
-        <span className="xp-addressbar-label">Adresse</span>
+        <span className="xp-addressbar-label">{t(COPY.address, currentLanguage)}</span>
         <div className="xp-addressbar-input">
           <img src="/icons/note.webp" alt="" className="w-4 h-4" />
-          <span>C:\Utilisateurs\Lucas\Compétences</span>
+          <span>{t(COPY.addressPath, currentLanguage)}</span>
         </div>
       </div>
 
@@ -85,38 +127,38 @@ export const Component = () => {
           <div className="xp-sidebar-box">
             <div className="xp-sidebar-header">
               <img src="/icons/folder.webp" alt="" className="w-4 h-4" />
-              Catégories
+              {t(COPY.categories, currentLanguage)}
             </div>
 
             <div className="xp-sidebar-content">
               <a href="#academiques" className="xp-sidebar-link">
-                <img src="/icons/education.png" alt="" className="w-3 h-3" />
-                Académiques
+                <img src="/icons/note.webp" alt="" className="w-3 h-3" />
+                {t(COPY.academic, currentLanguage)}
               </a>
-              <a href="#langages" className="xp-sidebar-link">
-                <img src="/icons/code.png" alt="" className="w-3 h-3" />
-                Langages
+              <a href="#languages" className="xp-sidebar-link">
+                <img src="/icons/terminal.webp" alt="" className="w-3 h-3" />
+                {t(COPY.languages, currentLanguage)}
               </a>
               <a href="#web" className="xp-sidebar-link">
-                <img src="/icons/web.png" alt="" className="w-3 h-3" />
-                Web
+                <img src="/icons/explorer.webp" alt="" className="w-3 h-3" />
+                {t(COPY.web, currentLanguage)}
               </a>
-              <a href="#outils" className="xp-sidebar-link">
+              <a href="#tools" className="xp-sidebar-link">
                 <img src="/icons/setting.webp" alt="" className="w-3 h-3" />
-                Outils
+                {t(COPY.tools, currentLanguage)}
               </a>
             </div>
           </div>
 
           <div className="xp-sidebar-box">
             <div className="xp-sidebar-header">
-              <img src="/icons/info.png" alt="" className="w-4 h-4" />
-              Statistiques
+              <img src="/icons/questionMark.webp" alt="" className="w-4 h-4" />
+              {t(COPY.stats, currentLanguage)}
             </div>
             <div className="xp-sidebar-content">
-              <p className="xp-sidebar-info"><strong>Total:</strong> {skills.length + AcadmicSkills.length} compétences</p>
-              <p className="xp-sidebar-info"><strong>Formation:</strong> BUT Informatique</p>
-              <p className="xp-sidebar-info"><strong>Lieu:</strong> Le Puy-en-Velay</p>
+              <p className="xp-sidebar-info"><strong>{t(COPY.total, currentLanguage)}:</strong> {skills.length + AcadmicSkills.length} {t(COPY.statusSkills, currentLanguage)}</p>
+              <p className="xp-sidebar-info"><strong>{t(COPY.training, currentLanguage)}:</strong> BUT Informatique</p>
+              <p className="xp-sidebar-info"><strong>{t(COPY.location, currentLanguage)}:</strong> Le Puy-en-Velay</p>
             </div>
           </div>
         </div>
@@ -127,16 +169,16 @@ export const Component = () => {
           <div className="xp-content-header">
             <img src="/icons/note.webp" alt="" className="w-12 h-12" />
             <div>
-              <h1 className="xp-title">Mes Compétences</h1>
-              <p className="xp-subtitle">Langages de programmation et outils maîtrisés</p>
+              <h1 className="xp-title">{t(COPY.headerTitle, currentLanguage)}</h1>
+              <p className="xp-subtitle">{t(COPY.headerSubtitle, currentLanguage)}</p>
             </div>
           </div>
 
           {/* Academic Skills Section */}
           <div id="academiques" className="xp-box">
             <div className="xp-box-header">
-              <img src="/icons/education.png" alt="" className="w-4 h-4" />
-              Compétences Académiques
+              <img src="/icons/note.webp" alt="" className="w-4 h-4" />
+              {t(COPY.academicTitle, currentLanguage)}
             </div>
             <div className="xp-box-content">
               <div className="space-y-2">
@@ -151,7 +193,7 @@ export const Component = () => {
                         <div className="w-4 h-4 border-2 border-[#808080] bg-white"></div>
                       )}
                     </div>
-                    <span className="text-xs text-[#000000]">{skill.name}</span>
+                    <span className="text-xs text-[#000000]">{t(skill.name, currentLanguage)}</span>
                   </div>
                 ))}
               </div>
@@ -159,11 +201,11 @@ export const Component = () => {
           </div>
 
           {/* Skills by Category */}
-          {['Langages', 'Web', 'Outils'].map((category) => (
-            <div key={category} id={category.toLowerCase()} className="xp-box">
+          {['languages', 'web', 'tools'].map((category) => (
+            <div key={category} id={category} className="xp-box">
               <div className="xp-box-header">
-                <img src={category === 'Langages' ? '/icons/code.png' : category === 'Web' ? '/icons/web.png' : '/icons/setting.webp'} alt="" className="w-4 h-4" />
-                {category}
+                <img src={category === 'languages' ? '/icons/terminal.webp' : category === 'web' ? '/icons/explorer.webp' : '/icons/setting.webp'} alt="" className="w-4 h-4" />
+                {t(CATEGORY_LABELS[category], currentLanguage)}
               </div>
               <div className="xp-box-content">
                 <div className="space-y-2">
@@ -172,13 +214,16 @@ export const Component = () => {
                     .map((skill) => (
                       <div key={skill.name} className="flex items-center gap-2">
                         <span className="w-24 text-xs font-medium">{skill.name}</span>
-                        <div className="flex-1 bg-[#d4d0c8] border border-[#808080] h-4 overflow-hidden">
-                          <div
-                            className="h-full bg-gradient-to-b from-[#00aa00] to-[#006600] flex items-center justify-end pr-1"
-                            style={{ width: `${skill.level}%` }}
-                          >
-                            <span className="text-[9px] text-white font-bold">{skill.level}%</span>
-                          </div>
+                        <div className="flex items-center gap-1" title={`${skill.name}: ${Math.round(skill.level / 20)}/5`}>
+                          {Array.from({ length: 5 }, (_, index) => (
+                            <img
+                              key={index}
+                              src="/icons/live%20for%20xp.png"
+                              alt={index < Math.round(skill.level / 20) ? 'Étoile active' : 'Étoile inactive'}
+                              className="w-4 h-4 object-contain"
+                              style={{ opacity: index < Math.round(skill.level / 20) ? 1 : 0.25 }}
+                            />
+                          ))}
                         </div>
                       </div>
                     ))}
@@ -191,10 +236,10 @@ export const Component = () => {
           <div className="xp-tipbox">
             <img src="/icons/questionMark.webp" alt="" className="w-5 h-5 flex-shrink-0" />
             <div>
-              <strong>En cours d'apprentissage:</strong>
+              <strong>{t(COPY.learningTitle, currentLanguage)}:</strong>
               <div className="xp-tags mt-2">
-                {learningSkills.map((tech) => (
-                  <span key={tech} className="xp-tag">{tech}</span>
+                {learningSkills.map((tech, index) => (
+                  <span key={`${index}-${t(tech, currentLanguage)}`} className="xp-tag">{t(tech, currentLanguage)}</span>
                 ))}
               </div>
             </div>
@@ -204,8 +249,8 @@ export const Component = () => {
 
       {/* Status Bar */}
       <div className="xp-statusbar">
-        <span>{skills.length + AcadmicSkills.length} compétences</span>
-        <span>BUT Informatique - Le Puy-en-Velay</span>
+        <span>{skills.length + AcadmicSkills.length} {t(COPY.statusSkills, currentLanguage)}</span>
+        <span>{t(COPY.statusFooter, currentLanguage)}</span>
       </div>
     </div>
   );

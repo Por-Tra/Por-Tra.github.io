@@ -1,0 +1,592 @@
+/* ==========================================================
+   INTERNET EXPLORER 6
+   ========================================================== */
+.ie-app {
+  background: #ece9d8;
+}
+
+.ie-toolbar .xp-toolbar-btn svg {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.ie-toolbar .xp-toolbar-btn:disabled svg {
+  filter: grayscale(1);
+  opacity: 0.5;
+}
+
+/* Champ d'adresse : icône de page + saisie */
+.ie-address {
+  padding: 0 2px 0 3px;
+}
+
+.ie-address-icon {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.ie-address-icon svg,
+.ie-status-text svg,
+.ie-status-zone svg {
+  width: 16px;
+  height: 16px;
+}
+
+.ie-address input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  padding: 0 2px;
+  border: none !important;
+  outline: none;
+  background: transparent;
+}
+
+/* Barre « Liens » */
+.ie-links {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  padding: 1px 4px 2px 6px;
+  background: #ece9d8;
+  border-bottom: 1px solid #d8d2bd;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ie-links-label {
+  color: #7f7c73;
+  padding-right: 6px;
+  margin-right: 2px;
+  border-right: 1px solid #c5c2b2;
+}
+
+.ie-link-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 22px;
+  padding: 0 6px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  background: transparent;
+  color: #000;
+}
+
+.ie-link-btn:hover {
+  border-color: #cecece;
+  background: linear-gradient(180deg, #fff 0%, #fbfbf9 40%, #e8e6dc 100%);
+}
+
+.ie-link-btn img {
+  width: 16px;
+  height: 16px;
+}
+
+.ie-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+
+/* Volet Favoris (barre d'exploration à gauche) */
+.ie-favorites {
+  width: 220px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-right: 1px solid #a5a5a5;
+}
+
+.ie-favorites-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 4px 2px 8px;
+  background: #ece9d8;
+  border-bottom: 1px solid #d8d2bd;
+}
+
+.ie-favorites-close {
+  width: 18px;
+  height: 18px;
+  border: 1px solid transparent;
+  background: transparent;
+  line-height: 14px;
+}
+
+.ie-favorites-close:hover {
+  border-color: #cecece;
+}
+
+.ie-favorites ul {
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  overflow-y: auto;
+}
+
+.ie-favorites li button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 4px;
+  border: none;
+  background: transparent;
+  color: #000;
+  text-align: left;
+}
+
+.ie-favorites li button:hover {
+  color: #0033cc;
+  text-decoration: underline;
+}
+
+.ie-favorites li img {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.ie-viewport {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  overflow: auto;
+  background: #fff;
+  border-top: 1px solid #a5a5a5;
+  border-left: 1px solid #a5a5a5;
+}
+
+.ie-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #fff;
+}
+
+/* Barre d'état : texte | progression | zone Internet */
+.ie-statusbar {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 22px;
+  padding: 1px 2px;
+  background: #ece9d8;
+  border-top: 1px solid #d8d2bd;
+}
+
+.ie-status-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ie-status-hint {
+  flex-shrink: 0;
+  padding: 0 6px;
+  border: none;
+  background: transparent;
+  color: #0033cc;
+  text-decoration: underline;
+}
+
+/* Progression verte à blocs pendant le chargement */
+.ie-status-progress {
+  width: 120px;
+  height: 14px;
+  flex-shrink: 0;
+  border: 1px solid #a5a5a5;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 6px, #fff 6px 8px),
+    linear-gradient(180deg, #acedad 0%, #4cda50 40%, #2ed330 60%, #8fe791 100%) no-repeat;
+  background-size: auto, 0% 100%;
+  animation: ie-progress 2.4s ease-out forwards;
+}
+
+.ie-status-progress.is-done {
+  visibility: hidden;
+  animation: none;
+}
+
+@keyframes ie-progress {
+  from { background-size: auto, 0% 100%; }
+  to { background-size: auto, 85% 100%; }
+}
+
+.ie-status-zone {
+  width: 130px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 6px;
+  border-left: 1px solid #d8d2bd;
+  box-shadow: inset 1px 0 #fff;
+}
+
+/* ==========================================================
+   PAGES WEB (polices du web moderne au lieu de la police XP)
+   ========================================================== */
+:root {
+  --ie-web-font: -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+:root.a11y-dyslexia {
+  --ie-web-font: "OpenDyslexic", "Verdana", sans-serif;
+}
+
+.ie-web,
+.ie-web * {
+  font-family: var(--ie-web-font) !important;
+  font-size: calc(14px * var(--xp-scale)) !important;
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+.ie-web p {
+  margin: 0 0 8px;
+}
+
+/* ---------------- GitHub ---------------- */
+.ie-gh {
+  min-height: 100%;
+  background: #fff;
+  color: #1f2328;
+}
+
+.ie-gh-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  background: #f6f8fa;
+  border-bottom: 1px solid #d1d9e0;
+  color: #1f2328;
+}
+
+.ie-gh-home {
+  display: flex;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #1f2328;
+}
+
+.ie-web .ie-gh-header-path {
+  font-weight: 600;
+}
+
+.ie-gh-pad {
+  padding: 24px;
+}
+
+.ie-gh-layout {
+  display: flex;
+  gap: 24px;
+  padding: 24px;
+  align-items: flex-start;
+}
+
+.ie-gh-profile {
+  width: 240px;
+  flex-shrink: 0;
+}
+
+.ie-gh-avatar {
+  width: 100%;
+  max-width: 240px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px solid #d1d9e0;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.ie-web .ie-gh-name {
+  margin: 0;
+  font-size: calc(24px * var(--xp-scale)) !important;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.ie-web .ie-gh-login {
+  margin: 0 0 12px;
+  font-size: calc(20px * var(--xp-scale)) !important;
+  color: #59636e;
+  font-weight: 300;
+}
+
+.ie-gh-bio {
+  white-space: pre-line;
+}
+
+.ie-web .ie-gh-follow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 8px 0 12px;
+  color: #000;
+  text-decoration: none;
+}
+
+.ie-gh-muted {
+  color: #59636e;
+}
+
+.ie-gh-link {
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #0969da;
+  text-align: left;
+}
+
+.ie-gh-link:hover {
+  text-decoration: underline;
+}
+
+.ie-gh-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.ie-web .ie-gh-section-title {
+  margin: 0 0 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #d1d9e0;
+  font-size: calc(16px * var(--xp-scale)) !important;
+  font-weight: 600;
+}
+
+.ie-gh-counter {
+  display: inline-block;
+  min-width: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  background: #e7ecf0;
+  text-align: center;
+}
+
+.ie-gh-repos {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ie-gh-repo {
+  padding: 16px 0;
+  border-bottom: 1px solid #d1d9e0;
+}
+
+.ie-gh-repo-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.ie-web .ie-gh-repo-name {
+  font-size: calc(18px * var(--xp-scale)) !important;
+  font-weight: 600;
+}
+
+.ie-gh-badge {
+  padding: 0 7px;
+  border: 1px solid #d1d9e0;
+  border-radius: 2em;
+  color: #59636e;
+}
+
+.ie-web .ie-gh-badge {
+  font-size: calc(12px * var(--xp-scale)) !important;
+}
+
+.ie-gh-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  color: #59636e;
+}
+
+.ie-web .ie-gh-meta,
+.ie-web .ie-gh-meta * {
+  font-size: calc(12px * var(--xp-scale)) !important;
+}
+
+.ie-gh-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ie-gh-lang-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  vertical-align: middle;
+}
+
+.ie-gh-repo-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 16px 24px 0;
+}
+
+.ie-web .ie-gh-repo-title,
+.ie-web .ie-gh-repo-title > button,
+.ie-web .ie-gh-repo-title > strong,
+.ie-web .ie-gh-repo-title > .ie-gh-muted {
+  font-size: calc(20px * var(--xp-scale)) !important;
+}
+
+.ie-gh-readme-box {
+  border: 1px solid #d1d9e0;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.ie-web .ie-gh-readme-head {
+  padding: 8px 16px;
+  border-bottom: 1px solid #d1d9e0;
+  background: #f6f8fa;
+  font-weight: 600;
+}
+
+.ie-gh-readme {
+  display: block;
+  width: 100%;
+  border: none;
+}
+
+.ie-gh-about {
+  width: 280px;
+  flex-shrink: 0;
+}
+
+.ie-gh-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ie-gh-topic {
+  padding: 0 10px;
+  border-radius: 2em;
+  background: #ddf4ff;
+  color: #0969da;
+}
+
+.ie-web .ie-gh-topic {
+  font-size: calc(12px * var(--xp-scale)) !important;
+}
+
+.ie-gh-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.ie-web .ie-gh-actions .xp-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  text-decoration: none;
+}
+
+.ie-gh-error {
+  margin: 24px;
+  padding: 16px;
+  border: 1px solid #d1d9e0;
+  border-radius: 6px;
+  background: #fff8c5;
+}
+
+@media (max-width: 700px) {
+  .ie-gh-layout {
+    flex-direction: column;
+  }
+
+  .ie-gh-profile,
+  .ie-gh-about {
+    width: 100%;
+  }
+
+  .ie-gh-avatar {
+    max-width: 120px;
+  }
+}
+
+/* ---------------- Page d'erreur IE ---------------- */
+.ie-blocked {
+  max-width: 620px;
+  padding: 20px 28px;
+  color: #000;
+}
+
+.ie-blocked-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.ie-blocked-head h1 {
+  margin: 0;
+  font-weight: bold;
+  font-size: calc(22px * var(--xp-scale)) !important;
+}
+
+.ie-blocked hr {
+  border: none;
+  border-top: 1px solid #c0c0c0;
+  margin: 12px 0;
+}
+
+.ie-blocked ul {
+  margin: 0 0 16px;
+  padding-left: 20px;
+}
+
+.ie-blocked li {
+  margin-bottom: 6px;
+}
+
+.ie-blocked-link {
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #0033cc;
+  text-decoration: underline;
+}
+
+.ie-blocked-footer {
+  margin-top: 20px;
+  color: #808080;
+  white-space: pre-line;
+}
+
+/* Le reset de Tailwind met les SVG en bloc : les petites icônes restent dans le texte */
+.ie-gh-about svg,
+.ie-gh-meta svg {
+  display: inline-block;
+  vertical-align: -2px;
+}

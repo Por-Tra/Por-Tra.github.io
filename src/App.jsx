@@ -3,8 +3,45 @@ import Desktop from './components/Desktop'
 import xpLogo from './assets/BOOT-LOGO.webp'
 import profilePic from './assets/PP.webp'
 import offButton from '../public/icons/off.webp'
+import { t } from './i18n/text'
 
 const BOOT_SESSION_KEY = 'xp-boot-shown-session-v1'
+const DESKTOP_PREF_KEY = 'xp-desktop-preferences-v1'
+const LOGGED_OFF_KEY = 'xp-logged-off'
+
+const COPY = {
+  loginHint: {
+    FR: "Pour commencer, cliquez sur votre nom d'utilisateur",
+    EN: 'To begin, click your user name',
+    ES: 'Para comenzar, haga clic en su nombre de usuario',
+  },
+  turnOff: {
+    FR: "Arrêter l'ordinateur",
+    EN: 'Turn off computer',
+    ES: 'Apagar equipo',
+  },
+  accountsHint: {
+    FR: "Une fois la session ouverte, vous pouvez ajouter ou modifier des comptes. Ouvrez le Panneau de configuration, puis cliquez sur Comptes d'utilisateurs.",
+    EN: 'After you log on, you can add or change accounts. Just go to Control Panel and click User Accounts.',
+    ES: 'Una vez iniciada la sesión, puede agregar o cambiar cuentas. Vaya al Panel de control y haga clic en Cuentas de usuario.',
+  },
+  statusOnline: {
+    FR: 'Connecté',
+    EN: 'Signed in',
+    ES: 'Conectado',
+  },
+};
+
+const readStoredLanguage = () => {
+  try {
+    const raw = globalThis.localStorage?.getItem(DESKTOP_PREF_KEY);
+    if (!raw) return 'FR';
+    const parsed = JSON.parse(raw);
+    return typeof parsed?.currentLanguage === 'string' ? parsed.currentLanguage : 'FR';
+  } catch (error) {
+    return 'FR';
+  }
+};
 
 const BootScreen = () => (
   <div className="xp-boot-screen">
@@ -12,11 +49,12 @@ const BootScreen = () => (
       <img src={xpLogo} alt="Microsoft Windows XP" />
     </div>
     <div className="xp-boot-progress" />
+    <span className="xp-boot-copyright">Copyright © Lucas Contreras Hodapp</span>
     <span className="xp-boot-brand">Portfolio<sup>®</sup></span>
   </div>
 )
 
-const LoginScreen = ({ onContinue }) => (
+const LoginScreen = ({ onContinue, currentLanguage }) => (
   <div className="xp-login-screen">
     <div className="xp-login-topbar" />
 
@@ -24,7 +62,7 @@ const LoginScreen = ({ onContinue }) => (
       <div className="xp-login-panel">
         <div className="xp-login-left">
           <img src={xpLogo} alt="Microsoft Windows XP" className="xp-login-logo" />
-          <p className="xp-login-copy">Pour commencer, cliquez sur votre profil</p>
+          <p className="xp-login-copy">{t(COPY.loginHint, currentLanguage)}</p>
         </div>
 
         <div className="xp-login-divider" />
@@ -36,7 +74,7 @@ const LoginScreen = ({ onContinue }) => (
             </div>
             <div>
               <div className="xp-login-name">Lucas</div>
-              <div className="xp-login-status">Connecté</div>
+              <div className="xp-login-status">{t(COPY.statusOnline, currentLanguage)}</div>
             </div>
           </button>
         </div>
@@ -45,15 +83,22 @@ const LoginScreen = ({ onContinue }) => (
 
     <div className="xp-login-bottombar">
       <button className="xp-login-shutdown" onClick={onContinue}>
-        <img src={offButton} alt="Shut down" className='LoginOffBtn'/>
+        <img src={offButton} alt="" className='LoginOffBtn'/>
+        <span>{t(COPY.turnOff, currentLanguage)}</span>
       </button>
+      <p className="xp-login-hint">{t(COPY.accountsHint, currentLanguage)}</p>
     </div>
   </div>
 )
 
 function App() {
+  const [currentLanguage] = useState(() => readStoredLanguage())
   const [stage, setStage] = useState(() => {
     try {
+      if (globalThis.sessionStorage?.getItem(LOGGED_OFF_KEY) === '1') {
+        globalThis.sessionStorage.removeItem(LOGGED_OFF_KEY)
+        return 'login'
+      }
       if (globalThis.sessionStorage?.getItem(BOOT_SESSION_KEY) === '1') {
         return 'desktop'
       }
@@ -81,7 +126,7 @@ function App() {
   }, [stage])
 
   if (stage === 'boot') return <BootScreen />
-  if (stage === 'login') return <LoginScreen onContinue={() => setStage('desktop')} />
+  if (stage === 'login') return <LoginScreen onContinue={() => setStage('desktop')} currentLanguage={currentLanguage} />
   return <Desktop />
 }
 

@@ -8,6 +8,8 @@ import { useState, useCallback, useMemo, memo } from 'react';
 import fileSystem from '../../core/FileSystem';
 import XpMenuBar from '../../components/XpMenuBar';
 import { useSearchHighlight } from '../../hooks/useSearchHighlight.jsx';
+import { t, getAppLabel } from '../../i18n/text';
+import { resolveUrl } from '../InternetExplorer/router';
 
 export const config = {
   id: 'explorer',
@@ -17,8 +19,76 @@ export const config = {
   defaultHeight: 520,
 };
 
+const COPY = {
+  back: { FR: 'Précédent', EN: 'Back', ES: 'Anterior' },
+  forward: { FR: 'Suivant', EN: 'Forward', ES: 'Siguiente' },
+  up: { FR: 'Dossier parent', EN: 'Parent folder', ES: 'Carpeta padre' },
+  icons: { FR: 'Icônes', EN: 'Icons', ES: 'Iconos' },
+  list: { FR: 'Liste', EN: 'List', ES: 'Lista' },
+  details: { FR: 'Détails', EN: 'Details', ES: 'Detalles' },
+  address: { FR: 'Adresse', EN: 'Address', ES: 'Dirección' },
+  systemTasks: { FR: 'Tâches système', EN: 'System tasks', ES: 'Tareas del sistema' },
+  download: { FR: 'Télécharger', EN: 'Download', ES: 'Descargar' },
+  open: { FR: 'Ouvrir', EN: 'Open', ES: 'Abrir' },
+  otherLocations: { FR: 'Autres emplacements', EN: 'Other locations', ES: 'Otros lugares' },
+  desktop: { FR: 'Bureau', EN: 'Desktop', ES: 'Escritorio' },
+  myDocuments: { FR: 'Mes Documents', EN: 'My Documents', ES: 'Mis Documentos' },
+  myComputer: { FR: 'Poste de travail', EN: 'My Computer', ES: 'Mi Computadora' },
+  networkFavorites: { FR: 'Favoris réseau', EN: 'Network Favorites', ES: 'Favoritos de Red' },
+  detailsTitle: { FR: 'Détails', EN: 'Details', ES: 'Detalles' },
+  name: { FR: 'Nom', EN: 'Name', ES: 'Nombre' },
+  size: { FR: 'Taille', EN: 'Size', ES: 'Tamaño' },
+  type: { FR: 'Type', EN: 'Type', ES: 'Tipo' },
+  modified: { FR: 'Modifié', EN: 'Modified', ES: 'Modificado' },
+  modifiedOn: { FR: 'Modifié le', EN: 'Modified', ES: 'Modificado el' },
+  emptySearch: { FR: 'Aucun fichier ne correspond à votre recherche', EN: 'No files match your search', ES: 'No hay archivos que coincidan con su búsqueda' },
+  emptyFolder: { FR: 'Ce dossier est vide', EN: 'This folder is empty', ES: 'Esta carpeta está vacía' },
+  items: { FR: 'objet(s)', EN: 'item(s)', ES: 'elemento(s)' },
+  selected: { FR: 'sélectionné', EN: 'selected', ES: 'seleccionado' },
+  fileLabel: { FR: 'Fichier', EN: 'File', ES: 'Archivo' },
+  unknown: { FR: 'Inconnu', EN: 'Unknown', ES: 'Desconocido' },
+  typeFolder: { FR: 'Dossier de fichiers', EN: 'File folder', ES: 'Carpeta de archivos' },
+  typeDrive: { FR: 'Disque local', EN: 'Local disk', ES: 'Disco local' },
+  typeComputer: { FR: 'Poste de travail', EN: 'My Computer', ES: 'Mi Computadora' },
+  typeFile: { FR: 'Fichier', EN: 'File', ES: 'Archivo' },
+  typeApp: { FR: 'Raccourci application', EN: 'Application shortcut', ES: 'Acceso directo de aplicación' },
+  typeImage: { FR: 'Fichier image', EN: 'Image file', ES: 'Archivo de imagen' },
+  typeLink: { FR: 'Raccourci Internet', EN: 'Internet shortcut', ES: 'Acceso directo de Internet' },
+  preview: { FR: 'Aperçu', EN: 'Preview', ES: 'Vista previa' },
+  viewerName: {
+    FR: 'Aperçu des images et des télécopies Windows',
+    EN: 'Windows Picture and Fax Viewer',
+    ES: 'Visor de imágenes y fax de Windows',
+  },
+};
+
+const NAME_LABELS = {
+  'Poste de travail': COPY.myComputer,
+  'Bureau': COPY.desktop,
+  'Documents': { FR: 'Documents', EN: 'Documents', ES: 'Documentos' },
+  'Téléchargements': { FR: 'Téléchargements', EN: 'Downloads', ES: 'Descargas' },
+  'Images': { FR: 'Images', EN: 'Pictures', ES: 'Imágenes' },
+  'Projets': { FR: 'Projets', EN: 'Projects', ES: 'Proyectos' },
+  'Réseau': { FR: 'Réseau', EN: 'Network', ES: 'Red' },
+  'Captures': { FR: 'Captures', EN: 'Screenshots', ES: 'Capturas de pantalla' },
+  'Disque local (C:)': { FR: 'Disque local (C:)', EN: 'Local Disk (C:)', ES: 'Disco local (C:)' },
+  'Wallpapers': { FR: "Fonds d'écran", EN: 'Wallpapers', ES: 'Fondos de pantalla' },
+  'Réseau Social Local (RSL)': { FR: 'Réseau Social Local (RSL)', EN: 'Local Social Network (RSL)', ES: 'Red Social Local (RSL)' },
+  'Réseau Social Local': { FR: 'Réseau Social Local', EN: 'Local Social Network', ES: 'Red Social Local' },
+  'PORTR-AI (LLM from scratch en Python)': { FR: 'PORTR-AI (LLM from scratch en Python)', EN: 'PORTR-AI (LLM from scratch in Python)', ES: 'PORTR-AI (LLM desde cero en Python)' },
+  'Polenofs (stage OPGC - CNRS)': { FR: 'Polenofs (stage OPGC - CNRS)', EN: 'Polenofs (OPGC - CNRS internship)', ES: 'Polenofs (prácticas OPGC - CNRS)' },
+  'Application Web (PHP)': { FR: 'Application Web (PHP)', EN: 'Web Application (PHP)', ES: 'Aplicación Web (PHP)' },
+  'Application Web de notation': { FR: 'Application Web de notation', EN: 'Grading Web Application', ES: 'Aplicación Web de calificaciones' },
+  'Vapeur (javasript)': { FR: 'Vapeur (JavaScript)', EN: 'Vapeur (JavaScript)', ES: 'Vapeur (JavaScript)' },
+  'Video Games - make with Unreal Engine and Unity': {
+    FR: 'Jeux vidéo - Unreal Engine et Unity',
+    EN: 'Video Games - made with Unreal Engine and Unity',
+    ES: 'Videojuegos - Unreal Engine y Unity',
+  },
+};
+
 // Composant pour un élément dans l'explorateur
-const FileItem = memo(({ name, item, isSelected, viewMode, onSelect, onDoubleClick, highlightText }) => {
+const FileItem = memo(({ name, label, item, isSelected, viewMode, onSelect, onDoubleClick, highlightText }) => {
   const icon = fileSystem.getIcon(item, name);
   
   if (viewMode === 'icons') {
@@ -26,13 +96,14 @@ const FileItem = memo(({ name, item, isSelected, viewMode, onSelect, onDoubleCli
       <div
         onClick={() => onSelect(name, item)}
         onDoubleClick={() => onDoubleClick(name, item)}
-        className={`flex flex-col items-center w-20 p-2 rounded cursor-pointer select-none ${
-          isSelected ? 'bg-[#316ac5] text-white' : 'hover:bg-[#e8f4fc]'
-        }`}
+        className={`xp-file-icon ${isSelected ? 'is-selected' : ''}`}
+        style={{ '--icon-src': `url("${icon}")` }}
       >
-        <img src={icon} alt="" className="w-10 h-10 mb-1" draggable={false} />
-        <span className={`text-[11px] text-center break-all line-clamp-2 ${isSelected ? 'text-white' : ''}`}>
-          {highlightText ? highlightText(name) : name}
+        <div className="xp-file-icon-image">
+          <img src={icon} alt="" draggable={false} />
+        </div>
+        <span className="xp-file-icon-label">
+          {highlightText ? highlightText(label) : label}
         </span>
       </div>
     );
@@ -43,12 +114,10 @@ const FileItem = memo(({ name, item, isSelected, viewMode, onSelect, onDoubleCli
       <div
         onClick={() => onSelect(name, item)}
         onDoubleClick={() => onDoubleClick(name, item)}
-        className={`flex items-center gap-2 px-2 py-1 rounded cursor-pointer select-none ${
-          isSelected ? 'bg-[#316ac5] text-white' : 'hover:bg-[#e8f4fc]'
-        }`}
+        className={`xp-file-row ${isSelected ? 'is-selected' : ''}`}
       >
         <img src={icon} alt="" className="w-5 h-5" draggable={false} />
-        <span className="text-xs truncate">{highlightText ? highlightText(name) : name}</span>
+        <span className="text-xs truncate">{highlightText ? highlightText(label) : label}</span>
       </div>
     );
   }
@@ -59,34 +128,21 @@ const FileItem = memo(({ name, item, isSelected, viewMode, onSelect, onDoubleCli
 FileItem.displayName = 'FileItem';
 
 // Composant pour la vue détaillée
-const DetailsRow = memo(({ name, item, isSelected, index, onSelect, onDoubleClick, highlightText }) => {
+const DetailsRow = memo(({ name, label, item, typeLabel, isSelected, onSelect, onDoubleClick, highlightText }) => {
   const icon = fileSystem.getIcon(item, name);
-  const typeLabels = {
-    folder: 'Dossier de fichiers',
-    drive: 'Disque local',
-    computer: 'Poste de travail',
-    file: 'Fichier',
-    app: 'Raccourci application',
-    image: 'Fichier image',
-    link: 'Raccourci Internet'
-  };
   
   return (
     <tr
       onClick={() => onSelect(name, item)}
       onDoubleClick={() => onDoubleClick(name, item)}
-      className={`cursor-pointer select-none ${
-        isSelected 
-          ? 'bg-[#316ac5] text-white' 
-          : index % 2 === 0 ? 'bg-white hover:bg-[#e8f4fc]' : 'bg-[#f5f5f5] hover:bg-[#e8f4fc]'
-      }`}
+      className={`cursor-pointer select-none ${isSelected ? 'bg-[#316ac5] text-white' : ''}`}
     >
       <td className="p-1 flex items-center gap-2">
         <img src={icon} alt="" className="w-4 h-4" draggable={false} />
-        <span className="truncate">{highlightText ? highlightText(name) : name}</span>
+        <span className="truncate">{highlightText ? highlightText(label) : label}</span>
       </td>
       <td className="p-1">{item.size || '-'}</td>
-      <td className="p-1">{typeLabels[item.type] || 'Inconnu'}</td>
+      <td className="p-1">{typeLabel}</td>
       <td className="p-1">{item.modified || '-'}</td>
     </tr>
   );
@@ -94,7 +150,7 @@ const DetailsRow = memo(({ name, item, isSelected, index, onSelect, onDoubleClic
 
 DetailsRow.displayName = 'DetailsRow';
 
-export const Component = ({ onOpenApp, initialPath }) => {
+export const Component = ({ onOpenApp, initialPath, currentLanguage = 'FR' }) => {
   const resolvedInitialPath = useMemo(() => {
     const fallbackPath = ['Poste de travail'];
     if (!Array.isArray(initialPath) || initialPath.length === 0) {
@@ -102,6 +158,28 @@ export const Component = ({ onOpenApp, initialPath }) => {
     }
     return fileSystem.getFolder(initialPath) ? initialPath : fallbackPath;
   }, [initialPath]);
+
+  const getDisplayName = useCallback(
+    (name, item) => {
+      if (NAME_LABELS[name]) return t(NAME_LABELS[name], currentLanguage);
+      if (item?.labelFromApp) return getAppLabel(item.appId, name, currentLanguage);
+      return name;
+    },
+    [currentLanguage]
+  );
+
+  const getTypeLabel = useCallback((type) => {
+    const map = {
+      folder: COPY.typeFolder,
+      drive: COPY.typeDrive,
+      computer: COPY.typeComputer,
+      file: COPY.typeFile,
+      app: COPY.typeApp,
+      image: COPY.typeImage,
+      link: COPY.typeLink,
+    };
+    return t(map[type] ?? COPY.unknown, currentLanguage);
+  }, [currentLanguage]);
 
   const [currentPath, setCurrentPath] = useState(resolvedInitialPath);
   const [selectedItem, setSelectedItem] = useState(null);
@@ -123,14 +201,15 @@ export const Component = ({ onOpenApp, initialPath }) => {
       const bNavigable = fileSystem.isNavigable(b[1]);
       if (aNavigable && !bNavigable) return -1;
       if (!aNavigable && bNavigable) return 1;
-      return a[0].localeCompare(b[0]);
+      // Tri « naturel » comme dans XP : capture2 avant capture10
+      return a[0].localeCompare(b[0], undefined, { numeric: true, sensitivity: 'base' });
     });
   }, [currentFolder]);
 
   // Filter items based on search query
   const filteredItems = useMemo(() => {
-    return filterItems(sortedItems, ([name]) => name);
-  }, [sortedItems, query]);
+    return filterItems(sortedItems, ([name, item]) => getDisplayName(name, item));
+  }, [sortedItems, query, getDisplayName]);
 
   // Navigation
   const navigateTo = useCallback((path) => {
@@ -180,17 +259,25 @@ export const Component = ({ onOpenApp, initialPath }) => {
 
     // Ouverture d'une image
     if (item.type === 'image' && item.imageSrc && onOpenApp) {
-      onOpenApp('image-viewer', { 
-        imageSrc: item.imageSrc, 
+      // Les autres images du dossier sont transmises pour précédent/suivant et le diaporama
+      const folderImages = sortedItems
+        .filter(([, entry]) => entry.type === 'image' && entry.imageSrc)
+        .map(([entryName, entry]) => ({ src: entry.imageSrc, name: entryName }));
+      onOpenApp('image-viewer', {
+        images: folderImages,
+        startIndex: Math.max(0, folderImages.findIndex((image) => image.name === name)),
+        imageSrc: item.imageSrc,
         imageName: name,
-        windowTitle: `Aperçu - ${name}`
+        windowTitle: `${name} - ${t(COPY.viewerName, currentLanguage)}`
       });
       return;
     }
 
     // Ouverture d'un lien externe
+    // Raccourci Internet : navigateur intégré, sauf pour les sites qui refusent d'être intégrés
     if (item.type === 'link' && item.url) {
-      window.open(item.url, '_blank');
+      if (onOpenApp && resolveUrl(item.url).kind !== 'blocked') onOpenApp('internet-explorer', { initialUrl: item.url });
+      else window.open(item.url, '_blank', 'noopener');
       return;
     }
 
@@ -206,157 +293,147 @@ export const Component = ({ onOpenApp, initialPath }) => {
     }
 
     // Fichier sans action spéciale
-    alert(`Fichier: ${name}\nType: ${item.type}\nTaille: ${item.size || 'N/A'}`);
-  }, [currentPath, navigateTo, onOpenApp]);
+    alert(`${t(COPY.fileLabel, currentLanguage)}: ${name}\n${t(COPY.type, currentLanguage)}: ${getTypeLabel(item.type)}\n${t(COPY.size, currentLanguage)}: ${item.size || 'N/A'}`);
+  }, [currentPath, navigateTo, onOpenApp, sortedItems, currentLanguage]);
 
   const handleSelect = useCallback((name, item) => {
     setSelectedItem({ name, item });
   }, []);
 
   // Chemin affiché
-  const pathString = currentPath.join(' > ');
+  const pathString = currentPath.map(getDisplayName).join(' > ');
 
   return (
     <div className="h-full bg-white flex flex-col select-none">
       {/* Menu Bar */}
       <XpMenuBar
         preset="explorer"
-        className="bg-gradient-to-b from-[#ece9d8] to-[#d4d0c8] border-b border-[#808080] px-2 py-1 flex gap-4 text-xs"
-        itemClassName="text-gray-600 hover:underline cursor-pointer"
+        className="xp-menubar xp-menubar-explorer"
+        currentLanguage={currentLanguage}
       />
 
       {/* Toolbar */}
-      <div className="bg-[#ece9d8] border-b border-[#808080] px-2 py-1 flex items-center gap-1">
-        <button 
+      <div className="xp-toolbar">
+        <button
           onClick={goBack}
           disabled={historyIndex <= 0}
-          className="xp-button px-2 py-0.5 text-xs flex items-center gap-1 disabled:opacity-50 disabled:cursor-not-allowed"
-          title="Précédent"
+          className="xp-toolbar-btn"
+          title={t(COPY.back, currentLanguage)}
         >
-          ← Précédent
+          <img src="/icons/back.webp" alt="" className="xp-toolbar-icon-lg" />
+          {t(COPY.back, currentLanguage)}
         </button>
-        <button 
+        <button
           onClick={goForward}
           disabled={historyIndex >= history.length - 1}
-          className="xp-button px-2 py-0.5 text-xs flex items-center gap-1 disabled:opacity-50 disabled:cursor-not-allowed"
-          title="Suivant"
+          className="xp-toolbar-btn"
+          title={t(COPY.forward, currentLanguage)}
         >
-          Suivant →
+          <img src="/icons/back.webp" alt="" className="xp-toolbar-icon-lg" style={{ transform: 'scaleX(-1)' }} />
         </button>
-        <button 
+        <button
           onClick={goUp}
           disabled={currentPath.length <= 1}
-          className="xp-button px-2 py-0.5 text-xs flex items-center gap-1 disabled:opacity-50 disabled:cursor-not-allowed"
-          title="Dossier parent"
+          className="xp-toolbar-btn"
+          title={t(COPY.up, currentLanguage)}
         >
-          ↑
+          <img src="/icons/folder.webp" alt="" className="xp-toolbar-icon-lg" />
         </button>
-        <div className="w-px h-5 bg-[#808080] mx-1"></div>
-        <button 
+        <div className="xp-toolbar-separator"></div>
+        <button
           onClick={() => setViewMode('icons')}
-          className={`xp-button px-2 py-0.5 text-xs ${viewMode === 'icons' ? 'bg-[#c0c0c0]' : ''}`}
-          title="Icônes"
+          className={`xp-toolbar-btn ${viewMode === 'icons' ? 'is-pressed' : ''}`}
+          title={t(COPY.icons, currentLanguage)}
         >
-          ☐
+          {t(COPY.icons, currentLanguage)}
         </button>
-        <button 
+        <button
           onClick={() => setViewMode('list')}
-          className={`xp-button px-2 py-0.5 text-xs ${viewMode === 'list' ? 'bg-[#c0c0c0]' : ''}`}
-          title="Liste"
+          className={`xp-toolbar-btn ${viewMode === 'list' ? 'is-pressed' : ''}`}
+          title={t(COPY.list, currentLanguage)}
         >
-          ≡
+          {t(COPY.list, currentLanguage)}
         </button>
-        <button 
+        <button
           onClick={() => setViewMode('details')}
-          className={`xp-button px-2 py-0.5 text-xs ${viewMode === 'details' ? 'bg-[#c0c0c0]' : ''}`}
-          title="Détails"
+          className={`xp-toolbar-btn ${viewMode === 'details' ? 'is-pressed' : ''}`}
+          title={t(COPY.details, currentLanguage)}
         >
-          ⊞
+          {t(COPY.details, currentLanguage)}
         </button>
       </div>
 
       {/* Address Bar */}
-      <div className="bg-[#ece9d8] border-b border-[#808080] px-2 py-1 flex items-center gap-2">
-        <span className="text-xs text-gray-600 shrink-0">Adresse</span>
-        <div className="flex-1 bg-white border border-[#7f9db9] px-2 py-0.5 text-xs flex items-center gap-1 min-w-0">
+      <div className="xp-addressbar">
+        <span className="xp-addressbar-label">{t(COPY.address, currentLanguage)}</span>
+        <div className="xp-addressbar-input">
           <img src={currentFolder?.icon || '/icons/folder.webp'} alt="" className="w-4 h-4 shrink-0" />
           <span className="truncate">{pathString}</span>
         </div>
+        <button className="xp-addressbar-go" type="button">OK</button>
       </div>
 
       {/* Main Content */}
       <div className="flex-1 flex overflow-hidden">
-        {/* Left Sidebar */}
-        <div className="w-44 bg-gradient-to-b from-[#6b88c4] to-[#4d6eb5] p-2 overflow-y-auto flex-shrink-0">
-          {/* Tâches système */}
-          <div className="bg-white/90 p-2 mb-2">
-            <h3 className="text-[11px] font-bold text-[#215dc6] mb-2">Tâches système</h3>
-            <div className="space-y-1 text-[10px]">
-              {selectedItem?.item?.downloadFile && (
-                <div 
-                  onClick={() => handleDoubleClick(selectedItem.name, selectedItem.item)}
-                  className="flex items-center gap-1 text-[#215dc6] hover:underline cursor-pointer"
-                >
-                  <span></span> Télécharger
-                </div>
-              )}
-              {selectedItem?.item?.type === 'app' && (
-                <div 
-                  onClick={() => handleDoubleClick(selectedItem.name, selectedItem.item)}
-                  className="flex items-center gap-1 text-[#215dc6] hover:underline cursor-pointer"
-                >
-                  <span></span> Ouvrir
-                </div>
-              )}
-            </div>
+        {/* Volet des tâches */}
+        <div className="xp-sidebar">
+          {/* Tâches système (seulement si une action est possible sur la sélection) */}
+          {(selectedItem?.item?.downloadFile || selectedItem?.item?.type === 'app') && (
+          <div className="xp-sidebar-box">
+            <div className="xp-sidebar-title">{t(COPY.systemTasks, currentLanguage)}</div>
+            {selectedItem?.item?.downloadFile && (
+              <div
+                onClick={() => handleDoubleClick(selectedItem.name, selectedItem.item)}
+                className="xp-sidebar-link"
+              >
+                <img src="/icons/folder.webp" alt="" />
+                {t(COPY.download, currentLanguage)}
+              </div>
+            )}
+            {selectedItem?.item?.type === 'app' && (
+              <div
+                onClick={() => handleDoubleClick(selectedItem.name, selectedItem.item)}
+                className="xp-sidebar-link"
+              >
+                <img src={selectedItem.item.icon || '/icons/folder.webp'} alt="" />
+                {t(COPY.open, currentLanguage)}
+              </div>
+            )}
           </div>
+          )}
 
-          {/* Raccourcis */}
-          <div className="bg-white/90 p-2 mb-2">
-            <h3 className="text-[11px] font-bold text-[#215dc6] mb-2">Autres emplacements</h3>
-            <div className="space-y-1 text-[10px]">
-              <div 
-                onClick={() => navigateTo(['Poste de travail', 'Bureau'])}
-                className="flex items-center gap-1 text-[#215dc6] hover:underline cursor-pointer"
-              >
-                <img src="/icons/folder.webp" alt="" className="w-3 h-3" />
-                Bureau
-              </div>
-              <div 
-                onClick={() => navigateTo(['Poste de travail', 'Documents'])}
-                className="flex items-center gap-1 text-[#215dc6] hover:underline cursor-pointer"
-              >
-                <img src="/icons/document.svg" alt="" className="w-3 h-3" />
-                Mes Documents
-              </div>
-              <div 
-                onClick={() => navigateTo(['Poste de travail'])}
-                className="flex items-center gap-1 text-[#215dc6] hover:underline cursor-pointer"
-              >
-                <img src="/icons/computer.svg" alt="" className="w-3 h-3" />
-                Poste de travail
-              </div>
-              <div 
-                onClick={() => navigateTo(['Poste de travail', 'Réseau'])}
-                className="flex items-center gap-1 text-[#215dc6] hover:underline cursor-pointer"
-              >
-                <img src="/icons/explorer.webp" alt="" className="w-3 h-3" />
-                Favoris réseau
-              </div>
+          {/* Autres emplacements */}
+          <div className="xp-sidebar-box">
+            <div className="xp-sidebar-title">{t(COPY.otherLocations, currentLanguage)}</div>
+            <div onClick={() => navigateTo(['Poste de travail', 'Bureau'])} className="xp-sidebar-link">
+              <img src="/icons/folder.webp" alt="" />
+              {t(COPY.desktop, currentLanguage)}
+            </div>
+            <div onClick={() => navigateTo(['Poste de travail', 'Documents'])} className="xp-sidebar-link">
+              <img src="/icons/note.webp" alt="" />
+              {t(COPY.myDocuments, currentLanguage)}
+            </div>
+            <div onClick={() => navigateTo(['Poste de travail'])} className="xp-sidebar-link">
+              <img src="/icons/PC.webp" alt="" />
+              {t(COPY.myComputer, currentLanguage)}
+            </div>
+            <div onClick={() => navigateTo(['Poste de travail', 'Réseau'])} className="xp-sidebar-link">
+              <img src="/icons/explorer.webp" alt="" />
+              {t(COPY.networkFavorites, currentLanguage)}
             </div>
           </div>
 
           {/* Détails de l'élément sélectionné */}
           {selectedItem && (
-            <div className="bg-white/90 p-2">
-              <h3 className="text-[11px] font-bold text-[#215dc6] mb-2">Détails</h3>
-              <div className="text-[10px] text-gray-700 space-y-1">
-                <p className="truncate"><strong>Nom:</strong> {selectedItem.name}</p>
-                <p><strong>Type:</strong> {selectedItem.item.type}</p>
-                {selectedItem.item.size && <p><strong>Taille:</strong> {selectedItem.item.size}</p>}
-                {selectedItem.item.modified && <p><strong>Modifié:</strong> {selectedItem.item.modified}</p>}
+            <div className="xp-sidebar-box">
+              <div className="xp-sidebar-title">{t(COPY.detailsTitle, currentLanguage)}</div>
+              <div className="xp-sidebar-text">
+                <p className="truncate font-bold">{getDisplayName(selectedItem.name, selectedItem.item)}</p>
+                <p>{getTypeLabel(selectedItem.item.type)}</p>
+                {selectedItem.item.size && <p>{t(COPY.size, currentLanguage)}: {selectedItem.item.size}</p>}
+                {selectedItem.item.modified && <p>{t(COPY.modified, currentLanguage)}: {selectedItem.item.modified}</p>}
                 {selectedItem.item.description && (
-                  <p className="text-[9px] text-gray-500 mt-1">{selectedItem.item.description}</p>
+                  <p className="mt-1">{t(selectedItem.item.description, currentLanguage)}</p>
                 )}
               </div>
             </div>
@@ -371,12 +448,13 @@ export const Component = ({ onOpenApp, initialPath }) => {
           }}
         >
           {viewMode === 'icons' && (
-            <div className="flex flex-wrap gap-2 p-3 content-start">
+            <div className="flex flex-wrap gap-x-2 gap-y-3 p-3 content-start">
               {filteredItems.length > 0 ? (
                 filteredItems.map(([name, item]) => (
                   <FileItem
                     key={name}
                     name={name}
+                    label={getDisplayName(name, item)}
                     item={item}
                     isSelected={selectedItem?.name === name}
                     viewMode={viewMode}
@@ -387,7 +465,7 @@ export const Component = ({ onOpenApp, initialPath }) => {
                 ))
               ) : (
                 <div className="text-gray-400 text-sm py-4">
-                  {isSearching ? 'Aucun fichier ne correspond à votre recherche' : 'Ce dossier est vide'}
+                  {isSearching ? t(COPY.emptySearch, currentLanguage) : t(COPY.emptyFolder, currentLanguage)}
                 </div>
               )}
             </div>
@@ -400,6 +478,7 @@ export const Component = ({ onOpenApp, initialPath }) => {
                   <FileItem
                     key={name}
                     name={name}
+                    label={getDisplayName(name, item)}
                     item={item}
                     isSelected={selectedItem?.name === name}
                     viewMode={viewMode}
@@ -410,31 +489,33 @@ export const Component = ({ onOpenApp, initialPath }) => {
                 ))
               ) : (
                 <div className="text-gray-400 text-sm py-4">
-                  {isSearching ? 'Aucun fichier ne correspond à votre recherche' : 'Ce dossier est vide'}
+                  {/* {isSearching ? 'Aucun fichier ne correspond à votre recherche' : 'Ce dossier est vide'} */}
+                  {isSearching ? t(COPY.emptySearch, currentLanguage) : t(COPY.emptyFolder, currentLanguage)}
                 </div>
               )}
             </div>
           )}
 
           {viewMode === 'details' && (
-            <table className="w-full text-xs">
-              <thead className="bg-[#ece9d8] border-b border-[#808080] sticky top-0">
+            <table className="xp-table">
+              <thead className="sticky top-0">
                 <tr>
-                  <th className="text-left p-1 font-medium">Nom</th>
-                  <th className="text-left p-1 font-medium w-20">Taille</th>
-                  <th className="text-left p-1 font-medium w-32">Type</th>
-                  <th className="text-left p-1 font-medium w-24">Modifié le</th>
+                  <th>{t(COPY.name, currentLanguage)}</th>
+                  <th className="w-20">{t(COPY.size, currentLanguage)}</th>
+                  <th className="w-32">{t(COPY.type, currentLanguage)}</th>
+                  <th className="w-24">{t(COPY.modifiedOn, currentLanguage)}</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredItems.length > 0 ? (
-                  filteredItems.map(([name, item], index) => (
+                  filteredItems.map(([name, item]) => (
                     <DetailsRow
                       key={name}
                       name={name}
+                      label={getDisplayName(name, item)}
                       item={item}
+                      typeLabel={getTypeLabel(item.type)}
                       isSelected={selectedItem?.name === name}
-                      index={index}
                       onSelect={handleSelect}
                       onDoubleClick={handleDoubleClick}
                       highlightText={highlightText}
@@ -443,7 +524,7 @@ export const Component = ({ onOpenApp, initialPath }) => {
                 ) : (
                   <tr>
                     <td colSpan="4" className="p-4 text-center text-gray-400">
-                      {isSearching ? 'Aucun fichier ne correspond à votre recherche' : 'Ce dossier est vide'}
+                      {isSearching ? t(COPY.emptySearch, currentLanguage) : t(COPY.emptyFolder, currentLanguage)}
                     </td>
                   </tr>
                 )}
@@ -453,15 +534,18 @@ export const Component = ({ onOpenApp, initialPath }) => {
 
           {filteredItems.length === 0 && viewMode !== 'icons' && viewMode !== 'list' && viewMode !== 'details' &&
             <div className="flex items-center justify-center h-full text-gray-400 text-sm">
-              Ce dossier est vide
+              {t(COPY.emptyFolder, currentLanguage)}
             </div>
           }
         </div>
       </div>
 
       {/* Status Bar */}
-      <div className="bg-[#ece9d8] border-t border-[#808080] px-2 py-1 text-[10px] text-gray-600 flex justify-between">
-        <span>{filteredItems.length} objet(s){selectedItem ? ` • "${selectedItem.name}" sélectionné` : ''}</span>
+      <div className="xp-statusbar">
+        <span>
+          {filteredItems.length} {t(COPY.items, currentLanguage)}
+          {selectedItem ? ` • "${getDisplayName(selectedItem.name, selectedItem.item)}" ${t(COPY.selected, currentLanguage)}` : ''}
+        </span>
         <span>{pathString}</span>
       </div>
     </div>

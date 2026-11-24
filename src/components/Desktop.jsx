@@ -2,19 +2,40 @@ import { useState, useCallback, useEffect, useRef } from 'react';
 import DesktopIcon from './DesktopIcon';
 import Window from './Window';
 import Taskbar from './Taskbar';
+import Clippy from './Clippy';
+import ErrorDialogHost from './ErrorDialogHost';
+import { useClippySettings, readClippySettings, saveClippySettings } from '../core/clippySettings';
 // Import du registry et initialisation des apps
 import appRegistry from '../apps';
 import recycleBin from '../core/recycleBin';
+import { t, getAppLabel } from '../i18n/text';
 
 const STORAGE_KEY = 'xp-desktop-preferences-v1';
 const WELCOME_SESSION_KEY = 'xp-welcome-opened-session-v1';
 
 // Grid configuration for icon snapping
-const GRID_SIZE = 80;
-const ICON_WIDTH = 70;
-const ICON_HEIGHT = 80;
 const GRID_PADDING = 10;
+
+// La grille des icônes suit l'échelle d'affichage (« Grandes polices » des options d'accessibilité),
+// et s'élargit avec la police dyslexie, plus large que la police par défaut
+const DYSLEXIA_GRID_FACTOR = 1.4;
+const getDisplayScale = () => {
+  const root = document.documentElement;
+  const scale = parseFloat(getComputedStyle(root).getPropertyValue('--xp-scale')) || 1;
+  return root.classList.contains('a11y-dyslexia') ? scale * DYSLEXIA_GRID_FACTOR : scale;
+};
+const gridSize = () => Math.round(80 * getDisplayScale());
+const iconWidth = () => Math.round(70 * getDisplayScale());
+const iconHeight = () => Math.round(80 * getDisplayScale());
 const TRASH_APP_ID = 'trash';
+
+const DESKTOP_MENU_LABELS = {
+  refresh: { FR: 'Actualiser', EN: 'Refresh', ES: 'Actualizar' },
+  align: { FR: 'Aligner les icônes', EN: 'Align icons', ES: 'Alinear iconos' },
+  selectAll: { FR: 'Tout sélectionner', EN: 'Select all', ES: 'Seleccionar todo' },
+  properties: { FR: 'Propriétés', EN: 'Properties', ES: 'Propiedades' },
+  showClippy: { FR: 'Afficher Clippy', EN: 'Show Clippy', ES: 'Mostrar a Clippy' },
+};
 
 const readStoredPreferences = () => {
   try {
@@ -42,6 +63,8 @@ const Desktop = () => {
   const lassoHasMoved = useRef(false);
   const lassoJustFinished = useRef(false);
   const [dragGhost, setDragGhost] = useState(null);
+  const [clippySettings] = useClippySettings();
+  const isClippyHidden = !clippySettings.visible;
   const [wallpaperUrl, setWallpaperUrl] = useState(() => {
     const stored = readStoredPreferences();
     return typeof stored?.wallpaperUrl === 'string' ? stored.wallpaperUrl : '/wallpaper.webp';
@@ -57,7 +80,7 @@ const Desktop = () => {
   });
 
   const clampPosition = useCallback((x, y) => {
-    const maxX = Math.max(0, window.innerWidth - ICON_WIDTH);
+    const maxX = Math.max(0, window.innerWidth - iconWidth());
     const maxY = Math.max(0, window.innerHeight - 120);
     return {
       x: Math.max(0, Math.min(maxX, x)),
@@ -67,8 +90,8 @@ const Desktop = () => {
   
   // Snap position to grid
   const snapToGrid = (x, y) => {
-    const snappedX = Math.round(x / GRID_SIZE) * GRID_SIZE + GRID_PADDING;
-    const snappedY = Math.round(y / GRID_SIZE) * GRID_SIZE + GRID_PADDING;
+    const snappedX = Math.round(x / gridSize()) * gridSize() + GRID_PADDING;
+    const snappedY = Math.round(y / gridSize()) * gridSize() + GRID_PADDING;
     return { x: snappedX, y: snappedY };
   };
 
@@ -76,8 +99,8 @@ const Desktop = () => {
   const isPositionOccupied = (x, y, excludeId, icons) => {
     return icons.some(icon => 
       icon.id !== excludeId && 
-      Math.abs(icon.x - x) < ICON_WIDTH && 
-      Math.abs(icon.y - y) < ICON_HEIGHT
+      Math.abs(icon.x - x) < iconWidth() && 
+      Math.abs(icon.y - y) < iconHeight()
     );
   };
 
@@ -93,8 +116,8 @@ const Desktop = () => {
       for (let dx = -radius; dx <= radius; dx++) {
         for (let dy = -radius; dy <= radius; dy++) {
           if (Math.abs(dx) === radius || Math.abs(dy) === radius) {
-            const testX = snapped.x + dx * GRID_SIZE;
-            const testY = snapped.y + dy * GRID_SIZE;
+            const testX = snapped.x + dx * gridSize();
+            const testY = snapped.y + dy * gridSize();
             if (testX >= GRID_PADDING && testY >= GRID_PADDING && 
                 !isPositionOccupied(testX, testY, excludeId, icons)) {
               return { x: testX, y: testY };
@@ -110,7 +133,7 @@ const Desktop = () => {
   const getIconsPerColumn = () => {
     // Subtract taskbar height (~48px) and some padding
     const availableHeight = window.innerHeight - 60;
-    return Math.max(1, Math.floor(availableHeight / GRID_SIZE));
+    return Math.max(1, Math.floor(availableHeight / gridSize()));
   };
 
   // Initialize icons with grid positions using the registry
@@ -136,8 +159,8 @@ const Desktop = () => {
       const row = index % iconsPerColumn;
       return {
         ...app,
-        x: GRID_PADDING + column * GRID_SIZE,
-        y: GRID_PADDING + row * GRID_SIZE,
+        x: GRID_PADDING + column * gridSize(),
+        y: GRID_PADDING + row * gridSize(),
       };
     });
   });
@@ -153,14 +176,14 @@ const Desktop = () => {
         const row = index % iconsPerColumn;
         return {
           ...icon,
-          x: GRID_PADDING + column * GRID_SIZE,
-          y: GRID_PADDING + row * GRID_SIZE,
+          x: GRID_PADDING + column * gridSize(),
+          y: GRID_PADDING + row * gridSize(),
         };
       }));
 
       // Adjust windows to fit in viewport
       const maxWidth = window.innerWidth;
-      const maxHeight = window.innerHeight - 48; // taskbar height
+      const maxHeight = window.innerHeight - 30; // taskbar height
       
       setWindows(prev => prev.map(w => {
         if (w.maximized) return w;
@@ -234,6 +257,7 @@ const Desktop = () => {
       id: nextId,
       appId: app.id,
       title: app.name,
+      titleKey: app.id,
       icon: app.icon,
       url: app.url,
       content: app.content,
@@ -278,6 +302,7 @@ const Desktop = () => {
       id: 1,
       appId: welcomeApp.id,
       title: welcomeApp.name,
+      titleKey: welcomeApp.id,
       icon: welcomeApp.icon,
       url: welcomeApp.url,
       content: welcomeApp.content,
@@ -336,6 +361,7 @@ const Desktop = () => {
       id: nextId,
       appId: app.id,
       title: customTitle,
+      titleKey: extraProps.windowTitle ? null : app.id,
       icon: app.icon,
       url: app.url,
       openExternal: app.openExternal,
@@ -446,12 +472,12 @@ const Desktop = () => {
     const bounds = {
       left: trashIcon.x,
       top: trashIcon.y,
-      right: trashIcon.x + ICON_WIDTH,
-      bottom: trashIcon.y + ICON_HEIGHT,
+      right: trashIcon.x + iconWidth(),
+      bottom: trashIcon.y + iconHeight(),
     };
 
-    const right = x + ICON_WIDTH;
-    const bottom = y + ICON_HEIGHT;
+    const right = x + iconWidth();
+    const bottom = y + iconHeight();
 
     return right > bounds.left && x < bounds.right && bottom > bounds.top && y < bounds.bottom;
   }, [icons]);
@@ -584,11 +610,25 @@ const Desktop = () => {
       const row = index % iconsPerColumn;
       return {
         ...icon,
-        x: GRID_PADDING + column * GRID_SIZE,
-        y: GRID_PADDING + row * GRID_SIZE,
+        x: GRID_PADDING + column * gridSize(),
+        y: GRID_PADDING + row * gridSize(),
       };
     }));
   }, []);
+
+  // Changement de taille des polices : on réaligne les icônes sur la nouvelle grille
+  const lastDisplayScale = useRef(null);
+  useEffect(() => {
+    lastDisplayScale.current = getDisplayScale();
+    const handleAccessibilityChange = () => {
+      const scale = getDisplayScale();
+      if (scale === lastDisplayScale.current) return;
+      lastDisplayScale.current = scale;
+      alignIconsToGrid();
+    };
+    window.addEventListener('xp-accessibility-change', handleAccessibilityChange);
+    return () => window.removeEventListener('xp-accessibility-change', handleAccessibilityChange);
+  }, [alignIconsToGrid]);
 
   const handleContextAction = useCallback((action) => {
     if (action === 'refresh') {
@@ -609,6 +649,12 @@ const Desktop = () => {
       return;
     }
 
+    if (action === 'show-clippy') {
+      saveClippySettings({ ...readClippySettings(), visible: true });
+      setContextMenu(null);
+      return;
+    }
+
     if (action === 'properties') {
       const controlPanel = appRegistry.get('control-panel');
       if (controlPanel) {
@@ -617,6 +663,10 @@ const Desktop = () => {
       setContextMenu(null);
     }
   }, [alignIconsToGrid, icons, openApp]);
+
+  const handleHideClippy = useCallback(() => {
+    saveClippySettings({ ...readClippySettings(), visible: false });
+  }, []);
 
   const handleDesktopContextMenu = useCallback((e) => {
     if (e.target !== e.currentTarget) return;
@@ -674,8 +724,8 @@ const Desktop = () => {
           const iconRect = {
             left: icon.x,
             top: icon.y,
-            right: icon.x + ICON_WIDTH,
-            bottom: icon.y + ICON_HEIGHT,
+            right: icon.x + iconWidth(),
+            bottom: icon.y + iconHeight(),
           };
           const rectRight = left + width;
           const rectBottom = top + height;
@@ -794,6 +844,20 @@ const Desktop = () => {
     return () => window.removeEventListener('xp-menu-action', handleMenuAction);
   }, [activeWindow, closeWindow, maximizeWindow]);
 
+  // Une app peut changer le titre de sa propre fenêtre (ex. : nom de l'image affichée)
+  useEffect(() => {
+    const handleWindowTitle = (event) => {
+      const { windowId, title } = event.detail || {};
+      if (!windowId || typeof title !== 'string') return;
+      setWindows(prev => prev.map(w => (
+        w.id === windowId && w.title !== title ? { ...w, title, titleKey: null } : w
+      )));
+    };
+
+    window.addEventListener('xp-window-title', handleWindowTitle);
+    return () => window.removeEventListener('xp-window-title', handleWindowTitle);
+  }, []);
+
   return (
     <div 
       className="xp-desktop w-full h-screen relative overflow-hidden no-select"
@@ -807,6 +871,7 @@ const Desktop = () => {
           <DesktopIcon
             key={icon.id}
             app={icon}
+            currentLanguage={currentLanguage}
             isSelected={selectedIcons.includes(icon.id)}
             isDropTarget={icon.id === TRASH_APP_ID && isTrashHovered}
             onSelect={handleIconSelect}
@@ -830,27 +895,17 @@ const Desktop = () => {
 
         {dragGhost && dragGhostApp && (
           <div
-            className="absolute flex flex-col items-center p-1 w-[75px] pointer-events-none opacity-50"
+            className="absolute xp-desktop-icon pointer-events-none opacity-50"
             style={{
               left: dragGhost.x,
               top: dragGhost.y,
             }}
           >
-            <div className="w-12 h-12 flex items-center justify-center mb-1">
-              <img
-                src={dragGhostApp.icon}
-                alt=""
-                className="w-10 h-10 drop-shadow-[1px_1px_1px_rgba(0,0,0,0.5)]"
-                draggable={false}
-              />
+            <div className="xp-desktop-icon-image">
+              <img src={dragGhostApp.icon} alt="" draggable={false} />
             </div>
-            <span
-              className="text-[11px] text-center leading-tight break-words w-full px-1 text-white"
-              style={{
-                textShadow: '1px 1px 2px rgba(0,0,0,0.9)',
-              }}
-            >
-              {dragGhostApp.name}
+            <span className="xp-desktop-icon-label">
+              {getAppLabel(dragGhostApp.id, dragGhostApp.name, currentLanguage)}
             </span>
           </div>
         )}
@@ -865,29 +920,49 @@ const Desktop = () => {
               className="xp-desktop-context-item"
               onClick={() => handleContextAction('refresh')}
             >
-              Actualiser
+              {t(DESKTOP_MENU_LABELS.refresh, currentLanguage)}
             </button>
             <div className="xp-desktop-context-separator"></div>
             <button
               className="xp-desktop-context-item"
               onClick={() => handleContextAction('align')}
             >
-              Aligner les icones
+              {t(DESKTOP_MENU_LABELS.align, currentLanguage)}
             </button>
             <button
               className="xp-desktop-context-item"
               onClick={() => handleContextAction('select-all')}
             >
-              Tout selectionner
+              {t(DESKTOP_MENU_LABELS.selectAll, currentLanguage)}
             </button>
             <div className="xp-desktop-context-separator"></div>
             <button
               className="xp-desktop-context-item"
               onClick={() => handleContextAction('properties')}
             >
-              Proprietes
+              {t(DESKTOP_MENU_LABELS.properties, currentLanguage)}
             </button>
+            {isClippyHidden && (
+              <>
+                <div className="xp-desktop-context-separator"></div>
+                <button
+                  className="xp-desktop-context-item"
+                  onClick={() => handleContextAction('show-clippy')}
+                >
+                  {t(DESKTOP_MENU_LABELS.showClippy, currentLanguage)}
+                </button>
+              </>
+            )}
           </div>
+        )}
+
+        {/* Clippy (sous les fenêtres) */}
+        {!isClippyHidden && (
+          <Clippy
+            currentLanguage={currentLanguage}
+            onOpenApp={openAppById}
+            onHide={handleHideClippy}
+          />
         )}
 
         {/* Windows */}
@@ -913,6 +988,9 @@ const Desktop = () => {
             onSetLanguage={handleSetLanguage}
           />
         ))}
+
+        {/* Boîtes d'erreur (showError) */}
+        <ErrorDialogHost currentLanguage={currentLanguage} />
 
         {/* Taskbar */}
         <Taskbar
