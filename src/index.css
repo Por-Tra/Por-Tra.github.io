@@ -5,20 +5,15 @@
 @import "./styles/xp-scrollbars.css";
 @import "./styles/xp-ie.css";
 
+/* fs Tahoma 8px par ETHproductions, hébergée localement pour éviter les blocages du CDN.
+   Licence et attribution : public/fonts/fs-tahoma/license.txt et readme.txt.
+   Le nom CSS historique est conservé pour les réglages d'accessibilité. */
 @font-face {
   font-family: "fs Tahoma 16px";
-  src: url("https://db.onlinewebfonts.com/t/42f9562c8f7c7a67c631997066a9bff4.eot");
-  src:
-    url("https://db.onlinewebfonts.com/t/42f9562c8f7c7a67c631997066a9bff4.eot?#iefix")
-      format("embedded-opentype"),
-    url("https://db.onlinewebfonts.com/t/42f9562c8f7c7a67c631997066a9bff4.woff2")
-      format("woff2"),
-    url("https://db.onlinewebfonts.com/t/42f9562c8f7c7a67c631997066a9bff4.woff")
-      format("woff"),
-    url("https://db.onlinewebfonts.com/t/42f9562c8f7c7a67c631997066a9bff4.ttf")
-      format("truetype"),
-    url("https://db.onlinewebfonts.com/t/42f9562c8f7c7a67c631997066a9bff4.svg#fs Tahoma 16px")
-      format("svg");
+  src: url("/fonts/fs-tahoma/fs-tahoma-8px.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
 /* Windows XP Classic Styling */
